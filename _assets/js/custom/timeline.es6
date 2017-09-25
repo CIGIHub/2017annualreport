@@ -963,15 +963,13 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     clearLastPreview();
     e.stopPropagation();
     if (mountedItem.i < dataByTimeAll.length - 1) {
-      if (mountedItem.i > 0) {
-        let i = mountedItem.i;
-        const dataByTimeLength = dataByTimeAll.length;
-        while (++i < dataByTimeLength) {
-          const item = dataByTimeAll[i];
-          if (!item.grayed) {
-            changeExpandedViewArticle(item, 'right');
-            break;
-          }
+      let i = mountedItem.i;
+      const dataByTimeLength = dataByTimeAll.length;
+      while (++i < dataByTimeLength) {
+        const item = dataByTimeAll[i];
+        if (!item.grayed) {
+          changeExpandedViewArticle(item, 'right');
+          break;
         }
       }
     }
