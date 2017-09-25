@@ -1,0 +1,181 @@
+//Define Font Variables
+
+$base-font-family: 'futura-pt', Helvetica, Arial, sans-serif;
+$base-font-size: 16px;
+$base-font-weight: 400;
+$small-font-size: $base-font-size * 0.875;
+$base-line-height: 1.4;
+
+$spacing-unit: 30px;
+
+//Define Colours
+
+$text-color: #3d3d3d;
+$background-color: #f2f0ea;
+$accent-color: #e6023b;
+$accent-color-50: rgba(230, 2, 59, 0.5);
+
+$grey-color: #9f9f9f;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark: darken($grey-color, 25%);
+
+$grey-25: rgba(0, 0, 0, 0.25);
+$background-50: rgba(242, 240, 234, 0.5);
+
+// Width of the content area
+
+$content-width: 95%;
+
+// Reset some basic elements
+
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+// Media queries
+
+$on-palm: 600px;
+$on-laptop: 800px;
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//   .wrapper {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
+//   }
+// }
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+// Basic styling
+
+body {
+  color: $text-color;
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+}
+
+%click-through-to-children {
+  pointer-events: none;
+
+  * {
+    pointer-events: auto;
+  }
+}
+
+header {
+  @extend %click-through-to-children;
+}
+
+h1 {
+  font-size: 4em;
+  font-weight: 300;
+  line-height: 4.25rem;
+
+  @include media-query($on-palm) {
+    font-size: 3rem;
+    line-height: 3.25rem;
+  }
+}
+
+h2 {
+  font-size: 3em;
+  font-weight: 300;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  height: 0;
+}
+
+// Wrapper
+
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+  padding-left: $spacing-unit;
+  padding-right: $spacing-unit;
+
+  @include media-query($on-laptop) {
+    max-width: calc(#{$content-width} - (#{$spacing-unit}));
+    padding-left: $spacing-unit / 2;
+    padding-right: $spacing-unit / 2;
+  }
+}
+
+.fixed-x-centre {
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+}
+
+// Custom global styles
+
+.accent-color {
+  color: $accent-color;
+}
+
+.bg-accent-color {
+  background-color: $accent-color;
+}
+
+.grey-color {
+  color: $grey-color;
+}
+
+.text-color {
+  color: $text-color;
+}
+
+.w-5rem-10vh {
+  width: calc(5rem + 10vh);
+}
+
+.w4 {
+  width: 10rem;
+}
+
+.w6 {
+  width: 20rem;
+}
+
+.z-7 {
+  z-index: 7;
+}
+
+.z-8 {
+  z-index: 8;
+}
+
+.smooth {
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+%reverse-dim {
+  opacity: 0.5;
+  transition: opacity 0.15s ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 0.8;
+    transition: opacity 0.15s ease-out;
+  }
+}
+
+.reverse-dim {
+  @extend %reverse-dim;
+}

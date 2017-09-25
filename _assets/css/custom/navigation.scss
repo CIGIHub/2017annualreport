@@ -1,0 +1,82 @@
+%navigation-transition {
+  transition: all 200ms ease-out;
+}
+
+.sidebar {
+  @extend %navigation-transition;
+
+  right: $spacing-unit;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar-button {
+  @extend %navigation-transition;
+
+  background-clip: content-box;
+  border: 1px solid $accent-color;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 1.25rem;
+  margin: 1.25rem 0;
+  padding: 0.1rem;
+
+  width: 1.25rem;
+
+  &.active {
+    background-color: $accent-color;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background-color: $accent-color-50;
+  }
+}
+
+%navigation-button {
+  @extend %navigation-transition;
+
+  @extend %reverse-dim;
+
+  align-items: center;
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+  color: $accent-color;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.5rem;
+  height: 2rem;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+  width: 2rem;
+  z-index: 7;
+}
+
+.navigation-top-button {
+  @extend %navigation-button;
+
+  top: $spacing-unit;
+}
+
+.navigation-bottom-button {
+  @extend %navigation-button;
+
+  bottom: $spacing-unit;
+}
+
+.smooth-slide-container {
+  transition: all 1s ease;
+}
+
+.partial-underline-right::after {
+  border-bottom: 1px solid $accent-color;
+  content: '';
+  display: block;
+  left: calc(100% - 2rem);
+  padding-top: 0.5rem;
+  position: relative;
+  width: 2rem;
+}

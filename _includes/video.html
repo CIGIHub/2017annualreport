@@ -1,0 +1,13 @@
+<section class="vh-100 standard-slide">
+  <div class="wrapper h-100">
+    <div class="absolute bottom-0 pb4 pr4 pb6-ns w-60-l">
+      {% markdown template_content/video.md %}
+      <a href="#" class="no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt3 white dib pointer underline-hover">View Full Article</a>
+    </div>
+  </div>
+  <div class="fullscreen-bg">
+    <video loop muted autoplay class="fullscreen-bg-video">
+        <source src="{{ "/data/WebLoop_3.mp4" | relative_url }}" type="video/mp4">
+    </video>
+  </div>
+</section>

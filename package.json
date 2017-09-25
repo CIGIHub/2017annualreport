@@ -1,0 +1,69 @@
+{
+  "name": "cigi",
+  "version": "0.1.0",
+  "description": "cigi annual report",
+  "private": true,
+  "scripts": {
+    "lint:js": "eslint ./_assets/js/custom/**/*.js",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "lint:css": "stylelint ./assets/css/main.scss ./_assets/css/custom/**/*.scss",
+    "lint:css:fix": "npm run lint:css -- --fix",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
+    "dev": "bundle exec jekyll serve --baseurl=",
+    "build": "JEKYLL_ENV=production bundle exec jekyll build",
+    "deploy": "npm run build && node deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rangle/cigi.git"
+  },
+  "author": "",
+  "homepage": "https://rangle.github.io/cigi",
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "gh-pages": "^1.0.0",
+    "stylelint": "^8.0.0",
+    "stylelint-config-sass-guidelines": "^2.2.0",
+    "stylelint-processor-ignore-front-matter": "^0.1.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "globals": {
+      "addClassToElementsInArray": true,
+      "createDiv": true,
+      "createEl": true,
+      "createSvgEl": true,
+      "generateFacebookShareLink": true,
+      "generateTwitterShareLink": true,
+      "mountElementsInArrayIntoParent": true,
+      "mountElementsInArrayIntoParentInOrder": true,
+      "nextTick": true,
+      "removeClassFromElementsInArray": true,
+      "unmountElementsInArray": true
+    },
+    "rules": {
+      "no-shadow": 2,
+      "no-trailing-spaces": 2,
+      "prefer-const": 2,
+      "quotes": [
+        2,
+        "single"
+      ],
+      "semi": 2
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-sass-guidelines",
+    "processors": [
+      "stylelint-processor-ignore-front-matter"
+    ],
+    "rules": {
+      "max-nesting-depth": null
+    }
+  }
+}
