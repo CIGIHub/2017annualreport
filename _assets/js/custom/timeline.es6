@@ -5,9 +5,47 @@ const timelineRoot = document.getElementById('timeline-root');
 const timelineFlexWrapper = timelineRoot.parentElement;
 const timelineSection = document.getElementsByTagName('section')[0];
 // History helper functions
-const changeArticleIdInUrl = id => history.replaceState('', '', '#/?article_id=' + id);
+const setProgramViewInUrl = () => {
+  if (location.hash === '') {
+    history.replaceState('', '', '#/?program_view=true');
+  } else if (location.hash.indexOf('?program_view=true') === -1) {
+    history.replaceState('', '', location.hash + '?program_view=true');
+  }
+};
 
-const clearUrlHash = () => history.replaceState('', '', '#');
+const resetProgramViewInUrl = () => {
+  history.replaceState('', '', location.hash.replace('?program_view=true', ''));
+};
+
+const changeArticleIdInUrl = id => {
+  if (location.hash.indexOf('?research_areas=') !== -1) {
+    if (location.hash.indexOf('?article_id=') !== -1) {
+      history.replaceState('', '', location.hash.replace(/\?article_id=\d+/), '?article_id=' + id);
+    }
+  } else {
+    history.replaceState('', '', '#/?article_id=' + id);
+  }
+};
+
+let setFilters = [];
+const setResearchFiltersInUrl = () => {
+  const filterString = setFilters.join(',') + ',';
+  if (location.hash === '') {
+    history.replaceState('', '', '#/?research_areas=' + filterString);
+  } else if (location.hash.match(/\?research_areas=.+,/)) {
+    history.replaceState('', '', location.hash.replace(/\?research_areas=.+,/, '?research_areas=' + filterString));
+  } else {
+    history.replaceState('', '', location.hash + '?research_areas=' + filterString);
+  }
+};
+
+const resetResearchFiltersInUrl = () => {
+  history.replaceState('', '', location.hash.replace(/\?research_areas=.+,/, ''));
+};
+
+const clearUrlHash = () => {
+  history.replaceState('', '', '#');
+};
 
 const baseUrl = location.pathname;
 
@@ -135,7 +173,6 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
 
   const selectOptionToCheckboxAndX = new Map();
   const isSelectOptionSelected = new Set();
-  let setFilters = [];
   let clearButton;
   function resetDataPoints() {
     let i = dataByTimeAll.length;
@@ -152,6 +189,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     clearButton.style.display = 'none';
   }
   function clearFilters() {
+    resetResearchFiltersInUrl();
     resetDataPoints();
     for (const [selectOption, [checkbox, x]] of selectOptionToCheckboxAndX) {
       if (selectOption.style.color) {
@@ -188,6 +226,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
   const programViewTransition = `all ${programViewTransitionMs}ms ease`;
   function combineProgramView(callback) {
     if (!programViewCombined && programViewIdle) {
+      resetProgramViewInUrl();
       programViewIdle = false;
       programViewCombined = true;
 
@@ -241,6 +280,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
   }
   function showProgramView(callback) {
     if (programViewCombined && programViewIdle) {
+      setProgramViewInUrl();
       programViewIdle = false;
       programViewCombined = false;
       timelineSqueezeStop();
@@ -292,6 +332,112 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
       timelineFlexWrapper.removeEventListener('dblclick', timelineDoubleClickEventHandler, false);
     }
   }
+  const toggleSelectOptions = (filterId) => () => {
+    const filter = researchTypeFilters.types[filterId];
+    const { selectOption } = filter;
+    const [ checkbox, x ] = selectOptionToCheckboxAndX.get(selectOption);
+    if (isSelectOptionSelected.has(selectOption)) {
+      // if the option is selected then we need to unselect it
+      clearSelectOption(selectOption, checkbox, x);
+      if (setFilters.length === 1) {
+        // if it's the last filter left then reset everything back to normal
+        resetDataPoints();
+        resetResearchFiltersInUrl();
+        setFilters.pop();
+      } else {
+        let j = dataByTimeAll.length;
+        while (j-- > 0) {
+          const item = dataByTimeAll[j];
+          if (!item.grayed && item.research_areas.includes(filter.name)) {
+            // if the dataPoint is not grayed out and it falls under the filter
+            // then remove the filter and set it to the most recently checked matching filter's color
+            let setFiltersLength = setFilters.length;
+            let _i = setFiltersLength;
+            while (_i-- > 0) {
+              if (setFilters[_i] === filterId) {
+                setFilters.splice(_i, 1);
+                setResearchFiltersInUrl();
+                setFiltersLength--;
+                break;
+              }
+            }
+            const dataPointCircles = itemIdToDataPointCircles[item.id];
+            const dataPointCirclesLength = dataPointCircles.length;
+            let fail = true;
+            _i = setFiltersLength;
+            let _j;
+            while (_i-- > 0) {
+              const mostRecentFilter = researchTypeFilters.types[setFilters[_i]];
+              // note that here we need to check across categories
+
+              if (item.research_areas.includes(mostRecentFilter.name)) {
+                _j = dataPointCirclesLength;
+                while (_j-- > 0) {
+                  const dataPointCircle = dataPointCircles[_j];
+                  dataPointCircle.parentElement.style.display = null;
+                  dataPointCircle.style.fill = mostRecentFilter.color;
+                }
+                fail = false;
+                break;
+              }
+            }
+            if (fail) {
+              // none of the current filters match
+              item.grayed = true;
+              _j = dataPointCirclesLength;
+              while (_j-- > 0) {
+                const dataPointCircle = dataPointCircles[_j];
+                dataPointCircle.parentElement.style.display = 'none';
+                dataPointCircle.style.fill = null;
+              }
+            }
+          }
+        }
+      }
+    } else {
+      // else we select it
+      setSelectOptionColor(selectOption, checkbox, x, filter.color);
+      let _i = dataByTimeAll.length;
+      if (setFilters.length === 0) {
+        clearButton.style.display = null;
+        while (_i-- > 0) {
+          const item = dataByTimeAll[_i];
+          const dataPointCircles = itemIdToDataPointCircles[item.id];
+          let _j = dataPointCircles.length;
+          if (item.research_areas.includes(filter.name)) {
+            while (_j-- > 0) {
+              const dataPointCircle = dataPointCircles[_j];
+              dataPointCircle.style.fill = filter.color;
+              dataPointCircle.parentElement.style.display = null;
+            }
+          } else {
+            item.grayed = true;
+            while (_j-- > 0) {
+              const dataPointCircle = dataPointCircles[_j];
+              dataPointCircle.parentElement.style.display = 'none';
+              dataPointCircle.style.fill = null;
+            }
+          }
+        }
+      } else {
+        while (_i-- > 0) {
+          const item = dataByTimeAll[_i];
+          const dataPointCircles = itemIdToDataPointCircles[item.id];
+          if (item.grayed && item.research_areas.includes(filter.name)) {
+            item.grayed = false;
+            let _j = dataPointCircles.length;
+            while (_j-- > 0) {
+              const dataPointCircle = dataPointCircles[_j];
+              dataPointCircle.parentElement.style.display = null;
+              dataPointCircle.style.fill = filter.color;
+            }
+          }
+        }
+      }
+      setFilters.push(filterId);
+      setResearchFiltersInUrl();
+    }
+  };
   function generateFilters() {
     const generatedfilters = new Array(3);
     // research types
@@ -301,6 +447,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     for (let i = 0; i < researchTypesLength; i++) {
       const filter = researchTypes[i];
       const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+      filter.selectOption = selectOption;
       const checkbox = createDiv('select-checkbox ml1 mr2 relative');
       const x = createDiv('absolute');
       x.style.fontSize = '1rem';
@@ -309,107 +456,8 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
       x.style.left = '50%';
       x.style.transform = 'translate(-50%, -50%)';
       selectOptionToCheckboxAndX.set(selectOption, [checkbox, x]);
-      const toggleSelectOptions = () => {
-        if (isSelectOptionSelected.has(selectOption)) {
-          // if the option is selected then we need to unselect it
-          clearSelectOption(selectOption, checkbox, x);
-          if (setFilters.length === 1) {
-            // if it's the last filter left then reset everything back to normal
-            resetDataPoints();
-            setFilters.pop();
-          } else {
-            let j = dataByTimeAll.length;
-            while (j-- > 0) {
-              const item = dataByTimeAll[j];
-              if (!item.grayed && item.research_areas.includes(filter.name)) {
-                // if the dataPoint is not grayed out and it falls under the filter
-                // then remove the filter and set it to the most recently checked matching filter's color
-                let setFiltersLength = setFilters.length;
-                let _i = setFiltersLength;
-                while (_i-- > 0) {
-                  if (setFilters[_i] === filter) {
-                    setFilters.splice(_i, 1);
-                    setFiltersLength--;
-                    break;
-                  }
-                }
-                const dataPointCircles = itemIdToDataPointCircles[item.id];
-                const dataPointCirclesLength = dataPointCircles.length;
-                let fail = true;
-                _i = setFiltersLength;
-                let _j;
-                while (_i-- > 0) {
-                  const mostRecentFilter = setFilters[_i];
-                  // note that here we need to check across categories
 
-                  if (item.research_areas.includes(mostRecentFilter.name)) {
-                    _j = dataPointCirclesLength;
-                    while (_j-- > 0) {
-                      const dataPointCircle = dataPointCircles[_j];
-                      dataPointCircle.parentElement.style.display = null;
-                      dataPointCircle.style.fill = mostRecentFilter.color;
-                    }
-                    fail = false;
-                    break;
-                  }
-                }
-                if (fail) {
-                  // none of the current filters match
-                  item.grayed = true;
-                  _j = dataPointCirclesLength;
-                  while (_j-- > 0) {
-                    const dataPointCircle = dataPointCircles[_j];
-                    dataPointCircle.parentElement.style.display = 'none';
-                    dataPointCircle.style.fill = null;
-                  }
-                }
-              }
-            }
-          }
-        } else {
-          // else we select it
-          setSelectOptionColor(selectOption, checkbox, x, filter.color);
-          let _i = dataByTimeAll.length;
-          if (setFilters.length === 0) {
-            clearButton.style.display = null;
-            while (_i-- > 0) {
-              const item = dataByTimeAll[_i];
-              const dataPointCircles = itemIdToDataPointCircles[item.id];
-              let _j = dataPointCircles.length;
-              if (item.research_areas.includes(filter.name)) {
-                while (_j-- > 0) {
-                  const dataPointCircle = dataPointCircles[_j];
-                  dataPointCircle.style.fill = filter.color;
-                  dataPointCircle.parentElement.style.display = null;
-                }
-              } else {
-                item.grayed = true;
-                while (_j-- > 0) {
-                  const dataPointCircle = dataPointCircles[_j];
-                  dataPointCircle.parentElement.style.display = 'none';
-                  dataPointCircle.style.fill = null;
-                }
-              }
-            }
-          } else {
-            while (_i-- > 0) {
-              const item = dataByTimeAll[_i];
-              const dataPointCircles = itemIdToDataPointCircles[item.id];
-              if (item.grayed && item.research_areas.includes(filter.name)) {
-                item.grayed = false;
-                let _j = dataPointCircles.length;
-                while (_j-- > 0) {
-                  const dataPointCircle = dataPointCircles[_j];
-                  dataPointCircle.parentElement.style.display = null;
-                  dataPointCircle.style.fill = filter.color;
-                }
-              }
-            }
-          }
-          setFilters.push(filter);
-        }
-      };
-      selectOption.onclick = toggleSelectOptions;
+      selectOption.onclick = toggleSelectOptions(i);
       selectOption.appendChild(checkbox);
       selectOption.appendChild(document.createTextNode(filter.name));
       researchSelectContent.appendChild(selectOption);
@@ -741,13 +789,22 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     timelineFlexWrapper.addEventListener('dblclick', timelineDoubleClickEventHandler, false);
     mainTimeline.addEventListener('dblclick', timelineDoubleClickEventHandler, false);
 
-    const articleId = location.hash.split('#/?article_id=')[1];
+    const articleIdParsed = /\?article_id=(\d+)/.exec(location.hash);
+    const articleId = articleIdParsed && articleIdParsed[1];
     if (articleId) {
       let i = dataByTimeAll.length - 1;
       for (; i >= 0 && dataByTimeAll[i].id !== articleId; i--);
       if (i !== -1) {
         setTimeout(() => changeExpandedViewArticle(dataByTimeAll[i]), delay + 1);
       }
+    }
+    const programView = location.hash.indexOf('?program_view=true') !== -1;
+    if (programView) {
+      setTimeout(showProgramView, delay + 1);
+    }
+    if (location.hash.indexOf('?research_areas=') !== -1) {
+      const researchAreas = /\?research_areas=(.+),/.exec(location.hash)[1].split(',');
+      researchAreas.forEach((id) => { toggleSelectOptions(id)(); });
     }
   });
 

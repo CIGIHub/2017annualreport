@@ -74,6 +74,7 @@ function navigationMagic() {
     }
   }
   let isScrolling = false;
+  let initialHash = '';
   function updateNavigation(newIndex, oldIndex) {
     if (isScrolling) {
       return;
@@ -93,7 +94,14 @@ function navigationMagic() {
     smoothSlideContainer.addEventListener('transitionend', slideTransitionHandler, false);
     newButton.classList.add('active');
     oldButton.classList.remove('active');
-    changeSlideInUrl(newIndex);
+    if (newIndex === 0) {
+      history.replaceState('', '', initialHash);
+    } else {
+      if (oldIndex === 0) {
+        initialHash = location.hash;
+      }
+      changeSlideInUrl(newIndex);
+    }
     updateGlobalShareLinks();
     scrollViewToSlideIndex(newIndex);
     currentSlide = newIndex;
