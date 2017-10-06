@@ -17,8 +17,8 @@ title: Your awesome title
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   CIGI Annual Report
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "127.0.0.1" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/cigi" # the subpath of your site, e.g. /blog
+url: "https://rangle.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 

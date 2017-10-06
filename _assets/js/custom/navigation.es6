@@ -108,8 +108,10 @@ function navigationMagic() {
 
     handleNavigationButtonsFade();
   }
+  
   let tableOfContents;
   let tocOpen = false;
+
   function injectLinksAndAddSideBar() {
     sidebar = createDiv('fixed sidebar');
     const subsections = new Map();
