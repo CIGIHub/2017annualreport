@@ -5,6 +5,7 @@ const globalShareFacebook = document.getElementById('global-share-facebook');
 const globalShareTwitter = document.getElementById('global-share-twitter');
 const tableOfContentsButton = document.getElementById('table-of-contents-button');
 const cigiLogo = document.getElementById('cigi-logo');
+document.body.style.overflow = 'hidden';
 
 navigationMagic();
 
@@ -51,11 +52,16 @@ function navigationMagic() {
     }
   }
   const smoothSlideContainer = document.getElementsByClassName('smooth-slide-container')[0];
-  function scrollViewToSlideIndex(slide) {
-    if (slide === 0) {
+  function scrollViewToSlideIndex(newIndex, oldIndex) {
+    if (newIndex === 0) {
+      history.replaceState('', '', initialHash);
       smoothSlideContainer.style.transform = null;
     } else {
-      smoothSlideContainer.style.transform = 'translateY(-' + 100 * slide + 'vh)';
+      if (oldIndex === 0) {
+        initialHash = location.hash.indexOf('?slide') === -1 ? location.hash : '#';
+      }
+      changeSlideInUrl(newIndex);
+      smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
     }
   }
   const sections = document.getElementsByTagName('section');
@@ -70,11 +76,11 @@ function navigationMagic() {
       currentSlide = 0;
     } else {
       currentSlide = parsedInitialSlide;
-      scrollViewToSlideIndex(currentSlide);
+      scrollViewToSlideIndex(currentSlide, 0);
     }
   }
   let isScrolling = false;
-  let initialHash = '';
+  let initialHash = '#';
   function updateNavigation(newIndex, oldIndex) {
     if (isScrolling) {
       return;
@@ -94,16 +100,8 @@ function navigationMagic() {
     smoothSlideContainer.addEventListener('transitionend', slideTransitionHandler, false);
     newButton.classList.add('active');
     oldButton.classList.remove('active');
-    if (newIndex === 0) {
-      history.replaceState('', '', initialHash);
-    } else {
-      if (oldIndex === 0) {
-        initialHash = location.hash;
-      }
-      changeSlideInUrl(newIndex);
-    }
     updateGlobalShareLinks();
-    scrollViewToSlideIndex(newIndex);
+    scrollViewToSlideIndex(newIndex, oldIndex);
     currentSlide = newIndex;
 
     handleNavigationButtonsFade();
@@ -151,14 +149,7 @@ function navigationMagic() {
       if (tocOpen) {
         fadeOutAllNavigationComponents();
         tocIcon.className = '';
-        tocIcon.innerHTML = `<svg width="12" height="12" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g stroke-width="12" stroke="white">
-<line x1="0" y1="100" x2="100" y2="0">
-</line>
-<line x1="0" y1="0" x2="100" y2="100">
-</line>
-</g>
-</svg>`;
+        tocIcon.innerHTML = closeSvg;
         document.body.appendChild(tableOfContents);
         cigiLogo.style.filter = 'invert(100%)';
         [globalShareFacebook, globalShareTwitter].forEach(el => { el.style.color = 'white'; });

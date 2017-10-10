@@ -57,3 +57,15 @@ const nextTick = func => setTimeout(func, 0); // eslint-disable-line
 
 const generateFacebookShareLink = (encodedURL, encodedTitle = '') => `http://www.facebook.com/sharer/sharer.php?u=${encodedURL}&title=${encodedTitle}`; // eslint-disable-line
 const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`; // eslint-disable-line
+
+// svg elements
+
+// eslint-disable-next-line
+const closeSvg = `<svg width="12" height="12" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g stroke-width="12" stroke="white">
+<line x1="0" y1="100" x2="100" y2="0">
+</line>
+<line x1="0" y1="0" x2="100" y2="100">
+</line>
+</g>
+</svg>`;

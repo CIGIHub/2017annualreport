@@ -31,6 +31,7 @@
     "extends": "eslint:recommended",
     "globals": {
       "addClassToElementsInArray": true,
+      "closeSvg": true,
       "createDiv": true,
       "createEl": true,
       "createSvgEl": true,

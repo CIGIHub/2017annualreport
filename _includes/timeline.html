@@ -1,8 +1,8 @@
 <section class="vh-100 timeline-background relative">
   <div class="wrapper h-100 flex flex-column relative">
-    <main class="w-100 mt6-ns flex justify-between" aria-label="CIGI">
+    <main class="w-100 mt6-ns mt4 flex justify-between" aria-label="CIGI">
       {% markdown template_content/timeline.md %}
-      <div id="user-hint-1" class="dib absolute user-select-none right-0 mr3">
+      <div id="user-hint-1" class="user-select-none">
         <div id="user-hint-hover" class="ttu tracked f7 b fw4 grey-color tl mb3 fade-in-1 o-0">
           <div class="v-mid cover h2 w2 dib"
                style="background:url('{{ "/data/icons/hover.svg" | relative_url }}') no-repeat"></div>
@@ -19,7 +19,7 @@
           Double click timeline to zoom in
         </div>
       </div>
-      <div id="user-hint-2" class="dib absolute user-select-none dn right-0 mr3">
+      <div id="user-hint-2" class="user-select-none dn">
         <div id="user-hint-grab" class="ttu tracked f7 b fw4 grey-color tl mb3 o-0">
           <div class="v-mid cover h2 w2 dib"
                style="background:url('{{ "/data/icons/grab.svg" | relative_url }}') no-repeat"></div>
@@ -32,7 +32,16 @@
         </div>
       </div>
     </main>
-    <div class="w-100 flex flex-auto" aria-label="Timeline">
+    <noscript>
+      <h2 class="mt6">JavaScript Not Enabled</h2>
+      <p>
+        For the best experience in viewing the Annual Report, you must have JavaScript enabled.
+        <br>
+        Alternatively, the PDF version can be downloaded below:
+      </p>
+      <a href="#" class="no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt3 white dib pointer underline-hover">Download PDF Version</a>
+    </noscript>
+    <div class="w-100 flex flex-auto overflow-hidden" aria-label="Timeline">
       <div class="relative w-100 self-center" id="timeline-root"></div>
     </div>
   </div>

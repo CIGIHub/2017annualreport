@@ -571,9 +571,12 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
   let defaultTimelineVerticalLines;
   let monthlyViewTimelineVerticalLines;
 
-  let lastPointContainer;
+  let lastPointContainer = null;
   function clearLastPreview() {
-    lastPointContainer && lastPointContainer.classList.remove('preview-enabled');
+    if (lastPointContainer !== null) {
+      lastPointContainer.classList.remove('preview-enabled');
+      lastPointContainer = null;
+    }
   }
 
   let nextSqueeze;
