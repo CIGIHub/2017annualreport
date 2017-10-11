@@ -1,4 +1,5 @@
 const gallery = document.getElementById('gallery');
+const loadingOverlay = document.getElementById('load-overlay');
 const images = [...gallery.getElementsByTagName('img')];
 let moving = false;
 let wasMoving = false;
@@ -155,11 +156,16 @@ images.forEach((image, i) => {
   };
 });
 
-// eslint-disable-next-line
-const packery = new window.Packery(gallery, {
-  itemSelector: 'img',
-  layoutMode: 'packery',
-  horizontal: true,
-  resize: false,
-  gutter: 10
+Promise.all(images.map(image => new Promise(resolve => {
+  image.onload = () => resolve();
+}))).then(() => {
+  loadingOverlay.style.display = 'none';
+  // eslint-disable-next-line
+  const packery = new window.Packery(gallery, {
+    itemSelector: 'img',
+    layoutMode: 'packery',
+    horizontal: true,
+    resize: false,
+    gutter: 10
+  });
 });
