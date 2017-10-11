@@ -177,7 +177,9 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
   function resetDataPoints() {
     let i = dataByTimeAll.length;
     while (i-- > 0) {
-      const dataPointCircles = itemIdToDataPointCircles[dataByTimeAll[i].id];
+      const item = dataByTimeAll[i];
+      item.researchAreaDeselected = false;
+      const dataPointCircles = itemIdToDataPointCircles[item.id];
       let _i = dataPointCircles.length;
       while (_i-- > 0) {
         const dataPointCircle = dataPointCircles[_i];
@@ -189,6 +191,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     clearButton.style.display = 'none';
   }
   function clearFilters() {
+    clearContentTypeFilter();
     resetResearchFiltersInUrl();
     resetDataPoints();
     for (const [selectOption, [checkbox, x]] of selectOptionToCheckboxAndX) {
@@ -212,7 +215,8 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     checkbox.appendChild(x);
     selectOption.style.color = color;
   }
-  let programSelectContainer;
+  const programSelectContainer = createDiv('select-container w4 ma1 pv1 ph2 fw5 f6 grey relative ttu');
+  const contentSelectContainer = createDiv('select-container w5 ma1 pv1 ph2 fw5 f6 grey relative ttu');
   function disableProgramSelectContainer() {
     programSelectContainer.style.visibility = 'hidden';
   }
@@ -222,8 +226,64 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
   let programViewCombined = true;
   let programViewIdle = true;
   const programViewRadioBoxes = new Array(2);
+  const contentTypesRadioBoxes = [];
+  let selectedContentType = null;
+  let selectedContentTypeRadioBox = null;
   const programViewTransitionMs = 1000;
   const programViewTransition = `all ${programViewTransitionMs}ms ease`;
+  function clearContentTypeFilter() {
+    selectedContentTypeRadioBox.classList.remove('active');
+    selectedContentType = null;
+    selectedContentTypeRadioBox = null;
+
+    let i = dataByTimeAll.length;
+    while(i-- > 0) {
+      const item = dataByTimeAll[i];
+      if (item.contentTypeDeselected) {
+        item.contentTypeDeselected = false;
+        const dataPointCircles = itemIdToDataPointCircles[item.id];
+        let j = dataPointCircles.length;
+        while (j-- > 0) {
+          const dataPointCircle = dataPointCircles[j];
+          dataPointCircle.parentElement.style.visibility = null;
+        }
+      }
+    }
+  }
+  function filterByContentType(radioBox, type) {
+    if (selectedContentType === type) {
+      clearContentTypeFilter();
+    } else {
+      radioBox.classList.add('active');
+      if (selectedContentTypeRadioBox) selectedContentTypeRadioBox.classList.remove('active');
+      selectedContentType = type;
+      selectedContentTypeRadioBox = radioBox;
+
+      let i = dataByTimeAll.length;
+      while(i-- > 0) {
+        const item = dataByTimeAll[i];
+        if (item.contentTypeDeselected && item.subtype[0] === type) {
+          item.contentTypeDeselected = false;
+
+          const dataPointCircles = itemIdToDataPointCircles[item.id];
+          let j = dataPointCircles.length;
+          while (j-- > 0) {
+            const dataPointCircle = dataPointCircles[j];
+            dataPointCircle.parentElement.style.visibility = null;
+          }
+        } else if (!item.contentTypeDeselected && item.subtype[0] !== type) {
+          item.contentTypeDeselected = true;
+
+          const dataPointCircles = itemIdToDataPointCircles[item.id];
+          let j = dataPointCircles.length;
+          while (j-- > 0) {
+            const dataPointCircle = dataPointCircles[j];
+            dataPointCircle.parentElement.style.visibility = 'hidden';
+          }
+        }
+      }
+    }
+  }
   function combineProgramView(callback) {
     if (!programViewCombined && programViewIdle) {
       resetProgramViewInUrl();
@@ -348,7 +408,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
         let j = dataByTimeAll.length;
         while (j-- > 0) {
           const item = dataByTimeAll[j];
-          if (!item.grayed && item.research_areas.includes(filter.name)) {
+          if (!item.researchAreaDeselected && item.research_areas.includes(filter.name)) {
             // if the dataPoint is not grayed out and it falls under the filter
             // then remove the filter and set it to the most recently checked matching filter's color
             let setFiltersLength = setFilters.length;
@@ -368,7 +428,6 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
             let _j;
             while (_i-- > 0) {
               const mostRecentFilter = researchTypeFilters.types[setFilters[_i]];
-              // note that here we need to check across categories
 
               if (item.research_areas.includes(mostRecentFilter.name)) {
                 _j = dataPointCirclesLength;
@@ -383,7 +442,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
             }
             if (fail) {
               // none of the current filters match
-              item.grayed = true;
+              item.researchAreaDeselected = true;
               _j = dataPointCirclesLength;
               while (_j-- > 0) {
                 const dataPointCircle = dataPointCircles[_j];
@@ -411,7 +470,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
               dataPointCircle.parentElement.style.display = null;
             }
           } else {
-            item.grayed = true;
+            item.researchAreaDeselected = true;
             while (_j-- > 0) {
               const dataPointCircle = dataPointCircles[_j];
               dataPointCircle.parentElement.style.display = 'none';
@@ -423,8 +482,8 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
         while (_i-- > 0) {
           const item = dataByTimeAll[_i];
           const dataPointCircles = itemIdToDataPointCircles[item.id];
-          if (item.grayed && item.research_areas.includes(filter.name)) {
-            item.grayed = false;
+          if (item.researchAreaDeselected && item.research_areas.includes(filter.name)) {
+            item.researchAreaDeselected = false;
             let _j = dataPointCircles.length;
             while (_j-- > 0) {
               const dataPointCircle = dataPointCircles[_j];
@@ -439,7 +498,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     }
   };
   function generateFilters() {
-    const generatedfilters = new Array(3);
+    const generatedfilters = new Array(4);
     // research types
     const researchSelectContent = createDiv('select-content w-100');
     const researchTypes = researchTypeFilters.types;
@@ -477,16 +536,45 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     researchSelectContainer.appendChild(researchSelectContent);
     researchSelectContainer.appendChild(researchSelectToggler);
     generatedfilters[0] = researchSelectContainer;
+    // content types
+    const contentTypeSelectContent = createDiv('select-content w-100');
+
+    const contentTypeFilters = dataByTimeAll.reduce((set, item) => {
+      set.add(item.subtype[0]);
+      return set;
+    }, new Set());
+
+    for (const contentType of contentTypeFilters) {
+      const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+      const radioBox = createDiv('select-radio ml1 mr2 relative');
+      contentTypesRadioBoxes.push(radioBox);
+      selectOption.onclick = () => { filterByContentType(radioBox, contentType); };
+      selectOption.appendChild(radioBox);
+      selectOption.appendChild(document.createTextNode(contentType));
+      contentTypeSelectContent.appendChild(selectOption);
+    }
+    const label = 'Content Type';
+    const contentSelectToggler = createDiv('select-toggler');
+    contentSelectToggler.innerHTML = chevronUp + label;
+    contentSelectContainer.onmouseenter = () => {
+      contentSelectToggler.innerHTML = chevronDown + label;
+    };
+    contentSelectContainer.onmouseleave = () => {
+      contentSelectToggler.innerHTML = chevronUp + label;
+    };
+    contentSelectContainer.appendChild(contentTypeSelectContent);
+    contentSelectContainer.appendChild(contentSelectToggler);
+    generatedfilters[1] = contentSelectContainer;
+
     // program views
     const programSelectContent = createDiv('select-content w-100');
 
     const programViewFilters = programViews.filters;
-    const programViewTypesFilters = programViewFilters.length;
-    for (let j = 0; j < programViewTypesFilters; j++) {
+    const programViewFiltersLength = programViewFilters.length;
+    for (let j = 0; j < programViewFiltersLength; j++) {
       const filter = programViewFilters[j];
       const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
       const radioBox = createDiv('select-radio ml1 mr2 relative');
-      radioBox.style.borderRadius = '50%';
       if (filter.selected) {
         radioBox.classList.add('active');
       }
@@ -501,9 +589,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
       selectOption.appendChild(document.createTextNode(filter.name));
       programSelectContent.appendChild(selectOption);
     }
-    programSelectContainer = createDiv('select-container w4 ma1 pv1 ph2 fw5 f6 grey relative ttu');
     const programSelectToggler = createDiv('select-toggler');
-    programSelectToggler.innerText = programViews.label;
     programSelectToggler.innerHTML = chevronUp + programViews.label;
     programSelectContainer.onmouseenter = () => {
       programSelectToggler.innerHTML = chevronDown + programViews.label;
@@ -513,21 +599,13 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
     };
     programSelectContainer.appendChild(programSelectContent);
     programSelectContainer.appendChild(programSelectToggler);
-    generatedfilters[2] = programSelectContainer;
+    generatedfilters[3] = programSelectContainer;
 
     clearButton = createDiv('select-clear w4 ma1 pv1 ph2 fw5 f6 grey ttu hover-bg-black-10');
     clearButton.style.display = 'none';
-    clearButton.innerHTML = `<div class="ml1 mr2">
-<svg width="12" height="12" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g stroke-width="12" stroke="currentColor">
-    <line x1="0" y1="100" x2="100" y2="0">
-    </line>
-    <line x1="0" y1="0" x2="100" y2="100">
-    </line>
-  </g>
-</svg></div>Clear All`;
+    clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
     clearButton.onclick = clearFilters;
-    generatedfilters[1] = clearButton;
+    generatedfilters[2] = clearButton;
     return generatedfilters;
   }
 
@@ -583,17 +661,16 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
   const timelineSqueezeHalfTimePeriodMs = 5000;
 
   let lastBreatheIn = true;
-  let lastTime;
   function timelineSqueeze() {
-    const now = performance.now();
-    if (!lastTime) lastTime = now;
-    if (lastBreatheIn) {
-      mainTimeline.style.height = height * 0.75 + 'px';
-    } else {
-      mainTimeline.style.height = height + 'px';
-    }
     lastBreatheIn = !lastBreatheIn;
-    lastTime = now;
+    const hasFocus = document.hasFocus();
+    const boundingRect = mainTimeline.getBoundingClientRect();
+    if (!hasFocus || boundingRect.top < 0 || boundingRect.bottom > window.innerHeight) return;
+    if (lastBreatheIn) {
+      mainTimeline.style.height = height + 'px';
+    } else {
+      mainTimeline.style.height = height * 0.75 + 'px';
+    }
   }
 
   function timelineSqueezeInit() {
@@ -1012,7 +1089,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
       let i = mountedItem.i;
       while (i-- > 0) {
         const item = dataByTimeAll[i];
-        if (!item.grayed) {
+        if (!item.researchAreaDeselected && !item.contentTypeDeselected) {
           changeExpandedViewArticle(item, 'left');
           break;
         }
@@ -1027,7 +1104,7 @@ function timelineMagic(amplitude, delay, spacingFactor = 1.2) {
       const dataByTimeLength = dataByTimeAll.length;
       while (++i < dataByTimeLength) {
         const item = dataByTimeAll[i];
-        if (!item.grayed) {
+        if (!item.researchAreaDeselected && !item.contentTypeDeselected) {
           changeExpandedViewArticle(item, 'right');
           break;
         }
