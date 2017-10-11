@@ -61,7 +61,7 @@ const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twit
 // svg elements
 
 // eslint-disable-next-line
-const closeSvg = `<svg width="12" height="12" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+const closeSvg = `<svg width="12" height="12" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 <g stroke-width="12" stroke="white">
 <line x1="0" y1="100" x2="100" y2="0">
 </line>
