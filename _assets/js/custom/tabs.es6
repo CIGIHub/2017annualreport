@@ -23,24 +23,18 @@ function toggleTabs(e){
   const selectedTab = e.target.getAttribute('data-id');
   const selectedTabId = selectedTab.split('tab-')[1];
   const currentSlideId = window.location.hash.split('#/?slide=')[1];
-
-  console.log(selectedTab);
-  console.log(selectedTabId);
   
   //this shouldn't happen, but just in case
   if(currentSlideId === undefined){
     return;
   }
   else{
+    //get the current slide and assign the clicked tab.
     const currentSlide = 'slide-' + currentSlideId;
-    console.log(currentSlide);
-    //var clearSelectedTab = Array.from(document.getElementById(currentSlide).getElementsByClassName('tab'));
+  
     var clearSelectedTabs = document.getElementById(currentSlide).getElementsByClassName('tab');
     for (var item of clearSelectedTabs){
-
       item.classList.remove('selected');
-      // console.log(item);
-      // console.log(item.getAttribute('data-id'));
       if (item.getAttribute('data-id') === selectedTab){
         item.classList.add('selected');
       }
@@ -49,14 +43,10 @@ function toggleTabs(e){
 
 }
 
-
 let tabs = Array.from(document.getElementsByClassName('tab'));
 let toggle = Array.from(document.getElementsByClassName('toggle'));
 
-console.log(tabs.length);
-
 window.onload = function(){
-
   initializeTabs();
   
   toggle.forEach(function(item){
