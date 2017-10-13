@@ -50,12 +50,18 @@
   width: 100%;
 }
 
-.tabs{
-  text-align: right;
-}
-
-.col{
-  flex: 100%;
+.tab-content{
+  position: relative;
+  .tab{
+    position: absolute;
+    display: none;
+    &.selected{
+      display: block;
+    }
+    h1{
+      flex: 100%;
+    }
+  }
   
 }
 
@@ -66,7 +72,8 @@
     top: -100%;
   }
   .col{
-    flex: 50%;
+    float: left;
+    width: 47.5%;
   }
   .col-1{
     padding-right: 2.5%;

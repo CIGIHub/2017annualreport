@@ -1,4 +1,4 @@
 ### Joint Message
 
-# Chairs's Message
+# Chair's Message
 
