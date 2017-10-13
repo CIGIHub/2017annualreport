@@ -10,6 +10,12 @@ $spacing-unit: 30px;
 
 //Define Colours
 
+$default-background-color: #f2f0ea;
+
+.default-background {
+  background: $default-background-color;
+}
+
 $text-color: #3d3d3d;
 $background-color: #f2f0ea;
 $accent-color: #e6023b;

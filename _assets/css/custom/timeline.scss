@@ -1,5 +1,4 @@
 //Timeline variables
-$timeline-background-color: #f2f0ea;
 $timeline-foreground-color: rgba(0, 0, 0, 0.25);
 $timeline-foreground-color-transparent: rgba(0, 0, 0, 0);
 $timeline-vertical-line-length: 8rem;
@@ -33,10 +32,6 @@ $article-slide-duration: 500ms;
 $article-slide-timing-function: ease-in-out;
 
 //Timeline Styles
-.timeline-background {
-  background: $timeline-background-color;
-}
-
 .point-container {
   position: absolute;
   transition:
@@ -72,14 +67,14 @@ $article-slide-timing-function: ease-in-out;
 
 .data-point-circle {
   fill: $accent-color;
-  stroke: $timeline-background-color;
+  stroke: $default-background-color;
   stroke-width: 1;
   transition: fill $data-point-activate-duration ease-out;
 
   .preview-enabled &,
   .data-point-enabled & {
     cursor: pointer;
-    fill: $timeline-background-color;
+    fill: $default-background-color;
     stroke: $accent-color;
   }
 
@@ -371,7 +366,7 @@ $article-slide-timing-function: ease-in-out;
 }
 
 .article-picture {
-  background-color: $timeline-background-color;
+  background-color: $default-background-color;
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -397,7 +392,7 @@ $article-slide-timing-function: ease-in-out;
 }
 
 .expanded-view-container {
-  background-color: $timeline-background-color;
+  background-color: $default-background-color;
   height: 100%;
   left: 0;
   opacity: 0;
@@ -547,7 +542,7 @@ $article-slide-timing-function: ease-in-out;
 }
 
 .select-container:hover {
-  background-color: $timeline-background-color;
+  background-color: $default-background-color;
 }
 
 .select-toggler {
@@ -564,7 +559,7 @@ $article-slide-timing-function: ease-in-out;
 
 .select-checkbox {
   border: 1px solid $timeline-foreground-color;
-  color: $timeline-background-color;
+  color: $default-background-color;
   height: 0.75rem;
   width: 0.75rem;
 }

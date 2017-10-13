@@ -1,3 +1,6 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
@@ -17,7 +20,7 @@
       {% include slide8.html %}
       {% include video.html %}
 
-      {% js main_body_end %}
+      <script src="{{ site.assets_base_url }}/assets/bundle{{ site.env.HASH }}.js"></script>
     </div>
   </body>
 
