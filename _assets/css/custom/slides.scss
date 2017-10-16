@@ -50,6 +50,21 @@
   width: 100%;
 }
 
+.tabs{
+  margin-right: auto;
+  .tab{
+    float: left;
+    border: 1px solid rgba(0,0,0,0.25);
+    padding: 0 0.5rem;
+    cursor: pointer;
+  }
+  .tab.selected{
+    border: solid 1px $accent-color;
+  }
+  
+  
+}
+
 .tab-content{
   position: relative;
   .tab{
