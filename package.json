@@ -4,14 +4,14 @@
   "description": "cigi annual report",
   "private": true,
   "scripts": {
-    "lint:js": "eslint ./_assets/js/custom/**/*.js",
+    "lint:js": "eslint ./js/custom/**/*.js",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:css": "stylelint ./assets/css/main.scss ./_assets/css/custom/**/*.scss",
     "lint:css:fix": "npm run lint:css -- --fix",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
-    "dev": "bundle exec jekyll serve --baseurl=",
-    "build": "JEKYLL_ENV=production bundle exec jekyll build",
+    "dev": "concurrently 'webpack-dev-server --config=webpack.config.dev.js' 'bundle exec jekyll serve --config _config.dev.yml'",
+    "build": "HASH=$(node ./node_modules/.bin/webpack --config webpack.config.prod.js | sed 's/Hash: //') JEKYLL_ENV=production bundle exec jekyll build",
     "deploy": "npm run build && node deploy"
   },
   "repository": {
@@ -21,27 +21,38 @@
   "author": "",
   "homepage": "https://rangle.github.io/cigi",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "concurrently": "^3.5.0",
     "eslint": "^4.2.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "gh-pages": "^1.0.0",
     "stylelint": "^8.0.0",
     "stylelint-config-sass-guidelines": "^2.2.0",
-    "stylelint-processor-ignore-front-matter": "^0.1.0"
+    "stylelint-processor-ignore-front-matter": "^0.1.0",
+    "webpack": "^3.7.1",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ]
+    ]
   },
   "eslintConfig": {
-    "extends": "eslint:recommended",
-    "globals": {
-      "addClassToElementsInArray": true,
-      "createDiv": true,
-      "createEl": true,
-      "createSvgEl": true,
-      "generateFacebookShareLink": true,
-      "generateTwitterShareLink": true,
-      "mountElementsInArrayIntoParent": true,
-      "mountElementsInArrayIntoParentInOrder": true,
-      "nextTick": true,
-      "removeClassFromElementsInArray": true,
-      "unmountElementsInArray": true
-    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "plugins": [
+      "import"
+    ],
     "rules": {
       "no-shadow": 2,
       "no-trailing-spaces": 2,
@@ -50,11 +61,31 @@
         2,
         "single"
       ],
-      "semi": 2
+      "semi": 2,
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "import/no-unresolved": 2,
+      "import/named": 2,
+      "import/export": 2,
+      "import/namespace": 2,
+      "import/default": 2
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "webpack.config.dev.js"
+        }
+      }
     },
     "env": {
       "browser": true,
-      "es6": true
+      "es6": true,
+      "node": true
     }
   },
   "stylelint": {
@@ -65,5 +96,6 @@
     "rules": {
       "max-nesting-depth": null
     }
-  }
+  },
+  "dependencies": {}
 }
