@@ -54,17 +54,140 @@
       "import"
     ],
     "rules": {
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "comma-spacing": [
+        2,
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "computed-property-spacing": [
+        2,
+        "never"
+      ],
+      "func-call-spacing": [
+        2,
+        "never"
+      ],
+      "key-spacing": [
+        2,
+        {
+          "beforeColon": false,
+          "afterColon": true
+        }
+      ],
+      "keyword-spacing": [
+        2,
+        {
+          "before": true,
+          "after": true,
+          "overrides": {
+            "return": {
+              "after": true
+            },
+            "throw": {
+              "after": true
+            },
+            "case": {
+              "after": true
+            }
+          }
+        }
+      ],
+      "no-mixed-spaces-and-tabs": 2,
       "no-shadow": 2,
-      "no-trailing-spaces": 2,
+      "no-spaced-func": 2,
+      "no-trailing-spaces": [
+        2,
+        {
+          "skipBlankLines": false,
+          "ignoreComments": false
+        }
+      ],
+      "no-whitespace-before-property": 2,
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
       "prefer-const": 2,
       "quotes": [
         2,
         "single"
       ],
-      "semi": 2,
-      "comma-dangle": [
+      "semi": [
         2,
-        "always-multiline"
+        "always"
+      ],
+      "semi-spacing": [
+        2,
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "space-before-blocks": 2,
+      "space-before-function-paren": [
+        2,
+        {
+          "anonymous": "always",
+          "named": "never",
+          "asyncArrow": "always"
+        }
+      ],
+      "space-in-parens": [
+        2,
+        "never"
+      ],
+      "space-infix-ops": 2,
+      "space-unary-ops": [
+        2,
+        {
+          "words": true,
+          "nonwords": false,
+          "overrides": {}
+        }
+      ],
+      "spaced-comment": [
+        2,
+        "always",
+        {
+          "line": {
+            "exceptions": [
+              "-",
+              "+"
+            ],
+            "markers": [
+              "=",
+              "!"
+            ]
+          },
+          "block": {
+            "exceptions": [
+              "-",
+              "+"
+            ],
+            "markers": [
+              "=",
+              "!"
+            ],
+            "balanced": true
+          }
+        }
+      ],
+      "switch-colon-spacing": [
+        2,
+        {
+          "after": true,
+          "before": false
+        }
+      ],
+      "template-tag-spacing": [
+        2,
+        "never"
       ],
       "import/no-unresolved": 2,
       "import/named": 2,
