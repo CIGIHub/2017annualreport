@@ -1,12 +1,12 @@
 <section class="vh-100 joint-message standard-slide" id="slide-3">
     <div class="wrapper h-100">
         <div class="flex center flex-column w-100 pt5 pt6-ns">
-            <div class="tabs">
+            <div class="tabs" data-slide="slide-3">
                 <div class="tab toggle" data-id="tab-1">President's Message</div>
                 <div class="tab toggle" data-id="tab-2">Chair's Message</div>
             </div>
             <div class="tab-content">
-                <div class="tab" data-id="tab-1" name="president">
+                <div class="tab" data-id="tab-1">
                     {% markdown template_content/slide3-president.md %}
                     <div class="col col-1">
                         <p><span>T</span>rust is fundamental for a think tank. But as we know from following the accounts, and accusations, of “fake news” by political leaders and others, trust is difficult to build and maintain but easy to lose.</p>
@@ -24,7 +24,7 @@
                     President, CIGI</p>
                     </div>
                 </div>
-                <div class="tab" data-id="tab-2" name="chair">
+                <div class="tab" data-id="tab-2" data-name="chairs-message">
                     {% markdown template_content/slide3-chair.md %}
                     <div class="col col-1">
                         <p><span>T</span>he global economy is increasingly shifting from the delivery of goods and services to an international commerce in ideas and yet policies and incentives have not always kept up with the transition. A new approach to stimulating innovation in Canada and abroad is necessary.</p>
