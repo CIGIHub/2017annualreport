@@ -26,6 +26,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Autoprefixer
 gem "autoprefixer-rails"
-
-# Babel
-gem "sprockets-es6"

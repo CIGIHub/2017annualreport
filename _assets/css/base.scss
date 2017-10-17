@@ -10,6 +10,12 @@ $spacing-unit: 30px;
 
 //Define Colours
 
+$default-background-color: #f2f0ea;
+
+.default-background {
+  background: $default-background-color;
+}
+
 $text-color: #3d3d3d;
 $background-color: #f2f0ea;
 $accent-color: #e6023b;
@@ -28,9 +34,22 @@ $content-width: 95%;
 
 // Reset some basic elements
 
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
   margin: 0;
   padding: 0;
 }
@@ -110,8 +129,7 @@ hr {
 
   @include media-query($on-laptop) {
     max-width: calc(#{$content-width} - (#{$spacing-unit}));
-    padding-left: $spacing-unit / 2;
-    padding-right: $spacing-unit / 2;
+    padding: 0;
   }
 }
 

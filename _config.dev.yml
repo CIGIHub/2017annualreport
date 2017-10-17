@@ -1,9 +1,9 @@
-assets_base_url: "/2017annualreport"
+assets_base_url: 'http://localhost:8080'
 title: Your awesome title
 email: your-email@domain.com
 description: CIGI Annual Report
-baseurl: "/2017annualreport"
-url: "https://cigihub.github.io"
+baseurl: ""
+url: "https://rangle.github.io"
 
 # Build settings
 markdown: kramdown

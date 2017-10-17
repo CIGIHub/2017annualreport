@@ -1,9 +1,12 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
   {% include head.html %}
 
-  <body class="overflow-hidden">
+  <body>
     {% include header.html %}
     <div class="smooth-slide-container">
       {% include timeline.html %}
@@ -16,9 +19,10 @@
       {% include slide7.html %}
       {% include slide8.html %}
       {% include slide9.html %}
+      {% include gallery.html %}
       {% include video.html %}
 
-      {% js main_body_end %}
+      <script src="{{ site.assets_base_url }}/assets/bundle{{ site.env.HASH }}.js"></script>
     </div>
   </body>
 

@@ -4,10 +4,6 @@
   background-image: url('../assets/cigi-campus-min.jpg');
 }
 
-.slide-2 {
-  background-image: url('../assets/politician-min.jpg');
-}
-
 .slide-3 {
   background-image: url('../assets/UNDRIP-min.jpg');
 }
@@ -50,34 +46,39 @@
   width: 100%;
 }
 
-.tabs{
+.tabs {
   margin-right: auto;
-  .tab{
-    float: left;
-    border: 1px solid rgba(0,0,0,0.25);
-    padding: 0 0.5rem;
+
+  .tab {
+    border: 1px solid rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    float: left;
+    padding: 0 0.5rem;
   }
-  .tab.selected{
+
+  .tab.selected {
     border: solid 1px $accent-color;
   }
-  
-  
+
+
 }
 
-.tab-content{
+.tab-content {
   position: relative;
-  .tab{
-    position: absolute;
+
+  .tab {
     display: none;
-    &.selected{
+    position: absolute;
+
+    &.selected {
       display: block;
     }
-    h1{
+
+    h1 {
       flex: 100%;
     }
   }
-  
+
 }
 
 
@@ -86,15 +87,18 @@
     height: 300%;
     top: -100%;
   }
-  .col{
+
+  .col {
     float: left;
     width: 47.5%;
   }
-  .col-1{
+
+  .col-1 {
     padding-right: 2.5%;
   }
-  .col-2{
-    padding-left:  2.5%;
+
+  .col-2 {
+    padding-left: 2.5%;
   }
 }
 
@@ -130,26 +134,27 @@
 
 }
 
-.joint-message{
-  h3{
+.joint-message {
+  h3 {
     display: none;
   }
 }
 
-section{
+section {
   z-index: 2;
 }
+
 .cover-slide {
-//   h1,
-//   h2,
-//   h3,
-//   h4,
-//   h5,
-//   h6,
-//   p {
-//     position: relative;
-//     z-index: 2;
-//   }
+  // h1,
+  // h2,
+  // h3,
+  // h4,
+  // h5,
+  // h6,
+  // p {
+  //   position: relative;
+  //   z-index: 2;
+  // }
 
   h1 {
     text-align: center;
