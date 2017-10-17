@@ -160,7 +160,7 @@ function injectLinksAndAddSideBar() {
   }
   buttons[currentSlide].classList.add('active');
   tableOfContents = createDiv('pt5 pt6-ns fixed vh-100 w-100 bg-black-90 z-7 left-0 top-0');
-  const tocIconOpen = 'fa fa-navicon';
+  const tocIconOpen = 'fa fa-navicon black';
   const tocIcon = createEl('i', tocIconOpen);
   tableOfContentsButton.appendChild(tocIcon);
   const toggleToc = () => {
@@ -247,7 +247,7 @@ const navigationKeydownHandler = e => {
   }
   fadeInNavigationComponent(sidebar);
   handleNavigationButtonsFade();
-  switch(e.key) {
+  switch (e.key) {
     case 'ArrowUp':
     case 'PageUp': {
       e.preventDefault();

@@ -32,7 +32,7 @@ export const resetArticleIdInUrl = () => {
 
 export const changeArticleIdInUrl = id => {
   if (location.hash.indexOf('?article_id=') !== -1) {
-    setHash(location.hash.replace(articleRegex), '?article_id=' + id);
+    setHash(location.hash.replace(articleRegex, '?article_id=' + id));
   } else {
     setHash(location.hash + '?article_id=' + id);
   }

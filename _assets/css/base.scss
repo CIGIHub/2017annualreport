@@ -133,10 +133,15 @@ hr {
   }
 }
 
-.fixed-x-centre {
+.site-header {
   left: 50%;
   position: fixed;
   transform: translateX(-50%);
+  transition: all 1s ease;
+
+  &.top {
+    transform: translate(-50%, -100%);
+  }
 }
 
 // Custom global styles

@@ -198,7 +198,7 @@ function clearContentTypeFilter() {
   }
 
   let i = dataByTimeAll.length;
-  while(i-- > 0) {
+  while (i-- > 0) {
     const item = dataByTimeAll[i];
     if (item.contentTypeDeselected) {
       item.contentTypeDeselected = false;
@@ -227,7 +227,7 @@ export function filterByContentType(radioBox, type) {
     selectedContentTypeRadioBox = radioBox;
 
     let i = dataByTimeAll.length;
-    while(i-- > 0) {
+    while (i-- > 0) {
       const item = dataByTimeAll[i];
       if (item.contentTypeDeselected && item.subtype[0] === type) {
         item.contentTypeDeselected = false;
@@ -847,11 +847,12 @@ export default function timelineMagic() {
 
 let mountedItem;
 let mountedArticleGroup;
+const expandedRoot = document.getElementById('timeline-slide-content');
+const siteHeader = document.getElementById('site-header');
 function mountExpandedViewContainer(expandedViewContainer) {
   // Mount the timeline into the expanded view
   document.body.classList.add('expanded-view-enabled');
   timelineRoot.style.zIndex = 10;
-  mountedFilterContainer.style.zIndex = 11;
 
   const transition = 'all 1s ease-in-out';
   timelineRoot.style.transition = transition;
@@ -861,6 +862,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   mainTimeline.style.pointerEvents = 'none';
   const timelineBoundingClientRect = mainTimeline.getBoundingClientRect();
   const translateY = 'translateY(' + -1 * ((timelineBoundingClientRect.top + timelineBoundingClientRect.bottom) / 2 - amplitude) + 'px)';
+  siteHeader.classList.add('top');
   nextTick(() => {
     height /= 2;
     mainTimeline.style.height = height + 'px';
@@ -870,11 +872,10 @@ function mountExpandedViewContainer(expandedViewContainer) {
     }
   });
 
-  const wrapper = createDiv('wrapper absolute w-100');
+  const wrapper = createDiv('absolute w-80');
   wrapper.style.left = '50%';
   wrapper.style.transform = 'translateX(-50%)';
   wrapper.style.top = amplitude + 'px';
-  const mountedFilterContainerParent = mountedFilterContainer.parentElement;
   // when the timeline has translated to the top
   setTimeout(() => {
     mainTimeline.style.pointerEvents = null;
@@ -889,9 +890,6 @@ function mountExpandedViewContainer(expandedViewContainer) {
     timelineRoot.remove();
     // add the timeline container to the wrapper
     wrapper.appendChild(timelineRoot);
-    // add the filters to the timeout fade layer
-    mountedFilterContainer.remove();
-    mountedTimeoutFadeLayer.appendChild(mountedFilterContainer);
   }, 1000);
 
   // Set fade on inactivity timeout
@@ -933,12 +931,11 @@ function mountExpandedViewContainer(expandedViewContainer) {
     backToTimeline.remove();
     timelineRoot.remove();
     wrapper.remove();
+    siteHeader.classList.remove('top');
     timelineRoot.classList.remove('timeline-top');
     height *= 2;
     mainTimeline.style.transition = transition;
     timelineFlexWrapper.appendChild(timelineRoot);
-    mountedFilterContainer.remove();
-    mountedFilterContainerParent.appendChild(mountedFilterContainer);
     timelineRoot.style.transform = translateY;
 
     nextTick(() => {
@@ -960,14 +957,13 @@ function mountExpandedViewContainer(expandedViewContainer) {
       reenableProgramSelectContainer();
       timelineRoot.style.transition = null;
       timelineRoot.style.zIndex = null;
-      mountedFilterContainer.style.zIndex = null;
     }, 1000);
   };
   // add the timeline wrapper to the timeout fade layer
   mountedTimeoutFadeLayer.appendChild(wrapper);
 
   // Finally mount the expanded view container
-  document.body.appendChild(expandedViewContainer);
+  expandedRoot.appendChild(expandedViewContainer);
   nextTick(() => expandedViewContainer.style.opacity = '1');
 }
 
@@ -1146,7 +1142,7 @@ const timelineMouseDownEventHandler = e => {
 };
 
 const readjustTimeline = x => {
-  mainTimeline.style.transform = `translate(${x}px, ${(- height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
+  mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
 };
 const timelineMousemoveEventHandler = e => {
   e.stopPropagation();
