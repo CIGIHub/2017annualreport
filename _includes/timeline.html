@@ -1,6 +1,6 @@
 <section class="vh-100 default-background relative overflow-hidden">
-  <div class="wrapper h-100 flex flex-column relative">
-    <main class="w-100 mt6-ns mt4 flex justify-between" aria-label="CIGI">
+  <div class="h-100 flex flex-column relative">
+    <main class="wrapper w-100 mt6-ns mt4 flex justify-between" aria-label="CIGI">
       {% markdown template_content/timeline.md %}
       <div id="user-hint-1" class="user-select-none">
         <div id="user-hint-hover" class="ttu tracked f7 b fw4 grey-color tl mb3 fade-in-1 o-0">
@@ -33,7 +33,7 @@
       </div>
     </main>
     <noscript>
-      <h2 class="mt6">JavaScript Not Enabled</h2>
+      <h2 class="wrapper mt6">JavaScript Not Enabled</h2>
       <p>
         For the best experience in viewing the Annual Report, you must have JavaScript enabled.
         <br>
@@ -41,7 +41,7 @@
       </p>
       <a href="#" class="no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt3 white dib pointer underline-hover">Download PDF Version</a>
     </noscript>
-    <div class="w-100 flex flex-auto" aria-label="Timeline">
+    <div class="w-80 m-auto flex flex-auto" aria-label="Timeline">
       <div class="relative w-100 self-center" id="timeline-root"></div>
     </div>
   </div>

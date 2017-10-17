@@ -585,7 +585,7 @@ let mountedFilterContainer;
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('dn flex-ns absolute items-end bottom-0 left-0 w-100 pa4 pl6-l pb4-l');
+    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
   timelineSection.appendChild(mountedFilterContainer);
