@@ -1,5 +1,5 @@
-### Research
+### Expertise
 
-# UNDRIP Implementation: Braiding International, Domestic and Indigenous Laws
+# CIGI and the T20/G20
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia eleifend tortor non mollis. Aliquam malesuada lectus eget sem mattis sagittis eget sit amet dolor. Fusce eu consequat elit. Praesent feugiat, odio in ultricies malesuada, ante arcu rhoncus augue, at mattis nisi dolor eget enim.

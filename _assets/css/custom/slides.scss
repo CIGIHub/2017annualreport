@@ -1,5 +1,5 @@
 //Background Images
-
+/*
 .slide-1 {
   background-image: url('../assets/cigi-campus-min.jpg');
 }
@@ -27,7 +27,7 @@
 .slide-8 {
   background-image: url('../assets/G20-min.jpg');
 }
-
+*/
 .fullscreen-bg {
   bottom: 0;
   left: 0;
@@ -46,10 +46,59 @@
   width: 100%;
 }
 
+.tabs {
+  margin-right: auto;
+
+  .tab {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    float: left;
+    padding: 0 0.5rem;
+  }
+
+  .tab.selected {
+    border: solid 1px $accent-color;
+  }
+
+
+}
+
+.tab-content {
+  position: relative;
+
+  .tab {
+    display: none;
+    position: absolute;
+
+    &.selected {
+      display: block;
+    }
+
+    h1 {
+      flex: 100%;
+    }
+  }
+
+}
+
+
 @media (min-aspect-ratio: 16/9) {
   .fullscreen-bg-video {
     height: 300%;
     top: -100%;
+  }
+
+  .col {
+    float: left;
+    width: 47.5%;
+  }
+
+  .col-1 {
+    padding-right: 2.5%;
+  }
+
+  .col-2 {
+    padding-left: 2.5%;
   }
 }
 
@@ -85,17 +134,27 @@
 
 }
 
-.cover-slide {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    position: relative;
-    z-index: 2;
+.joint-message {
+  h3 {
+    display: none;
   }
+}
+
+section {
+  z-index: 2;
+}
+
+.cover-slide {
+  // h1,
+  // h2,
+  // h3,
+  // h4,
+  // h5,
+  // h6,
+  // p {
+  //   position: relative;
+  //   z-index: 2;
+  // }
 
   h1 {
     text-align: center;
@@ -112,15 +171,15 @@
 
 }
 
-.cover-slide::before,
-.standard-slide::before {
-  background: linear-gradient(rgba(242, 240, 234, 0.15), rgba(242, 240, 234, 0.875));
-  content: ' ';
-  display: block;
-  height: 100%;
-  left: 0;
-  opacity: 1;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
+// .cover-slide::before,
+// .standard-slide::before {
+//   background: linear-gradient(rgba(242, 240, 234, 0.15), rgba(242, 240, 234, 0.875));
+//   content: ' ';
+//   display: block;
+//   height: 100%;
+//   left: 0;
+//   opacity: 1;
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+// }

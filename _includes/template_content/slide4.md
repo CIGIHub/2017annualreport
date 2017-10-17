@@ -1,5 +1,10 @@
-### Research
+### Analysis
 
-# North of 60: Toward a Renewed Canadian Arctic Agenda
+# New Thinking on Innovation
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia eleifend tortor non mollis. Aliquam malesuada lectus eget sem mattis sagittis eget sit amet dolor. Fusce eu consequat elit. Praesent feugiat, odio in ultricies malesuada, ante arcu rhoncus augue, at mattis nisi dolor eget enim.
+Innovation is at the heart of the knowledge economy and an engine of prosperity. Yet in Canada, productivity has been stubbornly flat for the past 30 years — leading to a preoccupation with policies that stimulate innovation.
+
+CIGI responded in the spring of 2017 by bringing together top scholars and practitioners to offer fresh perspectives and policy approaches for Canada and for the global economic cooperation system. The resulting series of 18 essays, [New Thinking on Innovation](https://cigionline.org/innovation-series/ "Innovation Series"), addressed a wide range of topics, from the role of international trade in stimulating innovation to the impact of intellectual property strategies on competitiveness.
+
+The exclusively online series, a first for CIGI, ushered in a new school of thought on innovation policy and was accompanied by video interviews and animation. Its creative delivery and stellar lineup of authors generated over 78,000 views and sparked online engagement from television personalities, entrepreneurial networks and government officials.
+
