@@ -1,8 +1,6 @@
-
-// tabs
+const clearSelectedTabs = Array.from(document.getElementById('tab-toggles').getElementsByClassName('tab'));
 
 function initializeTabs() {
-
   const tab1 = document.querySelectorAll('[data-id="tab-1"]');
   const tab2 = document.querySelectorAll('[data-id="tab-2"]');
 
@@ -15,32 +13,18 @@ function initializeTabs() {
   for (const item of unsetSelected1) {
     item.classList.remove('selected');
   }
-
 }
 
-function toggleTabs(e){
-
+function toggleTabs(e) {
   const selectedTab = e.target.getAttribute('data-id');
   // const selectedTabId = selectedTab.split('tab-')[1];
-  const currentSlideId = window.location.hash.split('#/?slide=')[1];
 
-  // this shouldn't happen, but just in case
-  if(currentSlideId === undefined){
-    return;
-  }
-  else{
-    // get the current slide and assign the clicked tab.
-    const currentSlide = 'slide-' + currentSlideId;
-
-    var clearSelectedTabs = document.getElementById(currentSlide).getElementsByClassName('tab');
-    for (var item of clearSelectedTabs){
-      item.classList.remove('selected');
-      if (item.getAttribute('data-id') === selectedTab){
-        item.classList.add('selected');
-      }
+  for (const item of clearSelectedTabs) {
+    item.classList.remove('selected');
+    if (item.getAttribute('data-id') === selectedTab) {
+      item.classList.add('selected');
     }
   }
-
 }
 
 // const tabs = Array.from(document.getElementsByClassName('tab'));
@@ -53,4 +37,3 @@ export default function load() {
     item.addEventListener('click', toggleTabs);
   });
 }
-
