@@ -21,6 +21,8 @@ import {
   resetArticleIdInUrl,
   handlePermalink,
   setProgramViewInUrl,
+  setContentTypeInUrl,
+  resetContentTypeInUrl,
 } from './permalink';
 
 import {
@@ -120,6 +122,7 @@ let height = 2 * amplitude;
 const sinFunc = sinFuncWithAmplitudeWaveNumberAndYOffset(amplitude, waveNumber, amplitude);
 
 const selectOptionToCheckboxAndX = new Map();
+export const contentTypeToRadioBox = {};
 const isSelectOptionSelected = new Set();
 let clearButton;
 
@@ -182,18 +185,17 @@ function reenableProgramSelectContainer() {
 let programViewCombined = true;
 let programViewIdle = true;
 const programViewRadioBoxes = new Array(2);
-const contentTypesRadioBoxes = [];
-let selectedContentType = null;
+export let selectedContentType = null;
 let selectedContentTypeRadioBox = null;
 const programViewTransitionMs = 1000;
 const programViewTransition = `all ${programViewTransitionMs}ms ease`;
 function clearContentTypeFilter() {
+  resetContentTypeInUrl();
   if (selectedContentType !== null) {
     selectedContentTypeRadioBox.classList.remove('active');
     selectedContentType = null;
     selectedContentTypeRadioBox = null;
   }
-
 
   let i = dataByTimeAll.length;
   while(i-- > 0) {
@@ -210,7 +212,7 @@ function clearContentTypeFilter() {
   }
 }
 
-function filterByContentType(radioBox, type) {
+export function filterByContentType(radioBox, type) {
   if (selectedContentType === type) {
     clearContentTypeFilter();
     if (setReseachAreaFilters.length === 0) {
@@ -221,6 +223,7 @@ function filterByContentType(radioBox, type) {
     radioBox.classList.add('active');
     if (selectedContentTypeRadioBox) selectedContentTypeRadioBox.classList.remove('active');
     selectedContentType = type;
+    setContentTypeInUrl();
     selectedContentTypeRadioBox = radioBox;
 
     let i = dataByTimeAll.length;
@@ -358,6 +361,7 @@ function combineProgramView(callback) {
     timelineFlexWrapper.addEventListener('dblclick', timelineDoubleClickEventHandler, false);
   }
 }
+
 export const toggleSelectOptions = (filterId) => () => {
   const filter = researchTypeFilters.types[filterId];
   const { selectOption } = filter;
@@ -380,20 +384,18 @@ export const toggleSelectOptions = (filterId) => () => {
         if (!item.researchAreaDeselected && item.research_areas.includes(filter.name)) {
           // if the dataPoint is not grayed out and it falls under the filter
           // then remove the filter and set it to the most recently checked matching filter's color
-          let setFiltersLength = setReseachAreaFilters.length;
-          let _i = setFiltersLength;
+          let _i = setReseachAreaFilters.length;
           while (_i-- > 0) {
             if (setReseachAreaFilters[_i] === filterId) {
               setReseachAreaFilters.splice(_i, 1);
               setResearchFiltersInUrl();
-              setFiltersLength--;
               break;
             }
           }
           const dataPointCircles = itemIdToDataPointCircles[item.id];
           const dataPointCirclesLength = dataPointCircles.length;
           let fail = true;
-          _i = setFiltersLength;
+          _i = setReseachAreaFilters.length;
           let _j;
           while (_i-- > 0) {
             const mostRecentFilter = researchTypeFilters.types[setReseachAreaFilters[_i]];
@@ -466,6 +468,7 @@ export const toggleSelectOptions = (filterId) => () => {
     setResearchFiltersInUrl();
   }
 };
+
 function generateFilters() {
   const generatedfilters = new Array(4);
   // research types
@@ -516,7 +519,7 @@ function generateFilters() {
   for (const contentType of contentTypeFilters) {
     const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
     const radioBox = createDiv('select-radio ml1 mr2 relative');
-    contentTypesRadioBoxes.push(radioBox);
+    contentTypeToRadioBox[contentType] = radioBox;
     selectOption.onclick = () => { filterByContentType(radioBox, contentType); };
     selectOption.appendChild(radioBox);
     selectOption.appendChild(document.createTextNode(contentType));
