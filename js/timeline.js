@@ -171,8 +171,8 @@ function setSelectOptionColor(selectOption, checkbox, x, color) {
   selectOption.style.color = color;
 }
 
-const programSelectContainer = createDiv('select-container w4 ma1 pv1 ph2 fw5 f6 grey relative ttu');
-const contentSelectContainer = createDiv('select-container w5 ma1 pv1 ph2 fw5 f6 grey relative ttu');
+const programSelectContainer = createDiv('select-container w4 ma1 pv1 ph1 fw5 f6 grey relative ttu');
+const contentSelectContainer = createDiv('select-container w12rem ma1 pv1 ph1 fw5 f6 grey relative ttu');
 
 function disableProgramSelectContainer() {
   programSelectContainer.style.visibility = 'hidden';
@@ -477,7 +477,7 @@ function generateFilters() {
   const researchTypesLength = researchTypes.length;
   for (let i = 0; i < researchTypesLength; i++) {
     const filter = researchTypes[i];
-    const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+    const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     filter.selectOption = selectOption;
     const checkbox = createDiv('select-checkbox ml1 mr2 relative');
     const x = createDiv('absolute');
@@ -493,11 +493,11 @@ function generateFilters() {
     selectOption.appendChild(document.createTextNode(filter.name));
     researchSelectContent.appendChild(selectOption);
   }
-  const researchSelectContainer = createDiv('select-container w6 ma1 pv1 ph2 fw5 f6 grey relative ttu');
+  const researchSelectContainer = createDiv('select-container w6 ma1 pv1 ph1 fw5 f6 grey relative ttu');
   const researchSelectToggler = createDiv('select-toggler');
   researchSelectToggler.innerText = researchTypeFilters.label;
-  const chevronDown = '<span class="f4 pl1 pr2"><i class="fa fa-angle-down"></i></span>';
-  const chevronUp = '<span class="f4 pl1 pr2"><i class="fa fa-angle-up"></i></span>';
+  const chevronDown = '<span class="f5 pl1 pr2"><i class="fa fa-angle-down"></i></span>';
+  const chevronUp = '<span class="f5 pl1 pr2"><i class="fa fa-angle-up"></i></span>';
   researchSelectToggler.innerHTML = chevronUp + researchTypeFilters.label;
   researchSelectContainer.onmouseenter = () => {
     researchSelectToggler.innerHTML = chevronDown + researchTypeFilters.label;
@@ -517,7 +517,7 @@ function generateFilters() {
   }, new Set());
 
   for (const contentType of contentTypeFilters) {
-    const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+    const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     const radioBox = createDiv('select-radio ml1 mr2 relative');
     contentTypeToRadioBox[contentType] = radioBox;
     selectOption.onclick = () => { filterByContentType(radioBox, contentType); };
@@ -545,7 +545,7 @@ function generateFilters() {
   const programViewFiltersLength = programViewFilters.length;
   for (let j = 0; j < programViewFiltersLength; j++) {
     const filter = programViewFilters[j];
-    const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+    const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     const radioBox = createDiv('select-radio ml1 mr2 relative');
     if (filter.selected) {
       radioBox.classList.add('active');
@@ -573,7 +573,7 @@ function generateFilters() {
   programSelectContainer.appendChild(programSelectToggler);
   generatedfilters[3] = programSelectContainer;
 
-  clearButton = createDiv('select-clear w4 ma1 pv1 ph2 fw5 f6 grey ttu hover-bg-black-10');
+  clearButton = createDiv('select-clear w4 ma1 pv1 ph1 fw5 f6 grey ttu hover-bg-black-10');
   clearButton.style.display = 'none';
   clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
@@ -585,7 +585,7 @@ let mountedFilterContainer;
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l');
+    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l z-8');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
   timelineSection.appendChild(mountedFilterContainer);
@@ -1116,7 +1116,7 @@ function createArticleGroup(item) {
 `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
   viewFullArticle.setAttribute('target', '_blank');
-  viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar&article_id=' + item.id);
+  viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
   viewFullArticle.innerHTML = '<i class="fa fa-film"></i><span class="pl2">View Full Article</span></div>';
   article.appendChild(viewFullArticle);
   article.appendChild(share);
