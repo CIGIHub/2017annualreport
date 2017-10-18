@@ -4,12 +4,13 @@ function initializeTabs() {
   const tab2 = document.querySelectorAll('[data-id="tab-2"]');
   let parameter = window.location.href.split('&');
 
+  console.log('here');
   let tabId = 'tab-1';
   let setTab = tab1;
   let unsetTab = tab2;
 
   if(parameter.length > 1){
-    tabId= parameter[1];
+    tabId = parameter[1];
     if(tabId === 'tab-1' ){
       setTab = tab1;
       unsetTab = tab2;
@@ -19,11 +20,9 @@ function initializeTabs() {
       unsetTab = tab1;
     }
   }
- 
-
+  
   const setSelected = Array.from(setTab);
   for (const item of setSelected) {
-    console.log(item);
     item.classList.add('selected');
   }
 
@@ -51,6 +50,7 @@ function toggleTabs(e) {
 
 
 const toggle = Array.from(document.getElementsByClassName('toggle'));
+let section = Array.from(document.getElementsByTagName("section"));
 
 export default function load() {
   initializeTabs();
