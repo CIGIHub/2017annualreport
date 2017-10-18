@@ -2,13 +2,30 @@
 function initializeTabs() {
   const tab1 = document.querySelectorAll('[data-id="tab-1"]');
   const tab2 = document.querySelectorAll('[data-id="tab-2"]');
- 
-  const setSelected = Array.from(tab1);
+  let parameter = window.location.href.split('&');
+  let tabId = 'tab-1';
+  let setTab = null;
+  let unsetTab = null;
+
+  if(parameter.length > 1){
+    tabId= parameter[1];
+    if(tabId === 'tab-1' ){
+      setTab = tab1;
+      unsetTab = tab2;
+    }
+    else{
+      setTab = tab2;
+      unsetTab = tab1;
+    }
+  }
+
+  const setSelected = Array.from(setTab);
   for (const item of setSelected) {
+    console.log(item);
     item.classList.add('selected');
   }
 
-  const unsetSelected = Array.from(tab2);
+  const unsetSelected = Array.from(unsetTab);
   for (const item of unsetSelected) {
     item.classList.remove('selected');
   }
@@ -29,6 +46,7 @@ function toggleTabs(e) {
     }
   }
 }
+
 
 const toggle = Array.from(document.getElementsByClassName('toggle'));
 
