@@ -131,6 +131,23 @@ function injectLinksAndAddSideBar() {
   sidebar = createDiv('fixed sidebar');
   const subsections = new Map();
   for (let i = 0; i < numberOfSections; i++) {
+    // and add entry to table of contents
+    const section = sections[i];
+    const h3s = section.getElementsByTagName('h3');
+    const subsection = h3s.length && h3s[0].innerHTML || 'Explore CIGI';
+    const slideName = section.getElementsByTagName('h1')[0].innerHTML;
+    const content = subsections.get(subsection);
+    if (content === undefined) {
+      subsections.set(subsection, [{
+        title: slideName,
+        slidenum: i,
+      }]);
+    } else {
+      content.push({
+        title: slideName,
+        slidenum: i,
+      });
+    }
     // now create a corresponding button on the sidebar
     const button = createDiv('sidebar-button');
     const currentIndex = i;
@@ -139,24 +156,11 @@ function injectLinksAndAddSideBar() {
         updateNavigation(currentIndex, currentSlide);
       }
     };
+    const tooltip = createDiv('sidebar-tooltip mr2 ph2 pv1 br2');
+    tooltip.innerText = slideName;
+    button.appendChild(tooltip);
     sidebar.appendChild(button);
     buttons[i] = button;
-    // and add entry to table of contents
-    const section = sections[i];
-    const h3s = section.getElementsByTagName('h3');
-    const subsection = h3s.length && h3s[0].innerHTML || 'Explore CIGI';
-    const content = subsections.get(subsection);
-    if (content === undefined) {
-      subsections.set(subsection, [{
-        title: section.getElementsByTagName('h1')[0].innerHTML,
-        slidenum: i,
-      }]);
-    } else {
-      content.push({
-        title: section.getElementsByTagName('h1')[0].innerHTML,
-        slidenum: i,
-      });
-    }
   }
   buttons[currentSlide].classList.add('active');
   tableOfContents = createDiv('pt5 pt6-ns fixed vh-100 w-100 bg-black-90 z-7 left-0 top-0');
