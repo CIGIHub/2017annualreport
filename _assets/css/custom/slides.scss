@@ -121,7 +121,23 @@
   p {
     padding-bottom: 1rem;
   }
+  a{
+    color: $accent-color;
+    text-decoration: none;
+    &:hover{
+      color: $accent-color-50;
+    }
+  }
 
+  .fa{
+    margin-right: 0.5rem;
+  }
+  .fa-play{
+    border: solid 1px $accent-color;
+    padding: 0.125rem;
+    padding-left: 0.2rem;
+    font-size: 0.55rem;
+  }
 }
 
 .joint-message {
@@ -130,17 +146,7 @@
   }
 }
 
-.cover-slide {
-  // h1,
-  // h2,
-  // h3,
-  // h4,
-  // h5,
-  // h6,
-  // p {
-  //   position: relative;
-  //   z-index: 2;
-  // }
+.cover-slide { 
 
   h1 {
     text-align: center;
