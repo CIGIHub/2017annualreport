@@ -171,8 +171,8 @@ function setSelectOptionColor(selectOption, checkbox, x, color) {
   selectOption.style.color = color;
 }
 
-const programSelectContainer = createDiv('select-container w4 ma1 pv1 ph2 fw5 f6 grey relative ttu');
-const contentSelectContainer = createDiv('select-container w5 ma1 pv1 ph2 fw5 f6 grey relative ttu');
+const programSelectContainer = createDiv('select-container w4 ma1 pv1 ph1 fw5 f6 grey relative ttu');
+const contentSelectContainer = createDiv('select-container w12rem ma1 pv1 ph1 fw5 f6 grey relative ttu');
 
 function disableProgramSelectContainer() {
   programSelectContainer.style.visibility = 'hidden';
@@ -198,7 +198,7 @@ function clearContentTypeFilter() {
   }
 
   let i = dataByTimeAll.length;
-  while(i-- > 0) {
+  while (i-- > 0) {
     const item = dataByTimeAll[i];
     if (item.contentTypeDeselected) {
       item.contentTypeDeselected = false;
@@ -227,7 +227,7 @@ export function filterByContentType(radioBox, type) {
     selectedContentTypeRadioBox = radioBox;
 
     let i = dataByTimeAll.length;
-    while(i-- > 0) {
+    while (i-- > 0) {
       const item = dataByTimeAll[i];
       if (item.contentTypeDeselected && item.subtype[0] === type) {
         item.contentTypeDeselected = false;
@@ -477,7 +477,7 @@ function generateFilters() {
   const researchTypesLength = researchTypes.length;
   for (let i = 0; i < researchTypesLength; i++) {
     const filter = researchTypes[i];
-    const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+    const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     filter.selectOption = selectOption;
     const checkbox = createDiv('select-checkbox ml1 mr2 relative');
     const x = createDiv('absolute');
@@ -493,11 +493,11 @@ function generateFilters() {
     selectOption.appendChild(document.createTextNode(filter.name));
     researchSelectContent.appendChild(selectOption);
   }
-  const researchSelectContainer = createDiv('select-container w6 ma1 pv1 ph2 fw5 f6 grey relative ttu');
+  const researchSelectContainer = createDiv('select-container w6 ma1 pv1 ph1 fw5 f6 grey relative ttu');
   const researchSelectToggler = createDiv('select-toggler');
   researchSelectToggler.innerText = researchTypeFilters.label;
-  const chevronDown = '<span class="f4 pl1 pr2"><i class="fa fa-angle-down"></i></span>';
-  const chevronUp = '<span class="f4 pl1 pr2"><i class="fa fa-angle-up"></i></span>';
+  const chevronDown = '<span class="f5 pl1 pr2"><i class="fa fa-angle-down"></i></span>';
+  const chevronUp = '<span class="f5 pl1 pr2"><i class="fa fa-angle-up"></i></span>';
   researchSelectToggler.innerHTML = chevronUp + researchTypeFilters.label;
   researchSelectContainer.onmouseenter = () => {
     researchSelectToggler.innerHTML = chevronDown + researchTypeFilters.label;
@@ -517,7 +517,7 @@ function generateFilters() {
   }, new Set());
 
   for (const contentType of contentTypeFilters) {
-    const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+    const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     const radioBox = createDiv('select-radio ml1 mr2 relative');
     contentTypeToRadioBox[contentType] = radioBox;
     selectOption.onclick = () => { filterByContentType(radioBox, contentType); };
@@ -545,7 +545,7 @@ function generateFilters() {
   const programViewFiltersLength = programViewFilters.length;
   for (let j = 0; j < programViewFiltersLength; j++) {
     const filter = programViewFilters[j];
-    const selectOption = createDiv('select-option flex items-center pt1 pb1 hover-bg-black-10');
+    const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     const radioBox = createDiv('select-radio ml1 mr2 relative');
     if (filter.selected) {
       radioBox.classList.add('active');
@@ -573,7 +573,7 @@ function generateFilters() {
   programSelectContainer.appendChild(programSelectToggler);
   generatedfilters[3] = programSelectContainer;
 
-  clearButton = createDiv('select-clear w4 ma1 pv1 ph2 fw5 f6 grey ttu hover-bg-black-10');
+  clearButton = createDiv('select-clear w4 ma1 pv1 ph1 fw5 f6 grey ttu hover-bg-black-10');
   clearButton.style.display = 'none';
   clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
@@ -585,7 +585,7 @@ let mountedFilterContainer;
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('dn flex-ns absolute items-end bottom-0 left-0 w-100 pa4 pl6-l pb4-l');
+    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l z-8');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
   timelineSection.appendChild(mountedFilterContainer);
@@ -847,11 +847,12 @@ export default function timelineMagic() {
 
 let mountedItem;
 let mountedArticleGroup;
+const expandedRoot = document.getElementById('timeline-slide-content');
+const siteHeader = document.getElementById('site-header');
 function mountExpandedViewContainer(expandedViewContainer) {
   // Mount the timeline into the expanded view
   document.body.classList.add('expanded-view-enabled');
   timelineRoot.style.zIndex = 10;
-  mountedFilterContainer.style.zIndex = 11;
 
   const transition = 'all 1s ease-in-out';
   timelineRoot.style.transition = transition;
@@ -861,6 +862,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   mainTimeline.style.pointerEvents = 'none';
   const timelineBoundingClientRect = mainTimeline.getBoundingClientRect();
   const translateY = 'translateY(' + -1 * ((timelineBoundingClientRect.top + timelineBoundingClientRect.bottom) / 2 - amplitude) + 'px)';
+  siteHeader.classList.add('top');
   nextTick(() => {
     height /= 2;
     mainTimeline.style.height = height + 'px';
@@ -870,11 +872,10 @@ function mountExpandedViewContainer(expandedViewContainer) {
     }
   });
 
-  const wrapper = createDiv('wrapper absolute w-100');
+  const wrapper = createDiv('absolute w-80');
   wrapper.style.left = '50%';
   wrapper.style.transform = 'translateX(-50%)';
   wrapper.style.top = amplitude + 'px';
-  const mountedFilterContainerParent = mountedFilterContainer.parentElement;
   // when the timeline has translated to the top
   setTimeout(() => {
     mainTimeline.style.pointerEvents = null;
@@ -889,9 +890,6 @@ function mountExpandedViewContainer(expandedViewContainer) {
     timelineRoot.remove();
     // add the timeline container to the wrapper
     wrapper.appendChild(timelineRoot);
-    // add the filters to the timeout fade layer
-    mountedFilterContainer.remove();
-    mountedTimeoutFadeLayer.appendChild(mountedFilterContainer);
   }, 1000);
 
   // Set fade on inactivity timeout
@@ -933,12 +931,11 @@ function mountExpandedViewContainer(expandedViewContainer) {
     backToTimeline.remove();
     timelineRoot.remove();
     wrapper.remove();
+    siteHeader.classList.remove('top');
     timelineRoot.classList.remove('timeline-top');
     height *= 2;
     mainTimeline.style.transition = transition;
     timelineFlexWrapper.appendChild(timelineRoot);
-    mountedFilterContainer.remove();
-    mountedFilterContainerParent.appendChild(mountedFilterContainer);
     timelineRoot.style.transform = translateY;
 
     nextTick(() => {
@@ -960,14 +957,13 @@ function mountExpandedViewContainer(expandedViewContainer) {
       reenableProgramSelectContainer();
       timelineRoot.style.transition = null;
       timelineRoot.style.zIndex = null;
-      mountedFilterContainer.style.zIndex = null;
     }, 1000);
   };
   // add the timeline wrapper to the timeout fade layer
   mountedTimeoutFadeLayer.appendChild(wrapper);
 
   // Finally mount the expanded view container
-  document.body.appendChild(expandedViewContainer);
+  expandedRoot.appendChild(expandedViewContainer);
   nextTick(() => expandedViewContainer.style.opacity = '1');
 }
 
@@ -1120,7 +1116,7 @@ function createArticleGroup(item) {
 `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
   viewFullArticle.setAttribute('target', '_blank');
-  viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar&article_id=' + item.id);
+  viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
   viewFullArticle.innerHTML = '<i class="fa fa-film"></i><span class="pl2">View Full Article</span></div>';
   article.appendChild(viewFullArticle);
   article.appendChild(share);
@@ -1146,7 +1142,7 @@ const timelineMouseDownEventHandler = e => {
 };
 
 const readjustTimeline = x => {
-  mainTimeline.style.transform = `translate(${x}px, ${(- height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
+  mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
 };
 const timelineMousemoveEventHandler = e => {
   e.stopPropagation();

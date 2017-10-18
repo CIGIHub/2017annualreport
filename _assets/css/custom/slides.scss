@@ -59,16 +59,11 @@
   .tab.selected {
     border: solid 1px $accent-color;
   }
-
-
 }
 
 .tab-content {
-  position: relative;
-
   .tab {
     display: none;
-    position: absolute;
 
     &.selected {
       display: block;
@@ -78,28 +73,11 @@
       flex: 100%;
     }
   }
-
 }
 
-
-@media (min-aspect-ratio: 16/9) {
-  .fullscreen-bg-video {
-    height: 300%;
-    top: -100%;
-  }
-
-  .col {
-    float: left;
-    width: 47.5%;
-  }
-
-  .col-1 {
-    padding-right: 2.5%;
-  }
-
-  .col-2 {
-    padding-left: 2.5%;
-  }
+.col {
+  column-count: 2;
+  column-width: 450px;
 }
 
 @media (max-aspect-ratio: 16/9) {
@@ -138,10 +116,6 @@
   h3 {
     display: none;
   }
-}
-
-section {
-  z-index: 2;
 }
 
 .cover-slide {

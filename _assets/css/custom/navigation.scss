@@ -20,7 +20,7 @@
   height: 1.25rem;
   margin: 1.25rem 0;
   padding: 0.1rem;
-
+  position: relative;
   width: 1.25rem;
 
   &.active {
@@ -31,6 +31,40 @@
 
   &:hover {
     background-color: $accent-color-50;
+
+    .sidebar-tooltip {
+      opacity: 1;
+      transform: scale(1) translateY(-50%);
+    }
+  }
+}
+
+$tooltip-background: rgba(60, 60, 60, 0.9);
+
+.sidebar-tooltip {
+  background: $tooltip-background;
+  color: #fff;
+  opacity: 0;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: scale(0) translateY(-50%);
+  transform-origin: top right;
+  transition: all 200ms ease;
+  width: max-content;
+
+  &::after {
+    border: solid transparent;
+    border-left-color: $tooltip-background;
+    border-width: 0.5rem;
+    content: ' ';
+    height: 0;
+    left: 100%;
+    margin-top: -0.5rem;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    width: 0;
   }
 }
 

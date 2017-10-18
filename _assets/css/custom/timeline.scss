@@ -521,7 +521,7 @@ $article-slide-timing-function: ease-in-out;
 .select-clear {
   border: 1px solid $grey-25;
   cursor: pointer;
-  min-height: 38px;
+  min-height: 2rem;
   user-select: none;
   z-index: $filters-z-index;
 }

@@ -133,10 +133,15 @@ hr {
   }
 }
 
-.fixed-x-centre {
+.site-header {
   left: 50%;
   position: fixed;
   transform: translateX(-50%);
+  transition: all 1s ease;
+
+  &.top {
+    transform: translate(-50%, -100%);
+  }
 }
 
 // Custom global styles
@@ -197,4 +202,17 @@ hr {
 
 .reverse-dim {
   @extend %reverse-dim;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.pv125 {
+  padding-bottom: 0.125rem;
+  padding-top: 0.125rem;
+}
+
+.w12rem {
+  width: 12rem;
 }
