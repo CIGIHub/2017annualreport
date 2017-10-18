@@ -3,9 +3,10 @@ function initializeTabs() {
   const tab1 = document.querySelectorAll('[data-id="tab-1"]');
   const tab2 = document.querySelectorAll('[data-id="tab-2"]');
   let parameter = window.location.href.split('&');
+
   let tabId = 'tab-1';
-  let setTab = null;
-  let unsetTab = null;
+  let setTab = tab1;
+  let unsetTab = tab2;
 
   if(parameter.length > 1){
     tabId= parameter[1];
@@ -18,6 +19,7 @@ function initializeTabs() {
       unsetTab = tab1;
     }
   }
+ 
 
   const setSelected = Array.from(setTab);
   for (const item of setSelected) {
