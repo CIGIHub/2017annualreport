@@ -4,7 +4,6 @@ function initializeTabs() {
   const tab2 = document.querySelectorAll('[data-id="tab-2"]');
   let parameter = window.location.href.split('&');
 
-  console.log('here');
   let tabId = 'tab-1';
   let setTab = tab1;
   let unsetTab = tab2;
