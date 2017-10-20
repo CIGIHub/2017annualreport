@@ -5,6 +5,11 @@ import {
   closeSvg,
 } from 'helpers';
 
+import {
+  disableOverlay,
+  enableOverlay,
+} from 'navigation';
+
 export default function galleryMagic() {
   const gallery = document.getElementById('gallery');
   const loadingOverlay = document.getElementById('load-overlay');
@@ -31,7 +36,7 @@ export default function galleryMagic() {
     if (!moving) return;
     wasMoving = true;
     offset = e.clientX - startScroll;
-    requestAnimationFrame(() => { gallery.scrollTo(startLeft - offset,0); });
+    requestAnimationFrame(() => { gallery.scrollTo(startLeft - offset, 0); });
   };
 
   const smooth = (off) => {
@@ -76,7 +81,7 @@ export default function galleryMagic() {
     closing = true;
     setTimeout(() => {
       closing = false;
-      document.body.classList.remove('expanded-view-enabled');
+      disableOverlay();
       currentPhotocontainer.remove();
       lightbox.remove();
     }, 1000);
@@ -159,7 +164,7 @@ export default function galleryMagic() {
       document.body.appendChild(lightbox);
       lightbox.appendChild(photoContainer);
       currentPhotocontainer = photoContainer;
-      document.body.classList.add('expanded-view-enabled');
+      enableOverlay();
       nextTick(() => { lightbox.classList.add('enabled'); });
     };
   });

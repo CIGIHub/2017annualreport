@@ -5,43 +5,43 @@
 }
 
 .slide-5 {
-   
- }
 
- .slide-6{}
+}
 
- .slide-7{}
+.slide-6{}
 
- .slide-8 {
-   background-image: url('../assets/UNDRIP-min.jpg');
- }
+.slide-7{}
 
- .slide-9 {
-   background-image: url('../assets/north-of-60-min.jpg');
- }
+.slide-8 {
+  background-image: url('../assets/UNDRIP-min.jpg');
+}
 
- .slide-10{}
+.slide-9 {
+  background-image: url('../assets/north-of-60-min.jpg');
+}
 
- .slide-11{}
+.slide-10{}
 
- .slide-12 {
-   background-image: url('../assets/wrc-min.jpg');
- }
+.slide-11{}
 
- .slide-13{}
+.slide-12 {
+  background-image: url('../assets/wrc-min.jpg');
+}
 
- .slide-14 {
-   background-image: url('../assets/blockchain-min.jpg');
- }
+.slide-13{}
 
- .slide-15 {
-   background-image: url('../assets/IMF-min.jpg');
- }
+.slide-14 {
+  background-image: url('../assets/blockchain-min.jpg');
+}
 
- .slide-16 {
-   background-image: url('../assets/G20-min.jpg');
- }
- 
+.slide-15 {
+  background-image: url('../assets/IMF-min.jpg');
+}
+
+.slide-16 {
+  background-image: url('../assets/G20-min.jpg');
+}
+
 
 .fullscreen-bg {
   bottom: 0;
@@ -120,9 +120,11 @@
   p {
     padding-bottom: 1rem;
   }
+
   a{
     color: $accent-color;
     text-decoration: none;
+
     &:hover{
       color: $accent-color-50;
     }
@@ -131,6 +133,7 @@
   .fa{
     margin-right: 0.5rem;
   }
+
   .fa-play{
     border: solid 1px $accent-color;
     padding: 0.125rem;
@@ -143,6 +146,7 @@
   h3 {
     display: none;
   }
+
   .col {
     column-count: 2;
     column-width: 450px;
@@ -150,7 +154,6 @@
 }
 
 .cover-slide {
-
   h1 {
     text-align: center;
     color: $accent-color;
@@ -196,6 +199,7 @@
     border: solid 1px rgb(210,211,205);
 
   }
+
   .arc {
     position: absolute;
     top: 23%;
@@ -207,6 +211,7 @@
     border-radius: 50%;
     transform: rotate(-55deg);
   }
+
   .content-wrapper{
     z-index: 100;
     left: 50%;
@@ -215,18 +220,21 @@
     position: absolute;
     width: 80%;
   }
+
   .content{
     column-count: 2;
     column-width: 300px;
   }
-  
+
   h1{display: none;}
+
   .title{
     margin-left: 4rem;
     font-size: 9rem;
     line-height: 73%;
     font-weight: 800;
     color: rgba(120,120,118, 0.85);
+
     span{
       margin-left: -2rem;
     }
@@ -234,46 +242,58 @@
 
   .nav{
     margin: 2rem 0;
+
     > div{
       float: left;
+
       .fa{
         display: block;
         margin-top: -7px;
+
         &:nth-child(1){
           color: $accent-color;
         }
+
         &:nth-child(2){
           color: lighten($accent-color, 20%);
         }
+
         &:nth-child(3){
           color: lighten($accent-color, 40%);
         }
       }
     }
+
     .up{
       margin-right: 10px;
       margin-top: -3px;
     }
+
     .down{
       margin-left: 10px;
       margin-top: 13px;
     }
-    a{
+
+    .explore,
+    .view-ar {
       display: block;
       border-top: solid 1px $grey-color;
       padding-top: 0.3rem;
       text-transform: uppercase;
       color: $accent-color;
       font-weight: 500;
+
       &:hover{
         color: $grey-color;
       }
     }
-    .explore a{
+
+    .explore {
       border-right: solid 1px $grey-color;
       padding-right: 1rem;
     }
-    .view-ar a{
+
+    .view-ar {
       padding-left: 1rem;
     }
   }
@@ -281,14 +301,16 @@
     .arc {
       left: 8%;
     }
+
     .content-wrapper{
       width: 100%;
     }
+
     .title{
       margin-left: 2rem;
       margin-bottom: 1rem;
     }
-    
+
   }
 }
 

@@ -10,6 +10,8 @@
   transform: translateY(-50%);
 }
 
+$sidebar-button-radius: 1rem;
+
 .sidebar-button {
   @extend %navigation-transition;
 
@@ -17,11 +19,11 @@
   border: 1px solid $accent-color;
   border-radius: 100%;
   cursor: pointer;
-  height: 1.25rem;
-  margin: 1.25rem 0;
+  height: $sidebar-button-radius;
+  margin: 0.5rem 0;
   padding: 0.1rem;
   position: relative;
-  width: 1.25rem;
+  width: $sidebar-button-radius;
 
   &.active {
     background-color: $accent-color;
@@ -99,10 +101,6 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
   @extend %navigation-button;
 
   bottom: $spacing-unit;
-}
-
-.smooth-slide-container {
-  transition: all 1s ease;
 }
 
 .partial-underline-right::after {
