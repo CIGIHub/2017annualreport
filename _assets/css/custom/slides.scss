@@ -267,32 +267,39 @@ header .tabs{
     }
     .arrow-1{
       opacity: 1;
-      transition: opacity 0.25s ease-in;
     }
     .arrow-2{
       opacity: 0;
-      transition: opacity 0.5s ease-in;
     }
     .arrow-3{
       opacity: 0;
-      transition: opacity 1s ease-in;
     }
 
     .up, .down{
       &:hover{
         .arrow-1{
-          opacity: 0.35;
-          
+          animation: arrow-movement 0.5s ease-in-out;
         }
         .arrow-2{
-          opacity: 0.65;
+          animation: arrow-movement 1s ease-in-out;
         }
         .arrow-3{
-          opacity: 1;
+          animation: arrow-movement 2s ease-in-out;
         }
       }
     }
-
+    @keyframes arrow-movement {
+      0%   { 
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% { 
+        opacity: 0;
+      }
+    }
+    
     a{
       display: block;
       border-top: solid 1px $grey-color;
