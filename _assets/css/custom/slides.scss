@@ -139,7 +139,7 @@
   }
 }
 
-.joint-message {
+.joint-message, .financials {
   h3 {
     display: none;
   }
@@ -288,7 +288,19 @@
       margin-left: 2rem;
       margin-bottom: 1rem;
     }
-    
+  }
+}
+
+.financials{
+  table{
+    th, td{
+      &:nth-child(1){
+        text-align: left;
+      }
+      &:nth-child(2){
+        text-align: right;
+      }
+    }
   }
 }
 
