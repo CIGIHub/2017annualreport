@@ -63,17 +63,28 @@
 }
 
 .tabs {
-  margin-right: auto;
-
   .tab {
     border: 1px solid rgba(0, 0, 0, 0.25);
     cursor: pointer;
     float: left;
     padding: 0 0.5rem;
+    font-size: 0.875rem;
+  }
+  .tab:nth-child(1){
+    border-right: none;
   }
 
   .tab.selected {
     border: solid 1px $accent-color;
+
+  }
+}
+
+header .tabs{
+  margin-top: 0.25rem;
+  .tab{
+    text-transform: uppercase;
+    font-size: 0.75rem;
   }
 }
 
@@ -181,6 +192,7 @@
   width: 100%;
 }
 
+//landing page
 .landing{
   .wrapper{
     position: relative;
@@ -238,18 +250,13 @@
       float: left;
       .fa{
         display: block;
+        font-size: 1.75rem;
+        line-height: 1rem;
         margin-top: -7px;
-        &:nth-child(1){
-          color: $accent-color;
-        }
-        &:nth-child(2){
-          color: lighten($accent-color, 20%);
-        }
-        &:nth-child(3){
-          color: lighten($accent-color, 40%);
-        }
+        color: $accent-color;
       }
     }
+
     .up{
       margin-right: 10px;
       margin-top: -3px;
@@ -258,6 +265,34 @@
       margin-left: 10px;
       margin-top: 13px;
     }
+    .arrow-1{
+      opacity: 1;
+      transition: opacity 0.25s ease-in;
+    }
+    .arrow-2{
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+    }
+    .arrow-3{
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    .up, .down{
+      &:hover{
+        .arrow-1{
+          opacity: 0.35;
+          
+        }
+        .arrow-2{
+          opacity: 0.65;
+        }
+        .arrow-3{
+          opacity: 1;
+        }
+      }
+    }
+
     a{
       display: block;
       border-top: solid 1px $grey-color;
