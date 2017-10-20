@@ -337,6 +337,10 @@ header .tabs{
   }
 
   @include media-query($on-laptop) {
+    .nav{
+      position: relative;
+      left: auto;
+    }
     .arc {
       left: 8%;
     }
@@ -347,7 +351,6 @@ header .tabs{
       margin-left: 2rem;
       margin-bottom: 1rem;
     }
-    
   }
 }
 
