@@ -99,13 +99,12 @@ export function handlePermalink(dataByTimeAll, delay) {
 }
 
 const slideRegex = /\?slide=(\d+)/;
-function parseAndLoadSlide() {
+export function parseAndLoadSlide() {
   const hash = location.hash;
   let slideNumber = slideRegex.exec(hash);
   slideNumber = slideNumber ? parseInt(slideNumber[1], 10) : 1;
   loadInitialSlide(slideNumber);
 }
-parseAndLoadSlide();
 
 export const changeSlideInUrl = id => {
   if (id === 0) {

@@ -4,18 +4,22 @@ import {
   createDiv,
   createEl,
   closeSvg,
+  nextTick,
 } from 'helpers';
 
 import {
   changeSlideInUrl,
+  parseAndLoadSlide,
 } from './permalink';
 
 const globalShareFacebook = document.getElementById('global-share-facebook');
 const globalShareTwitter = document.getElementById('global-share-twitter');
 const tableOfContentsButton = document.getElementById('table-of-contents-button');
+const exploreCIGILink = document.getElementById('explore-cigi-link');
+const viewARLink = document.getElementById('view-ar-link');
 const cigiLogo = document.getElementById('cigi-logo');
 
-const smoothSlideContainer = document.getElementsByClassName('smooth-slide-container')[0];
+const smoothSlideContainer = document.getElementById('smooth-slide-container');
 const sections = document.getElementsByTagName('section');
 export const numberOfSections = sections.length;
 
@@ -34,19 +38,28 @@ function fadeInNavigationComponent(component) {
   component.style.opacity = null;
   component.style.pointerEvents = null;
 }
-const expandedViewEnabled = () => document.body.classList.contains('expanded-view-enabled');
 const inactivityMilliseconds = 1500;
 
 let sidebar;
 let topButton;
 let bottomButton;
-export let currentSlide;
+let currentSlide = 1;
 let isScrolling = false;
 let tableOfContents;
 let tocOpen = false;
 const buttons = new Array(numberOfSections);
 let fadeTimeoutSet = false;
 let fadeTimeout;
+let overlayEnabled = false;
+const slideTransitionMs = 1000;
+
+export function disableOverlay() {
+  overlayEnabled = false;
+}
+
+export function enableOverlay() {
+  overlayEnabled = true;
+}
 
 function updateNavigation(newIndex, oldIndex) {
   if (isScrolling) {
@@ -58,13 +71,9 @@ function updateNavigation(newIndex, oldIndex) {
     return;
   }
   isScrolling = true;
-  const slideTransitionHandler = e => {
-    if (e.target === smoothSlideContainer) {
-      isScrolling = false;
-      smoothSlideContainer.removeEventListener('transitionend', slideTransitionHandler, false);
-    }
-  };
-  smoothSlideContainer.addEventListener('transitionend', slideTransitionHandler, false);
+  setTimeout(() => {
+    isScrolling = false;
+  }, slideTransitionMs);
   newButton.classList.add('active');
   oldButton.classList.remove('active');
   updateGlobalShareLinks();
@@ -88,6 +97,16 @@ function setMousemoveFadeTimemout(e) {
   }, inactivityMilliseconds);
   fadeTimeoutSet = true;
 }
+
+exploreCIGILink.onclick = (e) => {
+  e.stopPropagation();
+  updateNavigation(0, currentSlide);
+};
+
+viewARLink.onclick = (e) => {
+  e.stopPropagation();
+  updateNavigation(2, currentSlide);
+};
 
 function setKeydownAndWheelFadeTimeout() {
   if (fadeTimeoutSet) {
@@ -120,11 +139,17 @@ function handleNavigationButtonsFade() {
 }
 
 function scrollViewToSlideIndex(newIndex) {
-  if (newIndex === 0) {
-    smoothSlideContainer.style.transform = null;
-  } else {
-    smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
-  }
+  smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
+  nextTick(() => {
+    if (newIndex === 0) {
+      smoothSlideContainer.style.transform = null;
+    } else {
+      smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
+    }
+    setTimeout(() => {
+      smoothSlideContainer.style.transition = null;
+    }, slideTransitionMs);
+  });
 }
 
 function injectLinksAndAddSideBar() {
@@ -170,6 +195,7 @@ function injectLinksAndAddSideBar() {
   const toggleToc = () => {
     tocOpen = !tocOpen;
     if (tocOpen) {
+      enableOverlay();
       fadeOutAllNavigationComponents();
       tocIcon.className = '';
       tocIcon.innerHTML = closeSvg;
@@ -182,6 +208,7 @@ function injectLinksAndAddSideBar() {
       tableOfContents.remove();
       cigiLogo.style.filter = null;
       [globalShareFacebook, globalShareTwitter].forEach(el => { el.style.color = null; });
+      disableOverlay();
     }
   };
   tableOfContentsButton.onclick = toggleToc;
@@ -236,7 +263,7 @@ function injectTopAndBottomButtons() {
 }
 
 const navigationInactivityFadeHandler = e => {
-  if (tocOpen || expandedViewEnabled()) {
+  if (overlayEnabled) {
     return;
   }
   clearTimeout(fadeTimeout);
@@ -246,7 +273,7 @@ const navigationInactivityFadeHandler = e => {
 };
 
 const navigationKeydownHandler = e => {
-  if (tocOpen || expandedViewEnabled()) {
+  if (overlayEnabled) {
     return;
   }
   fadeInNavigationComponent(sidebar);
@@ -268,11 +295,17 @@ const navigationKeydownHandler = e => {
   }
   setKeydownAndWheelFadeTimeout();
 };
-
+let lastWheel = performance.now();
 const navigationWheelHandler = e => {
-  if (tocOpen || expandedViewEnabled()) {
+  if (overlayEnabled) {
     return;
   }
+  const currentTime = performance.now();
+  if (currentTime - lastWheel < 1000) {
+    // lastWheel = currentTime;
+    return;
+  }
+  lastWheel = currentTime;
   fadeInNavigationComponent(sidebar);
   handleNavigationButtonsFade();
   if (e.deltaY > 0) {
@@ -284,8 +317,7 @@ const navigationWheelHandler = e => {
 };
 
 export function loadInitialSlide(initialSlide) {
-  currentSlide = initialSlide;
-  scrollViewToSlideIndex(currentSlide);
+  updateNavigation(initialSlide, currentSlide);
 }
 
 export default function navigationMagic() {
@@ -298,6 +330,7 @@ export default function navigationMagic() {
   updateGlobalShareLinks();
   injectLinksAndAddSideBar();
   injectTopAndBottomButtons();
+  parseAndLoadSlide();
   document.addEventListener('mousemove', navigationInactivityFadeHandler, false);
   document.addEventListener('keydown', navigationKeydownHandler, false);
   document.addEventListener('wheel', navigationWheelHandler, false);

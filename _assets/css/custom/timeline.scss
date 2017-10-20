@@ -17,7 +17,6 @@ $data-point-z-index: 2;
 $data-point-enabled-z-index: 3;
 $data-point-hover-z-index: 4;
 $preview-container-z-index: 5;
-$filters-z-index: 6;
 $preview-line-z-index: -1;
 $timeline-vertical-line-z-index: 1;
 // 7 is the z-index of the navigation buttons
@@ -523,7 +522,6 @@ $article-slide-timing-function: ease-in-out;
   cursor: pointer;
   min-height: 2rem;
   user-select: none;
-  z-index: $filters-z-index;
 }
 
 .select-clear {

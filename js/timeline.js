@@ -56,6 +56,11 @@ import {
   programTypes,
 } from './constants/timeline';
 
+import {
+  disableOverlay,
+  enableOverlay,
+} from './navigation';
+
 const programTypesLength = programTypes.length;
 
 const dataPointDiameter = 6;
@@ -585,7 +590,7 @@ let mountedFilterContainer;
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l z-8');
+    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
   timelineSection.appendChild(mountedFilterContainer);
@@ -851,7 +856,7 @@ const expandedRoot = document.getElementById('timeline-slide-content');
 const siteHeader = document.getElementById('site-header');
 function mountExpandedViewContainer(expandedViewContainer) {
   // Mount the timeline into the expanded view
-  document.body.classList.add('expanded-view-enabled');
+  enableOverlay();
   timelineRoot.style.zIndex = 10;
 
   const transition = 'all 1s ease-in-out';
@@ -877,6 +882,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   wrapper.style.transform = 'translateX(-50%)';
   wrapper.style.top = amplitude + 'px';
   // when the timeline has translated to the top
+  mountedFilterContainer.style.zIndex = 8;
   setTimeout(() => {
     mainTimeline.style.pointerEvents = null;
     if (timelineZoomed) {
@@ -887,7 +893,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
     timelineRoot.classList.add('timeline-top');
     timelineRoot.style.transform = null;
     mountedTimeoutFadeLayer.appendChild(backToTimeline);
-    timelineRoot.remove();
+    mountedTimeoutFadeLayer.appendChild(mountedFilterContainer);
     // add the timeline container to the wrapper
     wrapper.appendChild(timelineRoot);
   }, 1000);
@@ -929,7 +935,6 @@ function mountExpandedViewContainer(expandedViewContainer) {
     resetArticleIdInUrl();
     timelineSqueezeStop();
     backToTimeline.remove();
-    timelineRoot.remove();
     wrapper.remove();
     siteHeader.classList.remove('top');
     timelineRoot.classList.remove('timeline-top');
@@ -948,6 +953,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
       unmountExpandedViewContainer(expandedViewContainer);
     });
 
+    timelineSection.appendChild(mountedFilterContainer);
     setTimeout(() => {
       if (timelineZoomed) {
         mainTimeline.style.transition = null;
@@ -955,8 +961,10 @@ function mountExpandedViewContainer(expandedViewContainer) {
         timelineSqueezeStart();
       }
       reenableProgramSelectContainer();
+      mountedFilterContainer.style.zIndex = null;
       timelineRoot.style.transition = null;
       timelineRoot.style.zIndex = null;
+      disableOverlay();
     }, 1000);
   };
   // add the timeline wrapper to the timeout fade layer
@@ -1038,7 +1046,7 @@ function unmountExpandedViewContainer(expandedViewContainer) {
   expandedViewContainer.style.opacity = null;
   const transitionEndHandler = e => {
     if (e.target === expandedViewContainer) {
-      document.body.classList.remove('expanded-view-enabled');
+      disableOverlay;
       unmountElementsInArray(mountedArticleGroup);
       expandedViewContainer.remove();
       expandedViewContainer.removeEventListener('transitionend', transitionEndHandler, false);
