@@ -63,6 +63,7 @@
 }
 
 .tabs {
+  margin-bottom: 1rem;
   .tab, .download a{
     border: 1px solid rgba(0, 0, 0, 0.25);
     cursor: pointer;
@@ -113,6 +114,11 @@ header .tabs{
   }
 }
 
+
+p {
+  padding-bottom: 1rem;
+}
+
 //Cover Slide
 
 .cover-slide,
@@ -137,10 +143,6 @@ header .tabs{
     font-size: 1rem;
     padding-bottom: 0.5rem;
     text-transform: uppercase;
-  }
-
-  p {
-    padding-bottom: 1rem;
   }
 
   a{
@@ -378,6 +380,9 @@ header .tabs{
 
 //Financials Slide
 .financials{
+  h1{
+    margin-bottom: 1rem;
+  }
   .notes{
     h4{
       color: $grey-color-dark;
@@ -388,7 +393,6 @@ header .tabs{
       font-size: 0.6825rem;
       padding-bottom: 0.5rem;
     }
-    
   }
   table{
     width: 100%;
