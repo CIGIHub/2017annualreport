@@ -179,7 +179,7 @@ export default function galleryMagic() {
     loadingOverlay.style.display = 'none';
     // eslint-disable-next-line
     const packery = new window.Packery(gallery, {
-      itemSelector: 'img',
+      itemSelector: '.gallery-img-wrapper',
       layoutMode: 'packery',
       horizontal: true,
       resize: false,
