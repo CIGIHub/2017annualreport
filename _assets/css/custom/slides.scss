@@ -401,12 +401,16 @@ p {
     }
   }
   table{
-    width: 100%;
+    width: 47.5%;
+    float: left;
     border-collapse: collapse; 
     border-spacing: 0;
     margin: 1rem 0;
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
+    &.table1{
+      margin-right: 5%;
+    }
     td:nth-child(1){
       width: 70%;
     }
@@ -423,12 +427,14 @@ p {
         background: rgb(204,203,200);
         padding: 0.5rem 0;
         margin-bottom: 0.5rem;
+        height: 4.75rem;
       }
       td{
         text-align: center;
-        font-size: 1.125rem;
+        font-size: 1rem;
         font-weight: 500;
-        padding: 0.25rem 0.5rem;
+        padding: 0 0.25rem;
+        
         &:nth-child(1){
           border-right: solid 0.5rem $default-background-color;
         }
