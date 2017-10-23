@@ -63,7 +63,7 @@
 }
 
 .tabs {
-  .tab {
+  .tab, .download a{
     border: 1px solid rgba(0, 0, 0, 0.25);
     cursor: pointer;
     float: left;
@@ -77,6 +77,17 @@
   .tab.selected {
     border: solid 1px $accent-color;
 
+  }
+  .download a{
+    margin-left: 0.625rem;
+    display: block;
+    background: $accent-color;
+    border: 1px solid $accent-color;
+    color: white;
+    &:hover{
+      background: lighten($accent-color, 25%);
+      color: white;
+    }
   }
 }
 
@@ -195,7 +206,7 @@ header .tabs{
   width: 100%;
 }
 
-//landing page
+// Landing Page
 .landing{
   .wrapper{
     position: relative;
@@ -281,7 +292,7 @@ header .tabs{
       padding-right: 1rem;
     }
 
-    .view-ar {
+    .view-ar .link{
       padding-left: 1rem;
     }
 
@@ -365,7 +376,20 @@ header .tabs{
   }
 }
 
+//Financials Slide
 .financials{
+  .notes{
+    h4{
+      color: $grey-color-dark;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    p{
+      font-size: 0.6825rem;
+      padding-bottom: 0.5rem;
+    }
+    
+  }
   table{
     th, td{
       &:nth-child(1){
