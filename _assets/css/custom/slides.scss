@@ -391,12 +391,72 @@ header .tabs{
     
   }
   table{
-    th, td{
-      &:nth-child(1){
-        text-align: left;
+    width: 100%;
+    border-collapse: collapse; 
+    border-spacing: 0;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+    border-bottom: double rgb(156,156,156);
+    td:nth-child(1){
+      width: 70%;
+    }
+    td:nth-child(2){
+      width: 30%;
+    }
+
+    thead{
+      .year{
+        background: rgb(156,156,156);
+        color: white;
       }
-      &:nth-child(2){
-        text-align: right;
+      .title{
+        background: rgb(204,203,200);
+        padding: 0.5rem 0;
+        margin-bottom: 0.5rem;
+      }
+      td{
+        text-align: center;
+        font-size: 1.125rem;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        &:nth-child(1){
+          border-right: solid 0.5rem $default-background-color;
+        }
+       
+      }
+    }
+    tbody{
+      border-top: solid 1rem transparent;
+      td{
+        &:nth-child(1){
+          text-align: left;
+          padding: 0.125rem 0 0.125rem 1rem;
+        }
+        &:nth-child(2){
+          text-align: right;
+          padding: 0.125rem 1rem 0.125rem 0;
+        }
+      }
+      .section{
+        td:nth-child(1){
+          font-weight: 500;
+          padding-left: 0;
+        }
+      }
+      .total{
+        td:nth-child(2){
+          font-weight: 500;
+        }
+      }
+      .double{
+        border-bottom: double rgb(156,156,156);
+      }
+      .single{
+        border-bottom: solid 1px rgb(156,156,156);
+        border-top: solid 1px rgb(156,156,156);
+      }
+      .top{
+        border-top: solid 1px rgb(156,156,156);
       }
     }
   }
