@@ -122,11 +122,10 @@ export default function galleryMagic() {
         }, 1000);
         const nextPhotoContainer = imageIndexToPhotoContainer[i + 1] || generatePhotoContainer(i + 1);
         nextPhotoContainer.style.transform = rightSide;
-        nextTick(() => {
-          nextPhotoContainer.style.transform = null;
-        });
         lightbox.appendChild(nextPhotoContainer);
         currentPhotocontainer = nextPhotoContainer;
+        nextPhotoContainer.clientHeight;
+        nextPhotoContainer.style.transform = null;
       };
     }
     if (i > 0) {
@@ -140,13 +139,11 @@ export default function galleryMagic() {
           photoContainer.style.transform = null;
         }, 1000);
         const nextPhotoContainer = imageIndexToPhotoContainer[i - 1] || generatePhotoContainer(i - 1);
-        nextPhotoContainer.style.transition = 'all 1s ease';
         nextPhotoContainer.style.transform = leftSide;
-        nextTick(() => {
-          nextPhotoContainer.style.transform = null;
-        });
         lightbox.appendChild(nextPhotoContainer);
         currentPhotocontainer = nextPhotoContainer;
+        nextPhotoContainer.clientHeight;
+        nextPhotoContainer.style.transform = null;
       };
     }
     photoContainer.appendChild(photoWrapper);
@@ -165,7 +162,8 @@ export default function galleryMagic() {
       lightbox.appendChild(photoContainer);
       currentPhotocontainer = photoContainer;
       enableOverlay();
-      nextTick(() => { lightbox.classList.add('enabled'); });
+      lightbox.clientHeight;
+      lightbox.classList.add('enabled');
     };
   });
 
@@ -179,7 +177,7 @@ export default function galleryMagic() {
     loadingOverlay.style.display = 'none';
     // eslint-disable-next-line
     const packery = new window.Packery(gallery, {
-      itemSelector: 'img',
+      itemSelector: '.gallery-img-wrapper',
       layoutMode: 'packery',
       horizontal: true,
       resize: false,

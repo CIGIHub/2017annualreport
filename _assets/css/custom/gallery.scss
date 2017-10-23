@@ -4,14 +4,14 @@
   width: unset !important;
 
   img {
-    filter: grayscale(100);
     max-width: 260px;
     object-fit: cover;
+    transform: scale(1, 1);
     transition: all 200ms;
   }
 
   img:hover {
-    filter: none;
+    transform: scale(1.1, 1.1);
   }
 
   &::-webkit-scrollbar {
@@ -23,14 +23,19 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: $accent-color-50;
     border-radius: 5px;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: $accent-color;
     }
   }
+}
+
+.gallery-img-wrapper {
+  line-height: 0;
+  overflow: hidden;
 }
 
 .lightbox {
