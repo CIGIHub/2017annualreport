@@ -64,7 +64,8 @@
 
 .tabs {
   margin-bottom: 1rem;
-  .tab, .download a{
+  overflow: auto;
+  .tab, .download{
     border: 1px solid rgba(0, 0, 0, 0.25);
     cursor: pointer;
     float: left;
@@ -79,15 +80,20 @@
     border: solid 1px $accent-color;
 
   }
-  .download a{
+  .download{
     margin-left: 0.625rem;
-    display: block;
     background: $accent-color;
     border: 1px solid $accent-color;
-    color: white;
-    &:hover{
-      background: lighten($accent-color, 25%);
+    a{
       color: white;
+      &:hover{
+        background: lighten($accent-color, 25%);
+        color: white;
+      }
+    }
+    @include media-query($on-laptop){
+      margin-left: 0;
+      margin-top: 0.5rem;
     }
   }
 }
