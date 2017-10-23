@@ -1058,28 +1058,26 @@ function unmountExpandedViewContainer(expandedViewContainer) {
 const cachedArticleGroupByArticleI = {};
 
 function createArticleGroup(item) {
-  const articlePicture = createDiv('article-picture');
-  const articlePictureBlurred = createDiv('article-picture blurred');
+  const articlePicture = createEl('img', 'article-picture');
+  const articlePictureBlurred = createEl('img', 'article-picture blurred');
   if (item.image) {
-    const extension = 'jpg';
-    const smallImageUrl = 'url(' + baseUrl + 'data/prev/' + item.id + '.' + extension + ')';
-    const largeImageUrl = baseUrl + 'data/min/' + item.id + '.' + extension;
-    articlePictureBlurred.style.backgroundImage = smallImageUrl;
+    const smallImageUrl = `${baseUrl}data/prev/${item.id}.jpg`;
+    const largeImageUrl = `${baseUrl}data/min/${item.id}.jpg`;
+    articlePictureBlurred.src = smallImageUrl;
 
     fetch(largeImageUrl).then(r => r.blob()).then(blob => {
       const reader = new FileReader();
       reader.readAsDataURL(blob);
       reader.addEventListener('load', () => {
-        articlePicture.style.backgroundImage = `url('${reader.result}')`;
+        articlePicture.src = reader.result;
         // wait for two frames to circumvent firefox bug
-        articlePicture.onload = requestAnimationFrame(() => {
+        articlePicture.onload = () => {
           requestAnimationFrame(() => {
-
             requestAnimationFrame(() => {
               articlePictureBlurred.style.opacity = '0';
             });
           });
-        });
+        };
       }, false);
     });
   }
@@ -1128,7 +1126,7 @@ function createArticleGroup(item) {
   viewFullArticle.innerHTML = '<i class="fa fa-film"></i><span class="pl2">View Full Article</span></div>';
   article.appendChild(viewFullArticle);
   article.appendChild(share);
-  const articleGroup = [article, articlePicture];
+  const articleGroup = [article, articlePicture, articlePictureBlurred];
   cachedArticleGroupByArticleI[item.i] = articleGroup;
   return articleGroup;
 }

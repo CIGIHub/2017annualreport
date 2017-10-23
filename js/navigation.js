@@ -4,7 +4,6 @@ import {
   createDiv,
   createEl,
   closeSvg,
-  nextTick,
 } from 'helpers';
 
 import {
@@ -74,8 +73,8 @@ function updateNavigation(newIndex, oldIndex) {
   setTimeout(() => {
     isScrolling = false;
   }, slideTransitionMs);
-  newButton.classList.add('active');
   oldButton.classList.remove('active');
+  newButton.classList.add('active');
   updateGlobalShareLinks();
   changeSlideInUrl(newIndex);
   scrollViewToSlideIndex(newIndex);
@@ -140,7 +139,7 @@ function handleNavigationButtonsFade() {
 
 function scrollViewToSlideIndex(newIndex) {
   smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
-  nextTick(() => {
+  requestAnimationFrame(() => {
     if (newIndex === 0) {
       smoothSlideContainer.style.transform = null;
     } else {

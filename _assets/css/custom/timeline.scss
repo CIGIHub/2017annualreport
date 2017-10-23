@@ -365,11 +365,9 @@ $article-slide-timing-function: ease-in-out;
 }
 
 .article-picture {
-  background-color: $default-background-color;
-  background-position: center;
-  background-size: cover;
   height: 100%;
   left: 0;
+  object-fit: cover;
   opacity: 0.75;
   position: absolute;
   top: 0;
@@ -379,7 +377,6 @@ $article-slide-timing-function: ease-in-out;
 
   &.blurred {
     filter: blur(10px);
-    opacity: 1;
     z-index: $article-picture-blurred-z-index;
   }
 }
