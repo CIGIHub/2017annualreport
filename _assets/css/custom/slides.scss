@@ -309,42 +309,49 @@ p {
       color: $accent-color;
     }
 
-    .arrow-1{
+    .arrows{
+      position: relative;
+      height: 25px;
+    }
+    .arrow{
       opacity: 1;
-      transition: opacity .5s ease-in-out;
+      position: absolute;
+      transform-origin: 0%;
+      transform: translate3d(-50%, -50%, 0);
+      color: $accent-color;
+    }
+    
+    .explore{
+      .arrow{
+        top: 100;
+      }
+    }
+    .view-ar{
+      .arrow{
+        top: 0;
+      }
+    }
+    .arrow-1{
+      animation: arrow-up 2.5s ease-in-out infinite;
     }
     .arrow-2{
-      opacity: 0;
-    }
-    .arrow-3{
-      opacity: 0;
+      animation: arrow-up 2.5s 1.25s ease-in-out infinite;
     }
 
-    .explore, .view-ar{
-      &:hover{
-        .arrow-1{
-          opacity: 0;
-        }
-        .arrow-2{
-          animation: arrow-movement 1s ease-in-out;
-        }
-        .arrow-3{
-          animation: arrow-movement 1.5s ease-in-out;
-        }
-      }
-    }
-    @keyframes arrow-movement {
-      0%   {
+    @keyframes arrow-up {
+      0%   { 
         opacity: 0;
       }
-      50% {
+      30%{
         opacity: 1;
       }
-      100% {
+      50% {
+        top: 45%;
+      }
+      100% { 
         opacity: 0;
       }
     }
-
   }
 
   @include media-query($on-laptop) {
