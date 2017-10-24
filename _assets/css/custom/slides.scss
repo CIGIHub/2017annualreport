@@ -324,22 +324,13 @@ p {
     }
     .arrow{
       opacity: 1;
+      top: 0;
       position: absolute;
       transform-origin: 0%;
       transform: translate3d(-50%, -50%, 0);
       color: $accent-color;
     }
     
-    .explore{
-      .arrow{
-        top: 100;
-      }
-    }
-    .view-ar{
-      .arrow{
-        top: 0;
-      }
-    }
     .arrow-1{
       animation: arrow-up 2.5s ease-in-out infinite;
     }
