@@ -216,3 +216,12 @@ hr {
 .w12rem {
   width: 12rem;
 }
+
+.col {
+  column-count: 2;
+  column-width: 450px;
+}
+
+.column-no-wrap {
+  break-inside: avoid;
+}

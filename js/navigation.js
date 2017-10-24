@@ -216,11 +216,12 @@ function injectLinksAndAddSideBar() {
   const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb4-ns');
   h1.innerText = 'Table of Contents';
   container.appendChild(h1);
-  const div = createDiv('');
+  const div = createDiv('col');
   for (const [subsection, content] of subsections) {
+    const wrapper = createEl('li', 'column-no-wrap list');
     const h2 = createEl('h2', 'accent-color partial-underline-right f4 fw3 mt3 smooth');
     h2.innerText = subsection;
-    div.appendChild(h2);
+    wrapper.appendChild(h2);
     const ul = content.reduce((acc, item) => {
       const li = createEl('li', 'dib pointer white f6 fw3 mt2 underline-hover list smooth');
       li.innerHTML = item.title;
@@ -234,7 +235,8 @@ function injectLinksAndAddSideBar() {
       acc.appendChild(createEl('br'));
       return acc;
     }, createEl('ul'));
-    div.appendChild(ul);
+    wrapper.appendChild(ul);
+    div.appendChild(wrapper);
   }
   container.appendChild(div);
   tableOfContents.appendChild(container);
