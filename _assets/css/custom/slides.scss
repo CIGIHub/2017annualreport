@@ -61,31 +61,27 @@
 .tabs {
   margin-bottom: 1rem;
   overflow: auto;
-  .tab, .download{
-    border: 1px solid rgba(0, 0, 0, 0.25);
+  .tab, .download a{
+    border: solid 1px $accent-color;
     cursor: pointer;
     float: left;
     padding: 0 0.5rem;
     font-size: 0.875rem;
   }
-  .tab:nth-child(1){
-    border-right: none;
-  }
 
   .tab.selected {
-    border: solid 1px $accent-color;
-
+    border: 1px solid rgba(0, 0, 0, 0.25);
   }
-  .download{
+  .download a{
+    display: block;
+    color: white;
     margin-left: 0.625rem;
     background: $accent-color;
-    border: 1px solid $accent-color;
-    a{
+  }
+  .tab, .download a{
+    &:hover{
+      background: $accent-color-50;
       color: white;
-      &:hover{
-        background: lighten($accent-color, 25%);
-        color: white;
-      }
     }
   }
 }
@@ -171,20 +167,20 @@ p {
 }
 
 .cover-slide {
+  p{
+    font-size: 1.1rem;
+  }
   h1 {
     text-align: center;
     color: $accent-color;
+    font-size: 2.85rem;
+    margin-bottom: 2rem;
   }
-
-  hr {
-    align-self: center;
-    border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    height: 0;
-    padding-bottom: 1.5rem;
-    width: 50%;
+  @include media-query($on-laptop) {
+    .wrapper > div{
+      width: 100%;
+    }
   }
-
 }
 
 .cover-slide::before,
@@ -378,13 +374,8 @@ p {
   }
   .notes{
     float: left;
-    h4{
-      color: $grey-color-dark;
-      font-size: 1rem;
-      font-weight: 400;
-    }
     p{
-      font-size: 0.6825rem;
+      font-size: 0.825rem;
       padding-bottom: 0.5rem;
     }
     @include media-query($on-laptop){
