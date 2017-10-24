@@ -301,12 +301,10 @@ p {
     }
     .up{
       margin-right: 10px;
-      margin-top: -3px;
       left: -2rem;
     }
     .down{
       margin-left: 10px;
-      margin-top: 13px;
       right: -2rem;
     }
 
@@ -314,46 +312,43 @@ p {
       display: block;
       font-size: 1.75rem;
       line-height: 1rem;
-      margin-top: -7px;
+      margin-top: 5px;
+    }
+
+    .arrows{
+      position: relative;
+      height: 25px;
+    }
+    .arrow{
+      opacity: 1;
+      top: 0;
+      position: absolute;
+      transform-origin: 0%;
+      transform: translate3d(-50%, -50%, 0);
       color: $accent-color;
     }
-
+    
     .arrow-1{
-      opacity: 1;
-      transition: opacity .5s ease-in-out;
+      animation: arrow-up 2.5s ease-in-out infinite;
     }
     .arrow-2{
-      opacity: 0;
-    }
-    .arrow-3{
-      opacity: 0;
+      animation: arrow-up 2.5s 1.25s ease-in-out infinite;
     }
 
-    .explore, .view-ar{
-      &:hover{
-        .arrow-1{
-          opacity: 0;
-        }
-        .arrow-2{
-          animation: arrow-movement 1s ease-in-out;
-        }
-        .arrow-3{
-          animation: arrow-movement 1.5s ease-in-out;
-        }
-      }
-    }
-    @keyframes arrow-movement {
-      0%   {
+    @keyframes arrow-up {
+      0%   { 
         opacity: 0;
       }
-      50% {
+      30%{
         opacity: 1;
       }
-      100% {
+      50% {
+        top: 45%;
+      }
+      100% { 
         opacity: 0;
       }
     }
-
   }
 
   @include media-query($on-laptop) {
