@@ -17,7 +17,7 @@
 }
 
 .slide-9 {
-  background-image: url('../assets/north-of-60-min.jpg');
+  background-image: url('../assets/north-of-60-2.jpg');
 }
 
 .slide-10{}
@@ -32,7 +32,12 @@
 }
 
 .slide-12 {
-  background-image: url('../assets/wrc-min.jpg');
+  video { 
+    position: fixed;
+    min-width: 100%;
+    z-index: -100;
+    background-size: cover;
+  }
 }
 
 .slide-13{}
