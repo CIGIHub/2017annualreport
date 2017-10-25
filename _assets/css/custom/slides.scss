@@ -1,5 +1,10 @@
 //Background Images
 
+.landing{
+  background-image: url('../assets/CIGI_Campus-bw-min.jpg');
+  filter: saturate(1.2);
+}
+
 .cover-slide{
   background-image: url('../assets/cigi-campus-min.jpg');
 }
@@ -101,10 +106,6 @@ header .tabs{
     &.selected {
       display: block;
     }
-
-    h1 {
-      flex: 100%;
-    }
   }
 }
 
@@ -124,6 +125,7 @@ p {
 
 //Cover Slide
 
+.landing,
 .cover-slide,
 .standard-slide {
   background-position: center;
@@ -134,7 +136,10 @@ p {
   .wrapper{
     position: relative;
   }
+}
 
+.cover-slide,
+.standard-slide{
   h1 {
     font-size: 3rem;
     line-height: 3.35rem;
@@ -170,6 +175,9 @@ p {
 }
 
 .joint-message, .financials {
+  h1{
+    margin-bottom: 1rem;
+  }
   h3 {
     display: none;
   }
@@ -192,9 +200,9 @@ p {
   }
 }
 
+.landing::before,
 .cover-slide::before,
 .standard-slide::before {
-  //background: linear-gradient(rgba(242, 240, 234, 0.15), rgba(242, 240, 234, 0.875));
   background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
   content: ' ';
   display: block;
@@ -206,34 +214,15 @@ p {
   width: 100%;
 }
 
+.landing::before{
+  background: rgba(215,3,24,0.68);
+}
 // Landing Page
 .landing{
   .wrapper{
     position: relative;
   }
-
-  .circle{
-    position: absolute;
-    top: 25%;
-    left: 13%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    border: solid 1px rgb(210,211,205);
-
-  }
-
-  .arc {
-    position: absolute;
-    top: 23%;
-    left: 11%;
-    width: 540px;
-    height: 540px;
-    border: dashed 1px transparent;
-    border-left-color: rgb(120,120,118);
-    border-radius: 50%;
-    transform: rotate(-55deg);
-  }
+  color: white;
 
   .content-wrapper{
     z-index: 100;
@@ -256,7 +245,6 @@ p {
     font-size: 9rem;
     line-height: 73%;
     font-weight: 800;
-    color: rgba(120,120,118, 0.85);
 
     span{
       margin-left: -2rem;
@@ -274,10 +262,9 @@ p {
 
     .link {
       float: left;
-      border-top: solid 1px $grey-color;
+      border-top: solid 1px white;
       padding-top: 0.3rem;
       text-transform: uppercase;
-      color: $accent-color;
       font-weight: 500;
 
       &:hover{
@@ -288,7 +275,7 @@ p {
       position: relative;
     }
     .explore .link{
-      border-right: solid 1px $grey-color;
+      border-right: solid 1px white;
       padding-right: 1rem;
     }
 
@@ -325,7 +312,7 @@ p {
       position: absolute;
       transform-origin: 0%;
       transform: translate3d(-50%, -50%, 0);
-      color: $accent-color;
+      color: white;
     }
     
     .arrow-1{
