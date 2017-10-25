@@ -203,7 +203,6 @@ p {
 .landing::before,
 .cover-slide::before,
 .standard-slide::before {
-  //background: linear-gradient(rgba(242, 240, 234, 0.15), rgba(242, 240, 234, 0.875));
   background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
   content: ' ';
   display: block;
@@ -216,7 +215,6 @@ p {
 }
 
 .landing::before{
-  //background: rgba(232, 12, 45, 0.6);
   background: rgba(215,3,24,0.68);
 }
 // Landing Page
@@ -225,29 +223,6 @@ p {
     position: relative;
   }
   color: white;
-
-  // .circle{
-  //   position: absolute;
-  //   top: 25%;
-  //   left: 13%;
-  //   width: 500px;
-  //   height: 500px;
-  //   border-radius: 50%;
-  //   border: solid 1px rgb(210,211,205);
-
-  // }
-
-  // .arc {
-  //   position: absolute;
-  //   top: 23%;
-  //   left: 11%;
-  //   width: 540px;
-  //   height: 540px;
-  //   border: dashed 1px transparent;
-  //   border-left-color: rgb(120,120,118);
-  //   border-radius: 50%;
-  //   transform: rotate(-55deg);
-  // }
 
   .content-wrapper{
     z-index: 100;
