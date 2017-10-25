@@ -138,7 +138,6 @@ function handleNavigationButtonsFade() {
 }
 
 function scrollViewToSlideIndex(newIndex) {
-  console.log(newIndex);
   smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
   requestAnimationFrame(() => {
     if (newIndex === 0) {
