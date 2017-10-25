@@ -17,6 +17,7 @@ const tableOfContentsButton = document.getElementById('table-of-contents-button'
 const exploreCIGILink = document.getElementById('explore-cigi-link');
 const viewARLink = document.getElementById('view-ar-link');
 const cigiLogo = document.getElementById('cigi-logo');
+const mainTabs = document.getElementById('main-tabs');
 
 const smoothSlideContainer = document.getElementById('smooth-slide-container');
 const sections = document.getElementsByTagName('section');
@@ -130,6 +131,15 @@ function handleNavigationButtonsFade() {
   } else {
     fadeInNavigationComponent(topButton);
   }
+
+  if (currentSlide === 1){
+    fadeOutAllNavigationComponents();
+    fadeOutNavigationComponent(mainTabs);
+  }
+  else{
+    fadeInNavigationComponent(mainTabs);
+  }
+
   if (currentSlide === numberOfSections - 1) {
     fadeOutNavigationComponent(bottomButton);
   } else {
