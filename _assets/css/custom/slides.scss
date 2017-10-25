@@ -2,6 +2,7 @@
 
 .landing{
   background-image: url('../assets/CIGI_Campus-bw-min.jpg');
+  filter: saturate(1.2);
 }
 
 .cover-slide{
@@ -215,7 +216,8 @@ p {
 }
 
 .landing::before{
-  background: rgba(232, 12, 45, 0.6);
+  //background: rgba(232, 12, 45, 0.6);
+  background: rgba(215,3,24,0.68);
 }
 // Landing Page
 .landing{
