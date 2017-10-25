@@ -138,12 +138,16 @@ function handleNavigationButtonsFade() {
 }
 
 function scrollViewToSlideIndex(newIndex) {
+  console.log(newIndex);
   smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
   requestAnimationFrame(() => {
     if (newIndex === 0) {
       smoothSlideContainer.style.transform = null;
     } else {
       smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
+      if(newIndex === 1){
+        fadeOutAllNavigationComponents(sidebar);
+      }
     }
     setTimeout(() => {
       smoothSlideContainer.style.transition = null;
@@ -210,6 +214,7 @@ function injectLinksAndAddSideBar() {
       disableOverlay();
     }
   };
+
   tableOfContentsButton.onclick = toggleToc;
   document.body.appendChild(sidebar);
   const container = createDiv('tr h-100 overflow-auto wrapper');
@@ -296,6 +301,7 @@ const navigationKeydownHandler = e => {
   }
   setKeydownAndWheelFadeTimeout();
 };
+
 let lastWheel = performance.now();
 const navigationWheelHandler = e => {
   if (overlayEnabled) {
