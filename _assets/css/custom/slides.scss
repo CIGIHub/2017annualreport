@@ -10,7 +10,7 @@
 }
 
 .slide-5 {
-
+  
 }
 
 .slide-6{}
@@ -73,7 +73,7 @@
     padding: 0 0.5rem;
     font-size: 0.875rem;
   }
-
+  
   .tab.selected {
     border: 1px solid rgba(0, 0, 0, 0.25);
   }
@@ -102,7 +102,7 @@ header .tabs{
 .tab-content {
   .tab {
     display: none;
-
+    
     &.selected {
       display: block;
     }
@@ -110,13 +110,28 @@ header .tabs{
 }
 
 .dropcap {
+  border: 1px solid;
+  float: left;
+  font-size: 2.75em;
+  font-weight: 500;
+  line-height: 0.75em;
+  margin-right: 8px;
+  padding: 0.1em 0.25em;
+}
+
+.photo-caption{
+  padding-top: 2em;
+  color: $grey-color-dark;
+  :before{
+    content: "\f030";
+    font-size: 0.8em;
+    font-family: FontAwesome;
+    border-radius: 50%;
     border: 1px solid;
-    float: left;
-    font-size: 2.75em;
-    font-weight: 500;
-    line-height: 0.75em;
-    margin-right: 8px;
-    padding: 0.1em 0.25em;
+    padding: 0.3em;
+    color: $accent-color;
+    margin-right: 0.5em;
+  }
 }
 
 p {
@@ -132,7 +147,7 @@ p {
   background-size: cover;
   overflow: hidden;
   position: relative;
-
+  
   .wrapper{
     position: relative;
   }
@@ -146,33 +161,33 @@ p {
     padding: 0.5rem 0;
     font-weight: 400;
   }
-
+  
   h3 {
     font-size: 1rem;
     padding-bottom: 0.5rem;
     text-transform: uppercase;
   }
-
+  
   a{
     color: $accent-color;
     text-decoration: none;
-
+    
     &:hover{
       color: $accent-color-50;
     }
   }
-
+  
   .fa{
     margin-right: 0.5rem;
   }
-
+  
   .fa-play{
     border: solid 1px $accent-color;
     padding: 0.125rem;
     padding-left: 0.2rem;
     font-size: 0.55rem;
   }
-
+  
   .book-cover{
     float: left;
     margin-right: 2rem;
@@ -231,7 +246,7 @@ p {
     position: relative;
   }
   color: white;
-
+  
   .content-wrapper{
     z-index: 100;
     left: 50%;
@@ -240,41 +255,41 @@ p {
     position: absolute;
     width: 80%;
   }
-
+  
   .content{
     column-count: 2;
     column-width: 300px;
   }
-
+  
   h1{display: none;}
-
+  
   .title{
     margin-left: 4rem;
     font-size: 9rem;
     line-height: 73%;
     font-weight: 800;
-
+    
     span{
       margin-left: -2rem;
     }
   }
-
+  
   .nav{
     margin: 2rem;
     left: 47%;
     position: absolute;
-
+    
     > div{
       float: left;
     }
-
+    
     .link {
       float: left;
       border-top: solid 1px white;
       padding-top: 0.3rem;
       text-transform: uppercase;
       font-weight: 500;
-
+      
       &:hover{
         color: $grey-color;
       }
@@ -286,11 +301,11 @@ p {
       border-right: solid 1px white;
       padding-right: 1rem;
     }
-
+    
     .view-ar .link{
       padding-left: 1rem;
     }
-
+    
     .up, .down{
       position: absolute;
     }
@@ -302,14 +317,14 @@ p {
       margin-left: 10px;
       right: -2rem;
     }
-
+    
     .fa{
       display: block;
       font-size: 1.75rem;
       line-height: 1rem;
       margin-top: 5px;
     }
-
+    
     .arrows{
       position: relative;
       height: 25px;
@@ -329,7 +344,7 @@ p {
     .arrow-2{
       animation: arrow-up 2.5s 1.25s ease-in-out infinite;
     }
-
+    
     @keyframes arrow-up {
       0%   { 
         opacity: 0;
@@ -345,7 +360,7 @@ p {
       }
     }
   }
-
+  
   @include media-query($on-laptop) {
     .nav{
       position: relative;
@@ -354,11 +369,11 @@ p {
     .arc {
       left: 8%;
     }
-
+    
     .content-wrapper{
       width: 100%;
     }
-
+    
     .title{
       margin-left: 2rem;
       margin-bottom: 1rem;
@@ -393,7 +408,7 @@ p {
       float: none;
       width: 100%;
     }
-
+    
     &.table1{
       margin-right: 5%;
     }
@@ -403,7 +418,7 @@ p {
     td:nth-child(2){
       width: 30%;
     }
-
+    
     thead{
       .year{
         background: rgb(156,156,156);
@@ -422,7 +437,7 @@ p {
         &:nth-child(1){
           border-right: solid 0.5rem $default-background-color;
         }
-
+        
       }
     }
     tbody{
