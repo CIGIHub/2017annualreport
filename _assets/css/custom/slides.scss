@@ -67,26 +67,42 @@
   margin-bottom: 1rem;
   overflow: auto;
   .tab, .download a{
-    border: solid 1px $accent-color;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    border-left: none;
     cursor: pointer;
     float: left;
     padding: 0 0.5rem;
     font-size: 0.875rem;
+    &:first-child{
+      border-left: solid 1px rgba(0, 0, 0, 0.25);
+    }
   }
 
   .tab.selected {
-    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: $accent-color; 
+    border: solid 1px $accent-color;
+    cursor: default;
   }
+
   .download a{
     display: block;
     color: white;
     margin-left: 0.625rem;
     background: $accent-color;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    @include media-query($on-laptop){
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
   }
   .tab, .download a{
     &:hover{
       background: $accent-color-50;
       color: white;
+    }
+    &.selected:hover{
+      background: transparent;
+      color: $accent-color;
     }
   }
 }
