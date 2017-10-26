@@ -19,6 +19,8 @@ const viewARLink = document.getElementById('view-ar-link');
 const cigiLogo = document.getElementById('cigi-logo');
 const mainTabs = document.getElementById('main-tabs');
 const header = document.getElementById('site-header');
+const upArrow = document.getElementsByClassName('explore')[0];
+const downArrow = document.getElementsByClassName('view-ar')[0];
 
 const smoothSlideContainer = document.getElementById('smooth-slide-container');
 const sections = document.getElementsByTagName('section');
@@ -104,10 +106,20 @@ exploreCIGILink.onclick = (e) => {
   updateNavigation(0, currentSlide);
 };
 
+upArrow.onclick = (e) => {
+  e.stopPropagation();
+  updateNavigation(0, currentSlide);
+}
+
 viewARLink.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(2, currentSlide);
 };
+
+downArrow.onclick = (e) => {
+  e.stopPropagation();
+  updateNavigation(2, currentSlide);
+}
 
 function setKeydownAndWheelFadeTimeout() {
   if (fadeTimeoutSet) {
