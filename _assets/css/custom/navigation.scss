@@ -2,6 +2,11 @@
   transition: all 200ms ease-out;
 }
 
+header{
+  a{
+    color: black;
+  }
+}
 .sidebar {
   @extend %navigation-transition;
 

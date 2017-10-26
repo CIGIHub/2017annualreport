@@ -241,7 +241,18 @@ p {
 .landing::before{
   background: rgba(215,3,24,0.68);
 }
+
 // Landing Page
+
+header.white{
+  a, .fa{
+    color: white;
+  }
+  img{
+    filter: invert(100%) brightness(20);
+  }
+}
+
 .landing{
   .wrapper{
     position: relative;
