@@ -10,16 +10,20 @@ export default function photoCaptionMagic() {
     function toggleText(element) {
         var children = element.childNodes;
         Array.from(children).forEach(function(child){
-            if ((child.className && child.className.indexOf("photo-caption") == -1 && child.className.indexOf("bottom-0") == -1) || (!child.className)){
-                child.hidden == true ? child.hidden = false : child.hidden = true;
+            if (child.tagName && child.className.indexOf("photo-caption") == -1) {
+                child.classList.toggle('hide-text');
                 if (child.childNodes) toggleText(child);
             }
         });
     }
     
     var toggleBackground = function() {
-        var parentElement = findParentElement(this, "bottom-0");
-        toggleText(parentElement);
+        var wrapperElement = findParentElement(this, "bottom-0");
+        var standardSlideElement = findParentElement(this, "standard-slide");
+        var headerElement = document.getElementById('site-header');
+        headerElement.classList.toggle('hide-text');
+        standardSlideElement.classList.toggle('hide');
+        toggleText(wrapperElement);
     }
 
     var photoCaptionElements = document.getElementsByClassName("photo-caption");
