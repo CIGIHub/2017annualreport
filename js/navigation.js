@@ -129,8 +129,13 @@ function fadeOutAllNavigationComponents() {
 function handleNavigationButtonsFade() {
   if (currentSlide === 0) {
     fadeOutNavigationComponent(topButton);
+    exploreCIGILink.classList.add('selected');
+    viewARLink.classList.remove('selected');
+
   } else {
-    fadeInNavigationComponent(topButton);
+    fadeInNavigationComponent(topButton)
+    ;exploreCIGILink.classList.remove('selected');
+    viewARLink.classList.add('selected');
   }
 
   if (currentSlide === 1){
