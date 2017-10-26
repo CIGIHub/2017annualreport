@@ -375,18 +375,42 @@ header.white{
       top: 0;
       position: absolute;
       transform-origin: 0%;
-      transform: translate3d(-50%, -50%, 0);
       color: white;
     }
     
-    .arrow-1{
-      animation: arrow-up 2.5s ease-in-out infinite;
+    .down{
+      .arrow-1{
+        animation: arrow-down 2.5s ease-in-out infinite;
+      }
+      .arrow-2{
+        animation: arrow-down 2.5s 1.25s ease-in-out infinite;
+      }
     }
-    .arrow-2{
-      animation: arrow-up 2.5s 1.25s ease-in-out infinite;
+
+    .up{
+      .arrow-1{
+        animation: arrow-up 2.5s ease-in-out infinite;
+      }
+      .arrow-2{
+        animation: arrow-up 2.5s 1.25s ease-in-out infinite;
+      }
     }
     
     @keyframes arrow-up {
+      0%   { 
+        opacity: 0;
+      }
+      30%{
+        opacity: 1;
+      }
+      50% {
+        top: -45%;
+      }
+      100% { 
+        opacity: 0;
+      }
+    }
+    @keyframes arrow-down {
       0%   { 
         opacity: 0;
       }
