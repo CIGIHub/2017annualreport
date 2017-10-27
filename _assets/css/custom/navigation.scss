@@ -6,6 +6,9 @@ header{
   a{
     color: black;
   }
+  .show-on-mobile{
+    display: none;
+  }
 }
 .sidebar {
   @extend %navigation-transition;

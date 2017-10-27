@@ -143,13 +143,13 @@ function handleNavigationButtonsFade() {
     fadeOutNavigationComponent(topButton);
     exploreCIGILink.classList.add('selected');
     viewARLink.classList.remove('selected');
-
+    
   } else {
     fadeInNavigationComponent(topButton)
     ;exploreCIGILink.classList.remove('selected');
     viewARLink.classList.add('selected');
   }
-
+  
   if (currentSlide === 1){
     fadeOutAllNavigationComponents();
     fadeOutNavigationComponent(mainTabs);
@@ -159,7 +159,7 @@ function handleNavigationButtonsFade() {
     fadeInNavigationComponent(mainTabs);
     header.classList.remove('white');
   }
-
+  
   if (currentSlide === numberOfSections - 1) {
     fadeOutNavigationComponent(bottomButton);
   } else {
@@ -243,7 +243,7 @@ function injectLinksAndAddSideBar() {
       disableOverlay();
     }
   };
-
+  
   tableOfContentsButton.onclick = toggleToc;
   document.body.appendChild(sidebar);
   const container = createDiv('tr h-100 overflow-auto wrapper');
@@ -362,7 +362,7 @@ export default function navigationMagic() {
   window.onscroll = () => window.scrollTo(0, 0);
   // hide the rest of the slides with overflow: hidden
   document.body.style.overflow = 'hidden';
-
+  
   updateGlobalShareLinks();
   injectLinksAndAddSideBar();
   injectTopAndBottomButtons();
