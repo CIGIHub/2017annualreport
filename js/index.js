@@ -4,8 +4,11 @@ import galleryMagic from './gallery';
 import loadTabs from './tabs';
 import photoCaptionMagic from './captions';
 
-timelineMagic();
-navigationMagic();
-galleryMagic();
 loadTabs();
+timelineMagic();
+galleryMagic();
+
+if (window.innerWidth > 450){
+navigationMagic();
 photoCaptionMagic();
+}

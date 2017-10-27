@@ -1,0 +1,32 @@
+@media (max-width: 450px){
+    .standard-slide{
+        overflow: inherit;
+        padding: 2em 0;
+    }
+    .wrapper {
+        position: auto;
+    }
+    .pb4, .pr4 {
+        padding: 0;
+    }
+    .absolute {
+        position: initial;
+    }
+    .vh-100 {
+        height: auto;
+    }
+    #explore-cigi-link, #view-ar-link {
+        display: none;
+    }
+    .site-header.wrapper{
+        background: $background-color;
+        .mt3 {
+            margin-top: 0;
+        }
+    }
+    .download {
+        a {
+            margin-top: 0;
+        }
+    }
+}
