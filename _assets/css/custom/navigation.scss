@@ -7,6 +7,7 @@ header{
     color: black;
   }
 }
+
 .sidebar {
   @extend %navigation-transition;
 
@@ -38,6 +39,33 @@ $sidebar-button-radius: 1rem;
 
   &:hover {
     background-color: $accent-color-50;
+
+    .sidebar-tooltip {
+      opacity: 1;
+      transform: scale(1) translateY(-50%);
+    }
+  }
+}
+
+.sidebar-home {
+  @extend %navigation-transition;
+
+  color: $accent-color;
+  cursor: pointer;
+  height: $sidebar-button-radius;
+  margin: 0.5rem 0;
+  padding-left: 1px;
+  position: relative;
+  width: $sidebar-button-radius;
+
+  &.active {
+    color: $accent-color;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &:hover {
+    color: $accent-color-50;
 
     .sidebar-tooltip {
       opacity: 1;

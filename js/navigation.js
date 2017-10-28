@@ -109,7 +109,7 @@ exploreCIGILink.onclick = (e) => {
 upArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(0, currentSlide);
-}
+};
 
 viewARLink.onclick = (e) => {
   e.stopPropagation();
@@ -119,7 +119,7 @@ viewARLink.onclick = (e) => {
 downArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(2, currentSlide);
-}
+};
 
 function setKeydownAndWheelFadeTimeout() {
   if (fadeTimeoutSet) {
@@ -143,19 +143,18 @@ function handleNavigationButtonsFade() {
     fadeOutNavigationComponent(topButton);
     exploreCIGILink.classList.add('selected');
     viewARLink.classList.remove('selected');
-
   } else {
-    fadeInNavigationComponent(topButton)
-    ;exploreCIGILink.classList.remove('selected');
+    fadeInNavigationComponent(topButton);
+    exploreCIGILink.classList.remove('selected');
     viewARLink.classList.add('selected');
   }
 
-  if (currentSlide === 1){
+  if (currentSlide === 1) {
     fadeOutAllNavigationComponents();
     fadeOutNavigationComponent(mainTabs);
     header.classList.add('white');
   }
-  else{
+  else {
     fadeInNavigationComponent(mainTabs);
     header.classList.remove('white');
   }
@@ -174,9 +173,6 @@ function scrollViewToSlideIndex(newIndex) {
       smoothSlideContainer.style.transform = null;
     } else {
       smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
-      if(newIndex === 1){
-        fadeOutAllNavigationComponents(sidebar);
-      }
     }
     setTimeout(() => {
       smoothSlideContainer.style.transition = null;
@@ -206,7 +202,7 @@ function injectLinksAndAddSideBar() {
       });
     }
     // now create a corresponding button on the sidebar
-    const button = createDiv('sidebar-button');
+    const button = createDiv(i === 1 ? 'sidebar-home fa-home' : 'sidebar-button');
     const currentIndex = i;
     button.onclick = () => {
       if (currentSlide !== currentIndex) {
