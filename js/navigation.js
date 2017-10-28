@@ -229,13 +229,13 @@ function injectLinksAndAddSideBar() {
       tocIcon.innerHTML = closeSvg;
       document.body.appendChild(tableOfContents);
       cigiLogo.style.filter = 'invert(100%)';
-      [globalShareFacebook, globalShareTwitter].forEach(el => { el.style.color = 'white'; });
+      header.classList.add('white');
     } else {
       tocIcon.innerHTML = '';
       tocIcon.className = tocIconOpen;
       tableOfContents.remove();
       cigiLogo.style.filter = null;
-      [globalShareFacebook, globalShareTwitter].forEach(el => { el.style.color = null; });
+      header.classList.remove('white');
       disableOverlay();
     }
   };
