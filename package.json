@@ -42,8 +42,7 @@
       [
         "env",
         {
-          "modules": false,
-          "losse": true
+          "modules": false
         }
       ]
     ]
