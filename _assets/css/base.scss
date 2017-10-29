@@ -78,9 +78,18 @@ $on-laptop: 880px;
 
 // Basic styling
 
-body {
-  color: $text-color;
+%font {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+}
+
+.font {
+  @extend %font;
+}
+
+body {
+  @extend %font;
+
+  color: $text-color;
 }
 
 %click-through-to-children {
@@ -164,10 +173,6 @@ hr {
 
 .w-5rem-10vh {
   width: calc(5rem + 10vh);
-}
-
-.w4 {
-  width: 10rem;
 }
 
 .w6 {

@@ -6,6 +6,8 @@ import {
   contentTypeToRadioBox,
   filterByContentType,
   selectedContentType,
+  searchBox,
+  searchTimeline,
 } from './timeline';
 
 import {
@@ -52,6 +54,20 @@ export const resetResearchFiltersInUrl = () => {
   setHash(location.hash.replace(researchAreaRegex, ''));
 };
 
+const searchRegex = /\?search='(.+)'/;
+export const setSearchInUrl = () => {
+  const token = `?search='${searchBox.value}'`;
+  if (location.hash.match(searchRegex)) {
+    setHash(location.hash.replace(searchRegex, token));
+  } else {
+    setHash(location.hash + token);
+  }
+};
+
+export const resetSearchInUrl = () => {
+  setHash(location.hash.replace(searchRegex, ''));
+};
+
 const contentTypeRegex = /\?content_type='(.+)'/;
 export const setContentTypeInUrl = () => {
   const token = `?content_type='${selectedContentType}'`;
@@ -95,6 +111,13 @@ export function handlePermalink(dataByTimeAll, delay) {
     contentType = contentType[1];
     const radioBox = contentTypeToRadioBox[contentType];
     filterByContentType(radioBox, contentType);
+  }
+
+  let search = searchRegex.exec(hash);
+  if (search !== null) {
+    search = search[1];
+    searchBox.value = search;
+    searchTimeline(search);
   }
 }
 

@@ -219,7 +219,8 @@
       "stylelint-processor-ignore-front-matter"
     ],
     "rules": {
-      "max-nesting-depth": null
+      "max-nesting-depth": null,
+      "color-named": null
     }
   },
   "dependencies": {}

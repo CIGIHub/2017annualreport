@@ -18,6 +18,8 @@ import {
   changeArticleIdInUrl,
   setResearchFiltersInUrl,
   resetResearchFiltersInUrl,
+  setSearchInUrl,
+  resetSearchInUrl,
   resetArticleIdInUrl,
   handlePermalink,
   setProgramViewInUrl,
@@ -152,6 +154,7 @@ function clearFilters() {
   clearContentTypeFilter();
   resetResearchFiltersInUrl();
   resetDataPoints();
+  resetSearch();
   for (const [selectOption, [checkbox, x]] of selectOptionToCheckboxAndX) {
     if (selectOption.style.color) {
       clearSelectOption(selectOption, checkbox, x);
@@ -176,8 +179,7 @@ function setSelectOptionColor(selectOption, checkbox, x, color) {
   selectOption.style.color = color;
 }
 
-const programSelectContainer = createDiv('select-container w4 ma1 pv1 ph1 fw5 f6 grey relative ttu');
-const contentSelectContainer = createDiv('select-container w12rem ma1 pv1 ph1 fw5 f6 grey relative ttu');
+const programSelectContainer = createDiv('select-container pointer w4 mv1 ml1 fw5 f6 grey relative ttu');
 
 function disableProgramSelectContainer() {
   programSelectContainer.style.visibility = 'hidden';
@@ -217,10 +219,69 @@ function clearContentTypeFilter() {
   }
 }
 
+export function searchTimeline(string) {
+  setSearchInUrl(string);
+  let i = dataByTimeAll.length;
+  while (i-- > 0) {
+    const item = dataByTimeAll[i];
+    if (item.title.toLowerCase().indexOf(string.toLowerCase()) === -1) {
+      if (!item.searchGrayed) {
+        item.searchGrayed = true;
+        const dataPointCircles = itemIdToDataPointCircles[item.id];
+        let j = dataPointCircles.length;
+        while (j-- > 0) {
+          const dataPointCircle = dataPointCircles[j];
+          const dataSvg = dataPointCircle.parentElement;
+          const pointContainer = dataSvg.parentElement;
+          dataSvg.style.pointerEvents = 'none';
+          pointContainer.style.zIndex = '2';
+          dataPointCircle.classList.add('important-grey');
+        }
+      }
+    } else if (item.searchGrayed === true) {
+      item.searchGrayed = false;
+      const dataPointCircles = itemIdToDataPointCircles[item.id];
+      let j = dataPointCircles.length;
+      while (j-- > 0) {
+        const dataPointCircle = dataPointCircles[j];
+        const dataSvg = dataPointCircle.parentElement;
+        const pointContainer = dataSvg.parentElement;
+        dataSvg.style.pointerEvents = null;
+        pointContainer.style.zIndex = null;
+        dataPointCircle.classList.remove('important-grey');
+      }
+    }
+  }
+}
+
+export let searchBox = null;
+
+function resetSearch() {
+  resetSearchInUrl();
+  searchBox.value = '';
+  let i = dataByTimeAll.length;
+  while (i-- > 0) {
+    const item = dataByTimeAll[i];
+    if (item.searchGrayed === true) {
+      item.searchGrayed = false;
+      const dataPointCircles = itemIdToDataPointCircles[item.id];
+      let j = dataPointCircles.length;
+      while (j-- > 0) {
+        const dataPointCircle = dataPointCircles[j];
+        const dataSvg = dataPointCircle.parentElement;
+        const pointContainer = dataSvg.parentElement;
+        dataSvg.style.pointerEvents = null;
+        pointContainer.style.zIndex = null;
+        dataPointCircle.classList.remove('important-grey');
+      }
+    }
+  }
+}
+
 export function filterByContentType(radioBox, type) {
   if (selectedContentType === type) {
     clearContentTypeFilter();
-    if (setReseachAreaFilters.length === 0) {
+    if (setReseachAreaFilters.length === 0 && searchBox.value === '') {
       clearButton.style.display = 'none';
     }
   } else {
@@ -378,7 +439,7 @@ export const toggleSelectOptions = (filterId) => () => {
       // if it's the last filter left then reset everything back to normal
       resetDataPoints();
       resetResearchFiltersInUrl();
-      if (selectedContentType === null) {
+      if (selectedContentType === null && searchBox.value === '') {
         clearButton.style.display = 'none';
       }
       setReseachAreaFilters.pop();
@@ -475,7 +536,7 @@ export const toggleSelectOptions = (filterId) => () => {
 };
 
 function generateFilters() {
-  const generatedfilters = new Array(4);
+  const generatedFilters = new Array(5);
   // research types
   const researchSelectContent = createDiv('select-content w-100');
   const researchTypes = researchTypeFilters.types;
@@ -498,8 +559,9 @@ function generateFilters() {
     selectOption.appendChild(document.createTextNode(filter.name));
     researchSelectContent.appendChild(selectOption);
   }
-  const researchSelectContainer = createDiv('select-container w6 ma1 pv1 ph1 fw5 f6 grey relative ttu');
-  const researchSelectToggler = createDiv('select-toggler');
+  const researchSelectContainer = createDiv('select-container pointer w6 mv1 fw5 f6 grey relative ttu');
+  researchSelectContainer.style.maxWidth = '280px';
+  const researchSelectToggler = createDiv('grey');
   researchSelectToggler.innerText = researchTypeFilters.label;
   const chevronDown = '<span class="f5 pl1 pr2"><i class="fa fa-angle-down"></i></span>';
   const chevronUp = '<span class="f5 pl1 pr2"><i class="fa fa-angle-up"></i></span>';
@@ -512,7 +574,7 @@ function generateFilters() {
   };
   researchSelectContainer.appendChild(researchSelectContent);
   researchSelectContainer.appendChild(researchSelectToggler);
-  generatedfilters[0] = researchSelectContainer;
+  generatedFilters[0] = researchSelectContainer;
   // content types
   const contentTypeSelectContent = createDiv('select-content w-100');
 
@@ -531,8 +593,10 @@ function generateFilters() {
     contentTypeSelectContent.appendChild(selectOption);
   }
   const label = 'Content Type';
-  const contentSelectToggler = createDiv('select-toggler');
+  const contentSelectToggler = createDiv('grey');
   contentSelectToggler.innerHTML = chevronUp + label;
+  const contentSelectContainer = createDiv('select-container pointer w12rem mv1 ml1 fw5 f6 grey relative ttu');
+  contentSelectContainer.style.maxWidth = '168px';
   contentSelectContainer.onmouseenter = () => {
     contentSelectToggler.innerHTML = chevronDown + label;
   };
@@ -541,7 +605,28 @@ function generateFilters() {
   };
   contentSelectContainer.appendChild(contentTypeSelectContent);
   contentSelectContainer.appendChild(contentSelectToggler);
-  generatedfilters[1] = contentSelectContainer;
+  generatedFilters[1] = contentSelectContainer;
+
+  // search bar
+  const searchBar = createDiv('flex items-center select-container w12rem mv1 ml1 f6');
+  searchBox = createEl('input', 'input-reset outline-0 bn bg-transparent h-100 w-100 grey font ttu fw5');
+  searchBox.placeholder = 'Search';
+  searchBar.appendChild(createDiv('f5 pl1 pr2 grey fa fa-search'));
+  searchBar.appendChild(searchBox);
+  searchBox.oninput = e => {
+    e.stopPropagation();
+    searchBox.value;
+    if (searchBox.value === '') {
+      if (setReseachAreaFilters.length === 0 && selectedContentType === null) {
+        clearButton.style.display = 'none';
+      }
+      resetSearch();
+    } else {
+      clearButton.style.display = null;
+      searchTimeline(searchBox.value);
+    }
+  };
+  generatedFilters[2] = searchBar;
 
   // program views
   const programSelectContent = createDiv('select-content w-100');
@@ -566,7 +651,7 @@ function generateFilters() {
     selectOption.appendChild(document.createTextNode(filter.name));
     programSelectContent.appendChild(selectOption);
   }
-  const programSelectToggler = createDiv('select-toggler');
+  const programSelectToggler = createDiv('grey');
   programSelectToggler.innerHTML = chevronUp + programViews.label;
   programSelectContainer.onmouseenter = () => {
     programSelectToggler.innerHTML = chevronDown + programViews.label;
@@ -576,21 +661,21 @@ function generateFilters() {
   };
   programSelectContainer.appendChild(programSelectContent);
   programSelectContainer.appendChild(programSelectToggler);
-  generatedfilters[3] = programSelectContainer;
+  generatedFilters[4] = programSelectContainer;
 
-  clearButton = createDiv('select-clear w4 ma1 pv1 ph1 fw5 f6 grey ttu hover-bg-black-10');
+  clearButton = createDiv('select-clear pointer w4 mv1 ml1 fw5 f6 grey ttu hover-bg-black-10');
   clearButton.style.display = 'none';
   clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
-  generatedfilters[2] = clearButton;
-  return generatedfilters;
+  generatedFilters[3] = clearButton;
+  return generatedFilters;
 }
 
 let mountedFilterContainer;
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l');
+    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l z-7');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
   timelineSection.appendChild(mountedFilterContainer);
@@ -805,7 +890,6 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         } else {
           const openExpandedView = () => {
             combineProgramView(() => changeExpandedViewArticle(item, null));
-            // changeExpandedViewArticle(item, null);
           };
           dataPointCircle.addEventListener('click', openExpandedView, false);
           previewContainer.addEventListener('click', openExpandedView, false);
