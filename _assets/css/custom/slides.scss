@@ -471,16 +471,7 @@ header.white{
   h1{
     margin-bottom: 1rem;
   }
-  .notes{
-    float: left;
-    p{
-      font-size: 0.825rem;
-      padding-bottom: 0.5rem;
-    }
-    @include media-query($on-laptop){
-      float: none;
-    }
-  }
+ 
   table{
     width: 47.5%;
     float: left;

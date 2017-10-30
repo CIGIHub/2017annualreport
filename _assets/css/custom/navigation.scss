@@ -10,14 +10,12 @@ header{
 
 .sidebar {
   @extend %navigation-transition;
-
   right: $spacing-unit;
   top: 50%;
   transform: translateY(-50%);
 }
 
 $sidebar-button-radius: 1rem;
-
 .sidebar-button {
   @extend %navigation-transition;
 
@@ -57,6 +55,7 @@ $sidebar-button-radius: 1rem;
   padding-left: 1px;
   position: relative;
   width: $sidebar-button-radius;
+  font-family: fontAwesome;
 
   &.active {
     color: $accent-color;
