@@ -123,10 +123,12 @@ export default function mobileNavMagic(){
     });
     
     // Adding message to replace timeline
-    var firstSlideMessage = document.createElement('div');
+   /* var firstSlideMessage = document.createElement('div');
     firstSlideMessage.innerHTML = "Message to direct people to desktop";
     var firstSlide = document.getElementsByTagName('section')[0];
-    firstSlide.appendChild(firstSlideMessage);
+    firstSlide.appendChild(firstSlideMessage);*/
+
+    document.getElementsByClassName("mobile-timeline-message")[0].classList.toggle("hidden");
     
     // Moving background images into article
     var allSections = document.getElementsByClassName('standard-slide');
