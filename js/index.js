@@ -12,13 +12,10 @@ loadTabs();
 
 
 function loadJavascriptFiles(){
-    console.log(window.innerWidth);
     if (window.innerWidth > 450) {
-        console.log("in desktop version");
         navigationMagic();
         photoCaptionMagic();
     } else {
-        console.log("in mobile version");
         mobileNavMagic();
     }
 }

@@ -64,6 +64,12 @@ var mobileTOCLinks = function(){
         navigateTo = document.getElementsByClassName('joint-message cover-slide slide-2')[0];
         hrefSlide = "slide=2";
     }
+    // timeline slide, scroll to top
+    else if (slideClass == "slide-0"){
+        scrollToTop();
+        toggleTOCMenu();
+        return;
+    }
     // Joint message slide - president's message
     else if (slideClass == "president"){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
@@ -106,11 +112,10 @@ function scrollToSlide2(){
 }
 
 function putBackgroundImageIntoArticle(element){
-
     var elementComputedStyle = window.getComputedStyle(element);
     var backgroundImage = elementComputedStyle.getPropertyValue('background-image');
     let backgroundImageURL;
-
+    
     if (backgroundImage != "none"){
         backgroundImageURL = backgroundImage.match(imageRegex)[0];
         var elementText = element.querySelector("p");
@@ -124,11 +129,13 @@ function putBackgroundImageIntoArticle(element){
 
 export default function mobileNavMagic(){
     
-    // Adding TOC icons
-    tableOfContentsButton.appendChild(tocIcon);
-    tableOfContentsButton.appendChild(tocIcon2);
-    tableOfContentsButton.addEventListener('click', showMobileTOC);
-    
+    // Adding TOC icons, only add if they aren't already added
+    if (document.getElementsByClassName("-toc-open-mobile").length < 1){
+        tableOfContentsButton.appendChild(tocIcon);
+        tableOfContentsButton.appendChild(tocIcon2);
+        tableOfContentsButton.addEventListener('click', showMobileTOC);
+    }
+
     // Revealing mobile logo
     document.getElementsByClassName('mobile-header-logo')[0].classList.toggle('hidden');
     
@@ -146,15 +153,15 @@ export default function mobileNavMagic(){
     Array.from(allSections).forEach(function(section) {
         putBackgroundImageIntoArticle(section);
     });
-
+    
     // revealing mobile button and adding event listener
     var mobilebutton =  document.getElementsByClassName("mobile-button")[0];
     mobilebutton.classList.toggle("hidden");
     mobilebutton.addEventListener('click', scrollToHome);
-
+    
     // start on slide 2
     scrollToHome();
-
+    
     // add working links for slide 2
     document.getElementsByClassName("explore")[0].addEventListener('click', scrollToTop);
     document.getElementsByClassName("view-ar")[0].addEventListener('click', scrollToSlide2);
