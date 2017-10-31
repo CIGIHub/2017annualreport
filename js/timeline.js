@@ -30,6 +30,9 @@ import {
   monthNames,
 } from './constants';
 
+import {
+  currentSlide,
+} from './navigation';
 
 // DOM elements
 const timelineRoot = document.getElementById('timeline-root');
@@ -639,9 +642,7 @@ const timelineSqueezeHalfTimePeriodMs = 5000;
 let lastBreatheIn = true;
 function timelineSqueeze() {
   lastBreatheIn = !lastBreatheIn;
-  const hasFocus = document.hasFocus();
-  const boundingRect = mainTimeline.getBoundingClientRect();
-  if (!hasFocus || boundingRect.top < 0 || boundingRect.bottom > window.innerHeight) return;
+  if (currentSlide !== 0 || !document.hasFocus()) return;
   if (lastBreatheIn) {
     mainTimeline.style.height = height + 'px';
   } else {

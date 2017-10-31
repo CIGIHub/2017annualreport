@@ -47,7 +47,7 @@ const inactivityMilliseconds = 1500;
 let sidebar;
 let topButton;
 let bottomButton;
-let currentSlide = 1;
+export let currentSlide = 1;
 let isScrolling = false;
 let tableOfContents;
 let tocOpen = false;
@@ -338,17 +338,17 @@ const navigationKeydownHandler = e => {
   setKeydownAndWheelFadeTimeout();
 };
 
-let lastWheel = performance.now();
+let lastWheel = 0;
 const navigationWheelHandler = e => {
   if (overlayEnabled) {
     return;
   }
   const currentTime = performance.now();
-  if (currentTime - lastWheel < 1000) {
-    // lastWheel = currentTime;
+  const diff = currentTime - lastWheel;
+  lastWheel = currentTime;
+  if (diff < 200) {
     return;
   }
-  lastWheel = currentTime;
   fadeInNavigationComponent(sidebar);
   handleNavigationButtonsFade();
   if (e.deltaY > 0) {
