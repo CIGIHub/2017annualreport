@@ -23,6 +23,7 @@
     .site-header.wrapper{
         background: $background-color;
         z-index: 201;
+        color: black !important;
         .mt3 {
             margin-top: 0;
         }
@@ -129,5 +130,11 @@
         h1{
             padding-bottom: 1em;
         }
+    }
+}
+
+@media (min-width: 451px){
+    .cigi-logo-mobile, .toc-close-mobile, .toc-open-mobile{
+        display: none !important;
     }
 }
