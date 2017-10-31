@@ -223,11 +223,16 @@ function clearContentTypeFilter() {
 }
 
 export function searchTimeline(string) {
-  setSearchInUrl(string);
+  const searchString = string.toLowerCase();
+  setSearchInUrl(searchString);
   let i = dataByTimeAll.length;
   while (i-- > 0) {
     const item = dataByTimeAll[i];
-    if (item.title.toLowerCase().indexOf(string.toLowerCase()) === -1) {
+    if (
+      item.title.toLowerCase().indexOf(searchString) === -1
+      &&
+      item.authors.every(author => author.toLowerCase().indexOf(searchString) === -1)
+    ) {
       if (!item.searchGrayed) {
         item.searchGrayed = true;
         const dataPointCircles = itemIdToDataPointCircles[item.id];
