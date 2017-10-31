@@ -9,18 +9,13 @@ import initializeLightboxMedia from './mediaLightbox';
 timelineMagic();
 galleryMagic();
 loadTabs();
+initializeLightboxMedia();
 
-
-function loadJavascriptFiles(){
-    if (window.innerWidth > 450) {
-        navigationMagic();
-        photoCaptionMagic();
-    } else {
-        mobileNavMagic();
-    }
+if (window.innerWidth > 450) {
+    navigationMagic();
+    photoCaptionMagic();
+} else {
+    mobileNavMagic();
 }
 
-initializeLightboxMedia();
-loadJavascriptFiles();
 
-window.onresize = loadJavascriptFiles;
