@@ -1,12 +1,14 @@
 @media (max-width: 450px){
     section {
         min-height: 100vh;
-    }
-    .standard-slide{
         overflow: inherit;
-        padding: 3em 0;
+        border-bottom: solid 1px $grey-color-dark;
+        //background-image: none !important;
+        background: $background-color;
     }
-    .wrapper {
+
+    .standard-slide {
+        padding: 3em 0;
     }
     .pb4, .pr4 {
         padding: 0;
@@ -26,6 +28,12 @@
         .mt3 {
             margin-top: 0;
         }
+        .mv4-ns {
+            display: none;
+        }
+        .cigi-logo-mobile {
+            width: 50px;
+        }
     }
     .show-on-mobile{
         display: inline-block;
@@ -39,27 +47,70 @@
         }
     }
     .toc-mobile-wrapper {
-        padding-top: 4em;
         height: 100vh;
         width: 100vw;
         background: black;
         color: white;
         position: fixed;
         z-index: 200;
+        overflow: auto;
+        a {
+            color: white;
+            text-decoration: none;
+        }
         ul {
-            padding: 0 2em;
+            padding: 4em 1em 0 1em;
             font-size: 1em;
             list-style: none;
-            li {
-                padding: 0.25em;
-            }
+                li {
+                    padding: 0.75em 0;
+                    border-bottom: solid 1px $grey-color-dark;
+                }
         }      
     }
-   
+    .landing.slide-1 {
+        .content-wrapper{
+            transform: none;
+            -webkit-transform: none;
+            left: 0;
+            top: 0;
+            position: intiial;
+            padding: 2em 1em 1em 1em;
+            .title {
+                margin: 0;
+                font-size: 6.5em;
+                padding-bottom: 0.25em;
+                span {
+                    margin: 0;
+                }
+            }
+        }
+    }
     .header-inverse.site-header.wrapper{
         background: black;
         i {
             color: white;
+        }
+    }
+    #timeline-slide-content, .flex-ns.absolute.items-end.bottom-0.left-0.right-0.wrapper.w-100.pb4-l{
+        display: none;
+    }
+    .vh-100.default-background.relative.overflow-hidden {
+        padding-top: 5em;
+    }
+    .fa.hidden {
+        display: none !important;
+      }
+    h1 {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+    }
+    .standard-slide.remove-bg-image {
+        background-image: none;
+        background: $background-color;
+        opacity: 1;
+        &:before {
+            background: none !important;
         }
     }
 }
