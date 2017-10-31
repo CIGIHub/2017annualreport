@@ -25,6 +25,7 @@ const downArrow = document.getElementsByClassName('view-ar')[0];
 const smoothSlideContainer = document.getElementById('smooth-slide-container');
 const sections = document.getElementsByTagName('section');
 export const numberOfSections = sections.length;
+const slideNumToBackgroundVideo = new Array(numberOfSections);
 
 function updateGlobalShareLinks() {
   const encodedURL = encodeURIComponent(location.href);
@@ -72,6 +73,14 @@ function updateNavigation(newIndex, oldIndex) {
   const oldButton = buttons[oldIndex];
   if (newButton === undefined || oldButton === undefined) {
     return;
+  }
+  const newVideo = slideNumToBackgroundVideo[newIndex];
+  const oldVideo = slideNumToBackgroundVideo[oldIndex];
+  if (oldVideo) {
+    oldVideo.pause();
+  }
+  if (newVideo) {
+    newVideo.play();
   }
   isScrolling = true;
   setTimeout(() => {
@@ -189,6 +198,8 @@ function injectLinksAndAddSideBar() {
     const h3s = section.getElementsByTagName('h3');
     const subsection = h3s.length && h3s[0].innerHTML || 'Explore CIGI';
     const slideName = section.getElementsByTagName('h1')[0].innerText;
+    slideNumToBackgroundVideo[i] = section.getElementsByClassName('fullscreen-bg-video')[0];
+
     const content = subsections.get(subsection);
     if (content === undefined) {
       subsections.set(subsection, [{
