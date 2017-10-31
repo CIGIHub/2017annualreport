@@ -116,7 +116,7 @@ function putBackgroundImageIntoArticle(element){
         var elementText = element.querySelector("p");
         var parentElement = element.querySelector(".absolute");
         var articleImage = new Image();
-        articleImage.src = backgroundImageURL.slice(0, -2);
+        articleImage.src = location.pathname + backgroundImageURL.slice(1, -2);
         parentElement.insertBefore(articleImage, elementText);
         element.classList.add("remove-bg-image");
     }
