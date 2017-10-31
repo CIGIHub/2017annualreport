@@ -1121,7 +1121,6 @@ function createArticleGroup(item) {
 </a>
 `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
-  viewFullArticle.setAttribute('target', '_blank');
   viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
   viewFullArticle.innerHTML = '<i class="fa fa-film"></i><span class="pl2">View Full Article</span></div>';
   article.appendChild(viewFullArticle);
