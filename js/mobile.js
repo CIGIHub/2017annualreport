@@ -45,6 +45,11 @@ function showMobileTOC(){
     toggleAllSlides();
 }
 
+function scrollToHome() {
+    document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
+    location.href="/#/?slide=2";
+}
+
 var mobileTOCLinks = function(){
     var slideClass = (this.className).match(slideNumberRegex)[0];
     this.className.match('president') ? slideClass = "president" : "";
@@ -128,4 +133,12 @@ export default function mobileNavMagic(){
     Array.from(allSections).forEach(function(section) {
         putBackgroundImageIntoArticle(section);
     });
+
+    // revealing mobile button and adding event listener
+    var mobilebutton =  document.getElementsByClassName("mobile-button")[0];
+    mobilebutton.classList.toggle("hidden");
+    mobilebutton.addEventListener('click', scrollToHome);
+
+    // start on slide 2
+    scrollToHome();
 }
