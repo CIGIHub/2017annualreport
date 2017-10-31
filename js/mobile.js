@@ -47,7 +47,7 @@ function showMobileTOC(){
 
 function scrollToHome() {
     document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
-    location.href= location.pathname + "#/?slide=1";
+    location.href = location.pathname + "#/?slide=1";
 }
 
 var mobileTOCLinks = function(){
@@ -55,37 +55,45 @@ var mobileTOCLinks = function(){
     this.className.match('president') ? slideClass = "president" : "";
     this.className.match('chair') ? slideClass = "chair" : "";
     let navigateTo;
+    let hrefSlide;
     toggleAllSlides();
     
     // Some slides are named differently, doing specific checks for those
     // Influential Research slide
     if (slideClass == "slide-2"){
         navigateTo = document.getElementsByClassName('joint-message cover-slide slide-2')[0];
+        hrefSlide = "slide=2";
     }
     // Joint message slide - president's message
     else if (slideClass == "president"){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
         var presidentTab = document.querySelectorAll("[data-id='tab-1']")[0];
         presidentTab.click();
+        hrefSlide = "slide=3";
     }
     // Joint message slide - chair's message
     else if (slideClass == "chair"){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
         var chairTab = document.querySelectorAll("[data-id='tab-2']")[0];
         chairTab.click();
+        hrefSlide = "slide=3";
     }
     // Photo Gallery slide
     else if (slideClass == "slide-18"){
         navigateTo = document.getElementsByClassName('default-background relative')[1];
+        hrefSlide = "slide=18";
     }
     // Financials Slide
     else if (slideClass == "slide-17"){
         navigateTo = document.getElementsByClassName('financials')[0];
+        hrefSlide = "slide=17";
     }
     else {
         navigateTo = document.getElementsByClassName('standard-slide ' + slideClass)[0];
+        hrefSlide = slideClass.replace("-", "=");
     }
     navigateTo.scrollIntoView(true);
+    location.href = location.pathname + "#/?" + hrefSlide;
     toggleTOCMenu();
 }
 
