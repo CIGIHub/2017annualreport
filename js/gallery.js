@@ -3,6 +3,7 @@ import {
   createDiv,
   createEl,
   closeSvg,
+  createLoadOverlay,
 } from 'helpers';
 
 import {
@@ -12,7 +13,8 @@ import {
 
 export default function galleryMagic() {
   const gallery = document.getElementById('gallery');
-  const loadingOverlay = document.getElementById('load-overlay');
+  const loadingOverlay = createLoadOverlay();
+  gallery.insertBefore(loadingOverlay, gallery.firstChild);
   const images = [...gallery.getElementsByTagName('img')];
   let moving = false;
   let wasMoving = false;
@@ -77,7 +79,6 @@ export default function galleryMagic() {
 
   function closeLightbox() {
     lightbox.classList.remove('enabled');
-    lightbox.style.opacity = null;
     closing = true;
     setTimeout(() => {
       closing = false;
@@ -171,12 +172,11 @@ export default function galleryMagic() {
     if (image.complete) {
       resolve();
     } else {
-      image.onload = () => resolve();
+      image.onload = () => { resolve(); };
     }
   }))).then(() => {
     loadingOverlay.style.display = 'none';
-    // eslint-disable-next-line
-    const packery = new window.Packery(gallery, {
+    new window.Packery(gallery, {
       itemSelector: '.gallery-img-wrapper',
       layoutMode: 'packery',
       horizontal: true,
