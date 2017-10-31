@@ -47,7 +47,7 @@ function showMobileTOC(){
 
 function scrollToHome() {
     document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
-    location.href="/#/?slide=1";
+    location.href= location.pathname + "#/?slide=1";
 }
 
 var mobileTOCLinks = function(){

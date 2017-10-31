@@ -55,7 +55,12 @@ $sidebar-button-radius: 1rem;
   padding-left: 1px;
   position: relative;
   width: $sidebar-button-radius;
-  font-family: fontAwesome;
+  &.fa-home{
+    font-family: fontAwesome;
+    .sidebar-tooltip{
+      font-family: $base-font-family;
+    }
+  }
 
   &.active {
     color: $accent-color;
@@ -85,7 +90,7 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
   transform: scale(0) translateY(-50%);
   transform-origin: top right;
   transition: all 200ms ease;
-  width: max-content;
+  white-space: nowrap;
 
   &::after {
     border: solid transparent;
