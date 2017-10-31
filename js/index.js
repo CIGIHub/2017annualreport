@@ -10,12 +10,20 @@ timelineMagic();
 galleryMagic();
 loadTabs();
 
-if (window.innerWidth > 450) {
-    navigationMagic();
-    photoCaptionMagic();
-} else {
-    mobileNavMagic();
+
+function loadJavascriptFiles(){
+    console.log(window.innerWidth);
+    if (window.innerWidth > 450) {
+        console.log("in desktop version");
+        navigationMagic();
+        photoCaptionMagic();
+    } else {
+        console.log("in mobile version");
+        mobileNavMagic();
+    }
 }
 
 initializeLightboxMedia();
+loadJavascriptFiles();
 
+window.onresize = loadJavascriptFiles;

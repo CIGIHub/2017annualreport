@@ -13,10 +13,10 @@ $preview-timing-function: ease-out;
 
 $data-point-activate-duration: 200ms;
 $data-point-translate-duration: 500ms;
-$data-point-z-index: 2;
-$data-point-enabled-z-index: 3;
-$data-point-hover-z-index: 4;
-$preview-container-z-index: 5;
+$data-point-z-index: 3;
+$data-point-enabled-z-index: 4;
+$data-point-hover-z-index: 5;
+$preview-container-z-index: 6;
 $preview-line-z-index: -1;
 $timeline-vertical-line-z-index: 1;
 // 7 is the z-index of the navigation buttons
@@ -516,8 +516,7 @@ $article-slide-timing-function: ease-in-out;
 .select-container,
 .select-clear {
   border: 1px solid $grey-25;
-  cursor: pointer;
-  min-height: 2rem;
+  min-height: 1.5rem;
   user-select: none;
 }
 
@@ -540,7 +539,7 @@ $article-slide-timing-function: ease-in-out;
   background-color: $default-background-color;
 }
 
-.select-toggler {
+.grey {
   color: $grey-color;
 }
 
@@ -574,4 +573,8 @@ $article-slide-timing-function: ease-in-out;
 
 .user-select-none {
   user-select: none;
+}
+
+.important-grey {
+  fill: $grey-color !important;
 }
