@@ -29,15 +29,9 @@
   background-image: url('../assets/north-of-60-2.jpg');
 }
 
-.slide-10{}
-
-.slide-11{}
-
-.slide-12{}
-
-.slide-13{}
-
-.slide-14{}
+.slide-10{
+  background-image: url('../assets/low-carbon-economy-min.jpg');
+}
 
 .slide-15 {
   background-image: url('../assets/IMF-min.jpg');
@@ -45,6 +39,10 @@
 
 .slide-16 {
   background-image: url('../assets/G20-min.jpg');
+}
+
+.slide-18 {
+  background-image: url('../assets/CIGI_Family_Photo_v1.jpg');
 }
 
 
@@ -198,6 +196,9 @@ p {
   background-size: cover;
   overflow: hidden;
   position: relative;
+  &.slide-18{
+    background-position: right;
+  }
   
   .wrapper{
     position: relative;
@@ -226,6 +227,10 @@ p {
     &:hover{
       color: $accent-color-50;
     }
+  }
+
+  .lightbox-link{
+    color: $accent-color;
   }
   
   .fa{
@@ -262,7 +267,6 @@ p {
     font-size: 1.1rem;
   }
   h1 {
-    text-align: center;
     color: $accent-color;
     font-size: 2.75rem;
     margin-bottom: 2rem;
