@@ -11,6 +11,15 @@ export const createSvgEl = type => document.createElementNS('http://www.w3.org/2
 
 export const createDiv = className => createEl('div', className);
 
+export function createLoadOverlay() {
+  const loadOverlay = createDiv('w-100 h-100 z-1 bg-black-70 absolute');
+  loadOverlay.innerHTML = `<svg class="spinner" width="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="10">
+<path d="M 50 5 A 45 45 0 1 1 5 50">
+</path>
+</svg>`;
+  return loadOverlay;
+}
+
 export function mountElementsInArrayIntoParent(parent, arr) {
   let i = arr.length;
   while (i-- > 0) {

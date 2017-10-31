@@ -4,6 +4,7 @@ import galleryMagic from './gallery';
 import loadTabs from './tabs';
 import photoCaptionMagic from './captions';
 import mobileNavMagic from './mobile';
+import initializeLightboxMedia from './mediaLightbox';
 
 timelineMagic();
 galleryMagic();
@@ -15,3 +16,6 @@ if (window.innerWidth > 450) {
 } else {
     mobileNavMagic();
 }
+
+initializeLightboxMedia();
+
