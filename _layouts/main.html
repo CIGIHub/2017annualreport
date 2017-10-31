@@ -8,6 +8,7 @@ layout: compress
 
   <body>
     {% include header.html %}
+    {% include toc-mobile.html %}
     <div id="smooth-slide-container">
       {% include timeline.html %}
       {% include home.html %}
@@ -29,6 +30,7 @@ layout: compress
       {% include slide17.html %}
       {% include lightbox.html %}
       {% include gallery.html %}
+      {% include mobile-button.html %}
 
       <script src="{{ site.assets_base_url }}/assets/bundle{{ site.env.HASH }}.js"></script>
     </div>

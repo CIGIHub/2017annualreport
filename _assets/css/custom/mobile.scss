@@ -1,0 +1,127 @@
+@media (max-width: 450px){
+    section {
+        min-height: 100vh;
+        overflow: inherit;
+        border-bottom: solid 1px $grey-color-dark;
+        background: $background-color;
+    }
+    .standard-slide, .slide-1 {
+        padding: 3em 0;
+    }
+    .pb4, .pr4 {
+        padding: 0;
+    }
+    .absolute {
+        position: initial;
+    }
+    .vh-100 {
+        height: auto;
+    }
+    #explore-cigi-link, #view-ar-link {
+        display: none;
+    }
+    .site-header.wrapper{
+        background: $background-color;
+        z-index: 201;
+        .mt3 {
+            margin-top: 0;
+        }
+        .mv4-ns {
+            display: none;
+        }
+        .cigi-logo-mobile {
+            width: 50px;
+        }
+    }
+    .show-on-mobile{
+        display: inline-block;
+    }
+    .fixed.sidebar, .navigation-top-button, .navigation-bottom-button {
+        display: none;
+    }
+    .download {
+        a {
+            margin-top: 0;
+        }
+    }
+    .toc-mobile-wrapper {
+        height: 100vh;
+        width: 100vw;
+        background: black;
+        color: white;
+        position: fixed;
+        z-index: 200;
+        overflow: auto;
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        ul {
+            padding: 4em 1em 0 1em;
+            font-size: 1em;
+            list-style: none;
+                li {
+                    padding: 0.75em 0;
+                    border-bottom: solid 1px $grey-color-dark;
+                }
+        }      
+    }
+    .landing.slide-1 {
+        .content-wrapper{
+            transform: none;
+            -webkit-transform: none;
+            left: 0;
+            top: 0;
+            position: intiial;
+            padding: 2em 1em 1em 1em;
+            .title {
+                margin: 0;
+                font-size: 6.5em;
+                padding-bottom: 0.25em;
+                span {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .header-inverse.site-header.wrapper{
+        background: black;
+        i {
+            color: white;
+        }
+    }
+    #timeline-slide-content, .flex-ns.absolute.items-end.bottom-0.left-0.right-0.wrapper.w-100.pb4-l{
+        display: none;
+    }
+    .vh-100.default-background.relative.overflow-hidden {
+        padding-top: 5em;
+    }
+    .fa.hidden {
+        display: none !important;
+      }
+    h1 {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+    }
+    .standard-slide.remove-bg-image {
+        background-image: none;
+        background: $background-color;
+        opacity: 1;
+        &:before {
+            background: none !important;
+        }
+    }
+    .mobile-button{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: $accent-color;
+        color: white;
+        padding: 2px 10px 5px 10px;
+        border-radius: 50%;
+        font-size: 2em;
+    }
+    .visibility-none{
+        visibility: hidden;
+    }
+}
