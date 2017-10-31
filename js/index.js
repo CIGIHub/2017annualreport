@@ -18,4 +18,10 @@ if (window.innerWidth > 450) {
     mobileNavMagic();
 }
 
+function loadMobileJS(){
+    if (window.innerWidth <= 450){
+        mobileNavMagic();
+    }
+}
 
+window.onresize = loadMobileJS;
