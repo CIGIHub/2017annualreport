@@ -5,9 +5,6 @@
         border-bottom: solid 1px $grey-color-dark;
         background: $background-color;
     }
-    .standard-slide, .slide-1 {
-        padding: 3em 0;
-    }
     .pb4, .pr4 {
         padding: 0;
     }
@@ -66,24 +63,24 @@
                 }
         }      
     }
-    .landing.slide-1 {
-        .content-wrapper{
-            transform: none;
-            -webkit-transform: none;
-            left: 0;
-            top: 0;
-            position: intiial;
-            padding: 2em 1em 1em 1em;
-            .title {
-                margin: 0;
-                font-size: 6.5em;
-                padding-bottom: 0.25em;
-                span {
-                    margin: 0;
-                }
-            }
-        }
-    }
+    // .landing.slide-1 {
+    //     .content-wrapper{
+    //         transform: none;
+    //         -webkit-transform: none;
+    //         left: 0;
+    //         top: 0;
+    //         position: intiial;
+    //         padding: 2em 1em 1em 1em;
+    //         .title {
+    //             margin: 0;
+    //             font-size: 6.5em;
+    //             padding-bottom: 0.25em;
+    //             span {
+    //                 margin: 0;
+    //             }
+    //         }
+    //     }
+    // }
     .header-inverse.site-header.wrapper{
         background: black;
         i {
