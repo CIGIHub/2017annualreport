@@ -332,24 +332,20 @@ header.white{
     width: 80%;
   }
   
-  .content{
-    column-count: 2;
-    column-width: 300px;
-  }
-  
   h1{display: none;}
   
-  .title{
-    margin-left: 4rem;
-    font-size: 9rem;
-    line-height: 73%;
-    font-weight: 800;
-    
-    span{
-      margin-left: -2rem;
-    }
+  .title, .intro{
+    float: left;
+    width: 50%;
   }
-  
+  .title{
+    font-size: 9rem;
+    line-height: 7rem;
+    font-weight: 800;
+  }
+  p{
+    margin-top: 2rem;
+  }
   .nav{
     margin: 2rem;
     left: 47%;
@@ -386,12 +382,10 @@ header.white{
       position: absolute;
     }
     .up{
-      margin-right: 10px;
       left: -2rem;
     }
     .down{
-      margin-left: 10px;
-      right: -2rem;
+      right: -1rem;
     }
     
     .fa{
@@ -462,21 +456,22 @@ header.white{
   }
   
   @include media-query($on-laptop) {
+    .content{
+      margin: 0 2rem;
+    }
+    
+    .intro, .title{
+      float: none;
+      width: 100%;
+      
+    }
     .nav{
       position: relative;
       left: auto;
     }
-    .arc {
-      left: 8%;
-    }
     
     .content-wrapper{
       width: 100%;
-    }
-    
-    .title{
-      margin-left: 2rem;
-      margin-bottom: 1rem;
     }
   }
 }
