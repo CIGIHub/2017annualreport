@@ -36,7 +36,7 @@ function toggleAllSlides(){
     // hiding all slides so there isn't a scroll bar when mobile TOC is open
     var allSlides = document.getElementsByTagName('section');
     Array.from(allSlides).forEach(function(slide) {
-        slide.classList.toggle('hidden');
+        slide.classList.toggle('visibility-hidden');
     });
 }
 
@@ -47,7 +47,7 @@ function showMobileTOC(){
 
 function scrollToHome() {
     document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
-    location.href="/#/?slide=2";
+    location.href="/#/?slide=1";
 }
 
 var mobileTOCLinks = function(){
@@ -89,6 +89,14 @@ var mobileTOCLinks = function(){
     toggleTOCMenu();
 }
 
+function scrollToTop(){
+    window.scroll(0,0);
+}
+
+function scrollToSlide2(){
+    document.getElementsByClassName('joint-message cover-slide slide-2')[0].scrollIntoView(true);
+}
+
 function putBackgroundImageIntoArticle(element){
 
     var elementComputedStyle = window.getComputedStyle(element);
@@ -123,11 +131,6 @@ export default function mobileNavMagic(){
     });
     
     // Adding message to replace timeline
-   /* var firstSlideMessage = document.createElement('div');
-    firstSlideMessage.innerHTML = "Message to direct people to desktop";
-    var firstSlide = document.getElementsByTagName('section')[0];
-    firstSlide.appendChild(firstSlideMessage);*/
-
     document.getElementsByClassName("mobile-timeline-message")[0].classList.toggle("hidden");
     
     // Moving background images into article
@@ -143,4 +146,8 @@ export default function mobileNavMagic(){
 
     // start on slide 2
     scrollToHome();
+
+    // add working links for slide 2
+    document.getElementsByClassName("explore")[0].addEventListener('click', scrollToTop);
+    document.getElementsByClassName("view-ar")[0].addEventListener('click', scrollToSlide2);
 }
