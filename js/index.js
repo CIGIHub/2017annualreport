@@ -6,12 +6,12 @@ import photoCaptionMagic from './captions';
 import mobileNavMagic from './mobile';
 import initializeLightboxMedia from './mediaLightbox';
 
+const windowSize = window.innerWidth;
+
 timelineMagic();
 galleryMagic();
 loadTabs();
 initializeLightboxMedia();
-
-console.log(window.innerWidth);
 
 if (window.innerWidth > 450) {
     navigationMagic();
@@ -19,3 +19,12 @@ if (window.innerWidth > 450) {
 } else {
     mobileNavMagic();
 }
+
+function reloadWindow(){
+    if ((windowSize <= 450 && window.innerWidth > 450 )||( windowSize > 450 && window.innerWidth <= 450)){
+        console.log("reload");
+        window.location.reload();       
+    } 
+}
+
+window.onresize = reloadWindow;
