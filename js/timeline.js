@@ -669,13 +669,13 @@ function generateFilters() {
   };
   programSelectContainer.appendChild(programSelectContent);
   programSelectContainer.appendChild(programSelectToggler);
-  generatedFilters[4] = programSelectContainer;
+  generatedFilters[3] = programSelectContainer;
 
   clearButton = createDiv('select-clear pointer w4 mv1 ml1 fw5 f6 grey ttu hover-bg-black-10');
   clearButton.style.display = 'none';
   clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
-  generatedFilters[3] = clearButton;
+  generatedFilters[4] = clearButton;
   return generatedFilters;
 }
 
