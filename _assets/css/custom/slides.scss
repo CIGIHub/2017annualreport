@@ -29,15 +29,9 @@
   background-image: url('../assets/north-of-60-2.jpg');
 }
 
-.slide-10{}
-
-.slide-11{}
-
-.slide-12{}
-
-.slide-13{}
-
-.slide-14{}
+.slide-10{
+  background-image: url('../assets/low-carbon-economy-min.jpg');
+}
 
 .slide-15 {
   background-image: url('../assets/IMF-min.jpg');
@@ -45,6 +39,10 @@
 
 .slide-16 {
   background-image: url('../assets/G20-min.jpg');
+}
+
+.slide-18 {
+  background-image: url('../assets/CIGI_Family_Photo_v1.jpg');
 }
 
 
@@ -198,6 +196,9 @@ p {
   background-size: cover;
   overflow: hidden;
   position: relative;
+  &.slide-18{
+    background-position: right;
+  }
   
   .wrapper{
     position: relative;
@@ -226,6 +227,10 @@ p {
     &:hover{
       color: $accent-color-50;
     }
+  }
+
+  .lightbox-link{
+    color: $accent-color;
   }
   
   .fa{
@@ -262,7 +267,6 @@ p {
     font-size: 1.1rem;
   }
   h1 {
-    text-align: center;
     color: $accent-color;
     font-size: 2.75rem;
     margin-bottom: 2rem;
@@ -328,24 +332,20 @@ header.white{
     width: 80%;
   }
   
-  .content{
-    column-count: 2;
-    column-width: 300px;
-  }
-  
   h1{display: none;}
   
-  .title{
-    margin-left: 4rem;
-    font-size: 9rem;
-    line-height: 73%;
-    font-weight: 800;
-    
-    span{
-      margin-left: -2rem;
-    }
+  .title, .intro{
+    float: left;
+    width: 50%;
   }
-  
+  .title{
+    font-size: 9rem;
+    line-height: 7rem;
+    font-weight: 800;
+  }
+  p{
+    margin-top: 2rem;
+  }
   .nav{
     margin: 2rem;
     left: 47%;
@@ -382,12 +382,10 @@ header.white{
       position: absolute;
     }
     .up{
-      margin-right: 10px;
       left: -2rem;
     }
     .down{
-      margin-left: 10px;
-      right: -2rem;
+      right: -1rem;
     }
     
     .fa{
@@ -458,21 +456,22 @@ header.white{
   }
   
   @include media-query($on-laptop) {
+    .content{
+      margin: 0 2rem;
+    }
+    
+    .intro, .title{
+      float: none;
+      width: 100%;
+      
+    }
     .nav{
       position: relative;
       left: auto;
     }
-    .arc {
-      left: 8%;
-    }
     
     .content-wrapper{
       width: 100%;
-    }
-    
-    .title{
-      margin-left: 2rem;
-      margin-bottom: 1rem;
     }
   }
 }

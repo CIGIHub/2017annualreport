@@ -46,8 +46,9 @@ function showMobileTOC(){
 }
 
 function scrollToHome() {
+    console.log("scrolling to home");
     document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
-    location.href= location.pathname + "#/?slide=1";
+    location.href = location.pathname + "#/?slide=1";
 }
 
 var mobileTOCLinks = function(){
@@ -55,37 +56,51 @@ var mobileTOCLinks = function(){
     this.className.match('president') ? slideClass = "president" : "";
     this.className.match('chair') ? slideClass = "chair" : "";
     let navigateTo;
+    let hrefSlide;
     toggleAllSlides();
     
     // Some slides are named differently, doing specific checks for those
     // Influential Research slide
     if (slideClass == "slide-2"){
         navigateTo = document.getElementsByClassName('joint-message cover-slide slide-2')[0];
+        hrefSlide = "slide=2";
+    }
+    // timeline slide, scroll to top
+    else if (slideClass == "slide-0"){
+        scrollToTop();
+        toggleTOCMenu();
+        return;
     }
     // Joint message slide - president's message
     else if (slideClass == "president"){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
         var presidentTab = document.querySelectorAll("[data-id='tab-1']")[0];
         presidentTab.click();
+        hrefSlide = "slide=3";
     }
     // Joint message slide - chair's message
     else if (slideClass == "chair"){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
         var chairTab = document.querySelectorAll("[data-id='tab-2']")[0];
         chairTab.click();
+        hrefSlide = "slide=3";
     }
     // Photo Gallery slide
     else if (slideClass == "slide-18"){
         navigateTo = document.getElementsByClassName('default-background relative')[1];
+        hrefSlide = "slide=18";
     }
     // Financials Slide
     else if (slideClass == "slide-17"){
         navigateTo = document.getElementsByClassName('financials')[0];
+        hrefSlide = "slide=17";
     }
     else {
         navigateTo = document.getElementsByClassName('standard-slide ' + slideClass)[0];
+        hrefSlide = slideClass.replace("-", "=");
     }
     navigateTo.scrollIntoView(true);
+    location.href = location.pathname + "#/?" + hrefSlide;
     toggleTOCMenu();
 }
 
@@ -98,17 +113,17 @@ function scrollToSlide2(){
 }
 
 function putBackgroundImageIntoArticle(element){
-
     var elementComputedStyle = window.getComputedStyle(element);
     var backgroundImage = elementComputedStyle.getPropertyValue('background-image');
     let backgroundImageURL;
-
-    if (backgroundImage != "none"){
+    
+    console.log(backgroundImage);
+    if (backgroundImage != "none" && element.querySelector("p")){
         backgroundImageURL = backgroundImage.match(imageRegex)[0];
         var elementText = element.querySelector("p");
         var parentElement = element.querySelector(".absolute");
         var articleImage = new Image();
-        articleImage.src = backgroundImageURL.slice(0, -2);
+        articleImage.src = location.pathname + backgroundImageURL.slice(1, -2);
         parentElement.insertBefore(articleImage, elementText);
         element.classList.add("remove-bg-image");
     }
@@ -116,11 +131,13 @@ function putBackgroundImageIntoArticle(element){
 
 export default function mobileNavMagic(){
     
-    // Adding TOC icons
-    tableOfContentsButton.appendChild(tocIcon);
-    tableOfContentsButton.appendChild(tocIcon2);
-    tableOfContentsButton.addEventListener('click', showMobileTOC);
-    
+    // Adding TOC icons, only add if they aren't already added
+    if (document.getElementsByClassName("-toc-open-mobile").length < 1){
+        tableOfContentsButton.appendChild(tocIcon);
+        tableOfContentsButton.appendChild(tocIcon2);
+        tableOfContentsButton.addEventListener('click', showMobileTOC);
+    }
+
     // Revealing mobile logo
     document.getElementsByClassName('mobile-header-logo')[0].classList.toggle('hidden');
     
@@ -139,14 +156,14 @@ export default function mobileNavMagic(){
         putBackgroundImageIntoArticle(section);
     });
 
+    // start on slide 2
+    scrollToHome();
+    
     // revealing mobile button and adding event listener
     var mobilebutton =  document.getElementsByClassName("mobile-button")[0];
     mobilebutton.classList.toggle("hidden");
     mobilebutton.addEventListener('click', scrollToHome);
-
-    // start on slide 2
-    scrollToHome();
-
+    
     // add working links for slide 2
     document.getElementsByClassName("explore")[0].addEventListener('click', scrollToTop);
     document.getElementsByClassName("view-ar")[0].addEventListener('click', scrollToSlide2);
