@@ -112,10 +112,16 @@
             padding-bottom: 1em;
         }
     }
+    .fullscreen-bg-video{
+        display: none;
+    }
 }
 
 @media (min-width: 451px){
     .cigi-logo-mobile, .toc-close-mobile, .toc-open-mobile{
         display: none !important;
+    }
+    .slide-3, .slide-9, .slide-10, .slide-11, .slide-12, .slide-13 {
+        background-image: none;
     }
 }
