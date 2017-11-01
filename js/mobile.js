@@ -46,7 +46,6 @@ function showMobileTOC(){
 }
 
 function scrollToHome() {
-    console.log("scrolling to home");
     document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
     location.href = location.pathname + "#/?slide=1";
 }
@@ -117,7 +116,6 @@ function putBackgroundImageIntoArticle(element){
     var backgroundImage = elementComputedStyle.getPropertyValue('background-image');
     let backgroundImageURL;
     
-    console.log(backgroundImage);
     if (backgroundImage != "none" && element.querySelector("p")){
         backgroundImageURL = backgroundImage.match(imageRegex)[0];
         var elementText = element.querySelector("p");
