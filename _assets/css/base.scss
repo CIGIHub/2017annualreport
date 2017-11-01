@@ -1,7 +1,7 @@
 //Define Font Variables
 
 $base-font-family: 'futura-pt', Helvetica, Arial, sans-serif;
-$base-font-size: 15px;
+$base-font-size: 14px;
 $base-font-weight: 400;
 $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.4;
@@ -30,7 +30,7 @@ $background-50: rgba(242, 240, 234, 0.5);
 
 // Width of the content area
 
-$content-width: 95%;
+$content-width: 100%;
 
 // Reset some basic elements
 
@@ -105,18 +105,16 @@ header {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 300;
-  line-height: 4.25rem;
 
   @include media-query($on-palm) {
-    font-size: 3rem;
-    line-height: 3.25rem;
+    font-size: 2rem;
   }
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 300;
 }
 
@@ -131,8 +129,7 @@ hr {
 .wrapper {
   margin-left: auto;
   margin-right: auto;
-  //max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width: 61.25rem;
+  max-width: 70rem;
   padding-left: $spacing-unit;
   padding-right: $spacing-unit;
 
