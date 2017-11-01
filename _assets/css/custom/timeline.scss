@@ -495,13 +495,13 @@ $article-slide-timing-function: ease-in-out;
 }
 
 .fade-in-1 {
-  animation: fadein 5s;
+  animation: fadein 3s;
   animation-fill-mode: forwards;
 }
 
 .fade-in-2 {
-  animation: fadein 5s;
-  animation-delay: 2s;
+  animation: fadein 3s;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
 }
 
@@ -573,6 +573,11 @@ $article-slide-timing-function: ease-in-out;
 
 .user-select-none {
   user-select: none;
+  font-size: 0.65rem;
+  .arrow{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 .important-grey {
