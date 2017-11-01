@@ -46,6 +46,7 @@ function showMobileTOC(){
 }
 
 function scrollToHome() {
+    console.log("scrolling to home");
     document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
     location.href = location.pathname + "#/?slide=1";
 }
@@ -116,12 +117,13 @@ function putBackgroundImageIntoArticle(element){
     var backgroundImage = elementComputedStyle.getPropertyValue('background-image');
     let backgroundImageURL;
     
-    if (backgroundImage != "none"){
+    console.log(backgroundImage);
+    if (backgroundImage != "none" && element.querySelector("p")){
         backgroundImageURL = backgroundImage.match(imageRegex)[0];
         var elementText = element.querySelector("p");
         var parentElement = element.querySelector(".absolute");
         var articleImage = new Image();
-        articleImage.src = "../" + backgroundImageURL.slice(1, -2);
+        articleImage.src = location.pathname + backgroundImageURL.slice(1, -2);
         parentElement.insertBefore(articleImage, elementText);
         element.classList.add("remove-bg-image");
     }
@@ -153,14 +155,14 @@ export default function mobileNavMagic(){
     Array.from(allSections).forEach(function(section) {
         putBackgroundImageIntoArticle(section);
     });
+
+    // start on slide 2
+    scrollToHome();
     
     // revealing mobile button and adding event listener
     var mobilebutton =  document.getElementsByClassName("mobile-button")[0];
     mobilebutton.classList.toggle("hidden");
     mobilebutton.addEventListener('click', scrollToHome);
-    
-    // start on slide 2
-    scrollToHome();
     
     // add working links for slide 2
     document.getElementsByClassName("explore")[0].addEventListener('click', scrollToTop);

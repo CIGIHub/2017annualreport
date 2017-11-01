@@ -155,6 +155,8 @@ header .tabs{
   margin-left: -1em;
   margin-top: 2em;
   padding: 0.5em;
+  transition: color .5s ease-in, background-color .5s ease-in;
+  border-radius: 9999px;
   p {
     padding: 0;
     &:before{
@@ -166,16 +168,17 @@ header .tabs{
       font-size: 0.8em;
       margin-right: 0.5em;
       padding: 0.3em;
+      transition: color .5s ease-in;
     }
   }
   &:hover {
     background-color: rgba(0,0,0,0.5);
     border-radius: 9999px;
     color: $grey-color;
-    transition: color 1s ease-in, background-color 1s ease-in;
+    transition: color .5s ease-out, background-color .5s ease-out;
     p:before {
       color: $grey-color;
-      transition: color 1s ease-in;
+      transition: color .5s ease-out;
     }
   }
 }
@@ -291,16 +294,17 @@ p {
   position: absolute;
   top: 0;
   width: 100%;
+  transition: opacity .5s ease-out;
 }
 
 .hide::before {
   opacity: 0;
-  transition: opacity 1s ease-in;
+  transition: opacity .5s ease-in;
 }
 
 .hide-text {
   opacity: 0;
-  transition: opacity 1s ease-in;
+  transition: opacity .5s ease-in;
 }
 
 .landing::before{

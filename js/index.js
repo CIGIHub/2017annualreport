@@ -11,17 +11,11 @@ galleryMagic();
 loadTabs();
 initializeLightboxMedia();
 
+console.log(window.innerWidth);
+
 if (window.innerWidth > 450) {
     navigationMagic();
     photoCaptionMagic();
 } else {
     mobileNavMagic();
 }
-
-function loadMobileJS(){
-    if (window.innerWidth <= 450){
-        mobileNavMagic();
-    }
-}
-
-window.onresize = loadMobileJS;
