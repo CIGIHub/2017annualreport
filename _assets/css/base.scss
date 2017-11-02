@@ -15,11 +15,6 @@ $small-screen: 1200px;
 
 $base-font-family: 'futura-pt', Helvetica, Arial, sans-serif;
 $base-font-size: 15px;
-@media screen and (max-width: 1200px) {
-  $base-font-size: 12px;
-}
-
-
 $base-font-weight: 400;
 $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.4;
@@ -86,7 +81,7 @@ figure {
 // Basic styling
 
 %font {
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font: $base-font-weight $base-font-size/#{$base-line-height} $base-font-family;
 }
 
 .font {
@@ -96,6 +91,9 @@ figure {
 body {
   @extend %font;
   color: $text-color;
+  @include media-query($small-screen) {
+    font-size: 14px;
+  }
 }
 
 %click-through-to-children {
