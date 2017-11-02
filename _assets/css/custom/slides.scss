@@ -507,9 +507,6 @@ header.white{
     float: left;
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
-    @include media-query($small-screen){
-      font-size: 0.6rem;
-    }
     @include media-query($small-phone){
       float: none;
       width: 100%;
