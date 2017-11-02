@@ -58,6 +58,9 @@
             padding: 4em 1em 0 1em;
             font-size: 1em;
             list-style: none;
+            li:first-child{
+                display:none;
+            }
 
         }
     }
