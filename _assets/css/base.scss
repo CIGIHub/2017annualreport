@@ -3,6 +3,7 @@
 $on-palm: 600px;
 $on-laptop: 880px;
 $small-screen: 1200px;
+
 @mixin media-query($device) {
   @media screen and (max-width: $device) {
     @content;
@@ -14,6 +15,11 @@ $small-screen: 1200px;
 
 $base-font-family: 'futura-pt', Helvetica, Arial, sans-serif;
 $base-font-size: 15px;
+@media screen and (max-width: 1200px) {
+  $base-font-size: 12px;
+}
+
+
 $base-font-weight: 400;
 $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.4;
@@ -89,7 +95,6 @@ figure {
 
 body {
   @extend %font;
-
   color: $text-color;
 }
 
