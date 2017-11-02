@@ -543,6 +543,7 @@ header.white{
     }
     tbody{
       border-top: solid 1rem transparent;
+      line-height: 100%;
       td{
         &:nth-child(1){
           text-align: left;
