@@ -272,16 +272,9 @@ p {
 }
 
 .joint-message, .financials {
-  h1{
-    margin-bottom: 1rem;
-  }
-  h3 {
+  h1, h3{
     display: none;
   }
-}
-
-.joint-message, .financials{
-  padding-top: 6rem;
 }
 
 .cover-slide {
