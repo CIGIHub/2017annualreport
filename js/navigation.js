@@ -250,14 +250,14 @@ function injectLinksAndAddSideBar() {
       }
     };
     const tooltip = createDiv('sidebar-tooltip mr2 ph2 pv1 br2');
-    tooltip.innerText = slideName;
+    tooltip.innerText = i === chairSlide ? subsection : slideName;
     button.appendChild(tooltip);
     sidebar.appendChild(button);
     buttons[i] = button;
   }
 
   buttons[currentSlide].classList.add('active');
-  const tableOfContentsDesktop = createDiv('pt5 pt6-ns pl3 pl0-ns pr3 pr0-ns fixed vh-100 w-100 bg-black-90 left-0 top-0');
+  const tableOfContentsDesktop = createDiv('pt5 pt6-ns pl3 pl0-ns pr3 pr0-ns fixed vh-100 w-100 bg-black-90 left-0 top-0 z-7');
   const tableOfContentsMobile = createDiv('toc-mobile-wrapper');
   const tableOfContentsWrapper = createDiv('z-7');
   tableOfContentsWrapper.appendChild(tableOfContentsDesktop);
@@ -419,10 +419,8 @@ function injectLinksAndAddSideBar() {
         presidentLi.innerText = "President's Message";
         presidentLi.onclick = () => {
           toggleTocOpen();
-          if (i !== currentSlide) {
-            updateNavigation(i, currentSlide);
-            presidentsMessageLink.click();
-          }
+          updateNavigation(i, currentSlide);
+          presidentsMessageLink.click();
         };
         ul.appendChild(presidentLi);
 
@@ -430,10 +428,8 @@ function injectLinksAndAddSideBar() {
         chairLi.innerText = "Chair's Message";
         chairLi.onclick = () => {
           toggleTocOpen();
-          if (i !== currentSlide) {
-            updateNavigation(i, currentSlide);
-            chairsMessageLink.click();
-          }
+          updateNavigation(i, currentSlide);
+          chairsMessageLink.click();
         };
         ul.appendChild(chairLi);
       } else {
@@ -441,9 +437,7 @@ function injectLinksAndAddSideBar() {
         li.innerText = slideName;
         li.onclick = () => {
           toggleTocOpen();
-          if (i !== currentSlide) {
-            updateNavigation(i, currentSlide);
-          }
+          updateNavigation(i, currentSlide);
         };
         ul.appendChild(li);
       }

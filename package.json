@@ -11,7 +11,7 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
     "dev": "concurrently 'webpack-dev-server --config=webpack.config.dev.js' 'bundle exec jekyll serve --config _config.dev.yml'",
-    "clean": "rm -f assets/bundle* && rm -rf _site/*",
+    "clean": "rm -f assets/bundle* && rm -rf _site/* && rm -rf node_modules/gh-pages/.cache/*",
     "build": "npm run clean && HASH=$(node ./node_modules/.bin/webpack --config webpack.config.prod.js | sed 's/Hash: //') JEKYLL_ENV=production bundle exec jekyll build",
     "deploy": "npm run build && node deploy"
   },
