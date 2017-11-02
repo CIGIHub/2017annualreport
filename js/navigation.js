@@ -28,6 +28,7 @@ const header = document.getElementById('site-header');
 const upArrow = document.getElementsByClassName('explore')[0];
 const downArrow = document.getElementsByClassName('view-ar')[0];
 const chairsMessageLink = document.querySelector("[data-id='tab-2']");
+const chairSlide = 2;
 
 const smoothSlideContainer = document.getElementById('smooth-slide-container');
 const sections = document.getElementsByTagName('section');
@@ -370,7 +371,7 @@ function injectLinksAndAddSideBar() {
         };
         acc.appendChild(li);
         acc.appendChild(createEl('br'));
-        if (slide.slideNum === 3) {
+        if (slide.slideNum === chairSlide) {
           const chairLi = createEl('li', liClassName);
           chairLi.innerText = "Chair's Message";
           chairLi.onclick = () => {
@@ -405,7 +406,7 @@ function injectLinksAndAddSideBar() {
         }
       };
       ul.appendChild(li);
-      if (i === 3) {
+      if (i === chairSlide) {
         const chairLi = createEl('li', 'pointer');
         chairLi.innerText = "Chair's Message";
         chairLi.onclick = () => {
