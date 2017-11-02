@@ -1,163 +1,30 @@
 import {
-    createEl
+    unmountElementsInArray,
+    removeClassFromElementsInArray,
 } from 'helpers';
 
-const tocIconOpen = 'fa fa-navicon black';
-const tocIcon = createEl('i', tocIconOpen);
-tocIcon.classList.add('toc-open-mobile');
-const tocIconClose = 'fa fa-times black';
-const tocIcon2 = createEl('i', tocIconClose);
-tocIcon2.classList.add('toc-close-mobile', 'hidden');
-const tableOfContentsButton = document.getElementById('table-of-contents-button');
-const slideNumberRegex = /slide-(\d)+/;
-const imageRegex = /\/assets(.)*/;
+const standardSlides = Array.from(document.getElementsByClassName('standard-slide'));
+const removeBgClass = 'remove-bg-image';
 
-function toggleTOCMenu(){
-    // Show/hide the TOC
-    var tocMobileMenu = document.getElementsByClassName('toc-mobile-wrapper');
-    tocMobileMenu[0].classList.toggle('hidden');
-    
-    // switch icons
-    var tocOpenMobile = document.getElementsByClassName('toc-open-mobile')[0];
-    tocOpenMobile.classList.toggle('hidden');
-    var tocCloseMobile = document.getElementsByClassName('toc-close-mobile')[0];
-    tocCloseMobile.classList.toggle('hidden');
-    
-    // Change header colours
-    var mobileHeader = document.getElementsByClassName('site-header');
-    mobileHeader[0].classList.toggle('header-inverse');
-    var mobileLogo = document.getElementsByClassName('cigi-logo-mobile');
-    mobileLogo[0].classList.toggle('hidden');
-    var mobileLogoInverse = document.getElementsByClassName('cigi-logo-mobile inverse');
-    mobileLogoInverse[0].classList.toggle('hidden');   
-}
-
-function toggleAllSlides(){
-    // hiding all slides so there isn't a scroll bar when mobile TOC is open
-    var allSlides = document.getElementsByTagName('section');
-    Array.from(allSlides).forEach(function(slide) {
-        slide.classList.toggle('visibility-hidden');
+export function putBackgroundImageIntoArticle() {
+    standardSlides.forEach(slide => {
+        const elementComputedStyle = window.getComputedStyle(slide);
+        const backgroundImage = elementComputedStyle.getPropertyValue('background-image');
+        const pTag = slide.querySelector('p');
+        if (backgroundImage != 'none' && pTag) {
+            const backgroundImageURL = /url\("(.*)"\)/.exec(backgroundImage)[1];
+            const parentElement = pTag.parentElement;
+            const articleImage = new Image();
+            articleImage.src = backgroundImageURL;
+            articleImage.className = 'bg-image';
+            parentElement.insertBefore(articleImage, pTag);
+            slide.classList.add(removeBgClass);
+        }
     });
 }
 
-function showMobileTOC(){
-    toggleTOCMenu();
-    toggleAllSlides();
-}
-
-function scrollToHome() {
-    document.getElementsByClassName('slide-1')[0].scrollIntoView(true);
-    location.href = location.pathname + "#/?slide=1";
-}
-
-var mobileTOCLinks = function(){
-    var slideClass = (this.className).match(slideNumberRegex)[0];
-    this.className.match('president') ? slideClass = "president" : "";
-    this.className.match('chair') ? slideClass = "chair" : "";
-    let navigateTo;
-    let hrefSlide;
-    toggleAllSlides();
-    
-    // Some slides are named differently, doing specific checks for those
-    // timeline slide, scroll to top
-    if (slideClass == "slide-0"){
-        scrollToTop();
-        toggleTOCMenu();
-        return;
-    }
-    // Joint message slide - president's message
-    else if (slideClass == "president"){
-        navigateTo = document.getElementsByClassName('default-background joint-message')[0];
-        var presidentTab = document.querySelectorAll("[data-id='tab-1']")[0];
-        presidentTab.click();
-        hrefSlide = "slide=2";
-    }
-    // Joint message slide - chair's message
-    else if (slideClass == "chair"){
-        navigateTo = document.getElementsByClassName('default-background joint-message')[0];
-        var chairTab = document.querySelectorAll("[data-id='tab-2']")[0];
-        chairTab.click();
-        hrefSlide = "slide=2";
-    }
-    // Photo Gallery slide
-    else if (slideClass == "slide-18"){
-        navigateTo = document.getElementsByClassName('default-background relative')[1];
-        hrefSlide = "slide=18";
-    }
-    // Financials Slide
-    else if (slideClass == "slide-16"){
-        navigateTo = document.getElementsByClassName('financials')[0];
-        hrefSlide = "slide=16";
-    }
-    else {
-        navigateTo = document.getElementsByClassName('standard-slide ' + slideClass)[0];
-        hrefSlide = slideClass.replace("-", "=");
-    }
-    navigateTo.scrollIntoView(true);
-    location.href = location.pathname + "#/?" + hrefSlide;
-    toggleTOCMenu();
-}
-
-function scrollToTop(){
-    window.scroll(0,0);
-}
-
-function scrollToSlide2(){
-    document.getElementsByClassName('joint-message cover-slide slide-2')[0].scrollIntoView(true);
-}
-
-function putBackgroundImageIntoArticle(element){
-    var elementComputedStyle = window.getComputedStyle(element);
-    var backgroundImage = elementComputedStyle.getPropertyValue('background-image');
-    let backgroundImageURL;
-    
-    if (backgroundImage != "none" && element.querySelector("p")){
-        backgroundImageURL = backgroundImage.match(imageRegex)[0];
-        var elementText = element.querySelector("p");
-        var parentElement = element.querySelector(".absolute") ? element.querySelector(".absolute") : element.querySelector(".wrapper");
-        var articleImage = new Image();
-        articleImage.src = location.pathname + backgroundImageURL.slice(1, -2);
-        parentElement.insertBefore(articleImage, elementText);
-        element.classList.add("remove-bg-image");
-    }
-}
-
-export default function mobileNavMagic(){
-    
-    // Adding TOC icons, only add if they aren't already added
-    if (document.getElementsByClassName("-toc-open-mobile").length < 1){
-        tableOfContentsButton.appendChild(tocIcon);
-        tableOfContentsButton.appendChild(tocIcon2);
-        tableOfContentsButton.addEventListener('click', showMobileTOC);
-    }
-
-    // Revealing mobile logo
-    document.getElementsByClassName('mobile-header-logo')[0].classList.toggle('hidden');
-    
-    // adding event listeners to mobile TOC items
-    var TOCMobileItems = document.getElementsByClassName('toc-mobile-item');
-    Array.from(TOCMobileItems).forEach(function(link) {
-        link.addEventListener('click', mobileTOCLinks);
-    });
-    
-    // Adding message to replace timeline
-    document.getElementsByClassName("mobile-timeline-message")[0].classList.toggle("hidden");
-    
-    // Moving background images into article
-    var allSections = document.getElementsByClassName('standard-slide');
-    Array.from(allSections).forEach(function(section) {
-        putBackgroundImageIntoArticle(section);
-    });
-
-    // start on slide 2
-    scrollToHome();
-    
-    // revealing mobile button and adding event listener
-    var mobilebutton =  document.getElementsByClassName("mobile-button")[0];
-    mobilebutton.classList.toggle("hidden");
-    mobilebutton.addEventListener('click', scrollToHome);
-    
-    // add working links for slide 2
-    document.getElementsByClassName("explore")[0].addEventListener('click', scrollToTop);
-    document.getElementsByClassName("view-ar")[0].addEventListener('click', scrollToSlide2);
+export function unPutBackgroundImageIntoArticle() {
+    const images = Array.from(document.getElementsByClassName('bg-image'));
+    unmountElementsInArray(images);
+    removeClassFromElementsInArray(Array.from(document.getElementsByClassName(removeBgClass)), removeBgClass);
 }

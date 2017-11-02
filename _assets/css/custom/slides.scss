@@ -100,9 +100,9 @@
       border-left: solid 1px $accent-color;
     }
   }
-  
+
   .tab.selected {
-    color: $grey-color; 
+    color: $grey-color;
     border: solid 1px $grey-color;
     border-left: none;
     border-right: solid 1px $accent-color;
@@ -120,10 +120,9 @@
     color: white;
     margin-left: 0.625rem;
     background: $accent-color;
-    
+
     @include media-query($on-laptop){
       margin-left: 0;
-      margin-top: 0.5rem;
     }
   }
   .tab, .download a{
@@ -150,6 +149,7 @@ header .tabs{
 .tab-content {
   .tab {
     display: none;
+
     &.selected {
       display: block;
     }
@@ -219,7 +219,7 @@ p {
   &.slide-18{
     background-position: right;
   }
-  
+
   .wrapper{
     position: relative;
   }
@@ -231,17 +231,17 @@ p {
     padding: 0.5rem 0;
     font-weight: 400;
   }
-  
+
   h3 {
     font-size: 1rem;
     padding-bottom: 0.5rem;
     text-transform: uppercase;
   }
-  
+
   a{
     color: $accent-color;
     text-decoration: none;
-    
+
     &:hover{
       color: $accent-color-50;
     }
@@ -250,18 +250,18 @@ p {
   .lightbox-link{
     color: $accent-color;
   }
-  
+
   .fa{
     margin-right: 0.5rem;
   }
-  
+
   .fa-play{
     border: solid 1px $accent-color;
     padding: 0.125rem;
     padding-left: 0.2rem;
     font-size: 0.55rem;
   }
-  
+
   .book-cover{
     float: left;
     margin-right: 2rem;
@@ -345,18 +345,14 @@ header.white{
     position: relative;
   }
   color: white;
-  
+
   .content-wrapper{
-    z-index: 100;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
+    box-sizing: content-box;
     width: 80%;
   }
-  
+
   h1{display: none;}
-  
+
   .title, .intro{
     float: left;
     width: 50%;
@@ -373,18 +369,18 @@ header.white{
     margin: 2rem;
     left: 47%;
     position: absolute;
-    
+
     > div{
       float: left;
     }
-    
+
     .link {
       float: left;
       border-top: solid 1px white;
       padding-top: 0.3rem;
       text-transform: uppercase;
       font-weight: 500;
-      
+
       &:hover{
         color: $grey-color;
       }
@@ -394,13 +390,7 @@ header.white{
     }
     .explore .link{
       border-right: solid 1px white;
-      padding-right: 1rem;
     }
-    
-    .view-ar .link{
-      padding-left: 1rem;
-    }
-    
     .up, .down{
       position: absolute;
     }
@@ -410,14 +400,14 @@ header.white{
     .down{
       right: -1rem;
     }
-    
+
     .fa{
       display: block;
       font-size: 1.75rem;
       line-height: 1rem;
       margin-top: 5px;
     }
-    
+
     .arrows{
       position: relative;
       height: 25px;
@@ -429,7 +419,7 @@ header.white{
       transform-origin: 0%;
       color: white;
     }
-    
+
     .down{
       .arrow-1{
         animation: arrow-down 2.5s ease-in-out infinite;
@@ -447,9 +437,9 @@ header.white{
         animation: arrow-up 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
+
     @keyframes arrow-up {
-      0%   { 
+      0%   {
         opacity: 0;
       }
       30%{
@@ -458,12 +448,12 @@ header.white{
       50% {
         top: -45%;
       }
-      100% { 
+      100% {
         opacity: 0;
       }
     }
     @keyframes arrow-down {
-      0%   { 
+      0%   {
         opacity: 0;
       }
       30%{
@@ -472,28 +462,29 @@ header.white{
       50% {
         top: 45%;
       }
-      100% { 
+      100% {
         opacity: 0;
       }
     }
   }
-  
+
   @include media-query($on-laptop) {
     .content{
       margin: 0 2rem;
     }
-    
+
     .intro, .title{
       float: none;
       width: 100%;
-      
+
     }
     .nav{
       position: relative;
       left: auto;
     }
-    
+
     .content-wrapper{
+      padding-top: 3rem;
       width: 100%;
     }
   }
@@ -504,7 +495,7 @@ header.white{
   h1{
     margin-bottom: 1rem;
   }
- 
+
   table{
     width: 47.5%;
     float: left;
@@ -516,7 +507,7 @@ header.white{
       float: none;
       width: 100%;
     }
-    
+
     &.table1{
       margin-right: 5%;
     }
@@ -526,7 +517,7 @@ header.white{
     td:nth-child(2){
       width: 30%;
     }
-    
+
     thead{
       .year{
         background: rgb(156,156,156);
@@ -546,7 +537,7 @@ header.white{
         &:nth-child(1){
           border-right: solid 0.5rem $default-background-color;
         }
-        
+
       }
     }
     tbody{

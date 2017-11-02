@@ -15,7 +15,7 @@ import {
 } from './navigation';
 
 // History helper function
-const setHash = value => history.replaceState('', '', value);
+export const setHash = value => history.replaceState('', '', value);
 
 export const setProgramViewInUrl = () => {
   if (location.hash.indexOf('?program_view=true') === -1) {
