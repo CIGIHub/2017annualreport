@@ -11,6 +11,7 @@ export function putBackgroundImageIntoArticle() {
         const elementComputedStyle = window.getComputedStyle(slide);
         const backgroundImage = elementComputedStyle.getPropertyValue('background-image');
         const pTag = slide.querySelector('p');
+        const photoCaption = slide.querySelector('.photo-caption');
         if (backgroundImage != 'none' && pTag) {
             const backgroundImageURL = /url\("(.*)"\)/.exec(backgroundImage)[1];
             const parentElement = pTag.parentElement;
@@ -19,6 +20,9 @@ export function putBackgroundImageIntoArticle() {
             articleImage.className = 'bg-image';
             parentElement.insertBefore(articleImage, pTag);
             slide.classList.add(removeBgClass);
+            if (window.innerWidth <= 450 && photoCaption) {
+                parentElement.insertBefore(photoCaption, pTag);
+            }
         }
     });
 }
