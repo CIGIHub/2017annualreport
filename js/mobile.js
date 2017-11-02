@@ -114,7 +114,7 @@ function putBackgroundImageIntoArticle(element){
     if (backgroundImage != "none" && element.querySelector("p")){
         backgroundImageURL = backgroundImage.match(imageRegex)[0];
         var elementText = element.querySelector("p");
-        var parentElement = element.querySelector(".absolute");
+        var parentElement = element.querySelector(".absolute") ? element.querySelector(".absolute") : element.querySelector(".wrapper");
         var articleImage = new Image();
         articleImage.src = location.pathname + backgroundImageURL.slice(1, -2);
         parentElement.insertBefore(articleImage, elementText);
