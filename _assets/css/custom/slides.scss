@@ -79,20 +79,6 @@
   z-index: -1;
 }
 
-// @media (min-aspect-ratio: 4/3) {
-//   .fullscreen-bg-video {
-//     height: auto;
-//     width: 100%;
-//   }
-// }
-
-// @media (max-aspect-ratio: 4/3) {
-//   .fullscreen-bg-video {
-//     height: 100%;
-//     width: auto;
-//   }
-// }
-
 .tabs {
   margin-bottom: 1rem;
   color: $accent-color;
@@ -280,16 +266,25 @@ p {
 }
 
 .joint-message, .financials {
-  h1{
-    margin-bottom: 1rem;
-  }
-  h3 {
+  padding-top: 6rem;
+  h1, h3{
     display: none;
   }
-}
+  .tabs{
+    .tab.selected{
+      background: $grey-color;
+      color: white;
+    }
+  }
 
-.joint-message, .financials{
-  padding-top: 6rem;
+  @include media-query($small-screen){
+    .sig-image{
+      display: none;
+    }
+  }
+  @include media-query($small-phone){
+    padding-top: 3rem;
+  }
 }
 
 .cover-slide {
@@ -514,6 +509,7 @@ header.white{
     @include media-query($on-laptop){
       float: none;
       width: 100%;
+      font-size: 0.75rem;
     }
 
     &.table1{
@@ -533,11 +529,15 @@ header.white{
       }
       .title{
         background: rgb(204,203,200);
-        height: 4.2rem;
+        height: 3rem;
         font-weight: 500;
+        padding: 0 0.5rem;
         span{
           font-size: 0.75rem;
           font-weight: 300;
+        }
+        td{
+          padding: 0 0.5rem;
         }
       }
       td{
