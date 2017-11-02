@@ -669,24 +669,27 @@ function generateFilters() {
   };
   programSelectContainer.appendChild(programSelectContent);
   programSelectContainer.appendChild(programSelectToggler);
-  generatedFilters[4] = programSelectContainer;
+  generatedFilters[3] = programSelectContainer;
 
   clearButton = createDiv('select-clear pointer w4 mv1 ml1 fw5 f6 grey ttu hover-bg-black-10');
   clearButton.style.display = 'none';
   clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
-  generatedFilters[3] = clearButton;
+  generatedFilters[4] = clearButton;
   return generatedFilters;
 }
 
 let mountedFilterContainer;
+const filterWrapper = createDiv('wrapper bottom-0 left-0 right-0 absolute z-7');
+filterWrapper.setAttribute('id', 'timeline-filters');
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('flex-ns absolute items-end bottom-0 left-0 right-0 wrapper w-100 pb4-l z-7');
+    mountedFilterContainer = createDiv('flex-ns items-end w-100 pb4-ns');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
-  timelineSection.appendChild(mountedFilterContainer);
+  filterWrapper.appendChild(mountedFilterContainer);
+  timelineSection.appendChild(filterWrapper);
 }
 
 const generateTimelineVerticalLines = (lineTemplates, program = false, label = '') => {
@@ -972,7 +975,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   wrapper.style.transform = 'translateX(-50%)';
   wrapper.style.top = amplitude + 'px';
   // when the timeline has translated to the top
-  mountedFilterContainer.style.zIndex = 8;
+  filterWrapper.style.zIndex = 8;
   setTimeout(() => {
     mainTimeline.style.pointerEvents = null;
     if (timelineZoomed) {
@@ -983,7 +986,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
     timelineRoot.classList.add('timeline-top');
     timelineRoot.style.transform = null;
     mountedTimeoutFadeLayer.appendChild(backToTimeline);
-    mountedTimeoutFadeLayer.appendChild(mountedFilterContainer);
+    mountedTimeoutFadeLayer.appendChild(filterWrapper);
     // add the timeline container to the wrapper
     wrapper.appendChild(timelineRoot);
   }, 1000);
@@ -1043,7 +1046,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
       unmountExpandedViewContainer(expandedViewContainer);
     });
 
-    timelineSection.appendChild(mountedFilterContainer);
+    timelineSection.appendChild(filterWrapper);
     setTimeout(() => {
       if (timelineZoomed) {
         mainTimeline.style.transition = null;
@@ -1051,7 +1054,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
         timelineSqueezeStart();
       }
       reenableProgramSelectContainer();
-      mountedFilterContainer.style.zIndex = null;
+      filterWrapper.style.zIndex = null;
       timelineRoot.style.transition = null;
       timelineRoot.style.zIndex = null;
       disableOverlay();

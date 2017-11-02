@@ -13,18 +13,11 @@ galleryMagic();
 loadTabs();
 initializeLightboxMedia();
 
-if (window.innerWidth > 450) {
+console.log(window.innerWidth);
+
+// if (window.innerWidth > 450) {
     navigationMagic();
     photoCaptionMagic();
-} else {
-    mobileNavMagic();
-}
-
-function reloadWindow(){
-    if ((windowSize <= 450 && window.innerWidth > 450 )||( windowSize > 450 && window.innerWidth <= 450)){
-        console.log("reload");
-        window.location.reload();       
-    } 
-}
-
-window.onresize = reloadWindow;
+// } else {
+//     mobileNavMagic();
+// }

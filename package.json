@@ -117,7 +117,10 @@
       "prefer-const": 2,
       "quotes": [
         2,
-        "single"
+        "single",
+        {
+          "avoidEscape": true
+        }
       ],
       "semi": [
         2,
