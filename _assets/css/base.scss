@@ -1,3 +1,16 @@
+// Media queries
+
+$on-palm: 600px;
+$on-laptop: 880px;
+$small-screen: 1200px;
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+
 //Define Font Variables
 
 $base-font-family: 'futura-pt', Helvetica, Arial, sans-serif;
@@ -53,12 +66,6 @@ figure {
   margin: 0;
   padding: 0;
 }
-
-// Media queries
-
-$on-palm: 600px;
-$on-laptop: 880px;
-
 // Use media queries like this:
 // @include media-query($on-palm) {
 //   .wrapper {
@@ -66,11 +73,6 @@ $on-laptop: 880px;
 //     padding-left: $spacing-unit / 2;
 //   }
 // }
-@mixin media-query($device) {
-  @media screen and (max-width: $device) {
-    @content;
-  }
-}
 
 @mixin relative-font-size($ratio) {
   font-size: $base-font-size * $ratio;
@@ -79,7 +81,7 @@ $on-laptop: 880px;
 // Basic styling
 
 %font {
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font: $base-font-weight $base-font-size/#{$base-line-height} $base-font-family;
 }
 
 .font {
@@ -88,8 +90,10 @@ $on-laptop: 880px;
 
 body {
   @extend %font;
-
   color: $text-color;
+  @include media-query($small-screen) {
+    font-size: 14px;
+  }
 }
 
 %click-through-to-children {
