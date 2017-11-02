@@ -20,7 +20,7 @@ export function putBackgroundImageIntoArticle() {
             articleImage.className = 'bg-image';
             parentElement.insertBefore(articleImage, pTag);
             slide.classList.add(removeBgClass);
-            if (photoCaption) {
+            if (window.innerWidth <= 450 && photoCaption) {
                 parentElement.insertBefore(photoCaption, pTag);
             }
         }
