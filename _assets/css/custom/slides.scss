@@ -148,13 +148,10 @@ header .tabs{
 }
 
 .tab-content {
-  position: relative;
   .tab {
-    position: absolute;
-    visibility: hidden;
-    
+    display: none;
     &.selected {
-      visibility: visible;
+      display: block;
     }
   }
 }

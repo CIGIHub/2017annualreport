@@ -59,13 +59,8 @@ var mobileTOCLinks = function(){
     toggleAllSlides();
     
     // Some slides are named differently, doing specific checks for those
-    // Influential Research slide
-    if (slideClass == "slide-2"){
-        navigateTo = document.getElementsByClassName('joint-message cover-slide slide-2')[0];
-        hrefSlide = "slide=2";
-    }
     // timeline slide, scroll to top
-    else if (slideClass == "slide-0"){
+    if (slideClass == "slide-0"){
         scrollToTop();
         toggleTOCMenu();
         return;
@@ -75,14 +70,14 @@ var mobileTOCLinks = function(){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
         var presidentTab = document.querySelectorAll("[data-id='tab-1']")[0];
         presidentTab.click();
-        hrefSlide = "slide=3";
+        hrefSlide = "slide=2";
     }
     // Joint message slide - chair's message
     else if (slideClass == "chair"){
         navigateTo = document.getElementsByClassName('default-background joint-message')[0];
         var chairTab = document.querySelectorAll("[data-id='tab-2']")[0];
         chairTab.click();
-        hrefSlide = "slide=3";
+        hrefSlide = "slide=2";
     }
     // Photo Gallery slide
     else if (slideClass == "slide-18"){
@@ -90,9 +85,9 @@ var mobileTOCLinks = function(){
         hrefSlide = "slide=18";
     }
     // Financials Slide
-    else if (slideClass == "slide-17"){
+    else if (slideClass == "slide-16"){
         navigateTo = document.getElementsByClassName('financials')[0];
-        hrefSlide = "slide=17";
+        hrefSlide = "slide=16";
     }
     else {
         navigateTo = document.getElementsByClassName('standard-slide ' + slideClass)[0];
@@ -119,7 +114,7 @@ function putBackgroundImageIntoArticle(element){
     if (backgroundImage != "none" && element.querySelector("p")){
         backgroundImageURL = backgroundImage.match(imageRegex)[0];
         var elementText = element.querySelector("p");
-        var parentElement = element.querySelector(".absolute");
+        var parentElement = element.querySelector(".absolute") ? element.querySelector(".absolute") : element.querySelector(".wrapper");
         var articleImage = new Image();
         articleImage.src = location.pathname + backgroundImageURL.slice(1, -2);
         parentElement.insertBefore(articleImage, elementText);
