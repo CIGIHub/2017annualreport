@@ -114,6 +114,16 @@
     .fullscreen-bg-video{
         display: none;
     }
+    img {
+        padding-bottom: 0.5em;
+    }
+    .photo-caption{
+        margin: 0;
+        padding-bottom: 1em;
+        p:before {
+            display: none;
+        }
+    }
 }
 
 @media (min-width: 451px){
