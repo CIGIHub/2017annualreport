@@ -266,7 +266,7 @@ p {
 }
 
 .joint-message, .financials {
-  padding-top: 6rem;
+  padding-top: 8rem;
   h1, h3{
     display: none;
   }
@@ -278,6 +278,7 @@ p {
   }
 
   @include media-query($small-screen){
+    padding-top: 6rem;
     .sig-image{
       display: none;
     }
