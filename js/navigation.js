@@ -27,6 +27,7 @@ const mainTabs = document.getElementById('main-tabs');
 const header = document.getElementById('site-header');
 const upArrow = document.getElementsByClassName('explore')[0];
 const downArrow = document.getElementsByClassName('view-ar')[0];
+const presidentsMessageLink = document.querySelector("[data-id='tab-1']");
 const chairsMessageLink = document.querySelector("[data-id='tab-2']");
 const chairSlide = 2;
 
@@ -364,17 +365,19 @@ function injectLinksAndAddSideBar() {
       wrapper.appendChild(h2);
       const ul = content.reduce((acc, slide) => {
         const liClassName = 'dib pointer white f6 fw3 mt2 underline-hover list smooth';
-        const li = createEl('li', liClassName);
-        li.innerText = slide.slideName;
-        li.onclick = () => {
-          toggleTocOpen();
-          if (slide.slideNum !== currentSlide) {
-            updateNavigation(slide.slideNum, currentSlide);
-          }
-        };
-        acc.appendChild(li);
-        acc.appendChild(createEl('br'));
         if (slide.slideNum === chairSlide) {
+          const presidentLi = createEl('li', liClassName);
+          presidentLi.innerText = "President's Message";
+          presidentLi.onclick = () => {
+            toggleTocOpen();
+            if (slide.slideNum !== currentSlide) {
+              updateNavigation(slide.slideNum, currentSlide);
+            }
+            presidentsMessageLink.click();
+          };
+          acc.appendChild(presidentLi);
+          acc.appendChild(createEl('br'));
+
           const chairLi = createEl('li', liClassName);
           chairLi.innerText = "Chair's Message";
           chairLi.onclick = () => {
@@ -385,6 +388,17 @@ function injectLinksAndAddSideBar() {
             chairsMessageLink.click();
           };
           acc.appendChild(chairLi);
+          acc.appendChild(createEl('br'));
+        } else {
+          const li = createEl('li', liClassName);
+          li.innerText = slide.slideName;
+          li.onclick = () => {
+            toggleTocOpen();
+            if (slide.slideNum !== currentSlide) {
+              updateNavigation(slide.slideNum, currentSlide);
+            }
+          };
+          acc.appendChild(li);
           acc.appendChild(createEl('br'));
         }
         return acc;
@@ -400,16 +414,18 @@ function injectLinksAndAddSideBar() {
   function tocMobile() {
     const ul = createEl('ul');
     slides.forEach((slideName, i) => {
-      const li = createEl('li', 'pointer');
-      li.innerText = slideName;
-      li.onclick = () => {
-        toggleTocOpen();
-        if (i !== currentSlide) {
-          updateNavigation(i, currentSlide);
-        }
-      };
-      ul.appendChild(li);
       if (i === chairSlide) {
+        const presidentLi = createEl('li', 'pointer');
+        presidentLi.innerText = "President's Message";
+        presidentLi.onclick = () => {
+          toggleTocOpen();
+          if (i !== currentSlide) {
+            updateNavigation(i, currentSlide);
+            presidentsMessageLink.click();
+          }
+        };
+        ul.appendChild(presidentLi);
+
         const chairLi = createEl('li', 'pointer');
         chairLi.innerText = "Chair's Message";
         chairLi.onclick = () => {
@@ -420,6 +436,16 @@ function injectLinksAndAddSideBar() {
           }
         };
         ul.appendChild(chairLi);
+      } else {
+        const li = createEl('li', 'pointer');
+        li.innerText = slideName;
+        li.onclick = () => {
+          toggleTocOpen();
+          if (i !== currentSlide) {
+            updateNavigation(i, currentSlide);
+          }
+        };
+        ul.appendChild(li);
       }
     });
     tableOfContentsMobile.appendChild(ul);
