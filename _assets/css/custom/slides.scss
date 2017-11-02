@@ -65,25 +65,33 @@
   background-image: url('../assets/CIGI_Family_Photo_v1.jpg');
 }
 
-
-.fullscreen-bg {
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: -100;
-}
-
 .fullscreen-bg-video {
-  height: 100%;
-  left: 0;
-  object-fit: cover;
+  background-position: center center;
+  background-size: cover;
+  height: auto;
+  left: 50%;
+  min-height: 100vh;
+  min-width: 100vw;
   position: absolute;
   top: 0;
-  width: 100%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: -1;
 }
+
+// @media (min-aspect-ratio: 4/3) {
+//   .fullscreen-bg-video {
+//     height: auto;
+//     width: 100%;
+//   }
+// }
+
+// @media (max-aspect-ratio: 4/3) {
+//   .fullscreen-bg-video {
+//     height: 100%;
+//     width: auto;
+//   }
+// }
 
 .tabs {
   margin-bottom: 1rem;
