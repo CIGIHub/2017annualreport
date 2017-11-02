@@ -9,39 +9,59 @@
   background-image: url('../assets/cigi-campus-min.jpg');
 }
 
-.slide-5 {
+.slide-3{
+  background-image: url('../assets/innovation-series-still.png');
+}
+
+.slide-4 {
   background-image: url('../assets/nafta.jpg');
 }
 
-.slide-6{
+.slide-5{
   background-image: url('../assets/LWW_background-image.jpg');
 }
 
-.slide-7{
+.slide-6{
   background-image: url('../assets/laid_low_bg.jpg');
 }
 
-.slide-8 {
+.slide-7 {
   background-image: url('../assets/UNDRIP-min.jpg');
 }
 
-.slide-9 {
+.slide-8 {
   background-image: url('../assets/north-of-60-2.jpg');
 }
 
-.slide-10{
+.slide-9{
   background-image: url('../assets/low-carbon-economy-min.jpg');
 }
 
-.slide-15 {
+.slide-10{
+  background-image: url('../assets/Slide-Still-Windmill.png');
+}
+
+.slide-11{
+  background-image: url('../assets/Slide-Still-WRC.png');
+}
+
+.slide-12{
+  background-image: url('../assets/Slide-Still-Innovation_Knowledge.png');
+}
+
+.slide-13{
+  background-image: url('../assets/Slide-Still-Blockchain.png');
+}
+
+.slide-14 {
   background-image: url('../assets/IMF-min.jpg');
 }
 
-.slide-16 {
+.slide-15 {
   background-image: url('../assets/G20-min.jpg');
 }
 
-.slide-18 {
+.slide-17 {
   background-image: url('../assets/CIGI_Family_Photo_v1.jpg');
 }
 
@@ -83,7 +103,6 @@
   
   .tab.selected {
     color: $grey-color; 
-    //background: rgba(0, 0, 0, 0.25);
     border: solid 1px $grey-color;
     border-left: none;
     border-right: solid 1px $accent-color;
@@ -129,11 +148,13 @@ header .tabs{
 }
 
 .tab-content {
+  position: relative;
   .tab {
-    display: none;
+    position: absolute;
+    visibility: hidden;
     
     &.selected {
-      display: block;
+      visibility: visible;
     }
   }
 }
@@ -151,9 +172,10 @@ header .tabs{
 .photo-caption{
   color: $grey-color-dark;
   display: inline-block;
-  margin-left: -1em;
-  margin-top: 2em;
-  padding: 0.5em;
+  margin-left: -0.3em;
+  margin-top: 1em;
+  transition: color .5s ease-in, background-color .5s ease-in;
+  border-radius: 9999px;
   p {
     padding: 0;
     &:before{
@@ -165,16 +187,17 @@ header .tabs{
       font-size: 0.8em;
       margin-right: 0.5em;
       padding: 0.3em;
+      transition: color .5s ease-in;
     }
   }
   &:hover {
     background-color: rgba(0,0,0,0.5);
     border-radius: 9999px;
     color: $grey-color;
-    transition: color 1s ease-in, background-color 1s ease-in;
+    transition: color .5s ease-out, background-color .5s ease-out;
     p:before {
       color: $grey-color;
-      transition: color 1s ease-in;
+      transition: color .5s ease-out;
     }
   }
 }
@@ -208,8 +231,6 @@ p {
 .cover-slide,
 .standard-slide{
   h1 {
-    font-size: 3rem;
-    line-height: 3.35rem;
     padding: 0.5rem 0;
     font-weight: 400;
   }
@@ -262,6 +283,10 @@ p {
   }
 }
 
+.joint-message, .financials{
+  padding-top: 6rem;
+}
+
 .cover-slide {
   p{
     font-size: 1.1rem;
@@ -290,16 +315,17 @@ p {
   position: absolute;
   top: 0;
   width: 100%;
+  transition: opacity .5s ease-out;
 }
 
 .hide::before {
   opacity: 0;
-  transition: opacity 1s ease-in;
+  transition: opacity .5s ease-in;
 }
 
 .hide-text {
   opacity: 0;
-  transition: opacity 1s ease-in;
+  transition: opacity .5s ease-in;
 }
 
 .landing::before{
@@ -487,7 +513,6 @@ header.white{
     float: left;
     border-collapse: collapse;
     border-spacing: 0;
-    margin: 1rem 0;
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
     @include media-query($on-laptop){
@@ -512,14 +537,15 @@ header.white{
       }
       .title{
         background: rgb(204,203,200);
-        padding: 0.5rem 0;
-        margin-bottom: 0.5rem;
-        height: 3.75rem;
+        height: 4.2rem;
+        font-weight: 500;
+        span{
+          font-size: 0.75rem;
+          font-weight: 300;
+        }
       }
       td{
         text-align: center;
-        font-weight: 600;
-        padding: 0 0.25rem;
         &:nth-child(1){
           border-right: solid 0.5rem $default-background-color;
         }

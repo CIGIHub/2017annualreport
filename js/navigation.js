@@ -196,13 +196,13 @@ function injectLinksAndAddSideBar() {
     // and add entry to table of contents
     const section = sections[i];
     const h3s = section.getElementsByTagName('h3');
-    const subsection = h3s.length && h3s[0].innerHTML || 'Explore CIGI';
+    const subsection = h3s.length && h3s[0].innerHTML || 'Explore CIGI' ;
     const slideName = section.getElementsByTagName('h1')[0].innerText;
     slideNumToBackgroundVideo[i] = section.getElementsByClassName('fullscreen-bg-video')[0];
 
     const content = subsections.get(subsection);
     if (content === undefined) {
-      subsections.set(subsection, [{
+        subsections.set(subsection, [{
         title: slideName,
         slidenum: i,
       }]);
