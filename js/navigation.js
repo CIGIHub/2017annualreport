@@ -529,7 +529,7 @@ const navigationWheelHandler = e => {
   const currentTime = performance.now();
   const diff = currentTime - lastWheel;
   lastWheel = currentTime;
-  if (diff < 40) {
+  if (diff < 55) {
     return;
   }
   fadeInNavigationComponent(sidebar);
