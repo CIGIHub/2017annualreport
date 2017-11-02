@@ -498,16 +498,17 @@ header.white{
   h1{
     margin-bottom: 1rem;
   }
-
+  .small{
+    font-size: 0.75rem;
+    text-align: right;
+  }
   table{
     width: 47.5%;
     float: left;
-    border-collapse: collapse;
-    border-spacing: 0;
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
     @include media-query($small-screen){
-      font-size: 0.55rem;
+      font-size: 0.65rem;
     }
     @include media-query($small-phone){
       float: none;
@@ -525,22 +526,12 @@ header.white{
     }
 
     thead{
-      .year{
-        background: rgb(156,156,156);
-        color: white;
-      }
       .title{
-        background: rgb(204,203,200);
-        height: 3rem;
-        font-weight: 500;
-        padding: 0 0.5rem;
-        span{
-          font-size: 0.75rem;
-          font-weight: 300;
-        }
         td{
+          background: rgb(204,203,200);
           padding: 0 0.5rem;
         }
+        font-weight: 500;
       }
       td{
         text-align: center;
