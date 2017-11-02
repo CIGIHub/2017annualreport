@@ -266,7 +266,7 @@ p {
 }
 
 .joint-message, .financials {
-  padding-top: 8rem;
+  padding-top: 6rem;
   h1, h3{
     display: none;
   }
@@ -278,7 +278,7 @@ p {
   }
 
   @include media-query($small-screen){
-    padding-top: 6rem;
+    //padding-top: 6rem;
     .sig-image{
       display: none;
     }
@@ -508,7 +508,7 @@ header.white{
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
     @include media-query($small-screen){
-      font-size: 0.65rem;
+      font-size: 0.6rem;
     }
     @include media-query($small-phone){
       float: none;
