@@ -506,10 +506,12 @@ header.white{
     border-spacing: 0;
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
-    @include media-query($on-laptop){
+    @include media-query($small-screen){
+      font-size: 0.75rem;
+    }
+    @include media-query($small-phone){
       float: none;
       width: 100%;
-      font-size: 0.75rem;
     }
 
     &.table1{
