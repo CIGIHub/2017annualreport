@@ -35,7 +35,7 @@ function initializeTabs() {
 function toggleTabs(e) {
   const selectedTab = e.target.getAttribute('data-id');
   const selectedSlide = e.target.parentElement.getAttribute('data-slide');
-  const clearSelectedTabs = document.getElementById(selectedSlide).getElementsByClassName('tab');
+  const clearSelectedTabs = Array.from(document.getElementById(selectedSlide).getElementsByClassName('tab'));
   const parameter = window.location.hash.split('&');
 
   for (const item of clearSelectedTabs) {

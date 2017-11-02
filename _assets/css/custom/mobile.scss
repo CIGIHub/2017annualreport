@@ -76,7 +76,7 @@
     }
     .fa.hidden {
         display: none !important;
-      }
+    }
     h1 {
         font-size: 2em !important;
         line-height: 1.25em !important;
@@ -104,15 +104,13 @@
         font-size: 2em;
         box-shadow: 0 0 0.5rem $grey-25;
     }
-    .visibility-none{
-        visibility: hidden;
-    }
     .mobile-timeline-message{
         padding: 0 2em;
         h1{
             padding-bottom: 1em;
         }
     }
+    .explore,
     .fullscreen-bg-video{
         display: none;
     }
