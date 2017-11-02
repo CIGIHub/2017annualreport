@@ -35,7 +35,7 @@ const sections = document.getElementsByTagName('section');
 export const numberOfSections = sections.length;
 const slideNumToBackgroundVideo = new Array(numberOfSections);
 
-let mobile = false;
+export let mobile = false;
 
 function updateGlobalShareLinks() {
   const encodedURL = encodeURIComponent(location.href);
@@ -76,7 +76,9 @@ export function enableOverlay() {
   document.body.classList.add('overflow-hidden');
 }
 
-  function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
+let lastWheel = 0;
+
+function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
   if (isDesktopScrolling) {
     return;
   }
@@ -97,6 +99,7 @@ export function enableOverlay() {
     isDesktopScrolling = true;
     setTimeout(() => {
       isDesktopScrolling = false;
+      // lastWheel = 0;
     }, slideTransitionMs);
   }
   oldButton.classList.remove('active');
@@ -479,8 +482,6 @@ const navigationKeydownHandler = e => {
   setKeydownAndWheelFadeTimeout();
 };
 
-let lastWheel = 0;
-
 const mobileScrollHandler = () => {
   if (!mobile) {
     return;
@@ -502,7 +503,7 @@ const navigationWheelHandler = e => {
   const currentTime = performance.now();
   const diff = currentTime - lastWheel;
   lastWheel = currentTime;
-  if (diff < 200) {
+  if (diff < 40) {
     return;
   }
   fadeInNavigationComponent(sidebar);

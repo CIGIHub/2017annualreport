@@ -1,12 +1,13 @@
+import { mobile } from 'navigation';
+
 export default function photoCaptionMagic() {
-    
     function findParentElement (element, className) {
         while (element.className.indexOf(className) == -1){
             element = element.parentElement;
         }
-        return element;  
-    } 
-    
+        return element;
+    }
+
     function toggleText(element) {
         var children = element.childNodes;
         Array.from(children).forEach(function(child){
@@ -16,8 +17,11 @@ export default function photoCaptionMagic() {
             }
         });
     }
-    
+
     var toggleBackground = function() {
+        if (mobile) {
+            return;
+        }
         var wrapperElement = findParentElement(this, "bottom-0");
         var standardSlideElement = findParentElement(this, "standard-slide");
         var headerElement = document.getElementById('site-header');
@@ -27,7 +31,7 @@ export default function photoCaptionMagic() {
     }
 
     var photoCaptionElements = document.getElementsByClassName("photo-caption");
-    
+
     Array.from(photoCaptionElements).forEach(function(element) {
         element.addEventListener('mouseover', toggleBackground);
         element.addEventListener('mouseout', toggleBackground);
