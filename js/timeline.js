@@ -28,7 +28,6 @@ import {
 } from './permalink';
 
 import {
-  icons,
   monthNames,
 } from './constants';
 
@@ -685,7 +684,7 @@ filterWrapper.setAttribute('id', 'timeline-filters');
 function mountFilters() {
   if (!mountedFilterContainer) {
     const filters = generateFilters();
-    mountedFilterContainer = createDiv('flex-ns items-end w-100 pb4-ns');
+    mountedFilterContainer = createDiv('flex-ns items-end w-100 pb5-ns');
     mountElementsInArrayIntoParentInOrder(mountedFilterContainer, filters);
   }
   filterWrapper.appendChild(mountedFilterContainer);
@@ -850,10 +849,8 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         const previewContainer = createDiv('preview-container');
         const preview = createDiv('preview ' + (j < eightyPercentLength ? 'preview-right' : 'preview-left'));
 
-        const iconClass = icons[item.type];
         preview.innerHTML = (item.subtype[0] ? '<h4 class="ttu accent-color f7 pb1">' + item.subtype[0] + '</h4>' : '') +
-          '<p class="black letter-spacing-half-pixel f5">' + item.title + '</p>' +
-          '<i class="fa ' + iconClass + ' accent-color"></i>';
+          '<p class="black letter-spacing-half-pixel f5">' + item.title + '</p>';
         if (item.image) {
           const previewPicture = createDiv('preview-picture br-100 pa2');
           const previewPictureInner = createDiv('preview-picture-inner br-100');
@@ -1215,7 +1212,7 @@ function createArticleGroup(item) {
 `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
   viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
-  viewFullArticle.innerHTML = '<i class="fa fa-film"></i><span class="pl2">View Full Article</span></div>';
+  viewFullArticle.innerHTML = '<span>View Full Article</span>';
   article.appendChild(viewFullArticle);
   article.appendChild(share);
   const articleGroup = [article, articlePicture, articlePictureBlurred];
