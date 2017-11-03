@@ -356,7 +356,7 @@ header.white{
     color: white;
   }
   img{
-    filter: brightness(10);
+    filter: invert(100%) brightness(20);
   }
 }
 
