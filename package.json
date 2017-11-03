@@ -42,7 +42,8 @@
       [
         "env",
         {
-          "modules": false
+          "modules": false,
+          "loose": false
         }
       ]
     ]

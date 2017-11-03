@@ -15,7 +15,7 @@ export default function galleryMagic() {
   const gallery = document.getElementById('gallery');
   const loadingOverlay = createLoadOverlay();
   gallery.insertBefore(loadingOverlay, gallery.firstChild);
-  const images = [...gallery.getElementsByTagName('img')];
+  const images = Array.from(gallery.getElementsByTagName('img'));
   let moving = false;
   let wasMoving = false;
   let closing = false;
@@ -167,14 +167,14 @@ export default function galleryMagic() {
       lightbox.classList.add('enabled');
     };
   });
-
-  Promise.all(images.map(image => new Promise(resolve => {
+  window.promises = images.map(image => new Promise(resolve => {
     if (image.complete) {
       resolve();
     } else {
       image.onload = () => { resolve(); };
     }
-  }))).then(() => {
+  }));
+  window.gggg = Promise.all(window.promises).then(() => {
     loadingOverlay.style.display = 'none';
     new window.Packery(gallery, {
       itemSelector: '.gallery-img-wrapper',
