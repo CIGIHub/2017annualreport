@@ -61,8 +61,7 @@
 }
 
 .slide-15 {
-  //background-image: url('../assets/G20-min.jpg');
-  background-image: url('../assets/T20-background.jpg');
+  background-image: url('../assets/AP_17189508496888.jpg');
 }
 
 .slide-17 {
@@ -98,7 +97,7 @@
       border-left: solid 1px $accent-color;
     }
   }
-
+  
   .tab.selected {
     color: $grey-color;
     border: solid 1px $grey-color;
@@ -112,13 +111,13 @@
   .tab:first-child.selected{
     border-left: solid 1px $grey-color;
   }
-
+  
   .download a{
     display: block;
     color: white;
     margin-left: 0.625rem;
     background: $accent-color;
-
+    
     @include media-query($on-laptop){
       margin-left: 0;
     }
@@ -131,7 +130,7 @@
     &.selected:hover{
       background: transparent;
       color: $grey-color;
-
+      
     }
   }
 }
@@ -147,7 +146,7 @@ header .tabs{
 .tab-content {
   .tab {
     display: none;
-
+    
     &.selected {
       display: block;
     }
@@ -217,7 +216,7 @@ p {
   &.slide-17{
     background-position: right;
   }
-
+  
   .wrapper{
     position: relative;
   }
@@ -229,37 +228,37 @@ p {
     padding: 0.5rem 0;
     font-weight: 400;
   }
-
+  
   h3 {
     font-size: 1rem;
     padding-bottom: 0.5rem;
     text-transform: uppercase;
   }
-
+  
   a{
     color: $accent-color;
     text-decoration: none;
-
+    
     &:hover{
       color: $accent-color-50;
     }
   }
-
+  
   .lightbox-link{
     color: $accent-color;
   }
-
+  
   .fa{
     margin-right: 0.5rem;
   }
-
+  
   .fa-play{
     border: solid 1px $accent-color;
     padding: 0.125rem;
     padding-left: 0.2rem;
     font-size: 0.55rem;
   }
-
+  
   .book-cover{
     float: left;
     margin-right: 2rem;
@@ -280,7 +279,7 @@ p {
       color: white;
     }
   }
-
+  
   @include media-query($small-screen){
     h1, .sig-image{
       display: none;
@@ -350,46 +349,59 @@ header.white{
   }
 }
 
+
+
 .landing{
+  
+  .landing-content{
+    display: table;
+  }
+  
   .wrapper{
     position: relative;
   }
   color: white;
-
+  
   .content-wrapper{
     box-sizing: content-box;
     width: 80%;
   }
-
+  
   h1{display: none;}
-
-  .title, .intro{
-    float: left;
-    width: 50%;
-    padding-top: 2rem;
+  
+  .title, .content-text{
+    display: table-cell;
+    vertical-align: bottom;
   }
+
   .title{
-    font-size: 9rem;
-    line-height: 7rem;
-    font-weight: 800;
+    width: 40%;
+  }
+  
+  .content-text{
+    padding-bottom: 0.5rem;
+    padding-left: 4rem;
   }
 
+  .intro{
+    p{
+      margin-left: -2rem;
+      width: 95%;
+    }
+  }
+  
   .nav{
-    margin: 2rem;
-    left: 47%;
-    position: absolute;
-
     > div{
       float: left;
     }
-
+    
     .link {
       float: left;
       border-top: solid 1px white;
       padding-top: 0.3rem;
       text-transform: uppercase;
       font-weight: 500;
-
+      
       &:hover{
         color: $grey-color;
       }
@@ -409,14 +421,14 @@ header.white{
     .down{
       right: -1rem;
     }
-
+    
     .fa{
       display: block;
       font-size: 1.75rem;
       line-height: 1rem;
       margin-top: 5px;
     }
-
+    
     .arrows{
       position: relative;
       height: 25px;
@@ -428,7 +440,7 @@ header.white{
       transform-origin: 0%;
       color: white;
     }
-
+    
     .down{
       .arrow-1{
         animation: arrow-down 2.5s ease-in-out infinite;
@@ -437,7 +449,7 @@ header.white{
         animation: arrow-down 2.5s 1.25s ease-in-out infinite;
       }
     }
-
+    
     .up{
       .arrow-1{
         animation: arrow-up 2.5s ease-in-out infinite;
@@ -446,7 +458,7 @@ header.white{
         animation: arrow-up 2.5s 1.25s ease-in-out infinite;
       }
     }
-
+    
     @keyframes arrow-up {
       0%   {
         opacity: 0;
@@ -481,20 +493,35 @@ header.white{
     .content{
       margin: 0 2rem;
     }
-
+    
     .intro, .title{
       float: none;
-      width: 100%;
-
     }
     .nav{
       position: relative;
       left: auto;
     }
-
+    
     .content-wrapper{
       padding-top: 3rem;
       width: 100%;
+    }
+  }
+  // start stacking here
+  @include media-query(630px){
+    .landing-content{
+      display: block;
+    }
+    .title {
+      display: block;
+      width: 75%;
+      margin: auto;
+    }
+    img {
+      width: 100%;
+    }
+    .content{
+      margin: 0;
     }
   }
 }
@@ -520,7 +547,7 @@ header.white{
       float: none;
       width: 100%;
     }
-
+    
     &.table1{
       margin-right: 5%;
     }
@@ -530,7 +557,7 @@ header.white{
     td:nth-child(2){
       width: 30%;
     }
-
+    
     thead{
       .title{
         td{
@@ -544,7 +571,7 @@ header.white{
         &:nth-child(1){
           border-right: solid 0.5rem $default-background-color;
         }
-
+        
       }
     }
     tbody{
