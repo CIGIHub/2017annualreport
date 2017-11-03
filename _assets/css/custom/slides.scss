@@ -8,6 +8,9 @@
 .cover-slide{
   background-image: url('../assets/cigi-campus-min.jpg');
 }
+.slide-2, .slide-16{
+  background-image: url('../assets/canvas.jpg');
+}
 
 .slide-3{
   background-image: url('../assets/AR_InnovationSeries_mobile.jpg');
@@ -317,6 +320,9 @@ p {
   top: 0;
   width: 100%;
   transition: opacity .5s ease-out;
+}
+.slide-2::before, .slide-16::before{
+  background: rgba(255, 255, 255, 0.65);
 }
 
 .hide::before {
