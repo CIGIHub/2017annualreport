@@ -13,8 +13,6 @@ galleryMagic();
 loadTabs();
 initializeLightboxMedia();
 
-console.log(window.innerWidth);
-
 // if (window.innerWidth > 450) {
     navigationMagic();
     photoCaptionMagic();
