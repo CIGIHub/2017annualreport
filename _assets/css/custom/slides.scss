@@ -220,6 +220,12 @@ p {
   .wrapper{
     position: relative;
   }
+
+  .w-80-l{
+    @include media-query($small-screen){
+      width: 95%;
+    }
+  }
 }
 
 .cover-slide,
@@ -287,6 +293,11 @@ p {
   }
   @include media-query($small-phone){
     padding-top: 3rem;
+  }
+
+  .col {
+    column-count: 2;
+    column-width: 250px;
   }
 }
 
