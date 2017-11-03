@@ -268,7 +268,7 @@ p {
 
 .joint-message, .financials {
   padding-top: 6rem;
-  h1, h3{
+  h3{
     display: none;
   }
   .tabs{
@@ -279,8 +279,7 @@ p {
   }
 
   @include media-query($small-screen){
-    //padding-top: 6rem;
-    .sig-image{
+    h1, .sig-image{
       display: none;
     }
   }
