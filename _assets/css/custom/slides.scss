@@ -266,7 +266,7 @@ p {
 }
 
 .joint-message, .financials {
-  padding-top: 8rem;
+  padding-top: 6rem;
   h1, h3{
     display: none;
   }
@@ -278,7 +278,7 @@ p {
   }
 
   @include media-query($small-screen){
-    padding-top: 6rem;
+    //padding-top: 6rem;
     .sig-image{
       display: none;
     }
@@ -498,16 +498,17 @@ header.white{
   h1{
     margin-bottom: 1rem;
   }
-
+  .small{
+    font-size: 0.75rem;
+    text-align: right;
+  }
   table{
     width: 47.5%;
     float: left;
-    border-collapse: collapse;
-    border-spacing: 0;
     font-size: 0.875rem;
     border-bottom: double rgb(156,156,156);
     @include media-query($small-screen){
-      font-size: 0.75rem;
+      font-size: 0.6rem;
     }
     @include media-query($small-phone){
       float: none;
@@ -525,22 +526,12 @@ header.white{
     }
 
     thead{
-      .year{
-        background: rgb(156,156,156);
-        color: white;
-      }
       .title{
-        background: rgb(204,203,200);
-        height: 3rem;
-        font-weight: 500;
-        padding: 0 0.5rem;
-        span{
-          font-size: 0.75rem;
-          font-weight: 300;
-        }
         td{
+          background: rgb(204,203,200);
           padding: 0 0.5rem;
         }
+        font-weight: 500;
       }
       td{
         text-align: center;
@@ -552,6 +543,7 @@ header.white{
     }
     tbody{
       border-top: solid 1rem transparent;
+      line-height: 100%;
       td{
         &:nth-child(1){
           text-align: left;
