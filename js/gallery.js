@@ -25,7 +25,6 @@ export default function galleryMagic() {
   let time = 0;
 
   gallery.classList.add('cursor-grab');
-  gallery.style.overflowY = 'hidden';
   const galleryMouseDownEvent = e => {
     gallery.classList.remove('cursor-grab');
     document.body.classList.add('cursor-grabbing');
@@ -167,21 +166,14 @@ export default function galleryMagic() {
       lightbox.classList.add('enabled');
     };
   });
-  window.promises = images.map(image => new Promise(resolve => {
+
+  Promise.all(images.map(image => new Promise(resolve => {
     if (image.complete) {
       resolve();
     } else {
       image.onload = () => { resolve(); };
     }
-  }));
-  window.gggg = Promise.all(window.promises).then(() => {
+  }))).then(() => {
     loadingOverlay.style.display = 'none';
-    new window.Packery(gallery, {
-      itemSelector: '.gallery-img-wrapper',
-      layoutMode: 'packery',
-      horizontal: true,
-      resize: false,
-      gutter: 10,
-    });
   });
 }
