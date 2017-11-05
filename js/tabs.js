@@ -1,4 +1,5 @@
 import { setHash } from './permalink';
+import { sections, currentSlide } from './navigation';
 
 function initializeTabs() {
   const tab1 = document.querySelectorAll('[data-id="tab-1"]');
@@ -33,10 +34,9 @@ function initializeTabs() {
 }
 
 function toggleTabs(e) {
-  const selectedTab = e.target.getAttribute('data-id');
-  const selectedSlide = e.target.parentElement.getAttribute('data-slide');
-  const clearSelectedTabs = Array.from(document.getElementById(selectedSlide).getElementsByClassName('tab'));
-  const parameter = window.location.hash.split('&');
+  const selectedTab = e.target.dataset.id;
+  const clearSelectedTabs = Array.from(sections[currentSlide].getElementsByClassName('tab'));
+  const parameter = location.hash.split('&');
 
   for (const item of clearSelectedTabs) {
     item.classList.remove('selected');
@@ -46,7 +46,6 @@ function toggleTabs(e) {
     }
   }
 }
-
 
 const toggle = Array.from(document.getElementsByClassName('toggle'));
 

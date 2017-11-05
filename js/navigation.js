@@ -26,7 +26,7 @@ const chairsMessageLink = document.querySelector("[data-id='tab-2']");
 const chairSlide = 2;
 
 const smoothSlideContainer = document.getElementById('smooth-slide-container');
-const sections = document.getElementsByTagName('section');
+export const sections = Array.from(document.getElementsByTagName('section'));
 export const numberOfSections = sections.length;
 const slideNumToBackgroundVideo = new Array(numberOfSections);
 
