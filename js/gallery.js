@@ -1,5 +1,4 @@
 import {
-  nextTick,
   createDiv,
   createEl,
   closeSvg,
@@ -13,65 +12,15 @@ import {
 
 export default function galleryMagic() {
   const gallery = document.getElementById('gallery');
+  const galleryParent = gallery.parentElement;
   const loadingOverlay = createLoadOverlay();
-  gallery.insertBefore(loadingOverlay, gallery.firstChild);
+  galleryParent.insertBefore(loadingOverlay, galleryParent.firstChild);
   const images = Array.from(gallery.getElementsByTagName('img'));
-  let moving = false;
-  let wasMoving = false;
   let closing = false;
-  let startScroll = 0;
-  let startLeft = 0;
-  let offset = 0;
-  let time = 0;
-
-  gallery.classList.add('cursor-grab');
-  const galleryMouseDownEvent = e => {
-    gallery.classList.remove('cursor-grab');
-    document.body.classList.add('cursor-grabbing');
-    time = performance.now();
-    startScroll = e.clientX;
-    startLeft = gallery.scrollLeft;
-    moving = true;
-  };
-  const galleryMouseMoveEvent = e => {
-    if (!moving) return;
-    wasMoving = true;
-    offset = e.clientX - startScroll;
-    requestAnimationFrame(() => { gallery.scrollTo(startLeft - offset, 0); });
-  };
-
-  const smooth = (off) => {
-    const velocity = off / time * 30;
-    const gg = (vel, scrollLeft) => {
-      const newScrollLeft = scrollLeft - vel;
-      gallery.scrollTo(newScrollLeft, 0);
-      if (Math.abs(vel) > 1) {
-        requestAnimationFrame(() => gg(vel * 0.9, newScrollLeft));
-      }
-    };
-    requestAnimationFrame(() => gg(velocity, startLeft - off));
-  };
-
-  const galleryMouseUpEvent = () => {
-    if (!moving) return;
-    document.body.classList.remove('cursor-grabbing');
-    gallery.classList.add('cursor-grab');
-    time = performance.now() - time;
-    if (offset !== 0) {
-      smooth(offset);
-      offset = 0;
-    }
-    moving = false;
-    nextTick(() => { wasMoving = false; });
-  };
 
   Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
 
-  gallery.onmousedown = galleryMouseDownEvent;
-  document.addEventListener('mousemove', galleryMouseMoveEvent);
-  document.addEventListener('mouseup', galleryMouseUpEvent);
-
-  const imageIndexToPhotoContainer = Array(images.length);
+  const imageIndexToPhotoContainer = new Array(images.length);
 
   const lightbox = createDiv('lightbox overflow-hidden bg-black');
   let currentPhotocontainer = null;
@@ -95,7 +44,7 @@ export default function galleryMagic() {
 
   function generatePhotoContainer(i) {
     const image = images[i];
-    const photoContainer = createDiv('photo-container');
+    const photoContainer = createDiv('media-container');
     const photoWrapper = createDiv('relative');
     const caption = createDiv('w-100 fw5 mt2');
     caption.innerText = image.alt;
@@ -154,7 +103,7 @@ export default function galleryMagic() {
 
   images.forEach((image, i) => {
     image.onclick = () => {
-      if (wasMoving || closing) {
+      if (closing) {
         return;
       }
       const photoContainer = imageIndexToPhotoContainer[i] || generatePhotoContainer(i);

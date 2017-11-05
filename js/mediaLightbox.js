@@ -13,6 +13,9 @@ const tweets = document.getElementsByClassName('twitter-lightbox');
 const youtubes = document.getElementsByClassName('youtube-lightbox');
 const soundclouds = document.getElementsByClassName('soundcloud-lightbox');
 
+const youtubeWidth = 640;
+const soundCloudWidth = 600;
+
 const tweetIdToTweetContainer = {};
 const youtubeIdToYoutubeContainer = {};
 const soundcloudUrlToSoundcloudContainer = {};
@@ -40,7 +43,7 @@ lightbox.onclick = e => {
 };
 
 function createTweetContainer(tweetId) {
-  const tweetContainer = createDiv('photo-container');
+  const tweetContainer = createDiv('media-container');
   lightbox.appendChild(loadOverlay);
 
   const closeButton = createDiv('close-button pointer dim');
@@ -63,14 +66,15 @@ function createTweetContainer(tweetId) {
   return tweetContainer;
 }
 function createYoutubeContainer(youtubeId) {
-  const youtubeContainer = createDiv('photo-container');
+  const youtubeContainer = createDiv('media-container');
   lightbox.appendChild(loadOverlay);
 
   const closeButton = createDiv('close-button pointer dim');
   closeButton.innerHTML = closeSvg;
   closeButton.onclick = closeLightbox;
 
-  youtubeContainer.innerHTML = `<iframe type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${youtubeId}?fs=0&modestbranding=1&autoplay=1" frameborder="0"></iframe>`;
+  youtubeContainer.innerHTML = `<iframe type="text/html" width="100%" height="360" src="https://www.youtube.com/embed/${youtubeId}?fs=0&modestbranding=1&autoplay=1" frameborder="0"></iframe>`;
+  youtubeContainer.style.width = `${youtubeWidth}px`;
   youtubeContainer.appendChild(closeButton);
   loadOverlay.remove();
 
@@ -79,14 +83,15 @@ function createYoutubeContainer(youtubeId) {
 }
 
 function createSoundcloudContainer(soundcloudId, soundcloudUrl) {
-  const soundcloudContainer = createDiv('photo-container');
+  const soundcloudContainer = createDiv('media-container');
   lightbox.appendChild(loadOverlay);
 
   const closeButton = createDiv('close-button pointer dim');
   closeButton.innerHTML = closeSvg;
   closeButton.onclick = closeLightbox;
 
-  soundcloudContainer.innerHTML = `<iframe width="600" height="160" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${soundcloudId}&amp;auto_play=true&amp;show_artwork=true&amp;color=e6023b"></iframe>`;
+  soundcloudContainer.innerHTML = `<iframe width="100%" height="160" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${soundcloudId}&amp;auto_play=true&amp;show_artwork=true&amp;color=e6023b"></iframe>`;
+  soundcloudContainer.style.width = soundCloudWidth;
   soundcloudContainer.appendChild(closeButton);
   loadOverlay.remove();
 
@@ -141,12 +146,3 @@ export default function initializeLightboxMedia() {
     };
   });
 }
-/*
-window.twttr.widgets.createTweet(
-  '',
-  document.getElementById('first-tweet'),
-  {
-    align: 'left',
-  }
-);
-*/
