@@ -3,7 +3,7 @@
 # Transforming the Global Refugee System
 
 <div class="img-container">
-  <img src="../assets/Slide-Still-WRC.png" alt="">
+  <img src="assets/Slide-Still-WRC.png" alt="">
 </div>
 
 Twenty-one million people are refugees and the number continues to rise. The international response has been uneven, prompting CIGI to convene thought leaders and innovators from around the globe to advance a new vision of global cooperation for refugee protection.

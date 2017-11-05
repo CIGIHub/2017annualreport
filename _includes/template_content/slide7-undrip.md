@@ -3,7 +3,7 @@
 # A new legal framework for Indigenous rights
 
 <div class="img-container">
-  <img src="../assets/UNDRIP-min.jpg" alt="">
+  <img src="assets/UNDRIP-min.jpg" alt="">
 </div>
 <div class="photo-caption">
   <em>Natives Playing on the Land</em> by Lawrence Paul Yuxweluptun

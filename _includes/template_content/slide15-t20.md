@@ -3,7 +3,7 @@
 # CIGI at the T20 and G20 Summits
 
 <div class="img-container">
-  <img src="../assets/T20-background.jpg" alt="">
+  <img src="assets/T20-background.jpg" alt="">
 </div>
 <div class="photo-caption">
   Global Solutions/Tobias Koch

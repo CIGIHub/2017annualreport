@@ -3,7 +3,7 @@
 # IMF Meetings: Focal Point for the Global Economy
 
 <div class="img-container">
-  <img src="../assets/IMF-min.jpg" alt="">
+  <img src="assets/IMF-min.jpg" alt="">
 </div>
 
 The meetings of the International Monetary Fund (IMF) and the World Bank Group bring together an impressive group of leaders, executives and academics to discuss subjects of global concern with specific attention to the outlook of the economy, global financial stability and economic development. CIGI plays a significant role in those discussions.
