@@ -254,7 +254,7 @@ function injectLinksAndAddSideBar() {
   }
 
   buttons[currentSlide].classList.add('active');
-  const tableOfContentsDesktop = createDiv('pt5 pt6-ns pl3 pl0-ns pr3 pr0-ns fixed vh-100 w-100 bg-black-90 left-0 top-0 z-7');
+  const tableOfContentsDesktop = createDiv('pt6 pb4 fixed vh-100 w-100 bg-black-90 left-0 top-0 z-7');
   const tableOfContentsMobile = createDiv('toc-mobile-wrapper z-7');
   const tableOfContentsWrapper = createDiv('z-7');
   tableOfContentsWrapper.appendChild(tableOfContentsDesktop);
