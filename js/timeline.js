@@ -126,7 +126,7 @@ export function changeExpandedViewArticle(newItem, direction) {
 }
 
 const width = timelineRoot.clientWidth;
-const waveNumber = 2 * Math.PI / width;
+let waveNumber = 2 * Math.PI / width;
 let height = 2 * amplitude;
 const sinFunc = sinFuncWithAmplitudeWaveNumberAndYOffset(amplitude, waveNumber, amplitude);
 
@@ -963,7 +963,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
     mainTimeline.style.height = height + 'px';
     timelineRoot.style.transform = translateY;
     if (timelineZoomed) {
-      readjustTimeline(initialPositionX);
+      readjustTimeline(initialPositionX + changeX);
     }
   });
 
@@ -1037,7 +1037,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
       clearMountedPoint();
       mainTimeline.style.height = height + 'px';
       if (timelineZoomed) {
-        readjustTimeline(initialPositionX);
+        readjustTimeline(initialPositionX + changeX);
       }
       timelineRoot.style.transform = null;
       unmountExpandedViewContainer(expandedViewContainer);
@@ -1221,6 +1221,7 @@ function createArticleGroup(item) {
 }
 
 let initialPositionX = 0;
+let changeX = 0;
 let clickXAtGrabStart = 0;
 let offsetX = 0;
 let lastAnimationFrame = 0;
@@ -1239,6 +1240,12 @@ const timelineMouseDownEventHandler = e => {
 const readjustTimeline = x => {
   mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
 };
+
+const calculateInitialCondition = () => {
+  waveNumber = 2 * Math.PI / timelineRoot.clientWidth;
+  initialPositionX = ~~(timelineRoot.getBoundingClientRect().left) * 11;
+};
+
 const timelineMousemoveEventHandler = e => {
   e.stopPropagation();
   lastAnimationFrame = requestAnimationFrame(() => {
@@ -1248,7 +1255,7 @@ const timelineMousemoveEventHandler = e => {
     } else {
       offsetX = newOffsetX;
     }
-    readjustTimeline(initialPositionX + offsetX);
+    readjustTimeline(initialPositionX + changeX + offsetX);
   });
 };
 
@@ -1256,7 +1263,7 @@ const timelineMouseUpEventHandler = e => {
   e.stopPropagation();
   // cancel last animation frame to prevent the callback from overriding offsetX after this function is called
   cancelAnimationFrame(lastAnimationFrame);
-  initialPositionX += offsetX;
+  changeX += offsetX;
   offsetX = 0;
   timelineSection.classList.remove('cursor-grabbing');
   timelineFlexWrapper.classList.add('cursor-grab');
@@ -1278,6 +1285,18 @@ userHintZoomIn.style.transition = 'all 1s ease';
 const timelineZoomMs = 1000;
 let zooming = false;
 const monthlyViewTimelineVerticalLines = generateTimelineVerticalLines(calculateLinePositions(monthlyViewLineTemplates));
+
+let lastWidth = 0;
+const timelineResizeHandler = () => {
+  const currentWidth = window.innerWidth;
+  if (lastWidth !== 0) {
+    changeX += (lastWidth - currentWidth) * 6;
+  }
+  lastWidth = currentWidth;
+  calculateInitialCondition();
+  readjustTimeline(initialPositionX + changeX);
+};
+
 const timelineDoubleClickEventHandler = e => {
   e.stopPropagation();
   if (zooming) {
@@ -1287,7 +1306,7 @@ const timelineDoubleClickEventHandler = e => {
   mainTimeline.style.transition = `all ${timelineZoomMs}ms ease`;
   if (timelineZoomed) {
     userHint1.style.display = null;
-    userHint2.style.display = 'none';
+    userHint2.style.display = null;
     userHintHover.classList.add('fade-in-1');
     userHintZoomIn.classList.add('fade-in-2');
     userHintGrab.classList.remove('fade-in-1');
@@ -1296,6 +1315,7 @@ const timelineDoubleClickEventHandler = e => {
     mainTimeline.classList.remove('timeline-zoomed-in');
     height /= 1.8;
     initialPositionX = 0;
+    changeX = 0;
     timelineFlexWrapper.classList.remove('cursor-grab');
     mainTimeline.classList.remove('cursor-grab');
     unmountElementsInArray(monthlyViewTimelineVerticalLines);
@@ -1314,9 +1334,11 @@ const timelineDoubleClickEventHandler = e => {
     timelineFlexWrapper.removeEventListener('mousedown', timelineMouseDownEventHandler, false);
     mainTimeline.removeEventListener('mousedown', timelineMouseDownEventHandler, false);
     document.removeEventListener('mouseup', timelineMouseUpEventHandler, false);
+    window.removeEventListener('resize', timelineResizeHandler, false);
+    lastWidth = 0;
   } else {
     userHint1.style.display = 'none';
-    userHint2.style.display = null;
+    userHint2.style.display = 'block';
     userHintHover.classList.remove('fade-in-1');
     userHintZoomIn.classList.remove('fade-in-2');
     userHintGrab.classList.add('fade-in-1');
@@ -1327,13 +1349,12 @@ const timelineDoubleClickEventHandler = e => {
     disableProgramSelectContainer();
     mainTimeline.classList.add('timeline-zoomed-in');
     height *= 1.8;
-    const timelineBoundingClientRect = mainTimeline.getBoundingClientRect();
-    initialPositionX = (~~(timelineBoundingClientRect.left) - e.clientX) * 11;
-
+    calculateInitialCondition();
+    changeX = -e.clientX * 11;
     defaultTimelineVerticalLines && unmountElementsInArray(defaultTimelineVerticalLines);
     requestAnimationFrame(() => {
       mainTimeline.style.width = '1200%';
-      readjustTimeline(initialPositionX);
+      readjustTimeline(initialPositionX + changeX);
     });
     const whenTimelineHasZoomedIn = () => {
       timelineZoomed = true;
@@ -1345,6 +1366,7 @@ const timelineDoubleClickEventHandler = e => {
       timelineFlexWrapper.addEventListener('mousedown', timelineMouseDownEventHandler, false);
       mainTimeline.addEventListener('mousedown', timelineMouseDownEventHandler, false);
       document.addEventListener('mouseup', timelineMouseUpEventHandler, false);
+      window.addEventListener('resize', timelineResizeHandler, false);
     };
     setTimeout(whenTimelineHasZoomedIn, timelineZoomMs);
   }

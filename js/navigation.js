@@ -102,10 +102,10 @@ function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
   }
   oldButton.classList.remove('active');
   newButton.classList.add('active');
-  updateGlobalShareLinks();
   changeSlideInUrl(newIndex);
   if (slide) scrollViewToSlideIndex(newIndex, transition);
   currentSlide = newIndex;
+  updateGlobalShareLinks();
   handleNavigationButtonsFade();
 }
 
@@ -512,7 +512,7 @@ const navigationWheelHandler = e => {
   if (overlayEnabled || mobile) {
     return;
   }
-  const currentTime = performance.now();
+  const currentTime = e.timeStamp;
   const diff = currentTime - lastWheel;
   lastWheel = currentTime;
   if (diff < 55) {

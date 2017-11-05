@@ -516,7 +516,7 @@ $article-slide-timing-function: ease-in-out;
 .select-container,
 .select-clear {
   border: 1px solid $grey-25;
-  min-height: 1.5rem;
+  min-height: 25px;
   user-select: none;
 }
 
@@ -573,11 +573,11 @@ $article-slide-timing-function: ease-in-out;
 
 .user-select-none {
   user-select: none;
-  font-size: 0.65rem;
-  .arrow{
-    width: 1.5rem;
-    height: 1.5rem;
-  }
+}
+
+.arrow {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .important-grey {
