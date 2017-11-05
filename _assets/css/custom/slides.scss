@@ -1,71 +1,13 @@
 //Background Images
 
-.landing{
+.landing {
   background-image: url('../assets/CIGI_Campus-bw-min.jpg');
   filter: saturate(1.2);
 }
 
-.cover-slide{
-  background-image: url('../assets/cigi-campus-min.jpg');
-}
-.slide-2, .slide-16{
+.slide-2,
+.slide-16 {
   background-image: url('../assets/canvas.jpg');
-}
-
-.slide-3{
-  background-image: url('../assets/AR_InnovationSeries_mobile.jpg');
-}
-
-.slide-4 {
-  background-image: url('../assets/nafta.jpg');
-}
-
-.slide-5{
-  background-image: url('../assets/LWW_background-image.jpg');
-}
-
-.slide-6{
-  background-image: url('../assets/laid_low_bg.jpg');
-}
-
-.slide-7 {
-  background-image: url('../assets/UNDRIP-min.jpg');
-}
-
-.slide-8 {
-  background-image: url('../assets/north-of-60-2.jpg');
-}
-
-.slide-9{
-  background-image: url('../assets/low-carbon-economy-min.jpg');
-}
-
-.slide-10{
-  background-image: url('../assets/Slide-Still-Windmill.png');
-}
-
-.slide-11{
-  background-image: url('../assets/Slide-Still-WRC.png');
-}
-
-.slide-12{
-  background-image: url('../assets/Slide-Still-Innovation_Knowledge.png');
-}
-
-.slide-13{
-  background-image: url('../assets/Slide-Still-Blockchain.png');
-}
-
-.slide-14 {
-  background-image: url('../assets/IMF-min.jpg');
-}
-
-.slide-15 {
-  background-image: url('../assets/AP_17189508496888.jpg');
-}
-
-.slide-17 {
-  background-image: url('../assets/CIGI_Family_Photo_v2.jpg');
 }
 
 .fullscreen-bg-video {
@@ -83,70 +25,79 @@
 }
 
 .tabs {
-  margin-bottom: 1rem;
   color: $accent-color;
+  margin-bottom: 1rem;
   overflow: auto;
-  .tab, .download a{
+
+  .tab,
+  .download a {
     border: solid 1px $accent-color;
-    border-left: none;
+    border-left: 0;
     cursor: pointer;
     float: left;
-    padding: 0 0.5rem;
     font-size: 0.875rem;
-    &:first-child{
+    padding: 0 0.5rem;
+
+    &:first-child {
       border-left: solid 1px $accent-color;
     }
   }
-  
+
   .tab.selected {
-    color: $grey-color;
     border: solid 1px $grey-color;
-    border-left: none;
+    border-left: 0;
     border-right: solid 1px $accent-color;
+    color: $grey-color;
     cursor: default;
   }
-  .tab:last-child.selected, .tab[data-id='tab-3'].selected{
+
+  .tab:last-child.selected,
+  .tab[data-id='tab-3'].selected {
     border-right: solid 1px $grey-color;
   }
-  .tab:first-child.selected{
+
+  .tab:first-child.selected {
     border-left: solid 1px $grey-color;
   }
-  
-  .download a{
-    display: block;
-    color: white;
-    margin-left: 0.625rem;
+
+  .download a {
     background: $accent-color;
-    
-    @include media-query($on-laptop){
+    color: white;
+    display: block;
+    margin-left: 0.625rem;
+
+    @include media-query($on-laptop) {
       margin-left: 0;
     }
   }
-  .tab, .download a{
-    &:hover{
+
+  .tab,
+  .download a {
+    &:hover {
       background: $accent-color-50;
       color: white;
     }
-    &.selected:hover{
+
+    &.selected:hover {
       background: transparent;
       color: $grey-color;
-      
     }
   }
 }
 
-header .tabs{
+header .tabs {
   margin-top: 0.25rem;
-  .tab{
-    text-transform: uppercase;
+
+  .tab {
     font-size: 0.75rem;
+    text-transform: uppercase;
   }
 }
 
 .tab-content {
   .tab {
     display: none;
-    
+
     &.selected {
       display: block;
     }
@@ -163,40 +114,41 @@ header .tabs{
   padding: 0.1em 0.25em;
 }
 
-.photo-caption{
+.photo-caption {
+  align-self: flex-start;
+  border-radius: 9999px;
   color: $grey-color-dark;
-  display: inline-block;
   margin-left: -0.3em;
   margin-top: 1em;
-  transition: color .5s ease-in, background-color .5s ease-in;
-  border-radius: 9999px;
-  p {
-    padding: 0;
-    &:before{
-      border-radius: 50%;
-      border: 1px solid;
-      color: $accent-color;
-      content: "\f030";
-      font-family: FontAwesome;
-      font-size: 0.8em;
-      margin-right: 0.5em;
-      padding: 0.3em;
-      transition: color .5s ease-in;
-    }
+  order: 1;
+  transition: color 0.5s ease-in, background-color 0.5s ease-in;
+
+  &::before {
+    border: 1px solid;
+    border-radius: 50%;
+    color: $accent-color;
+    content: '\f030';
+    font-family: FontAwesome;
+    font-size: 0.8em;
+    margin-right: 0.5em;
+    padding: 0.3em;
+    transition: color 0.5s ease-in;
   }
+
   &:hover {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 9999px;
     color: $grey-color;
-    transition: color .5s ease-out, background-color .5s ease-out;
-    p:before {
+    transition: color 0.5s ease-out, background-color 0.5s ease-out;
+
+    p::before {
       color: $grey-color;
-      transition: color .5s ease-out;
+      transition: color 0.5s ease-out;
     }
   }
 }
 
-.no-opacity{
+.no-opacity {
   opacity: 0;
 }
 
@@ -207,91 +159,78 @@ p {
 //Cover Slide
 
 .landing,
-.cover-slide,
 .standard-slide {
-  background-position: center;
-  background-size: cover;
   overflow: hidden;
   position: relative;
-  &.slide-17{
-    background-position: right;
-  }
-  
-  .wrapper{
-    position: relative;
-  }
-
-  .w-80-l{
-    @include media-query($small-screen){
-      width: 95%;
-    }
-  }
 }
 
-.cover-slide,
-.standard-slide{
+.standard-slide {
   h1 {
-    padding: 0.5rem 0;
     font-weight: 400;
+    padding: 0.5rem 0;
   }
-  
+
   h3 {
     font-size: 1rem;
     padding-bottom: 0.5rem;
     text-transform: uppercase;
   }
-  
-  a{
+
+  a {
     color: $accent-color;
     text-decoration: none;
-    
-    &:hover{
+
+    &:hover {
       color: $accent-color-50;
     }
   }
-  
-  .lightbox-link{
+
+  .lightbox-link {
     color: $accent-color;
   }
-  
-  .fa{
+
+  .fa {
     margin-right: 0.5rem;
   }
-  
-  .fa-play{
+
+  .fa-play {
     border: solid 1px $accent-color;
+    font-size: 0.55rem;
     padding: 0.125rem;
     padding-left: 0.2rem;
-    font-size: 0.55rem;
   }
-  
-  .book-cover{
+
+  .book-cover {
     float: left;
     margin-right: 2rem;
-    @include media-query($on-laptop){
+    @include media-query($on-laptop) {
       display: none;
     }
   }
 }
 
-.joint-message, .financials {
+.joint-message,
+.financials {
   padding-top: 6rem;
-  h3{
+
+  h3 {
     display: none;
   }
-  .tabs{
-    .tab.selected{
+
+  .tabs {
+    .tab.selected {
       background: $grey-color;
       color: white;
     }
   }
-  
-  @include media-query($small-screen){
-    h1, .sig-image{
+
+  @include media-query($small-screen) {
+    h1,
+    .sig-image {
       display: none;
     }
   }
-  @include media-query($small-phone){
+  @include media-query($small-phone) {
     padding-top: 3rem;
   }
 
@@ -301,26 +240,18 @@ p {
   }
 }
 
-.cover-slide {
-  p{
-    font-size: 1.1rem;
-  }
-  h1 {
-    color: $accent-color;
-    font-size: 2.75rem;
-    margin-bottom: 2rem;
-  }
-  @include media-query($on-laptop) {
-    .wrapper > div{
-      width: 100%;
-    }
-  }
+.hide .img-container::before {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
 }
 
-.landing::before,
-.cover-slide::before,
-.standard-slide::before {
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
+.hide-text {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.landing::before {
+  background: rgba(215, 3, 24, 0.68);
   content: ' ';
   display: block;
   height: 100%;
@@ -329,171 +260,169 @@ p {
   position: absolute;
   top: 0;
   width: 100%;
-  transition: opacity .5s ease-out;
-}
-.slide-2::before, .slide-16::before{
-  background: rgba(255, 255, 255, 0.65);
-}
-
-.hide::before {
-  opacity: 0;
-  transition: opacity .5s ease-in;
-}
-
-.hide-text {
-  opacity: 0;
-  transition: opacity .5s ease-in;
-}
-
-.landing::before{
-  background: rgba(215,3,24,0.68);
 }
 
 // Landing Page
 
-header.white{
-  a, .fa{
+header.white {
+  a,
+  .fa {
     color: white;
   }
-  img{
+
+  img {
     filter: invert(100%) brightness(20);
   }
 }
 
-
-
-.landing{
-  
-  .landing-content{
+.landing {
+  .landing-content {
     display: table;
   }
-  
-  .wrapper{
+
+  .wrapper {
     position: relative;
   }
   color: white;
-  
-  .content-wrapper{
+
+  .content-wrapper {
     box-sizing: content-box;
     width: 80%;
   }
-  
-  h1{display: none;}
-  
-  .title, .content-text{
+
+  h1 {display: none;}
+
+  .title,
+  .content-text {
     display: table-cell;
     vertical-align: bottom;
   }
 
-  .title{
+  .title {
     width: 40%;
   }
-  
-  .content-text{
+
+  .content-text {
     padding-bottom: 0.5rem;
     padding-left: 4rem;
   }
 
-  .intro{
-    p{
+  .intro {
+    p {
       margin-left: -2rem;
       width: 95%;
     }
   }
-  
-  .nav{
-    > div{
+
+  .nav {
+    > div {
       float: left;
     }
-    
+
     .link {
-      float: left;
       border-top: solid 1px white;
+      float: left;
+      font-weight: 500;
       padding-top: 0.3rem;
       text-transform: uppercase;
-      font-weight: 500;
-      
-      &:hover{
+
+      &:hover {
         color: $grey-color;
       }
     }
-    .explore, .view-ar{
+
+    .explore,
+    .view-ar {
       position: relative;
     }
-    .explore .link{
+
+    .explore .link {
       border-right: solid 1px white;
     }
-    .up, .down{
+
+    .up,
+    .down {
       position: absolute;
     }
-    .up{
+
+    .up {
       left: -2rem;
     }
-    .down{
+
+    .down {
       right: -1rem;
     }
-    
-    .fa{
+
+    .fa {
       display: block;
       font-size: 1.75rem;
       line-height: 1rem;
       margin-top: 5px;
     }
-    
-    .arrows{
-      position: relative;
+
+    .arrows {
       height: 25px;
+      position: relative;
     }
-    .arrow{
-      opacity: 1;
-      top: 0;
-      position: absolute;
-      transform-origin: 0%;
+
+    .arrow {
       color: white;
+      opacity: 1;
+      position: absolute;
+      top: 0;
+      transform-origin: 0%;
     }
-    
-    .down{
-      .arrow-1{
+
+    .down {
+      .arrow-1 {
         animation: arrow-down 2.5s ease-in-out infinite;
       }
-      .arrow-2{
+
+      .arrow-2 {
         animation: arrow-down 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
-    .up{
-      .arrow-1{
+
+    .up {
+      .arrow-1 {
         animation: arrow-up 2.5s ease-in-out infinite;
       }
-      .arrow-2{
+
+      .arrow-2 {
         animation: arrow-up 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
+
     @keyframes arrow-up {
-      0%   {
+      0% {
         opacity: 0;
       }
-      30%{
+
+      30% {
         opacity: 1;
       }
+
       50% {
         top: -45%;
       }
+
       100% {
         opacity: 0;
       }
     }
     @keyframes arrow-down {
-      0%   {
+      0% {
         opacity: 0;
       }
-      30%{
+
+      30% {
         opacity: 1;
       }
+
       50% {
         top: 45%;
       }
+
       100% {
         opacity: 0;
       }
@@ -501,126 +430,145 @@ header.white{
   }
 
   @include media-query($on-laptop) {
-    .content{
+    .content {
       margin: 0 2rem;
     }
-    
-    .intro, .title{
+
+    .intro,
+    .title {
       float: none;
     }
-    .nav{
-      position: relative;
+
+    .nav {
       left: auto;
+      position: relative;
     }
-    
-    .content-wrapper{
+
+    .content-wrapper {
       padding-top: 3rem;
       width: 100%;
     }
   }
   // start stacking here
-  @include media-query(630px){
-    .landing-content{
+  @include media-query(630px) {
+    .landing-content {
       display: block;
     }
+
     .title {
       display: block;
-      width: 75%;
       margin: auto;
+      width: 75%;
     }
+
     img {
       width: 100%;
     }
-    .content{
+
+    .content {
       margin: 4rem 0 0;
     }
-    .content-text{
+
+    .content-text {
       padding-left: 5rem;
     }
   }
 }
 
 //Financials Slide
-.financials{
-  h1{
+.financials {
+  h1 {
     margin-bottom: 1rem;
   }
-  .small{
+
+  .small {
     font-size: 0.75rem;
     text-align: right;
   }
-  table{
-    width: 47.5%;
+
+  table {
+    border-bottom: double rgb(156, 156, 156);
     float: left;
     font-size: 0.875rem;
-    border-bottom: double rgb(156,156,156);
-    @include media-query($small-screen){
+    width: 47.5%;
+    @include media-query($small-screen) {
       font-size: 0.6rem;
     }
-    @include media-query($small-phone){
+    @include media-query($small-phone) {
       float: none;
       width: 100%;
     }
-    
-    &.table1{
+
+    &.table1 {
       margin-right: 5%;
     }
-    td:nth-child(1){
+
+    td:nth-child(1) {
       width: 70%;
     }
-    td:nth-child(2){
+
+    td:nth-child(2) {
       width: 30%;
     }
-    
-    thead{
-      .title{
-        td{
-          background: rgb(204,203,200);
+
+    thead {
+      .title {
+        td {
+          background: rgb(204, 203, 200);
           padding: 0 0.5rem;
         }
         font-weight: 500;
       }
-      td{
+
+      td {
         text-align: center;
-        &:nth-child(1){
+
+        &:nth-child(1) {
           border-right: solid 0.5rem $default-background-color;
         }
-        
+
       }
     }
-    tbody{
+
+    tbody {
       border-top: solid 1rem transparent;
       line-height: 100%;
-      td{
-        &:nth-child(1){
-          text-align: left;
+
+      td {
+        &:nth-child(1) {
           padding-left: 1rem;
+          text-align: left;
         }
-        &:nth-child(2){
-          text-align: right;
+
+        &:nth-child(2) {
           padding-right: 1rem;
+          text-align: right;
         }
       }
-      .section{
-        td:nth-child(1){
+      .section {
+        td:nth-child(1) {
           font-weight: 500;
           padding-left: 0;
         }
       }
-      .total{
-        td:nth-child(2){
+
+      .total {
+        td:nth-child(2) {
           font-weight: 500;
         }
       }
-      .double{
-        border-bottom: double rgb(156,156,156);
+
+      .double {
+        border-bottom: double rgb(156, 156, 156);
       }
-      .single{
-        border-bottom: solid 1px rgb(156,156,156);
-        border-top: solid 1px rgb(156,156,156);
+
+      .single {
+        border-bottom: solid 1px rgb(156, 156, 156);
+        border-top: solid 1px rgb(156, 156, 156);
       }
-      .top{
-        border-top: solid 1px rgb(156,156,156);
+
+      .top {
+        border-top: solid 1px rgb(156, 156, 156);
       }
     }
   }

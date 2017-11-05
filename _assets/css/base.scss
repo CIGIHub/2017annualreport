@@ -1,6 +1,6 @@
 // Media queries
 
-$small-phone: 450px;
+$small-phone: 30em;
 $on-palm: 600px;
 $on-laptop: 880px;
 $small-screen: 1200px;
@@ -232,8 +232,4 @@ hr {
 .column-no-wrap {
   break-inside: avoid;
   page-break-inside: avoid;
-}
-
-.hidden {
-  display: none;
 }

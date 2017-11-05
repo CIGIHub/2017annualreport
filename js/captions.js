@@ -1,38 +1,39 @@
 import { mobile } from 'navigation';
 
 export default function photoCaptionMagic() {
-    function findParentElement (element, className) {
-        while (element.className.indexOf(className) == -1){
-            element = element.parentElement;
+    function findParentElement(element, className) {
+        let parentElement = element.parentElement;
+        while (parentElement.className.indexOf(className) === -1) {
+            parentElement = parentElement.parentElement;
         }
-        return element;
+        return parentElement;
     }
 
     function toggleText(element) {
-        var children = element.childNodes;
-        Array.from(children).forEach(function(child){
-            if (child.tagName && child.className.indexOf("photo-caption") == -1) {
+        const children = element.childNodes;
+        Array.from(children).forEach(child => {
+            if (child.tagName && child.className.indexOf('photo-caption') === -1
+            && child.className.indexOf('img-container') === -1) {
                 child.classList.toggle('hide-text');
                 if (child.childNodes) toggleText(child);
             }
         });
     }
 
-    var toggleBackground = function() {
+    function toggleBackground() {
         if (mobile) {
             return;
         }
-        var wrapperElement = findParentElement(this, "bottom-0");
-        var standardSlideElement = findParentElement(this, "standard-slide");
+        var standardSlideElement = findParentElement(this, 'standard-slide');
         var headerElement = document.getElementById('site-header');
         headerElement.classList.toggle('hide-text');
         standardSlideElement.classList.toggle('hide');
-        toggleText(wrapperElement);
+        toggleText(this.parentElement);
     }
 
-    var photoCaptionElements = document.getElementsByClassName("photo-caption");
+    const photoCaptionElements = document.getElementsByClassName('photo-caption');
 
-    Array.from(photoCaptionElements).forEach(function(element) {
+    Array.from(photoCaptionElements).forEach(element => {
         element.addEventListener('mouseover', toggleBackground);
         element.addEventListener('mouseout', toggleBackground);
     });
