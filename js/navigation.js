@@ -6,11 +6,6 @@ import {
   closeSvg,
 } from './helpers';
 
-import  {
-  putBackgroundImageIntoArticle,
-  unPutBackgroundImageIntoArticle,
-} from './mobile';
-
 import {
   changeSlideInUrl,
   parseAndLoadSlide,
@@ -22,7 +17,6 @@ const tableOfContentsButton = document.getElementById('table-of-contents-button'
 const exploreCIGILink = document.getElementById('explore-cigi-link');
 const mobileHomeButton = document.getElementsByClassName('mobile-button')[0];
 const viewARLink = document.getElementById('view-ar-link');
-const cigiLogo = document.getElementById('cigi-logo');
 const mainTabs = document.getElementById('main-tabs');
 const header = document.getElementById('site-header');
 const upArrow = document.getElementsByClassName('explore')[0];
@@ -94,7 +88,10 @@ function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
     oldVideo.pause();
   }
   if (newVideo) {
-    newVideo.play();
+    const playPromise = newVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
   }
   if (!mobile) {
     isDesktopScrolling = true;
@@ -213,10 +210,10 @@ function scrollViewToSlideIndex(newIndex, transition = true) {
     } else {
       smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
     }
-    setTimeout(() => {
-      smoothSlideContainer.style.transition = null;
-    }, slideTransitionMs);
   });
+  setTimeout(() => {
+    smoothSlideContainer.style.transition = null;
+  }, slideTransitionMs);
 }
 
 function injectLinksAndAddSideBar() {
@@ -258,7 +255,7 @@ function injectLinksAndAddSideBar() {
 
   buttons[currentSlide].classList.add('active');
   const tableOfContentsDesktop = createDiv('pt5 pt6-ns pl3 pl0-ns pr3 pr0-ns fixed vh-100 w-100 bg-black-90 left-0 top-0 z-7');
-  const tableOfContentsMobile = createDiv('toc-mobile-wrapper');
+  const tableOfContentsMobile = createDiv('toc-mobile-wrapper z-7');
   const tableOfContentsWrapper = createDiv('z-7');
   tableOfContentsWrapper.appendChild(tableOfContentsDesktop);
 
@@ -276,7 +273,7 @@ function injectLinksAndAddSideBar() {
   desktopScroll();
 
   const handleWidth = () => {
-    if (window.innerWidth <= 450) {
+    if (window.innerWidth < 480) {
       if (!mobile) {
         toggleTocEl();
         mobileScroll();
@@ -287,7 +284,6 @@ function injectLinksAndAddSideBar() {
         if (currentSlide === 1) {
           header.classList.remove('white');
         }
-        Array.from(sections).forEach(section => putBackgroundImageIntoArticle(section));
       }
     }
     else {
@@ -298,7 +294,6 @@ function injectLinksAndAddSideBar() {
         if (currentSlide === 1) {
           header.classList.add('white');
         }
-        unPutBackgroundImageIntoArticle();
       }
     }
   };
@@ -306,7 +301,6 @@ function injectLinksAndAddSideBar() {
   const toggleTocEl = () => {
     mobile = !mobile;
     if (mobile) {
-      document.body.classList.add('mobile');
       tableOfContentsDesktop.remove();
       tableOfContentsWrapper.appendChild(tableOfContentsMobile);
     } else {
@@ -331,7 +325,6 @@ function injectLinksAndAddSideBar() {
       tocIcon.className = '';
       tocIcon.innerHTML = closeSvg;
       document.body.appendChild(tableOfContentsWrapper);
-      cigiLogo.style.filter = 'invert(100%)';
       header.classList.add('white');
       if (mobile) {
         header.style.background = 'black';
@@ -340,7 +333,6 @@ function injectLinksAndAddSideBar() {
       tocIcon.innerHTML = '';
       tocIcon.className = tocIconOpen;
       tableOfContentsWrapper.remove();
-      cigiLogo.style.filter = null;
       header.classList.remove('white');
       if (mobile) {
         header.style.background = null;
