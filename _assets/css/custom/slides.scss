@@ -518,7 +518,6 @@ header.white {
   }
 
   table {
-    border-bottom: double rgb(156, 156, 156);
     float: left;
     font-size: 0.875rem;
     width: 47.5%;
@@ -548,6 +547,9 @@ header.white {
           background: rgb(204, 203, 200);
           padding: 0 0.5rem;
         }
+        td:nth-child(1) {
+          text-align: left;
+        }
         font-weight: 500;
       }
 
@@ -571,7 +573,7 @@ header.white {
           text-align: left;
         }
 
-        &:nth-child(2) {
+        &:nth-child(2), &:nth-child(3) {
           padding-right: 1rem;
           text-align: right;
         }
@@ -584,7 +586,7 @@ header.white {
       }
 
       .total {
-        td:nth-child(2) {
+        td:nth-child(2), td:nth-child(3) {
           font-weight: 500;
         }
       }
