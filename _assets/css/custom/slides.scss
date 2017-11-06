@@ -10,6 +10,32 @@
 .slide-2,
 .slide-16 {
   background-image: url('../assets/canvas.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  
+  &::before{
+    background: rgba(255,255,255,0.55);
+    content: ' ';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .wrapper{
+    position: relative;
+  }
+  .slide-content{
+    position: relative;
+  }
+}
+
+.slide-17{
+  .img-container::before{
+    background-position: right;
+  }
 }
 
 .fullscreen-bg-video {
@@ -164,6 +190,12 @@ p {
 }
 
 .standard-slide {
+  .w-80-l{
+      @include media-query($small-screen){
+        width: 95%;
+    }
+  }
+
   h1 {
     font-weight: 400;
     padding: 0.5rem 0;
