@@ -109,9 +109,14 @@
   .photo-caption {
     margin: 0;
     order: 0;
+    padding-bottom: 0.5rem;
 
     &::before {
       display: none;
+    }
+    &:hover {
+      background-color: inherit;
+      color: inherit;
     }
   }
 }
