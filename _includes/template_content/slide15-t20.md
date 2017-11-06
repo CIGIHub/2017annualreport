@@ -5,9 +5,6 @@
 <div class="img-container">
   <img src="assets/T20-background.jpg" alt="">
 </div>
-<div class="photo-caption">
-  Global Solutions/Tobias Koch
-</div>
 
 CIGI convened its first G20-focused group in December 2009, when it helped lay the groundwork for the forum to expand from national finance ministers to leaders. Eight years later, CIGI experts from all three programs led discussions at the 2017 G20 and T20 meetings.
 
