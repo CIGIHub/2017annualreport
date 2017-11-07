@@ -3,7 +3,7 @@
 # Intellectual Property Experts on the Knowledge Economy
 
 <div class="img-container">
-  <img src="assets/Slide-Still-Innovation_Knowledge.png" alt="">
+  <img class="progressive" src="assets/slides/Slide-Still-Innovation_Knowledge.jpg" alt="">
 </div>
 
 In collaboration with the Ontario Ministry of Research, Innovation and Science, CIGI organized a series of round tables on innovation and intellectual property (IP) strategy with policy makers, academics and representatives of Canada’s business community that helped establish CIGI as a nationwide resource for policy advice on IP innovation.

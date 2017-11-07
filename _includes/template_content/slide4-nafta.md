@@ -3,7 +3,7 @@
 # Modernizing NAFTA
 
 <div class="img-container">
-  <img src="assets/nafta.jpg" alt="">
+  <img class="progressive" src="assets/slides/nafta.jpg" alt="">
 </div>
 
 From the moment US President Donald Trump’s administration set in motion the renegotiation of the 25-year-old North American Free Trade Agreement (NAFTA), CIGI has been Canada’s leading resource for timely, expert analysis with over 700 media mentions.

@@ -3,7 +3,7 @@
 # Surveillance, Treachery and Trust Online
 
 <div class="img-container">
-  <img src="assets/LWW_background-image.jpg" alt="">
+  <img class="progressive" src="assets/slides/LWW_background-image.jpg" alt="">
 </div>
 
 From its opening lines about the high-profile hack of extramarital affair website Ashley Madison and later analysis of Edward Snowden’s revelations of government spying on internet users, [Look Who’s Watching: Surveillance, Treachery and Trust Online](https://www.cigionline.org/publications/look-whos-watching-surveillance-treachery-and-trust-online?source=ar2017 "Look Who's Watching") demonstrates that public trust in the internet is often misplaced and is quickly eroding.

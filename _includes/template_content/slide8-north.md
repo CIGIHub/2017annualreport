@@ -3,7 +3,7 @@
 # Arctic Policy Issues “North of 60”
 
 <div class="img-container">
-  <img src="assets/north-of-60-2.jpg" alt="">
+  <img class="progressive" src="assets/slides/north-of-60-2.jpg" alt="">
 </div>
 
 CIGI’s research on Canada’s Arctic policy culminated in a September 2016 event marking the twentieth anniversary of the Arctic Council. Co-hosted with Global Affairs Canada and Carleton University, the event drew ambassadors of Nordic countries, representatives from Northern governments and Indigenous peoples and senior Canadian policy makers.

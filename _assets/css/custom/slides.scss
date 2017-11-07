@@ -1,7 +1,7 @@
 //Background Images
 
 .landing {
-  background-image: url('../assets/CIGI_Campus-bw-min.jpg');
+  background-image: url('../assets/slides/CIGI_Campus-bw.jpg');
   filter: saturate(1.2);
   background-size: cover;
   background-position: 50% 50%;
@@ -9,10 +9,10 @@
 
 .slide-2,
 .slide-16 {
-  background-image: url('../assets/canvas.jpg');
+  background-image: url('../assets/slides/canvas.jpg');
   background-size: cover;
   background-position: 50% 50%;
-  
+
   &::before{
     background: rgba(255,255,255,0.55);
     content: ' ';
@@ -606,5 +606,3 @@ header.white {
     }
   }
 }
-
-

@@ -3,7 +3,7 @@
 # Solutions for a Low-carbon Economy
 
 <div class="img-container">
-  <img src="assets/low-carbon-economy-min.jpg" alt="">
+  <img class="progressive" src="assets/slides/low-carbon-economy.jpg" alt="">
 </div>
 
 New research from Senior Fellow Céline Bak focused on low-carbon economic policies in the run-up to the 2017 Think 20 (T20) and Group of Twenty (G20) meetings in Germany. As co-chair of the T20 Task Force on Climate Policy and Finance, her group’s recommendations drove discussions among leaders looking for global solutions to foster a low-carbon economy.

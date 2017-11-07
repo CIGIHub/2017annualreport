@@ -3,7 +3,7 @@
 # Lessons from the Euro-zone Crisis
 
 <div class="img-container">
-  <img src="assets/laid_low_bg.jpg" alt="">
+  <img class="progressive" src="assets/slides/laid_low_bg.jpg" alt="">
 </div>
 
 The latest book by senior fellow and journalist Paul Blustein, [Laid Low: Inside the Crisis That Overwhelmed Europe and the IMF](https://www.cigionline.org/publications/laid-low-inside-crisis-overwhelmed-europe-and-imf?source=ar2017 "Laid Low"), goes behind the scenes at the highest levels of global economic policy making, chronicling the International Monetary Fund’s (IMF’s) role in the euro-zone crisis.

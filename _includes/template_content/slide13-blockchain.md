@@ -3,7 +3,7 @@
 # Blockchain: A Technology with Policy Implications
 
 <div class="img-container">
-  <img src="assets/Slide-Still-Blockchain.png" alt="">
+  <img class="progressive" src="assets/slides/Slide-Still-Blockchain.jpg" alt="">
 </div>
 
 Senior Fellow Julie Maupin, an expert in blockchain and international economic law, chaired a CIGI round table on blockchain technology and climate change policy in June 2017. Technology, law and policy experts gathered in Toronto to discuss how distributed ledger technologies could provide solutions for tackling climate change under the Paris Agreement.
