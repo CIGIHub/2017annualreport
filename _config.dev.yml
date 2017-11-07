@@ -18,6 +18,7 @@ exclude:
   - jsconfig.json
   - .browserslistrc
   - js
+  - utils
   - yarn.lock
   - .gitignore
   - deploy.js
