@@ -1,4 +1,4 @@
-### Joint Message
+### Messages
 
 # President's Message
 
