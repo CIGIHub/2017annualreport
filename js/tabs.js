@@ -1,48 +1,30 @@
 import { setHash } from './permalink';
+import { addClassToElementsInArray } from './helpers';
 import { sections, currentSlide } from './navigation';
 
 function initializeTabs() {
-  const tab1 = document.querySelectorAll('[data-id="tab-1"]');
-  const tab2 = document.querySelectorAll('[data-id="tab-2"]');
-  const parameter = window.location.href.split('&');
-
-  let tabId = 'tab-1';
-  let setTab = tab1;
-  let unsetTab = tab2;
-
-  if (parameter.length > 1) {
-    tabId = parameter[1];
-    if (tabId === 'tab-1') {
-      setTab = tab1;
-      unsetTab = tab2;
-    }
-    else {
-      setTab = tab2;
-      unsetTab = tab1;
-    }
+  let tabId = /&tab-(\d+)/.exec(location.hash);
+  if (tabId !== null) {
+    tabId = tabId[1];
+  } else {
+    tabId = '1';
   }
-
-  const setSelected = Array.from(setTab);
-  for (const item of setSelected) {
-    item.classList.add('selected');
-  }
-
-  const unsetSelected = Array.from(unsetTab);
-  for (const item of unsetSelected) {
-    item.classList.remove('selected');
-  }
+  const setTab = document.querySelectorAll(`[data-id="tab-${tabId}"]`);
+  addClassToElementsInArray(setTab, 'selected');
 }
 
 function toggleTabs(e) {
+  e.stopPropagation();
   const selectedTab = e.target.dataset.id;
   const clearSelectedTabs = Array.from(sections[currentSlide].getElementsByClassName('tab'));
   const parameter = location.hash.split('&');
+  setHash(parameter[0] + '&' + selectedTab);
 
   for (const item of clearSelectedTabs) {
-    item.classList.remove('selected');
-    if (item.getAttribute('data-id') === selectedTab) {
+    if (item.dataset.id === selectedTab) {
       item.classList.add('selected');
-      setHash(parameter[0] + '&' + selectedTab);
+    } else {
+      item.classList.remove('selected');
     }
   }
 }

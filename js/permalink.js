@@ -130,14 +130,9 @@ export function parseAndLoadSlide() {
 }
 
 export const changeSlideInUrl = id => {
-  if (id === 0) {
-    if (location.hash.indexOf('?slide=') === -1) {
-      setHash(location.hash || '#/' + '?slide=' + id);
-    } else {
-      setHash(location.hash.replace(slideRegex, '?slide=' + id));
-    }
-  }
-  else {
-    setHash('#/?slide=' + id);
+  if (location.hash.indexOf('?slide=') === -1) {
+    setHash(location.hash || '#/' + '?slide=' + id);
+  } else {
+    setHash(location.hash.replace(slideRegex, '?slide=' + id));
   }
 };
