@@ -1289,9 +1289,7 @@ const monthlyViewTimelineVerticalLines = generateTimelineVerticalLines(calculate
 let lastWidth = 0;
 const timelineResizeHandler = () => {
   const currentWidth = window.innerWidth;
-  if (lastWidth !== 0) {
-    changeX += (lastWidth - currentWidth) * 6;
-  }
+  changeX += (lastWidth - currentWidth) * 6;
   lastWidth = currentWidth;
   calculateInitialCondition();
   readjustTimeline(initialPositionX + changeX);
@@ -1335,8 +1333,9 @@ const timelineDoubleClickEventHandler = e => {
     mainTimeline.removeEventListener('mousedown', timelineMouseDownEventHandler, false);
     document.removeEventListener('mouseup', timelineMouseUpEventHandler, false);
     window.removeEventListener('resize', timelineResizeHandler, false);
-    lastWidth = 0;
+    lastWidth = window.innerWidth;
   } else {
+    lastWidth = window.innerWidth;
     userHint1.style.display = 'none';
     userHint2.style.display = 'block';
     userHintHover.classList.remove('fade-in-1');
