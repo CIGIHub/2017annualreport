@@ -184,16 +184,15 @@ function handleNavigationButtonsFade() {
   }
 
   if (currentSlide === 1) {
-    fadeOutAllNavigationComponents();
-    fadeOutNavigationComponent(mainTabs);
     if (!mobile) {
       header.classList.add('white');
+      sidebar.classList.add('white');
     }
   }
   else {
-    fadeInNavigationComponent(mainTabs);
     if (!mobile) {
       header.classList.remove('white');
+      sidebar.classList.remove('white');
     }
   }
 }

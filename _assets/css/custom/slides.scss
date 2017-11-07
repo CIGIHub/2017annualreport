@@ -67,20 +67,20 @@
   }
 
   .tab.selected {
-    border: solid 1px $grey-color;
+    border: solid 1px $text-color;
     border-left: 0;
     border-right: solid 1px $accent-color;
-    color: $grey-color;
+    color: $text-color;
     cursor: default;
   }
 
   .tab:last-child.selected,
   .tab[data-id='tab-3'].selected {
-    border-right: solid 1px $grey-color;
+    border-right: solid 1px $text-color;
   }
 
   .tab:first-child.selected {
-    border-left: solid 1px $grey-color;
+    border-left: solid 1px $text-color;
   }
 
   .download a {
@@ -316,6 +316,22 @@ p {
 header.white {
   a,
   .fa {
+    color: white;
+  }
+  
+  .tab, .tab.selected{
+    border: solid 1px white;
+    color: white;
+    &:first-child{
+      border-left: solid 1px white;
+    }
+  }
+  .tab:last-child.selected{
+    border-right: solid 1px white;
+    border-left: 0;
+  }
+  .tab:hover, .tab.selected:hover{
+    cursor: pointer;
     color: white;
   }
 
