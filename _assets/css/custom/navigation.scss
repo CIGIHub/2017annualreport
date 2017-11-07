@@ -78,6 +78,16 @@ $sidebar-button-radius: 1rem;
   }
 }
 
+
+.sidebar.white{
+  .sidebar-button, .sidebar-home{
+    color: white;
+  }
+  .sidebar-button{
+    border: solid 1px white;
+  }
+}
+
 $tooltip-background: rgba(60, 60, 60, 0.9);
 
 .sidebar-tooltip {
