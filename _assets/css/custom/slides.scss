@@ -22,6 +22,16 @@
   .slide-content {
     position: relative;
   }
+  @include media-query($small-screen){
+    padding-right: 2rem;
+  }
+  @include media-query($small-phone){
+    padding-right: 0;
+  }
+}
+
+.slide-content{
+  z-index: 5;
 }
 
 .image-right {
@@ -316,6 +326,7 @@ header.white {
 
   .wrapper {
     position: relative;
+    z-index: 5;
   }
   color: white;
 
