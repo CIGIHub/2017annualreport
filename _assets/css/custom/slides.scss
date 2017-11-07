@@ -30,6 +30,10 @@
   }
 }
 
+.slide-content{
+  z-index: 5;
+}
+
 .image-right {
   object-position: right;
 }
@@ -322,6 +326,7 @@ header.white {
 
   .wrapper {
     position: relative;
+    z-index: 5;
   }
   color: white;
 
