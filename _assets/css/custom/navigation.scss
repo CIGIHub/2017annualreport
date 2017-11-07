@@ -85,6 +85,10 @@ $sidebar-button-radius: 1rem;
   }
   .sidebar-button{
     border: solid 1px white;
+    &:hover{
+      background: white;
+      background-clip: content-box
+    }
   }
 }
 
