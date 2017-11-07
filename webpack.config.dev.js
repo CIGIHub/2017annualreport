@@ -7,6 +7,7 @@ module.exports = {
     './js/polyfills/custom-polyfills.js',
     './js/polyfills/fetch.min.js',
     './js/polyfills/promise.min.js',
+    './js/polyfills/grid.js',
     './js/index.js',
   ],
   output: {
