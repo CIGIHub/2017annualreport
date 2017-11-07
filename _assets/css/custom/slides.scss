@@ -1,20 +1,12 @@
 //Background Images
-
-.landing {
-  background-image: url('../assets/slides/CIGI_Campus-bw.jpg');
-  filter: saturate(1.2);
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
 .slide-2,
 .slide-16 {
   background-image: url('../assets/slides/canvas.jpg');
   background-size: cover;
   background-position: 50% 50%;
 
-  &::before{
-    background: rgba(255,255,255,0.55);
+  &::before {
+    background: rgba(255, 255, 255, 0.55);
     content: ' ';
     display: block;
     height: 100%;
@@ -24,18 +16,16 @@
     top: 0;
     width: 100%;
   }
-  .wrapper{
+  .wrapper {
     position: relative;
   }
-  .slide-content{
+  .slide-content {
     position: relative;
   }
 }
 
-.slide-17{
-  .img-container::before{
-    background-position: right;
-  }
+.image-right {
+  object-position: right;
 }
 
 .fullscreen-bg-video {
@@ -190,8 +180,8 @@ p {
 }
 
 .standard-slide {
-  .w-80-l{
-      @include media-query($small-screen){
+  .w-80-l {
+      @include media-query($small-screen) {
         width: 95%;
     }
   }
@@ -281,19 +271,32 @@ p {
   transition: opacity 0.5s ease-in;
 }
 
-.landing::before {
-  background: rgba(215, 3, 24, 0.68);
-  content: ' ';
-  display: block;
-  height: 100%;
-  left: 0;
-  opacity: 1;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
 // Landing Page
+
+.landing-img {
+  filter: saturate(1.2);
+
+  img {
+    height: 100vh;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+
+  &::before {
+    background: rgba(215, 3, 24, 0.68);
+    content: ' ';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+}
 
 header.white {
   a,
