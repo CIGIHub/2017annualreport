@@ -235,7 +235,7 @@ p {
     padding-right: 2rem;
   }
   @include media-query($small-phone){
-    padding-right: 2rem;
+    padding-right: 0;
   }
 }
 
