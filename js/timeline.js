@@ -71,7 +71,7 @@ const dataPointDiameter = 7;
 const timelineMaskMilliseconds = 2000;
 const amplitude = 90;
 const delay = 500;
-const spacingFactor = 1.8;
+const spacingFactor = 1.5;
 let mainTimeline;
 
 export function changeExpandedViewArticle(newItem, direction) {
@@ -126,7 +126,7 @@ export function changeExpandedViewArticle(newItem, direction) {
 }
 
 const width = timelineRoot.clientWidth;
-let waveNumber = 2 * Math.PI / width;
+let waveNumber = 4 * Math.PI / width;
 let height = 2 * amplitude;
 const sinFunc = sinFuncWithAmplitudeWaveNumberAndYOffset(amplitude, waveNumber, amplitude);
 
@@ -766,7 +766,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
   svg.setAttribute('preserveAspectRatio', 'none');
   svg.setAttribute('class', 'timeline-svg');
   timeline.appendChild(svg);
-  const numClusters = 180;
+  const numClusters = 100;
   const clusters = new Array(numClusters);
   let i_ = numClusters;
   while (i_-- > 0) {
@@ -844,8 +844,6 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         const pointX = mapTimestampToZeroToOne(new Date(item.published_date).valueOf()) * width;
 
         let y = sinFunc(pointX) + yOffset;
-        if ((y < 1 && y > 0) || (y > -1 && y < 0)) { y = y * y; }
-        console.log(y);
         const pointContainer = createDiv('point-container');
         const previewLine = createDiv('preview-line');
         const previewContainer = createDiv('preview-container');
