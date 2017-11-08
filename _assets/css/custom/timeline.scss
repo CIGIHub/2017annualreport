@@ -583,3 +583,8 @@ $article-slide-timing-function: ease-in-out;
 .important-grey {
   fill: $grey-color !important;
 }
+
+// Moving the timeline up
+div[aria-label="Timeline"]{
+  margin-top: -10em;
+}

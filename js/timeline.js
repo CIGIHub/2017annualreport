@@ -67,11 +67,11 @@ import {
 
 const programTypesLength = programTypes.length;
 
-const dataPointDiameter = 6;
+const dataPointDiameter = 7;
 const timelineMaskMilliseconds = 2000;
 const amplitude = 90;
 const delay = 500;
-const spacingFactor = 1.2;
+const spacingFactor = 1.8;
 let mainTimeline;
 
 export function changeExpandedViewArticle(newItem, direction) {
