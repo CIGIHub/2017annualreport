@@ -363,7 +363,7 @@ export function showProgramView(callback) {
       while (i-- > 0) {
         const timeline = programViewTimelines[i];
         timeline.style.opacity = null;
-        timeline.style.transform = `translateY(${containerHeight / (programTypesLength + 1.25) * (i + 1) - containerHeight / 2}px)`;
+        timeline.style.transform = `translateY(${containerHeight / (programTypesLength + 1.5) * (i + 1) - containerHeight / 2}px)`;
         timeline.style.height = '70px';
       }
     });
@@ -766,7 +766,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
   svg.setAttribute('preserveAspectRatio', 'none');
   svg.setAttribute('class', 'timeline-svg');
   timeline.appendChild(svg);
-  const numClusters = 365;
+  const numClusters = 180;
   const clusters = new Array(numClusters);
   let i_ = numClusters;
   while (i_-- > 0) {
@@ -831,7 +831,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
       let rmsDiameter = 0;
       let i = clusterLength;
       while (i-- > 0) {
-        const diameter = dataPointDiameter * Math.log(cluster[i].word_count) * 0.3;
+        const diameter = dataPointDiameter * Math.log(cluster[i].word_count) * 0.35;
         diameters[i] = diameter;
         rmsDiameter += diameter * diameter;
       }
@@ -843,7 +843,9 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         const yOffset = rmsDiameter * (i - (clusterLength - 1) / 2) * spacingFactor;
         const pointX = mapTimestampToZeroToOne(new Date(item.published_date).valueOf()) * width;
 
-        const y = sinFunc(pointX) + yOffset;
+        let y = sinFunc(pointX) + yOffset;
+        if ((y < 1 && y > 0) || (y > -1 && y < 0)) { y = y * y; }
+        console.log(y);
         const pointContainer = createDiv('point-container');
         const previewLine = createDiv('preview-line');
         const previewContainer = createDiv('preview-container');
