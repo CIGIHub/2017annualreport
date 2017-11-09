@@ -225,10 +225,26 @@ hr {
 }
 
 .col {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
   column-count: 2;
-  column-width: 450px;
+
+  -webkit-column-width: 50%;
+  -moz-column-width: 50%;
+  column-width: 50%;
+
   break-inside: avoid;
   page-break-inside: avoid;
+
+  @include media-query($small-phone){
+    -webkit-column-width: 100%;
+    -moz-column-width: 100%;
+    column-width: 100%;
+
+    -webkit-column-count: 1;
+    -moz-column-count: 2;
+    column-count: 1;
+  }
 }
 
 .column-no-wrap {
