@@ -552,7 +552,7 @@ header.white {
     float: left;
     font-size: 0.875rem;
     width: 75%;
-    font-family: "Monaco";
+    font-family: "Lucida Console";
     @include media-query($small-screen) {
       font-size: 0.6rem;
     }
