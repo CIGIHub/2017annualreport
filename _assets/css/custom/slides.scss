@@ -239,12 +239,6 @@ p {
   }
 }
 
-.pb6-ns{
-  @include media-query($small-screen){
-    padding-bottom: 3rem;
-  }
-}
-
 .joint-message,
 .financials{
   padding-top: 6rem;
