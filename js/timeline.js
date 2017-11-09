@@ -40,6 +40,9 @@ const timelineRoot = document.getElementById('timeline-root');
 const timelineFlexWrapper = timelineRoot.parentElement;
 const timelineSection = document.getElementsByTagName('section')[0];
 
+// Breakpoints
+const largeScreen=1700;
+
 
 const baseUrl = location.pathname;
 export let setReseachAreaFilters = [];
@@ -73,10 +76,10 @@ let amplitude = 90;
 let delay = 500;
 let spacingFactor = 1.2;
 
-if (window.innerWidth > 1200){
-  dataPointDiameter = 7;
-  amplitude = 150;
-  spacingFactor = 1.4;
+if (window.innerWidth > largeScreen){
+  dataPointDiameter = 8;
+  amplitude = 200;
+  spacingFactor = 2;
 }
 
 let mainTimeline;
@@ -774,7 +777,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
   svg.setAttribute('class', 'timeline-svg');
   timeline.appendChild(svg);
   let numClusters = 365;
-  if (window.innerWidth > 1200){ numClusters = 100;}
+  if (window.innerWidth > largeScreen){ numClusters = 200;}
   const clusters = new Array(numClusters);
   let i_ = numClusters;
   while (i_-- > 0) {
