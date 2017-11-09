@@ -7,6 +7,20 @@
   width: 50px;
 }
 
+.mobile-timeline{
+  padding-top: 6em;
+  p {
+    padding-bottom: 2em;
+  }
+  hr {
+    margin-bottom: 2em;
+  }
+  a {
+    color: $accent-color;
+    text-decoration: none;
+  }
+}
+
 @media (max-width: $small-phone - 0.01em) {
   section {
     background: $background-color;
