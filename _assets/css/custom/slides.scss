@@ -269,11 +269,6 @@ p {
   @include media-query($small-phone) {
     padding-top: 3rem;
   }
-
-  .col {
-    column-count: 2;
-    column-width: 250px;
-  }
 }
 
 .hide .img-container::before {
