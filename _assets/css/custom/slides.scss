@@ -607,6 +607,7 @@ header.white {
         &:nth-child(2), &:nth-child(3) {
           padding-right: 1rem;
           text-align: right;
+          font-family: "Monaco";
         }
       }
       .section {
@@ -618,7 +619,7 @@ header.white {
 
       .total {
         td:nth-child(2), td:nth-child(3) {
-          font-weight: 500;
+          font-weight: 900;
         }
       }
 
