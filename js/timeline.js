@@ -67,11 +67,18 @@ import {
 
 const programTypesLength = programTypes.length;
 
-const dataPointDiameter = 6;
-const timelineMaskMilliseconds = 2000;
-const amplitude = 90;
-const delay = 500;
-const spacingFactor = 1.2;
+let dataPointDiameter = 6;
+let timelineMaskMilliseconds = 2000;
+let amplitude = 90;
+let delay = 500;
+let spacingFactor = 1.2;
+
+if (window.innerWidth > 1200){
+  dataPointDiameter = 7;
+  amplitude = 150;
+  spacingFactor = 1.4;
+}
+
 let mainTimeline;
 
 export function changeExpandedViewArticle(newItem, direction) {
@@ -766,7 +773,8 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
   svg.setAttribute('preserveAspectRatio', 'none');
   svg.setAttribute('class', 'timeline-svg');
   timeline.appendChild(svg);
-  const numClusters = 365;
+  let numClusters = 365;
+  if (window.innerWidth > 1200){ numClusters = 100;}
   const clusters = new Array(numClusters);
   let i_ = numClusters;
   while (i_-- > 0) {

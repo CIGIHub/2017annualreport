@@ -583,3 +583,9 @@ $article-slide-timing-function: ease-in-out;
 .important-grey {
   fill: $grey-color !important;
 }
+
+@media(min-width: $small-screen){
+  div[aria-label="Timeline"]{
+    margin-top: -10em;
+  }
+}
