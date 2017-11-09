@@ -3,7 +3,7 @@
 $small-phone: 30em;
 $on-palm: 600px;
 $on-laptop: 880px;
-$small-screen: 1200px;
+$small-screen: 1300px;
 
 @mixin media-query($device) {
   @media screen and (max-width: $device) {
