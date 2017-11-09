@@ -3,7 +3,7 @@
 $small-phone: 30em;
 $on-palm: 600px;
 $on-laptop: 880px;
-$small-screen: 1300px;
+$small-screen: 1390px;
 
 @mixin media-query($device) {
   @media screen and (max-width: $device) {
@@ -231,7 +231,7 @@ hr {
 
   -webkit-column-width: 50%;
   -moz-column-width: 50%;
-  column-width: 50%;
+  column-width: 450px;
 
   break-inside: avoid;
   page-break-inside: avoid;
