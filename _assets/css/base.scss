@@ -227,6 +227,8 @@ hr {
 .col {
   column-count: 2;
   column-width: 450px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .column-no-wrap {
