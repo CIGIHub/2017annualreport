@@ -7,7 +7,7 @@
   width: 50px;
 }
 
-@media (max-width: $small-phone - 0.01em) {
+@media (max-width: $small-phone - 0.01em), (max-height: 768px) {
   section {
     background: $background-color;
     border-bottom: solid 1px $grey-color-dark;
@@ -15,6 +15,10 @@
 
   #main-tabs {
     display: none;
+  }
+
+  .cigi-logo-mobile {
+    display: inline-block !important;
   }
 
   .mobile-timeline{
@@ -135,7 +139,7 @@
   }
 }
 
-@media (min-width: $small-phone) {
+@media (min-width: $small-phone), (min-height: 769px) {
   .cigi-logo-mobile,
   .toc-close-mobile,
   .toc-open-mobile {
