@@ -1,6 +1,6 @@
 ### Research
 
-# Arctic Policy Issues “North of 60”
+# Arctic Policy Issues North of 60
 
 <div class="img-container">
   <img class="progressive" src="assets/slides/north-of-60-2.jpg" alt="">
@@ -10,5 +10,5 @@ CIGI’s research on Canada’s Arctic policy culminated in a September 2016 eve
 
 It was an ideal opportunity to launch *North of 60: Toward a Renewed Canadian Arctic Agenda*, a special report edited by Senior Fellow John Higginbotham and Carleton University Research Associate Jennifer Spence. The report helps shape Canada’s Arctic agenda by bringing together pointed essays and interviews from leading Arctic experts on the complex social, environmental, economic and political circumstances that Northerners face.
 
-The event, which included remarks from Canada’s Parliamentary Secretary of Foreign Affairs Pamela Goldsmith Jones, brought significant media coverage. In March 2017, CIGI co-hosted a follow-up event with the Wilson Center on the North American Arctic featuring an address from US Senator Lisa Murkowski.
+The event, which included remarks from Canada’s Parliamentary Secretary of Foreign Affairs Pamela Goldsmith Jones, brought significant media coverage. In March 2017, CIGI co-hosted a follow-up event on the North American Arctic with the Wilson Center featuring an address from US Senator Lisa Murkowski.
 

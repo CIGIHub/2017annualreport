@@ -1,6 +1,6 @@
 ### Research
 
-# A new legal framework for Indigenous rights
+# A New Legal Framework for Indigenous Rights
 
 <div class="img-container">
   <img class="progressive" src="assets/slides/UNDRIP.jpg" alt="">
