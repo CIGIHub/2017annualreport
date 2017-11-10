@@ -3,7 +3,7 @@
 # Thank You
 
 <div class="img-container">
-  <img class="progressive" src="assets/slides/2017-CIGI-Staff-Photo.jpg" alt="">
+  <img class="progressive" src="assets/slides/2017 CIGI Staff Photo - Setup 2 - FInal OPTIMIZED.jpg" alt="">
 </div>
 <div class="photo-caption">
   Staff Photo
