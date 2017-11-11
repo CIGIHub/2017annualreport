@@ -9,8 +9,8 @@
   Staff Photo
 </div>
 
-CIGI convened its first G20-focused group in December 2009, when it helped lay the groundwork for the forum to expand from national finance ministers to leaders. Eight years later, CIGI experts from all three programs led discussions at the 2017 G20 and T20 summits.
-
-Global Security & Politics Program Director Fen Osler Hampson participated in the T20 plenary, Digitalization: Enabler of Inclusive Global Growth and Development, and co-chaired the T20 Task Force on Digital Economy. Several CIGI colleagues, including Distinguished Fellow Eileen Donahoe, also contributed to these pressing discussions, tasked with developing policy recommendations around cybercrime attacks on financial institutions, blockchain technology’s future and bridging the digital divide.
-
-CIGI published more than 20 publications on G20 issues prior to the Hamburg G20 Summit, and Distinguished Fellow Thomas A. Bernes helped carry the message at the summit by providing on-the-ground insight to news media. The resulting interviews contributed to CIGI’s widest G20 media reach yet, with almost 400 media mentions. 
+The success stories in this annual report, and the many others not highlighted here, are the direct result of the timely, relevant and innovative work of CIGI’s staff and fellows. Their work is a testament to CIGI’s mission to build bridges from knowledge to power.
+ 
+But none of this would be possible without CIGI’s valued network of partners. We thank the Governments of Canada and Ontario, the City of Waterloo and our many associates in the local and global communities for their ongoing support of our work. 
+ 
+This new, interactive annual report is part of CIGI’s digital-first approach to addressing the world’s most pressing international governance questions. Be sure to follow along on CIGIOnline.org over the coming year. In 2018, the world’s eyes will be on Charlevoix, Quebec, as Canada hosts the G7. As always, CIGI will be there to provide research, analysis and expertise.
