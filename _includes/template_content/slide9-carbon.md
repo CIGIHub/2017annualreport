@@ -10,6 +10,6 @@ New research from Senior Fellow Céline Bak focused on low-carbon economic polic
 
 *Generating Growth from Innovation for the Low-carbon Economy: Exploring Safeguards in Finance and Regulation* looks at ways to build on momentum created by the Paris Agreement on climate change to double investments in energy innovation by 2020. 
 
-Bak subsequently presented her research to Canada’s Parliamentary Standing Committee on Natural Resources, incorporated the theme of the brief in a joint letter from T20 groups opposing the US withdrawal from the Paris Agreement, hosted a meeting with public and private sector leaders to consider a road map toward green finance and was a popular spokesperson on the G20’s approach to climate action.
+Bak subsequently presented her research to Canada’s Parliamentary Standing Committee on Natural Resources, incorporated the theme of the brief in a joint letter from T20 groups opposing the US withdrawal from the Paris Agreement, hosted a meeting with public and private sector leaders to consider a road map toward green finance, and was a popular spokesperson on the G20’s approach to climate action.
 
 
