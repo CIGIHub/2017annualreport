@@ -154,9 +154,9 @@
 
   .img-container {
     img {
+      @include object-fit(cover);
       height: 100vh;
       left: 0;
-      object-fit: cover;
       position: absolute;
       top: 0;
       width: 100vw;

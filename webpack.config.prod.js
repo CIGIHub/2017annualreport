@@ -3,9 +3,9 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     './js/polyfills/custom-polyfills.js',
     './js/polyfills/fetch.min.js',
-    './js/polyfills/promise.min.js',
     './js/index.js',
   ], // string | object | array
   // Here the application starts executing
