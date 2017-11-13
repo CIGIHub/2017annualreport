@@ -272,7 +272,7 @@ function injectLinksAndAddSideBar() {
   desktopScroll();
 
   const handleWidth = () => {
-    if (window.innerWidth < 480 || window.innerHeight <= 768) {
+    if (window.innerWidth < 480 || window.innerHeight < 480) {
       if (!mobile) {
         toggleTocEl();
         mobileScroll();
