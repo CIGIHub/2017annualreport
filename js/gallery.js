@@ -8,19 +8,20 @@ import {
 import {
   disableOverlay,
   enableOverlay,
+  mobile,
 } from 'navigation';
 
 export default function galleryMagic() {
   const gallery = document.getElementById('gallery');
   const galleryParent = gallery.parentElement;
   const loadingOverlay = createLoadOverlay();
-  galleryParent.insertBefore(loadingOverlay, galleryParent.firstChild);
-  const images = Array.from(gallery.getElementsByTagName('img'));
+  galleryParent.insertBefore(loadingOverlay, galleryParent.firstElementChild);
+  const imageContainers = Array.from(gallery.getElementsByClassName('image-container'));
   let closing = false;
 
   Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
 
-  const imageIndexToPhotoContainer = new Array(images.length);
+  const imageIndexToPhotoContainer = new Array(imageContainers.length);
 
   const lightbox = createDiv('lightbox overflow-hidden bg-black');
   let currentPhotocontainer = null;
@@ -43,11 +44,12 @@ export default function galleryMagic() {
   };
 
   function generatePhotoContainer(i) {
-    const image = images[i];
+    const imageContainer = imageContainers[i];
+    const image = imageContainer.firstElementChild.firstElementChild;
     const photoContainer = createDiv('media-container');
     const photoWrapper = createDiv('relative');
-    const caption = createDiv('w-100 fw5 mt2');
-    caption.innerText = image.alt;
+    const caption = imageContainer.lastElementChild.cloneNode(true);
+    caption.className = 'w-100 fw5 mt2';
     const photo = createEl('img', 'photo');
     photo.src = image.src;
     photoWrapper.appendChild(photo);
@@ -59,7 +61,7 @@ export default function galleryMagic() {
     const leftSide = 'translateX(-100vw) translate(-50%, -50%)';
     const rightSide = 'translateX(100vw) translate(-50%, -50%)';
 
-    if (i < images.length - 1) {
+    if (i < imageContainers.length - 1) {
       const rightButton = createDiv('gallery-right f3 flex pointer dim');
       rightButton.appendChild(createEl('i', 'fa fa-angle-right fa-fw self-center'));
       photoWrapper.appendChild(rightButton);
@@ -101,9 +103,10 @@ export default function galleryMagic() {
     return photoContainer;
   }
 
-  images.forEach((image, i) => {
+  imageContainers.forEach((imageContainer, i) => {
+    const image = imageContainer.firstElementChild.firstElementChild;
     image.onclick = () => {
-      if (closing) {
+      if (closing || mobile) {
         return;
       }
       const photoContainer = imageIndexToPhotoContainer[i] || generatePhotoContainer(i);
@@ -116,7 +119,8 @@ export default function galleryMagic() {
     };
   });
 
-  Promise.all(images.map(image => new Promise(resolve => {
+  Promise.all(imageContainers.map(imageContainer => new Promise(resolve => {
+    const image = imageContainer.firstElementChild.firstElementChild;
     if (image.complete) {
       resolve();
     } else {

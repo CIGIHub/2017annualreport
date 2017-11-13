@@ -6,11 +6,6 @@ $gallery-image-aspect-ratio: 3/2;
 
 .gallery {
   display: grid;
-
-  @include media-query($small-phone) {
-    display: block;
-  }
-
   grid-gap: $gallery-grid-gap;
   grid-template-columns: repeat($gallery-columns, 1fr);
   grid-template-rows: repeat($gallery-rows, 1fr);
@@ -19,10 +14,15 @@ $gallery-image-aspect-ratio: 3/2;
   user-select: none;
   width: calc((#{$gallery-height} - #{$gallery-rows - 1} * #{$gallery-grid-gap}) * #{$gallery-columns} / #{$gallery-rows} * #{$gallery-image-aspect-ratio} + #{$gallery-columns - 1} * #{$gallery-grid-gap});
 
+  @include media-query($small-phone) {
+    display: block;
+    height: 100%;
+  }
+
   img {
+    @include object-fit(cover);
     cursor: pointer;
     height: 100%;
-    object-fit: cover;
     object-position: center center;
     transform: scale(1, 1);
     transition: transform 200ms;
@@ -33,11 +33,23 @@ $gallery-image-aspect-ratio: 3/2;
     transform: scale(1.1, 1.1);
   }
 
-  > div {
-    line-height: 0;
+  .image-container {
     overflow: hidden;
     @include media-query($small-phone) {
       margin-bottom: 0.5rem;
+    }
+  }
+
+  .image-wrapper {
+    height: 100%;
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  .caption {
+    display: none;
+    @include media-query($small-phone) {
+      display: block;
     }
   }
 }
@@ -70,9 +82,9 @@ $gallery-image-aspect-ratio: 3/2;
 }
 
 .photo {
+  @include object-fit(contain);
   max-height: 75vh;
   max-width: 75vw;
-  object-fit: contain;
 }
 
 .close-button {
