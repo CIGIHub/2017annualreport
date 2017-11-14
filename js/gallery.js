@@ -18,7 +18,7 @@ export default function galleryMagic() {
   const images = Array.from(gallery.getElementsByTagName('img'));
   let closing = false;
 
-  Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
+  //Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
 
   const imageIndexToPhotoContainer = new Array(images.length);
 

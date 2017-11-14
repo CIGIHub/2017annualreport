@@ -246,9 +246,13 @@ p {
 }
 
 .joint-message,
-.financials{
+.financials,
+.gallery-slide{
   padding-top: 6rem;
+}
 
+.joint-message,
+.financials{
   h3 {
     display: none;
   }
