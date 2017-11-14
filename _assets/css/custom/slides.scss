@@ -561,10 +561,6 @@ header.white {
       width: 100%;
     }
 
-    &.table1 {
-      margin-right: 5%;
-    }
-
     td:nth-child(1) {
       width: 60%;
     }
@@ -582,7 +578,7 @@ header.white {
         td:nth-child(1) {
           text-align: left;
         }
-        font-weight: 500;
+        font-weight: 900;
       }
 
       td {
@@ -601,7 +597,7 @@ header.white {
 
       td {
         &:nth-child(1) {
-          padding-left: 1rem;
+          padding-left: 1.5rem;
           text-align: left;
         }
 
@@ -614,7 +610,7 @@ header.white {
       .section {
         td:nth-child(1) {
           font-weight: 900;
-          padding-left: 0;
+          padding-left: 0.5rem;
         }
       }
 
