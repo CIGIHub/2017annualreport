@@ -260,12 +260,6 @@ p {
     }
   }
 
-  @include media-query($small-screen) {
-    h1,
-    .sig-image {
-      display: none;
-    }
-  }
   @include media-query($small-phone) {
     padding-top: 3rem;
   }
