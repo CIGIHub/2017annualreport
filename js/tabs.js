@@ -4,6 +4,7 @@ import { sections, currentSlide } from './navigation';
 
 function initializeTabs() {
   let tabId = /&tab-(\d+)/.exec(location.hash);
+  let slideId = /slide=(\d+)/.exec(location.hash);
   if (tabId !== null) {
     tabId = tabId[1];
   } else {
@@ -11,6 +12,10 @@ function initializeTabs() {
   }
   const setTab = document.querySelectorAll(`[data-id="tab-${tabId}"]`);
   addClassToElementsInArray(setTab, 'selected');
+
+  if (slideId[1] == "2"){
+    setMessagesBackground("tab-" + tabId);
+  }
 }
 
 function toggleTabs(e) {
@@ -48,8 +53,6 @@ const toggle = Array.from(document.getElementsByClassName('toggle'));
 
 export default function load() {
   initializeTabs();
-
-  setMessagesBackground("tab-1");
 
   toggle.forEach(item => {
     item.addEventListener('click', toggleTabs);
