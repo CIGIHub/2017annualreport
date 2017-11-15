@@ -4,6 +4,7 @@ $small-phone: 30em;
 $on-palm: 600px;
 $on-laptop: 880px;
 $small-screen: 1390px;
+$medium-screen: 1900px;
 
 @mixin media-query($device) {
   @media screen and (max-width: $device) {
@@ -11,6 +12,9 @@ $small-screen: 1390px;
   }
 }
 
+@mixin set-font-vars($device) {
+  
+}
 
 //Define Font Variables
 
@@ -21,6 +25,14 @@ $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.4;
 
 $spacing-unit: 30px;
+
+@if (min-width > $small-screen){
+  $base-font-size: 16px;
+}
+@if (min-width > $medium-screen){
+  $base-font-size: 18px;
+}
+
 
 //Define Colours
 
