@@ -27,12 +27,29 @@ function toggleTabs(e) {
       item.classList.remove('selected');
     }
   }
+
+  if (e.target.textContent.includes("Message")) {
+    setMessagesBackground(selectedTab);
+  }
+}
+
+ // Setting background for messages slides
+function setMessagesBackground(tab){
+  let slide2 = document.getElementsByClassName('slide-2')[0];
+  if (tab == "tab-1"){
+    slide2.style.backgroundImage = "url('../assets/slides/RM-headshot.jpg')";
+  }
+  else if (tab == "tab-2"){
+    slide2.style.backgroundImage = "url('../assets/slides/JB-headshot.jpg')";
+  } 
 }
 
 const toggle = Array.from(document.getElementsByClassName('toggle'));
 
 export default function load() {
   initializeTabs();
+
+  setMessagesBackground("tab-1");
 
   toggle.forEach(item => {
     item.addEventListener('click', toggleTabs);
