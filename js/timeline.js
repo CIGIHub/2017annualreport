@@ -1287,8 +1287,10 @@ let zooming = false;
 const monthlyViewTimelineVerticalLines = generateTimelineVerticalLines(calculateLinePositions(monthlyViewLineTemplates));
 
 let lastWidth = 0;
+let lastHeight = 0;
 const timelineResizeHandler = () => {
   const currentWidth = window.innerWidth;
+  const currentHeight = window.innerHeight;
   changeX += (lastWidth - currentWidth) * 6;
   lastWidth = currentWidth;
   calculateInitialCondition();
@@ -1334,8 +1336,10 @@ const timelineDoubleClickEventHandler = e => {
     document.removeEventListener('mouseup', timelineMouseUpEventHandler, false);
     window.removeEventListener('resize', timelineResizeHandler, false);
     lastWidth = window.innerWidth;
+    lastHeight= window.innerHeight;
   } else {
     lastWidth = window.innerWidth;
+    lastHeight = window.innerHeight;
     userHint1.style.display = 'none';
     userHint2.style.display = 'block';
     userHintHover.classList.remove('fade-in-1');
