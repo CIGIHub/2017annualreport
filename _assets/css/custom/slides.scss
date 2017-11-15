@@ -233,6 +233,174 @@ p {
       display: none;
     }
   }
+
+  .tab.selected {
+    border: solid 1px $text-color;
+    border-left: 0;
+    border-right: solid 1px $accent-color;
+    color: $text-color;
+    cursor: default;
+  }
+
+  .tab:last-child.selected,
+  .tab[data-id='tab-3'].selected {
+    border-right: solid 1px $text-color;
+  }
+
+  .tab:first-child.selected {
+    border-left: solid 1px $text-color;
+  }
+
+  .download a {
+    background: $accent-color;
+    color: white;
+    display: block;
+    margin-left: 0.625rem;
+
+    @include media-query($on-laptop) {
+      margin-left: 0;
+    }
+  }
+
+  .tab,
+  .download a {
+    &:hover {
+      background: $accent-color-50;
+      color: white;
+    }
+
+    &.selected:hover {
+      background: transparent;
+      color: $text-color;
+    }
+  }
+}
+
+header .tabs {
+  .tab {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+}
+
+.tab-content {
+  .tab {
+    display: none;
+
+    &.selected {
+      display: block;
+    }
+  }
+}
+
+.dropcap {
+  border: 1px solid;
+  float: left;
+  font-size: 2.75em;
+  font-weight: 500;
+  line-height: 0.75em;
+  margin-right: 8px;
+  padding: 0.1em 0.25em;
+}
+
+.photo-caption {
+  align-self: flex-start;
+  border-radius: 9999px;
+  color: $grey-color-dark;
+  margin-left: -0.3em;
+  margin-top: 1em;
+  order: 1;
+  padding: 0.5em;
+  transition: color 0.5s ease-in, background-color 0.5s ease-in;
+
+  &::before {
+    border: 1px solid;
+    border-radius: 50%;
+    color: $accent-color;
+    content: '\f030';
+    font-family: FontAwesome;
+    font-size: 0.8em;
+    margin-right: 0.5em;
+    padding: 0.3em;
+    transition: color 0.5s ease-in;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 9999px;
+    color: $grey-color;
+    transition: color 0.5s ease-out, background-color 0.5s ease-out;
+
+    p::before {
+      color: $grey-color;
+      transition: color 0.5s ease-out;
+    }
+    &:before {
+      color: $grey-color;
+      transition: color 0.5s ease-out;
+    }
+  }
+}
+
+.no-opacity {
+  opacity: 0;
+}
+
+p {
+  padding-bottom: 1rem;
+}
+
+//Cover Slide
+
+.landing,
+.standard-slide {
+  overflow: hidden;
+  position: relative;
+}
+
+.standard-slide {
+
+  h1 {
+    font-weight: 400;
+    padding: 0.5rem 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $accent-color-50;
+    }
+  }
+
+  .lightbox-link {
+    color: $accent-color;
+  }
+
+  .fa {
+    margin-right: 0.5rem;
+  }
+
+  .fa-play {
+    border: solid 1px $accent-color;
+    font-size: 0.55rem;
+    padding: 0.125rem;
+    padding-left: 0.2rem;
+  }
+
+  .book-cover {
+    float: left;
+    margin-right: 2rem;
+    @include media-query($on-laptop) {
+      display: none;
+    }
+  }
 }
 
 .pr6-ns{
