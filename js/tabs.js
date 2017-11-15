@@ -13,7 +13,7 @@ function initializeTabs() {
   const setTab = document.querySelectorAll(`[data-id="tab-${tabId}"]`);
   addClassToElementsInArray(setTab, 'selected');
 
-  if (slideId[1] == "2"){
+  if (slideId !== null && slideId[1] == "2"){
     setMessagesBackground("tab-" + tabId);
   }
 }
