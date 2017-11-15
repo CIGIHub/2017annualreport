@@ -6,11 +6,6 @@ $gallery-image-aspect-ratio: 3/2;
 
 .gallery {
   display: grid;
-
-  @include media-query($small-phone) {
-    display: block;
-  }
-
   grid-gap: $gallery-grid-gap;
   grid-template-columns: repeat($gallery-columns, 1fr);
   grid-template-rows: repeat($gallery-rows, 1fr);
@@ -18,6 +13,11 @@ $gallery-image-aspect-ratio: 3/2;
   max-width: 100%;
   user-select: none;
   width: calc((#{$gallery-height} - #{$gallery-rows - 1} * #{$gallery-grid-gap}) * #{$gallery-columns} / #{$gallery-rows} * #{$gallery-image-aspect-ratio} + #{$gallery-columns - 1} * #{$gallery-grid-gap});
+
+  @include media-query($small-phone) {
+    display: block;
+    height: 100%;
+  }
 
   img {
     cursor: pointer;
@@ -33,11 +33,23 @@ $gallery-image-aspect-ratio: 3/2;
     transform: scale(1.1, 1.1);
   }
 
-  > div {
-    line-height: 0;
+  .image-container {
     overflow: hidden;
     @include media-query($small-phone) {
       margin-bottom: 0.5rem;
+    }
+  }
+
+  .image-wrapper {
+    height: 100%;
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  .caption {
+    display: none;
+    @include media-query($small-phone) {
+      display: block;
     }
   }
 }
