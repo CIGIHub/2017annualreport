@@ -17,10 +17,9 @@ const tableOfContentsButton = document.getElementById('table-of-contents-button'
 const exploreCIGILink = document.getElementById('explore-cigi-link');
 const mobileHomeButton = document.getElementsByClassName('mobile-button')[0];
 const viewARLink = document.getElementById('view-ar-link');
-const mainTabs = document.getElementById('main-tabs');
 const header = document.getElementById('site-header');
-const upArrow = document.getElementsByClassName('explore')[0];
-const downArrow = document.getElementsByClassName('view-ar')[0];
+const landingUpArrow = document.getElementsByClassName('explore')[0];
+const landingDownArrow = document.getElementsByClassName('view-ar')[0];
 const presidentsMessageLink = document.querySelector("[data-id='tab-1']");
 const chairsMessageLink = document.querySelector("[data-id='tab-2']");
 const chairSlide = 2;
@@ -73,8 +72,8 @@ export function enableOverlay() {
 
 let lastWheel = 0;
 
-function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
-  if (isDesktopScrolling) {
+function updateNavigation(newIndex, oldIndex, { slide =  true, transition =  true, e = null } = {}) {
+  if (overlayEnabled || isDesktopScrolling) {
     return;
   }
   const newButton = buttons[newIndex];
@@ -97,7 +96,6 @@ function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
     isDesktopScrolling = true;
     setTimeout(() => {
       isDesktopScrolling = false;
-      // lastWheel = 0;
     }, slideTransitionMs);
   }
   oldButton.classList.remove('active');
@@ -106,17 +104,20 @@ function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
   if (slide) scrollViewToSlideIndex(newIndex, transition);
   currentSlide = newIndex;
   updateGlobalShareLinks();
-  handleNavigationButtonsFade();
+  handleNavigationFade();
+  setNavigationFadeTimemout(e);
 }
 
-function setMousemoveFadeTimemout(e) {
+function setNavigationFadeTimemout(e) {
   if (fadeTimeoutSet) {
     clearTimeout(fadeTimeout);
   }
   fadeTimeout = setTimeout(() => {
-    const cursorOnNavigation = Array.prototype.some.call([topButton, bottomButton, sidebar], child => child.contains(e.target));
-    if (cursorOnNavigation) {
-      return;
+    if (e) {
+      const cursorOnNavigation = Array.prototype.some.call([topButton, bottomButton, sidebar], child => child.contains(e.target));
+      if (cursorOnNavigation) {
+        return;
+      }
     }
     fadeOutAllNavigationComponents();
     fadeTimeoutSet = false;
@@ -134,7 +135,7 @@ mobileHomeButton.onclick = (e) => {
   updateNavigation(1, currentSlide);
 };
 
-upArrow.onclick = (e) => {
+landingUpArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(0, currentSlide);
 };
@@ -144,21 +145,10 @@ viewARLink.onclick = (e) => {
   updateNavigation(2, currentSlide);
 };
 
-downArrow.onclick = (e) => {
+landingDownArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(2, currentSlide);
 };
-
-function setKeydownAndWheelFadeTimeout() {
-  if (fadeTimeoutSet) {
-    clearTimeout(fadeTimeout);
-  }
-  fadeTimeout = setTimeout(() => {
-    fadeOutAllNavigationComponents();
-    fadeTimeoutSet = false;
-  }, inactivityMilliseconds);
-  fadeTimeoutSet = true;
-}
 
 function fadeOutAllNavigationComponents() {
   fadeOutNavigationComponent(sidebar);
@@ -166,7 +156,8 @@ function fadeOutAllNavigationComponents() {
   fadeOutNavigationComponent(bottomButton);
 }
 
-function handleNavigationButtonsFade() {
+function handleNavigationFade() {
+  fadeInNavigationComponent(sidebar);
   if (currentSlide === 0) {
     fadeOutNavigationComponent(topButton);
     exploreCIGILink.classList.add('selected');
@@ -240,9 +231,9 @@ function injectLinksAndAddSideBar() {
     // now create a corresponding button on the sidebar
     const button = createDiv(i === 1 ? 'sidebar-home fa-home' : 'sidebar-button');
     const currentIndex = i;
-    button.onclick = () => {
+    button.onclick = e => {
       if (currentSlide !== currentIndex) {
-        updateNavigation(currentIndex, currentSlide);
+        updateNavigation(currentIndex, currentSlide, { e });
       }
     };
     const tooltip = createDiv('sidebar-tooltip mr2 ph2 pv1 br2');
@@ -451,11 +442,11 @@ function injectTopAndBottomButtons() {
   if (currentSlide === numberOfSections - 1) {
     fadeOutNavigationComponent(bottomButton);
   }
-  topButton.onclick = () => {
-    updateNavigation(currentSlide - 1, currentSlide);
+  topButton.onclick = e => {
+    updateNavigation(currentSlide - 1, currentSlide, { e });
   };
-  bottomButton.onclick = () => {
-    updateNavigation(currentSlide + 1, currentSlide);
+  bottomButton.onclick = e => {
+    updateNavigation(currentSlide + 1, currentSlide, { e });
   };
 }
 
@@ -465,16 +456,11 @@ const navigationInactivityFadeHandler = e => {
   }
   clearTimeout(fadeTimeout);
   fadeInNavigationComponent(sidebar);
-  handleNavigationButtonsFade();
-  setMousemoveFadeTimemout(e);
+  handleNavigationFade();
+  setNavigationFadeTimemout(e);
 };
 
 const navigationKeydownHandler = e => {
-  if (overlayEnabled || mobile) {
-    return;
-  }
-  fadeInNavigationComponent(sidebar);
-  handleNavigationButtonsFade();
   switch (e.key) {
     case 'ArrowUp':
     case 'PageUp': {
@@ -490,7 +476,6 @@ const navigationKeydownHandler = e => {
       break;
     }
   }
-  setKeydownAndWheelFadeTimeout();
 };
 
 const mobileScrollHandler = () => {
@@ -501,14 +486,14 @@ const mobileScrollHandler = () => {
   const { top, bottom } = rect;
   const windowHeight = window.innerHeight;
   if (bottom < windowHeight / 3) {
-    updateNavigation(currentSlide + 1, currentSlide, false);
+    updateNavigation(currentSlide + 1, currentSlide, { slide: false });
   } else if (top > windowHeight / 3) {
-    updateNavigation(currentSlide - 1, currentSlide, false);
+    updateNavigation(currentSlide - 1, currentSlide, { slide: false });
   }
 };
 
 const navigationWheelHandler = e => {
-  if (overlayEnabled || mobile) {
+  if (mobile) {
     return;
   }
   const currentTime = e.timeStamp;
@@ -517,27 +502,71 @@ const navigationWheelHandler = e => {
   if (diff < 55) {
     return;
   }
-  fadeInNavigationComponent(sidebar);
-  handleNavigationButtonsFade();
   if (e.deltaY > 0) {
     updateNavigation(currentSlide + 1, currentSlide);
   } else {
     updateNavigation(currentSlide - 1, currentSlide);
   }
-  setKeydownAndWheelFadeTimeout();
 };
 
 export function loadInitialSlide(initialSlide) {
-  updateNavigation(initialSlide, currentSlide, true, false);
+  updateNavigation(initialSlide, currentSlide, { transition: false });
 }
+
+let touchXStart;
+let touchOffset = 0;
+let touchCancel = false;
+const touchThreshold = 200;
+const navigationTouchStart = e => {
+  if (mobile) return;
+  if (e.touches.length > 1) {
+    touchCancel = true;
+    return;
+  }
+  touchCancel = false;
+  touchXStart = e.touches[0].clientY;
+};
+
+const navigationTouchMove = e => {
+  if (mobile || touchCancel) return;
+  touchOffset = e.touches[0].clientY - touchXStart;
+  if (touchOffset > touchThreshold) {
+    touchOffset = 0;
+    touchCancel = true;
+    updateNavigation(currentSlide - 1, currentSlide);
+  } else if (touchOffset < -touchThreshold) {
+    touchOffset = 0;
+    touchCancel = true;
+    updateNavigation(currentSlide + 1, currentSlide);
+  }
+};
+
+const navigationTouchEnd = () => {
+  if (mobile || touchCancel) return;
+  if (touchCancel) {
+    touchCancel = false;
+    return;
+  }
+  if (touchOffset > touchThreshold) {
+    touchOffset = 0;
+    updateNavigation(currentSlide - 1, currentSlide);
+  } else if (touchOffset < -touchThreshold) {
+    touchOffset = 0;
+    updateNavigation(currentSlide + 1, currentSlide);
+  }
+};
 
 export default function navigationMagic() {
   updateGlobalShareLinks();
   injectLinksAndAddSideBar();
   injectTopAndBottomButtons();
   parseAndLoadSlide();
+  setNavigationFadeTimemout();
   document.addEventListener('mousemove', navigationInactivityFadeHandler, false);
   document.addEventListener('keydown', navigationKeydownHandler, false);
   document.addEventListener('wheel', navigationWheelHandler, false);
+  document.addEventListener('touchstart', navigationTouchStart, false);
+  document.addEventListener('touchmove', navigationTouchMove, false);
+  document.addEventListener('touchend', navigationTouchEnd, false);
   window.addEventListener('scroll', mobileScrollHandler, false);
 }
