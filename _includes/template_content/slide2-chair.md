@@ -1,4 +1,3 @@
 ### Messages
 
-# Chair's Message
-
+# *Chair's Message*
