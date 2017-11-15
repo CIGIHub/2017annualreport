@@ -286,9 +286,9 @@ p {
 .landing-img {
 
   img {
+    @include object-fit(cover);
     height: 100vh;
     left: 0;
-    object-fit: cover;
     position: absolute;
     top: 0;
     width: 100vw;
@@ -312,7 +312,7 @@ header.white {
   .fa {
     color: white;
   }
-  
+
   .tab, .tab.selected{
     border: solid 1px white;
     color: white;

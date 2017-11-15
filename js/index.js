@@ -6,6 +6,9 @@ import photoCaptionMagic from './captions';
 import initializeLightboxMedia from './mediaLightbox';
 import progressiveBlur from './progressive';
 
+import objectFitImages from './polyfills/object-fit';
+objectFitImages();
+
 progressiveBlur();
 timelineMagic();
 galleryMagic();
