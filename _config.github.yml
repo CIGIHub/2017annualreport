@@ -1,9 +1,9 @@
-assets_base_url: "/interactives/2017annualreport"
-title: CIGI 2017 Annual Report
-email: websiteupdates@cigionline.org
+assets_base_url: "/2017annualreport"
+title: Your awesome title
+email: your-email@domain.com
 description: CIGI Annual Report
-baseurl: "/interactives/2017annualreport"
-url: "https://staging.cigionline.org"
+baseurl: "/2017annualreport"
+url: "https://cigihub.github.io"
 
 # Build settings
 markdown: kramdown
