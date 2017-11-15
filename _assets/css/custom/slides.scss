@@ -283,30 +283,6 @@ p {
 
 // Landing Page
 
-.landing-img {
-
-  img {
-    height: 100vh;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-  }
-
-  &::before {
-    background: rgba(215, 3, 24, 0.68);
-    content: ' ';
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-  }
-}
-
 header.white {
   a,
   .fa {

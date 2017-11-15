@@ -195,24 +195,28 @@
   
   .img-container {
     img {
-      height: 100vh;
-      left: 0;
-      object-fit: cover;
       position: absolute;
-      top: 0;
-      width: 100vw;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: bottom center;
+      
     }
     &::before {
       background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
       content: ' ';
       display: block;
       height: 100%;
-      left: 0;
-      opacity: 1;
-      position: absolute;
-      top: 0;
       width: 100%;
+      position: absolute;
       z-index: 1;
+    }
+  }
+
+
+.landing .img-container{
+  
+    &::before {
+      background: rgba(215, 3, 24, 0.68);
     }
   }
   
