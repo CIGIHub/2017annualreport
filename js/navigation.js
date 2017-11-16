@@ -253,12 +253,14 @@ function injectLinksAndAddSideBar() {
     window.onscroll = null;
     smoothSlideContainer.style.transform = null;
     document.body.style.overflow = null;
+    document.body.style.touchAction = null;
   }
 
   function desktopScroll() {
     window.onscroll = () => window.scrollTo(0, 0);
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
   }
   desktopScroll();
 
@@ -337,11 +339,13 @@ function injectLinksAndAddSideBar() {
   function tocDesktop() {
     const container = createDiv('tr h-100 overflow-auto wrapper');
     const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb4-ns db-ns dn');
+    let tocItemCounter = 0;
     h1.innerText = 'Table of Contents';
     container.appendChild(h1);
-    const div = createDiv('col');
+    const div = createDiv('flex flex-row justify-end flex-wrap');
     for (const [subsection, content] of subsections) {
-      const wrapper = createEl('li', 'column-no-wrap list');
+      const wrapper = createEl('li', 'list ph3 toc-flex-item order-' + tocItemCounter);
+      tocItemCounter++;
       const h2 = createEl('h2', 'accent-color partial-underline-right f4 fw3 mt3 smooth');
       h2.innerText = subsection;
       wrapper.appendChild(h2);
@@ -516,9 +520,10 @@ export function loadInitialSlide(initialSlide) {
 let touchXStart;
 let touchOffset = 0;
 let touchCancel = false;
-const touchThreshold = 200;
+const touchThreshold = 75;
 const navigationTouchStart = e => {
   if (mobile) return;
+  navigationInactivityFadeHandler(e);
   if (e.touches.length > 1) {
     touchCancel = true;
     return;
