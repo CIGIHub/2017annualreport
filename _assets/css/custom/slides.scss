@@ -3,6 +3,7 @@
 .background-img{
   background-size: cover;
   position: absolute;
+  background-position: bottom center;
   height: 100%;
   width: 100%;
   &::before {
