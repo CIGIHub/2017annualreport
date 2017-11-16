@@ -1,3 +1,0 @@
-### Messages
-
-# Chair's Message
