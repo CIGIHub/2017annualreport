@@ -1,5 +1,6 @@
 const progressiveImages = Array.from(document.getElementsByClassName('progressive'));
 const blurDuration = 200;
+
 export default function progressiveBlur() {
   progressiveImages.forEach(image => {
     if (!image.complete) {
