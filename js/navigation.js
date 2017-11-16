@@ -339,11 +339,13 @@ function injectLinksAndAddSideBar() {
   function tocDesktop() {
     const container = createDiv('tr h-100 overflow-auto wrapper');
     const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb4-ns db-ns dn');
+    let tocItemCounter = 0;
     h1.innerText = 'Table of Contents';
     container.appendChild(h1);
-    const div = createDiv('col');
+    const div = createDiv('flex flex-row justify-end flex-wrap');
     for (const [subsection, content] of subsections) {
-      const wrapper = createEl('li', 'column-no-wrap list');
+      const wrapper = createEl('li', 'list ph3 toc-flex-item order-' + tocItemCounter);
+      tocItemCounter++;
       const h2 = createEl('h2', 'accent-color partial-underline-right f4 fw3 mt3 smooth');
       h2.innerText = subsection;
       wrapper.appendChild(h2);

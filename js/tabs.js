@@ -4,6 +4,7 @@ import { sections, currentSlide } from './navigation';
 
 function initializeTabs() {
   let tabId = /&tab-(\d+)/.exec(location.hash);
+  let slideId = /slide=(\d+)/.exec(location.hash);
   if (tabId !== null) {
     tabId = tabId[1];
   } else {
@@ -11,6 +12,10 @@ function initializeTabs() {
   }
   const setTab = document.querySelectorAll(`[data-id="tab-${tabId}"]`);
   addClassToElementsInArray(setTab, 'selected');
+
+  if (slideId !== null && slideId[1] == "2"){
+    setMessagesBackground("tab-" + tabId);
+  }
 }
 
 function toggleTabs(e) {
@@ -27,6 +32,21 @@ function toggleTabs(e) {
       item.classList.remove('selected');
     }
   }
+
+  if (e.target.textContent.includes("Message")) {
+    setMessagesBackground(selectedTab);
+  }
+}
+
+ // Setting background for messages slides
+function setMessagesBackground(tab){
+  let slide2 = document.getElementsByClassName('slide-2')[0];
+  if (tab == "tab-1"){
+    slide2.style.backgroundImage = "url('../assets/slides/RM-headshot-smaller.jpg')";
+  }
+  else if (tab == "tab-2"){
+    slide2.style.backgroundImage = "url('../assets/slides/JB-headshot-smaller.jpg')";
+  } 
 }
 
 const toggle = Array.from(document.getElementsByClassName('toggle'));
