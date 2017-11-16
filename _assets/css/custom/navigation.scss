@@ -163,3 +163,7 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
   position: relative;
   width: 2rem;
 }
+
+.toc-flex-item {
+  flex: 1 1 auto;
+}
