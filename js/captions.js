@@ -10,6 +10,8 @@ export default function photoCaptionMagic() {
     }
 
     function toggleText(element) {
+        //console.log("toggling...");
+        //console.log(element);
         const children = element.childNodes;
         Array.from(children).forEach(child => {
             if (child.tagName && child.className.indexOf('photo-caption') === -1
