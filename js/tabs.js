@@ -42,10 +42,10 @@ function toggleTabs(e) {
 function setMessagesBackground(tab){
   let slide2 = document.getElementsByClassName('slide-2')[0];
   if (tab == "tab-1"){
-    slide2.style.backgroundImage = "url('../assets/slides/RM-headshot.jpg')";
+    slide2.style.backgroundImage = "url('../assets/slides/RM-headshot-smaller.jpg')";
   }
   else if (tab == "tab-2"){
-    slide2.style.backgroundImage = "url('../assets/slides/JB-headshot.jpg')";
+    slide2.style.backgroundImage = "url('../assets/slides/JB-headshot-smaller.jpg')";
   } 
 }
 
