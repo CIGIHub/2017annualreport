@@ -27,9 +27,11 @@ export default function photoCaptionMagic() {
             return;
         }
         var standardSlideElement = findParentElement(this, 'standard-slide');
+        let standardSlideBG = standardSlideElement.getElementsByClassName('background-img')[0];
+        console.log(standardSlideBG);
         var headerElement = document.getElementById('site-header');
         headerElement.classList.toggle('hide-text');
-        standardSlideElement.classList.toggle('hide');
+        standardSlideBG.classList.toggle('hide');
         toggleText(this.parentElement);
     }
 
