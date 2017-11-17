@@ -267,7 +267,7 @@ p {
 
 .pr6-ns{
   @include media-query($small-screen){
-    padding-right: 2rem;
+    padding-right: 3rem;
   }
   @include media-query($small-phone){
     padding-right: 0;
@@ -281,7 +281,8 @@ p {
 }
     
 .joint-message,
-.financials{
+.financials,
+.gallery-slide{
   .wrapper{
     padding-top: 6rem;
   }
