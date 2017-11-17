@@ -41,11 +41,12 @@ function toggleTabs(e) {
  // Setting background for messages slides
 function setMessagesBackground(tab){
   let slide2 = document.getElementsByClassName('slide-2')[0];
+  let slide2BG = slide2.getElementsByClassName('background-img')[0];
   if (tab == "tab-1"){
-    slide2.style.backgroundImage = "url('../assets/slides/RM-headshot-smaller.jpg')";
+    slide2BG.style.backgroundImage = "url('../assets/slides/RM-headshot-smaller.jpg')";
   }
   else if (tab == "tab-2"){
-    slide2.style.backgroundImage = "url('../assets/slides/JB-headshot-smaller.jpg')";
+    slide2BG.style.backgroundImage = "url('../assets/slides/JB-headshot-smaller.jpg')";
   } 
 }
 
