@@ -36,16 +36,8 @@
   }
 }
 
-.slide-2 {
-  background-image: url('../assets/slides/RM-headshot-smaller.jpg');
-}
-
 .slide-16 {
   background-image: url('../assets/slides/canvas.jpg');
-}
-
-.slide-2,
-.slide-16 {
   background-size: cover;
   background-position: 50% 50%;
   
@@ -289,7 +281,6 @@ p {
     padding-top: 6rem;
   }
   
-  
   h3 {
     display: none;
   }
@@ -306,7 +297,9 @@ p {
     }		
   }
   @include media-query($small-phone) {
+    .wrapper{
       padding-top: 3rem;
+    }
   }
 }
 
