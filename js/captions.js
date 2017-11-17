@@ -10,8 +10,6 @@ export default function photoCaptionMagic() {
     }
 
     function toggleText(element) {
-        //console.log("toggling...");
-        //console.log(element);
         const children = element.childNodes;
         Array.from(children).forEach(child => {
             if (child.tagName && child.className.indexOf('photo-caption') === -1
@@ -28,7 +26,6 @@ export default function photoCaptionMagic() {
         }
         var standardSlideElement = findParentElement(this, 'standard-slide');
         let standardSlideBG = standardSlideElement.getElementsByClassName('background-img')[0];
-        console.log(standardSlideBG);
         var headerElement = document.getElementById('site-header');
         headerElement.classList.toggle('hide-text');
         standardSlideBG.classList.toggle('hide');
