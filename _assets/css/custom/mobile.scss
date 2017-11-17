@@ -167,8 +167,11 @@
     order: 0;
     padding-bottom: 0.5rem;
     
-    &::before {
-      display: none;
+    &:before {
+      content: '\f030';
+      font-family: FontAwesome;
+      color: inherit;
+      border: none
     }
     &:hover {
       background-color: inherit;

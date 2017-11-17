@@ -169,9 +169,11 @@ header .tabs {
   align-self: flex-start;
   border-radius: 9999px;
   color: $grey-color-dark;
+  display: inline-block;
   margin-left: -0.3em;
   margin-top: 1em;
   order: 1;
+  padding: 0.5em;
   transition: color 0.5s ease-in, background-color 0.5s ease-in;
   
   &::before {
@@ -195,6 +197,9 @@ header .tabs {
     p::before {
       color: $grey-color;
       transition: color 0.5s ease-out;
+    }
+    &:before{
+      color: $grey-color;
     }
   }
 }
@@ -303,9 +308,11 @@ p {
   }
 }
 
-.hide .img-container::before {
-  opacity: 0;
-  transition: opacity 0.5s ease-in;
+.background-img.hide{
+  &:before{
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
 }
 
 .hide-text {

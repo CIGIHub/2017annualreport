@@ -114,12 +114,12 @@ function setNavigationFadeTimemout(e) {
   }
   fadeTimeout = setTimeout(() => {
     if (e) {
-      const cursorOnNavigation = Array.prototype.some.call([topButton, bottomButton, sidebar], child => child.contains(e.target));
+      const cursorOnNavigation = Array.prototype.some.call([sidebar], child => child.contains(e.target));
       if (cursorOnNavigation) {
         return;
       }
     }
-    fadeOutAllNavigationComponents();
+    fadeOutNavigationComponent(sidebar);
     fadeTimeoutSet = false;
   }, inactivityMilliseconds);
   fadeTimeoutSet = true;
