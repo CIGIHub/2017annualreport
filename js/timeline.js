@@ -1012,7 +1012,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   document.addEventListener('keydown', leftAndRightNavigation);
   document.addEventListener('mousemove', timeoutFadeLayerMousemoveEventHandler, false);
   // Hook up "Back to Timeline" button
-  const backToTimeline = createDiv('right-2 top-2 fade-in-500ms-linear absolute white pointer inline-flex items-center reverse-dim no-underline br-pill bg-black-50 pv2 ph3');
+  const backToTimeline = createDiv('right-2 top-2 fade-in-500ms-linear absolute white pointer inline-flex items-center br-pill bg-black pv2 ph3');
   backToTimeline.innerHTML = '<i class="fa fa-calendar-check-o"></i><span class="pl2">Back to Timeline</span>';
   backToTimeline.onclick = e => {
     e.stopPropagation();
