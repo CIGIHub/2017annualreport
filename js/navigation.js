@@ -253,12 +253,14 @@ function injectLinksAndAddSideBar() {
     window.onscroll = null;
     smoothSlideContainer.style.transform = null;
     document.body.style.overflow = null;
+    document.body.style.touchAction = null;
   }
 
   function desktopScroll() {
     window.onscroll = () => window.scrollTo(0, 0);
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
   }
   desktopScroll();
 
@@ -518,9 +520,10 @@ export function loadInitialSlide(initialSlide) {
 let touchXStart;
 let touchOffset = 0;
 let touchCancel = false;
-const touchThreshold = 200;
+const touchThreshold = 75;
 const navigationTouchStart = e => {
   if (mobile) return;
+  navigationInactivityFadeHandler(e);
   if (e.touches.length > 1) {
     touchCancel = true;
     return;

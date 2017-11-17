@@ -36,10 +36,6 @@
   }
 }
 
-
-
-
-.slide-2,
 .slide-16 {
   background-image: url('../assets/slides/canvas.jpg');
   background-size: cover;
@@ -281,7 +277,9 @@ p {
     
 .joint-message,
 .financials{
-  padding-top: 6rem;
+  .wrapper{
+    padding-top: 6rem;
+  }
   
   h3 {
     display: none;
@@ -299,7 +297,9 @@ p {
     }		
   }
   @include media-query($small-phone) {
-    padding-top: 3rem;
+    .wrapper{
+      padding-top: 3rem;
+    }
   }
 }
 
