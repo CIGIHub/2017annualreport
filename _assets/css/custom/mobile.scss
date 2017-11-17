@@ -9,7 +9,7 @@
 
 @media (max-width: $small-phone - 0.01em), (max-height: $small-phone - 0.01em) {
   .slide-2{
-    background-image: none;
+    background-image: none !important; // The !important is needed to override the inline style as added by the javascript
     &:before {
       opacity: 0;
     }
