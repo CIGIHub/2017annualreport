@@ -7,7 +7,7 @@
   height: 100%;
   width: 100%;
   &::before {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
+    background: linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.85));
     content: ' ';
     display: block;
     height: 100%;
