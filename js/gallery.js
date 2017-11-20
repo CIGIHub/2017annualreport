@@ -19,7 +19,7 @@ export default function galleryMagic() {
   const imageContainers = Array.from(gallery.getElementsByClassName('image-container'));
   let closing = false;
 
-  Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
+  //Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
 
   const imageIndexToPhotoContainer = new Array(imageContainers.length);
 
@@ -104,9 +104,9 @@ export default function galleryMagic() {
   }
 
   imageContainers.forEach((imageContainer, i) => {
-    const image = imageContainer.firstElementChild.firstElementChild;
+    const image = imageContainer.firstElementChild;
     image.onclick = () => {
-      if (closing || mobile) {
+      if (closing) {
         return;
       }
       const photoContainer = imageIndexToPhotoContainer[i] || generatePhotoContainer(i);
