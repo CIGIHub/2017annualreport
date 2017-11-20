@@ -104,7 +104,7 @@ export default function galleryMagic() {
   }
 
   imageContainers.forEach((imageContainer, i) => {
-    const image = imageContainer.firstElementChild;
+    const image = imageContainer;
     image.onclick = () => {
       
       if (closing) {
