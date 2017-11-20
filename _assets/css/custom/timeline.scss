@@ -365,9 +365,9 @@ $article-slide-timing-function: ease-in-out;
 }
 
 .article-picture {
+  @include object-fit(cover);
   height: 100%;
   left: 0;
-  object-fit: cover;
   opacity: 0.75;
   position: absolute;
   top: 0;
