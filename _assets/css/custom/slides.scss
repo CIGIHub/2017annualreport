@@ -118,9 +118,23 @@
     color: white;
     display: block;
     margin-left: 0.625rem;
+    margin-top: 0;
     
     @include media-query($on-laptop) {
       margin-left: 0;
+    }
+    @media (max-width: 420px) {
+      margin-top: 0.5rem;
+    }
+    
+  }
+  .notes{
+    margin-top: 0;
+  }
+  @media (max-width: 420px) {
+    .notes{
+      margin-top: 0.5rem;
+      border-left: solid 1px $accent-color;
     }
   }
   
