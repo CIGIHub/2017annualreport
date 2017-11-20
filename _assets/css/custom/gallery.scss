@@ -15,11 +15,15 @@
     height: 140px;
     overflow: hidden;
    
-    @include media-query($on-laptop) {
+    @include media-query($on-laptop){
       height: 100px;
     }
     @include media-query($small-phone) {
       flex-basis: 33%;
+    }
+
+    @media(max-height: $on-laptop) {
+      height: 100px;
     }
 
     .view{
