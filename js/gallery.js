@@ -34,7 +34,7 @@ export default function galleryMagic() {
       disableOverlay();
       currentPhotocontainer.remove();
       lightbox.remove();
-    }, 1000);
+    }, 500);
   }
 
   lightbox.onclick = e => {
@@ -106,6 +106,7 @@ export default function galleryMagic() {
   imageContainers.forEach((imageContainer, i) => {
     const image = imageContainer.firstElementChild;
     image.onclick = () => {
+      
       if (closing) {
         return;
       }
