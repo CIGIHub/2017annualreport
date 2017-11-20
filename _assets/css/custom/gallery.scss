@@ -12,10 +12,13 @@
     height: 140px;
     overflow: hidden;
    
+    @include media-query($on-laptop) {
+      height: 100px;
+    }
     @include media-query($small-phone) {
       flex-basis: 33%;
     }
-    
+
     .view{
       display: none;
     }
