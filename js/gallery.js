@@ -98,7 +98,7 @@ export default function galleryMagic() {
       };
     }
     photoContainer.appendChild(photoWrapper);
-    photoContainer.appendChild(caption);
+    photoWrapper.appendChild(caption);
     imageIndexToPhotoContainer[i] = photoContainer;
     return photoContainer;
   }
