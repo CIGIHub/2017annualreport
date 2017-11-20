@@ -136,6 +136,9 @@
       color: $text-color;
     }
   }
+  @include media-query($small-phone){
+    display: none;
+  }
 }
     
 header .tabs {
@@ -150,6 +153,9 @@ header .tabs {
     display: none;
     
     &.selected {
+      display: block;
+    }
+    @include media-query($small-phone){
       display: block;
     }
   }
@@ -303,7 +309,10 @@ p {
   }
   @include media-query($small-phone) {
     .wrapper{
-      padding-top: 3rem;
+      padding-top: 0;
+    }
+    h1 {
+      display: block;
     }
   }
 }
