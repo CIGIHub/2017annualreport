@@ -673,3 +673,9 @@ header.white {
     }
   }
 }
+
+.messages {
+  @media (max-width:$on-laptop) and (min-width: $small-phone){
+    font-size: 12px;
+  }
+}
