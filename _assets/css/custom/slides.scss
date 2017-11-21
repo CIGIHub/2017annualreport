@@ -29,37 +29,17 @@
   }
 }
 
+.right-img{
+  background-position: bottom right;
+}
+
 .mobile-img{
   display: none;
   @media (max-width: $small-phone) {
     display: block;
   }
 }
-
-.slide-16 {
-  background-image: url('../assets/slides/canvas.jpg');
-  background-size: cover;
-  background-position: 50% 50%;
-  
-  &::before {
-    background: rgba(255, 255, 255, 0.55);
-    content: ' ';
-    display: block;
-    height: 100%;
-    left: 0;
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-  .wrapper {
-    position: relative;
-  }
-  .slide-content {
-    position: relative;
-  }
-}
-
+    
 .slide-content{
   z-index: 5;
 }
