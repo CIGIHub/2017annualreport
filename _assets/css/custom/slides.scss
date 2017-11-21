@@ -269,9 +269,11 @@ p {
 }
 
 .joint-message{
-  font-size: 12px;
   @include media-query($small-screen) {
     font-size: 13px;
+  }
+  @include media-query($on-laptop) {
+    font-size: 12px;
   }
 }
 
