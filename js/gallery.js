@@ -19,7 +19,7 @@ export default function galleryMagic() {
   const imageContainers = Array.from(gallery.getElementsByClassName('image-container'));
   let closing = false;
 
-  Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
+  //Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
 
   const imageIndexToPhotoContainer = new Array(imageContainers.length);
 
@@ -34,7 +34,7 @@ export default function galleryMagic() {
       disableOverlay();
       currentPhotocontainer.remove();
       lightbox.remove();
-    }, 1000);
+    }, 500);
   }
 
   lightbox.onclick = e => {
@@ -98,15 +98,16 @@ export default function galleryMagic() {
       };
     }
     photoContainer.appendChild(photoWrapper);
-    photoContainer.appendChild(caption);
+    photoWrapper.appendChild(caption);
     imageIndexToPhotoContainer[i] = photoContainer;
     return photoContainer;
   }
 
   imageContainers.forEach((imageContainer, i) => {
-    const image = imageContainer.firstElementChild.firstElementChild;
+    const image = imageContainer;
     image.onclick = () => {
-      if (closing || mobile) {
+      
+      if (closing) {
         return;
       }
       const photoContainer = imageIndexToPhotoContainer[i] || generatePhotoContainer(i);
