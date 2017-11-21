@@ -52,6 +52,9 @@
     &:hover{
       .caption{
         display: block;
+        @include media-query($small-phone) {
+          display: none;
+        }
       }
       .image-wrapper{
         transform: scale(1.1, 1.1);
@@ -80,18 +83,18 @@
 }
 
 .media-container {
-  left: 50%;
-  max-width: calc(100% - 2rem);
   position: absolute;
+  left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   transition: transform 1s ease;
+  // max-width: calc(100% - 2rem);
 }
 
-.photo {
-  max-height: 75vh;
-  max-width: 75vw;
-}
+// .photo {
+//   max-height: 75vh;
+//   max-width: 75vw;
+// }
 
 .close-button {
   align-items: center;
