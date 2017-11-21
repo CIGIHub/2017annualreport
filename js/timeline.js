@@ -869,7 +869,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         const dataPointCircle = createSvgEl('circle');
         dataPointCircle.setAttribute('cx', diameter / 2);
         dataPointCircle.setAttribute('cy', diameter / 2);
-        dataPointCircle.setAttribute('r', diameter / 2 - 1);
+        dataPointCircle.setAttribute('r', diameter / 2 - 2);
         dataPointCircle.setAttribute('class', 'data-point-circle');
         dataPoint.appendChild(dataPointCircle);
 
@@ -877,7 +877,10 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
           itemIdToDataPointCircles[item.id] = [];
         }
         itemIdToDataPointCircles[item.id].push(dataPointCircle);
-        dataPointCircle.onmouseenter = () => {
+        dataPoint.onmouseover = () => {
+          if (lastPointContainer === pointContainer) {
+            return;
+          }
           clearLastPreview();
           pointContainer.classList.add('preview-enabled');
           lastPointContainer = pointContainer;
