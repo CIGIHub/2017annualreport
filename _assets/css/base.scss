@@ -4,7 +4,7 @@ $small-phone: 30em;
 $on-palm: 600px;
 $on-laptop: 880px;
 $small-screen: 1390px;
-$medium-screen: 1900px;
+$medium-screen: 1600px;
 
 @mixin media-query($device) {
   @if $device != $small-phone{
@@ -18,10 +18,6 @@ $medium-screen: 1900px;
   }
 }
 
-@mixin set-font-vars($device) {
-  
-}
-
 //Define Font Variables
 
 $base-font-family: 'futura-pt', Helvetica, Arial, sans-serif;
@@ -29,15 +25,7 @@ $base-font-size: 15px;
 $base-font-weight: 400;
 $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.4;
-
 $spacing-unit: 30px;
-
-@if (min-width > $small-screen){
-  $base-font-size: 16px;
-}
-@if (min-width > $medium-screen){
-  $base-font-size: 18px;
-}
 
 
 //Define Colours
@@ -92,19 +80,14 @@ figure {
 
 // Basic styling
 
-%font {
-  font: $base-font-weight $base-font-size/#{$base-line-height} $base-font-family;
-}
-
-.font {
-  @extend %font;
-}
-
 body {
-  @extend %font;
+  font: $base-font-weight $base-font-size/#{$base-line-height} $base-font-family;
   color: $text-color;
   @include media-query($small-screen) {
     font-size: 14px;
+  }
+  @include media-query($medium-screen) {
+    font-size: 17px;
   }
 }
 
@@ -127,6 +110,9 @@ h1 {
   @include media-query($on-palm) {
     font-size: 1.25rem;
   }
+  @include media-query($medium-screen) {
+    font-size: 2em;
+  }
 }
 .timeline-slide h1{
   font-size: 2.5rem;
@@ -135,6 +121,9 @@ h1 {
 h2 {
   font-size: 1em;
   font-weight: 300;
+  @include media-query($medium-screen) {
+    font-size: 1.25em;
+  }
 }
 
 hr {

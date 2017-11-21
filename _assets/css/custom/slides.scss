@@ -575,6 +575,9 @@ header.white {
       float: none;
       width: 100%;
     }
+    @include media-query($medium-screen) {
+      font-size: 1em;
+    }
     
     td:nth-child(1) {
       width: 60%;
