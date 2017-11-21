@@ -7,16 +7,58 @@
   width: 50px;
 }
 
-@media (max-width: $small-phone - 0.01em) {
+@media (max-width: $small-phone - 0.01em), (max-height: $small-phone - 0.01em) {
+  
   section {
     background: $background-color;
     border-bottom: solid 1px $grey-color-dark;
   }
+  
+  // special mobile landscape overwrites
+  a.db-ns{
+      display:none;
+    }
+  
+  .mv4-ns{
+    margin: 0;
+  }
 
+  .dn-ns{
+    display: initial;
+  }
+
+  a.dn-ns{
+    display: block;
+  }
+
+  .vh-100-ns{
+    height: auto;
+  }
+  .site-header.wrapper{
+    max-width: 100%;
+  }
+
+  .site-header{
+    padding: 0.5em;
+  }
+
+  .mobile-timeline{
+    p {
+      width: 70%;
+      margin:auto;
+      padding-top: 2em;
+    }
+  }
+
+  .cigi-logo-mobile{
+    left:0px;
+  }
+  // *******  
+  
   #main-tabs {
     display: none;
   }
-
+  
   .mobile-timeline{
     padding-top: 6em;
     p {
@@ -30,24 +72,24 @@
       text-decoration: none;
     }
   }
-
+  
   .site-header {
     background: $background-color;
     box-shadow: 0 0 1rem 1px $grey-25;
   }
-
+  
   .sidebar,
   .navigation-top-button,
   .navigation-bottom-button {
     display: none;
   }
-
+  
   .download {
     a {
       margin-top: 0;
     }
   }
-
+  
   .toc-mobile-wrapper {
     background: black;
     color: white;
@@ -57,45 +99,45 @@
     position: fixed;
     top: 0;
     width: 100vw;
-
+    
     a {
       color: white;
       text-decoration: none;
     }
-
+    
     ul {
       font-size: 1em;
       list-style: none;
       padding: 4em 1em 0;
-
+      
       li:first-child {
         display: none;
       }
-
+      
     }
   }
-
+  
   #timeline-slide-content,
   #timeline-filters {
     display: none;
   }
-
+  
   h1 {
     font-size: 2em !important;
     line-height: 1.25em !important;
   }
-
+  
   .landing,
   .timeline-slide {
     min-height: 100vh;
   }
-
+  
   .timeline-slide,
   .financials,
   .standard-slide {
     padding-top: 2rem;
   }
-
+  
   .mobile-button {
     background: $accent-color;
     border-radius: 50%;
@@ -108,25 +150,28 @@
     right: 20px;
     z-index: 100;
   }
-
+  
   .explore,
   .fullscreen-bg-video {
     display: none;
   }
-
+  
   .img-container {
     img {
       padding-bottom: 0.5rem;
     }
   }
-
+  
   .photo-caption {
     margin: 0;
     order: 0;
     padding-bottom: 0.5rem;
-
-    &::before {
-      display: none;
+    
+    &:before {
+      content: '\f030';
+      font-family: FontAwesome;
+      color: inherit;
+      border: none
     }
     &:hover {
       background-color: inherit;
@@ -135,48 +180,10 @@
   }
 }
 
-@media (min-width: $small-phone) {
+@media (min-width: $small-phone) and (min-height: $small-phone) {
   .cigi-logo-mobile,
   .toc-close-mobile,
   .toc-open-mobile {
     display: none;
-  }
-
-  .slide-3,
-  .slide-10,
-  .slide-11,
-  .slide-12,
-  .slide-13 {
-    .img-container > img {
-      display: none;
-    }
-  }
-
-  .img-container {
-    img {
-      height: 100vh;
-      left: 0;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      width: 100vw;
-    }
-    &::before {
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
-      content: ' ';
-      display: block;
-      height: 100%;
-      left: 0;
-      opacity: 1;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 1;
-    }
-  }
-
-  .slide-content > :not(.img-container) {
-    position: relative;
-    z-index: 2;
   }
 }
