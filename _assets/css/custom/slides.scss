@@ -590,6 +590,12 @@ header.white {
     &.table2{
       width: 75%;
     }
+    @include media-query($on-palm) {
+      &.table2{
+        width: 100%;
+      }
+    }
+
     td:nth-child(1) {
       width: 60%;
     }
