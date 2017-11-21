@@ -59,7 +59,7 @@
     position: relative;
   }
 }
-    
+
 .slide-content{
   z-index: 5;
 }
@@ -77,7 +77,7 @@
   width: auto;
   z-index: -1;
 }
-    
+
 .tabs {
   color: $accent-color;
   overflow: auto;
@@ -93,6 +93,9 @@
     
     &:first-child {
       border-left: solid 1px $accent-color;
+    }
+    @media (min-width:$medium-screen) {
+      font-size: 1em;
     }
   }
   
@@ -139,12 +142,18 @@
   @include media-query($small-phone){
     display: none;
   }
+  @media (min-width:$medium-screen) {
+    padding-top: 1em;
+  }
 }
-    
+
 header .tabs {
   .tab {
     font-size: 0.75rem;
     text-transform: uppercase;
+  }
+  @media (min-width:$medium-screen) {
+    padding-top: 0;
   }
 }
 
@@ -160,7 +169,7 @@ header .tabs {
     }
   }
 }
-    
+
 .dropcap {
   border: 1px solid;
   float: left;
@@ -170,7 +179,7 @@ header .tabs {
   margin-right: 8px;
   padding: 0.1em 0.25em;
 }
-    
+
 .photo-caption {
   align-self: flex-start;
   border-radius: 9999px;
@@ -209,7 +218,7 @@ header .tabs {
     }
   }
 }
-    
+
 .no-opacity {
   opacity: 0;
 }
@@ -217,7 +226,7 @@ header .tabs {
 p {
   padding-bottom: 1rem;
 }
-    
+
 //Cover Slide
 
 .landing,
@@ -225,7 +234,7 @@ p {
   overflow: hidden;
   position: relative;
 }
-    
+
 .standard-slide {
   
   h1 {
@@ -285,7 +294,7 @@ p {
     font-size: 13px;
   }
 }
-    
+
 .joint-message,
 .financials,
 .gallery-slide{
@@ -329,7 +338,7 @@ p {
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
-    
+
 // Landing Page
 
 header.white {
@@ -564,7 +573,7 @@ header.white {
     }
   }
 }
-    
+
 //Financials Slide
 .financials {
   h1 {
@@ -590,9 +599,12 @@ header.white {
     @include media-query($small-phone) {
       float: none;
       width: 100%;
+      padding-top: 2rem;
     }
-    @include media-query($medium-screen) {
+    @media (min-width:$medium-screen) {
       font-size: 1em;
+      width: 100%;
+      padding-top: 1rem;
     }
     
     td:nth-child(1) {
@@ -608,6 +620,9 @@ header.white {
         td {
           background: rgb(204, 203, 200);
           padding: 0 0.5rem;
+          @media (min-width:$medium-screen) {
+            padding: 0.5rem;
+          }
         }
         td:nth-child(1) {
           text-align: left;
@@ -618,7 +633,7 @@ header.white {
       td {
         text-align: center;
         
-        &:nth-child(1) {
+        &:nth-child(1), &:nth-child(2){
           border-right: solid 0.5rem $default-background-color;
         }
         
@@ -646,6 +661,11 @@ header.white {
           font-weight: 900;
           padding-left: 0.5rem;
         }
+        td {
+          @media (min-width:$medium-screen) {
+            padding-top: 0.5em;
+          }
+        }
       }
       
       .total {
@@ -666,6 +686,7 @@ header.white {
       .top {
         border-top: solid 1px rgb(156, 156, 156);
       }
+      
     }
   }
 }
