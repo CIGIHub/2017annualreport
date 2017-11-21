@@ -269,6 +269,7 @@ p {
 }
 
 .joint-message{
+  font-size: 12px;
   @include media-query($small-screen) {
     font-size: 13px;
   }
@@ -671,11 +672,5 @@ header.white {
       }
       
     }
-  }
-}
-
-.messages {
-  @media (max-width:$on-laptop) and (min-width: $small-phone){
-    font-size: 12px;
   }
 }
