@@ -11,7 +11,7 @@
   
   section {
     background: $background-color;
-    border-bottom: solid 1px $grey-color-dark;
+    padding-bottom: 1em;
   }
   
   // special mobile landscape overwrites ******
@@ -177,6 +177,17 @@
       background-color: inherit;
       color: inherit;
     }
+  }
+
+  .mobile-subheading {
+    font-weight: 300;
+    font-size: 1.75em;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+  }
+
+  #chairs-message{
+    padding-top: 2rem;
   }
 
   .no-mobile {

@@ -565,6 +565,9 @@ header.white {
 .financials {
   h1 {
     margin-bottom: 1rem;
+    @include media-query($small-phone) {
+      margin-bottom: 0;
+    }
   }
   
   .small {
