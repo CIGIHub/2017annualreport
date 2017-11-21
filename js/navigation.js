@@ -368,9 +368,9 @@ function injectLinksAndAddSideBar() {
           chairLi.innerText = "Chair's Message";
           chairLi.onclick = () => {
             toggleTocOpen();
-            if (slide.slideNum !== currentSlide) {
-              updateNavigation(slide.slideNum, currentSlide);
-            }
+              if (slide.slideNum !== currentSlide) {
+                updateNavigation(slide.slideNum, currentSlide);
+              }
             chairsMessageLink.click();
           };
           acc.appendChild(chairLi);
@@ -406,6 +406,7 @@ function injectLinksAndAddSideBar() {
         presidentLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
+          window.scrollBy(0,-46); // clear the top nav
           presidentsMessageLink.click();
         };
         ul.appendChild(presidentLi);
@@ -415,6 +416,8 @@ function injectLinksAndAddSideBar() {
         chairLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
+          document.getElementById("chairs-message").scrollIntoView();
+          window.scrollBy(0,-46); // clear the top nav
           chairsMessageLink.click();
         };
         ul.appendChild(chairLi);
@@ -424,6 +427,7 @@ function injectLinksAndAddSideBar() {
         li.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
+          window.scrollBy(0,-46); // clear the top nav
         };
         ul.appendChild(li);
       }
