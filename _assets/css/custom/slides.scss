@@ -74,7 +74,29 @@
     &:first-child {
       border-left: solid 1px $accent-color;
     }
+    &:hover {
+      background: $accent-color-50;
+      color: white;
+    }
+    &.selected:hover {
+      background: transparent;
+      color: $text-color;
+    }
   }
+
+  .download{
+    float: left;
+    a {
+      background: $accent-color;
+      color: white;
+      display: block;
+      margin-left: 0.625rem;
+      
+      @include media-query($on-laptop) {
+        margin-left: 0;
+      }
+    }
+  } 
   
   .tab.selected {
     border: solid 1px $text-color;
@@ -93,29 +115,6 @@
     border-left: solid 1px $text-color;
   }
   
-  .download a {
-    background: $accent-color;
-    color: white;
-    display: block;
-    margin-left: 0.625rem;
-    
-    @include media-query($on-laptop) {
-      margin-left: 0;
-    }
-  }
-  
-  .tab,
-  .download a {
-    &:hover {
-      background: $accent-color-50;
-      color: white;
-    }
-    
-    &.selected:hover {
-      background: transparent;
-      color: $text-color;
-    }
-  }
   @include media-query($small-phone){
     display: none;
   }
@@ -560,9 +559,7 @@ header.white {
   }
   
   table {
-    float: left;
     font-size: 0.875rem;
-    width: 75%;
     font-family: "Lucida Console";
     @include media-query($small-screen) {
       font-size: 0.6rem;
@@ -572,6 +569,12 @@ header.white {
       width: 100%;
     }
     
+    &.table1{
+      width: 100%;
+    }
+    &.table2{
+      width: 75%;
+    }
     td:nth-child(1) {
       width: 60%;
     }
