@@ -88,8 +88,6 @@
     }
   }
 
-<<<<<<< HEAD
-=======
   .download{
     float: left;
     a {
@@ -104,7 +102,6 @@
     }
   }
 
->>>>>>> devel
   .tab.selected {
     border: solid 1px $text-color;
     border-left: 0;
@@ -121,38 +118,12 @@
   .tab:first-child.selected {
     border-left: solid 1px $text-color;
   }
-<<<<<<< HEAD
-
-  .download a {
-    background: $accent-color;
-    color: white;
-    display: block;
-    margin-left: 0.625rem;
-
-    @include media-query($on-laptop) {
-      margin-left: 0;
-    }
-  }
-
-  .tab,
-  .download a {
-    &:hover {
-      background: $accent-color-50;
-      color: white;
-    }
-
-    &.selected:hover {
-      background: transparent;
-      color: $text-color;
-    }
-=======
 
   @include media-query($small-phone){
     display: none;
   }
   @media (min-width:$medium-screen) {
     padding-top: 1em;
->>>>>>> devel
   }
 }
 
@@ -616,8 +587,6 @@ header.white {
       width: 100%;
       padding-top: 1rem;
     }
-<<<<<<< HEAD
-=======
 
     &.table1{
       width: 100%;
@@ -630,7 +599,6 @@ header.white {
         width: 100%;
       }
     }
->>>>>>> devel
 
     td:nth-child(1) {
       width: 60%;
@@ -657,13 +625,8 @@ header.white {
 
       td {
         text-align: center;
-<<<<<<< HEAD
-
-        &:nth-child(1) {
-=======
 
         &:nth-child(1), &:nth-child(2){
->>>>>>> devel
           border-right: solid 0.5rem $default-background-color;
         }
 
