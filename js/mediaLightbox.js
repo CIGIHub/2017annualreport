@@ -86,7 +86,7 @@ function createSoundcloudContainer(soundcloudId, soundcloudUrl) {
   closeButton.innerHTML = closeSvg;
   closeButton.onclick = closeLightbox;
 
-  soundcloudContainer.innerHTML = `<div class="responsive-media"><iframe width="100%" height="160" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${soundcloudId}&amp;auto_play=true&amp;show_artwork=true&amp;color=e6023b"></iframe></div>`;
+  soundcloudContainer.innerHTML = `<iframe width="100%" height="160" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${soundcloudId}&amp;auto_play=true&amp;show_artwork=true&amp;color=e6023b"></iframe>`;
   soundcloudContainer.appendChild(closeButton);
   loadOverlay.remove();
 
