@@ -49,7 +49,6 @@ export default function galleryMagic() {
     const photoContainer = createDiv('media-container');
     const photoWrapper = createDiv('relative');
     const caption = imageContainer.lastElementChild.cloneNode(true);
-    caption.className = 'w-100 fw5 mt2';
     const photo = createEl('img', 'photo');
     photo.src = image.src;
     photoWrapper.appendChild(photo);

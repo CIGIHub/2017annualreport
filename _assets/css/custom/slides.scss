@@ -15,7 +15,7 @@
     position: absolute;
     z-index: 1;
   }
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: none;
   }
 }
@@ -24,7 +24,7 @@
   &::before {
     background: rgba(215, 3, 24, 0.68);
   }
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: block;
   }
 }
@@ -35,7 +35,7 @@
 
 .mobile-img{
   display: none;
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: block;
   }
 }
@@ -271,6 +271,9 @@ p {
 .joint-message{
   @include media-query($small-screen) {
     font-size: 13px;
+  }
+  @include media-query($on-laptop) {
+    font-size: 12px;
   }
 }
 
@@ -590,6 +593,12 @@ header.white {
     &.table2{
       width: 75%;
     }
+    @include media-query($on-palm) {
+      &.table2{
+        width: 100%;
+      }
+    }
+
     td:nth-child(1) {
       width: 60%;
     }
