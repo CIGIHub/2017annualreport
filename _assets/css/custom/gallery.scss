@@ -98,13 +98,12 @@
   top: 50%;
   transform: translate(-50%, -50%);
   transition: transform 1s ease;
-  @media (max-width: $small-screen){
-    width: calc(60% - 2rem);
-  }
+  width: calc(60% - 2rem);
   @media (max-width: $on-laptop){
     width: calc(80% - 2rem);
   }
 }
+
 
 .close-button {
   align-items: center;

@@ -74,7 +74,7 @@ function createYoutubeContainer(youtubeId) {
   closeButton.onclick = closeLightbox;
 
   youtubeContainer.innerHTML = `<iframe type="text/html" width="100%" height="360" src="https://www.youtube.com/embed/${youtubeId}?fs=0&modestbranding=1&autoplay=1" frameborder="0"></iframe>`;
-  youtubeContainer.style.width = `${youtubeWidth}px`;
+  //youtubeContainer.style.width = `${youtubeWidth}px`;
   youtubeContainer.appendChild(closeButton);
   loadOverlay.remove();
 
@@ -91,7 +91,7 @@ function createSoundcloudContainer(soundcloudId, soundcloudUrl) {
   closeButton.onclick = closeLightbox;
 
   soundcloudContainer.innerHTML = `<iframe width="100%" height="160" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${soundcloudId}&amp;auto_play=true&amp;show_artwork=true&amp;color=e6023b"></iframe>`;
-  soundcloudContainer.style.width = soundCloudWidth;
+  //soundcloudContainer.style.width = soundCloudWidth;
   soundcloudContainer.appendChild(closeButton);
   loadOverlay.remove();
 
