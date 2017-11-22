@@ -216,11 +216,6 @@ p {
 
 .standard-slide {
   
-  h1 {
-    font-weight: 400;
-    padding: 0.5rem 0;
-  }
-  
   h3 {
     font-size: 1rem;
     text-transform: uppercase;
@@ -280,9 +275,6 @@ p {
 .joint-message,
 .financials,
 .gallery-slide{
-  .wrapper{
-    padding-top: 6rem;
-  }
   
   h3 {
     display: none;
@@ -300,9 +292,6 @@ p {
     }		
   }
   @include media-query($small-phone) {
-    .wrapper{
-      padding-top: 0;
-    }
     h1 {
       display: block;
     }
