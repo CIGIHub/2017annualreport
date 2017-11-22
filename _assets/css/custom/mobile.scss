@@ -55,10 +55,6 @@
   }
   // ***************************************  
   
-  #main-tabs {
-    display: none;
-  }
-  
   .mobile-timeline{
     padding-top: 6em;
     p {
@@ -205,3 +201,11 @@
     display: none;
   }
 }
+
+
+@media (max-width: $on-palm){
+  #main-tabs {
+    display: none;
+  }
+}
+
