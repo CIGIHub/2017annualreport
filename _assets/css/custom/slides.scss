@@ -29,6 +29,10 @@
   }
 }
 
+.right-img{
+  background-position: bottom right;
+}
+
 .mobile-img{
   display: none;
   @media (max-width: $small-phone) {
@@ -36,31 +40,7 @@
   }
 }
 
-.slide-16 {
-  background-image: url('../assets/slides/canvas.jpg');
-  background-size: cover;
-  background-position: 50% 50%;
-
-  &::before {
-    background: rgba(255, 255, 255, 0.55);
-    content: ' ';
-    display: block;
-    height: 100%;
-    left: 0;
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-  .wrapper {
-    position: relative;
-  }
-  .slide-content {
-    position: relative;
-  }
-}
-
-.slide-content{
+.slide-content {
   width: 100%;
   z-index: 5;
 }
@@ -95,8 +75,36 @@
     &:first-child {
       border-left: solid 1px $accent-color;
     }
+    &:hover {
+      background: $accent-color-50;
+      color: white;
+    }
+    &.selected:hover {
+      background: transparent;
+      color: $text-color;
+    }
+    @media (min-width:$medium-screen) {
+      font-size: 1em;
+    }
   }
 
+<<<<<<< HEAD
+=======
+  .download{
+    float: left;
+    a {
+      background: $accent-color;
+      color: white;
+      display: block;
+      margin-left: 0.625rem;
+
+      @include media-query($on-laptop) {
+        margin-left: 0;
+      }
+    }
+  }
+
+>>>>>>> devel
   .tab.selected {
     border: solid 1px $text-color;
     border-left: 0;
@@ -113,6 +121,7 @@
   .tab:first-child.selected {
     border-left: solid 1px $text-color;
   }
+<<<<<<< HEAD
 
   .download a {
     background: $accent-color;
@@ -136,6 +145,14 @@
       background: transparent;
       color: $text-color;
     }
+=======
+
+  @include media-query($small-phone){
+    display: none;
+  }
+  @media (min-width:$medium-screen) {
+    padding-top: 1em;
+>>>>>>> devel
   }
 }
 
@@ -144,6 +161,9 @@ header .tabs {
     font-size: 0.75rem;
     text-transform: uppercase;
   }
+  @media (min-width:$medium-screen) {
+    padding-top: 0;
+  }
 }
 
 .tab-content {
@@ -151,6 +171,9 @@ header .tabs {
     display: none;
 
     &.selected {
+      display: block;
+    }
+    @include media-query($small-phone){
       display: block;
     }
   }
@@ -279,6 +302,9 @@ p {
   @include media-query($small-screen) {
     font-size: 13px;
   }
+  @include media-query($on-laptop) {
+    font-size: 12px;
+  }
 }
 
 .joint-message,
@@ -305,7 +331,10 @@ p {
   }
   @include media-query($small-phone) {
     .wrapper{
-      padding-top: 3rem;
+      padding-top: 0;
+    }
+    h1 {
+      display: block;
     }
   }
 }
@@ -561,6 +590,9 @@ header.white {
 .financials {
   h1 {
     margin-bottom: 1rem;
+    @include media-query($small-phone) {
+      margin-bottom: 0;
+    }
   }
 
   .small {
@@ -569,9 +601,7 @@ header.white {
   }
 
   table {
-    float: left;
     font-size: 0.875rem;
-    width: 75%;
     font-family: "Lucida Console";
     @include media-query($small-screen) {
       font-size: 0.6rem;
@@ -579,7 +609,28 @@ header.white {
     @include media-query($small-phone) {
       float: none;
       width: 100%;
+      padding-top: 2rem;
     }
+    @media (min-width:$medium-screen) {
+      font-size: 1em;
+      width: 100%;
+      padding-top: 1rem;
+    }
+<<<<<<< HEAD
+=======
+
+    &.table1{
+      width: 100%;
+    }
+    &.table2{
+      width: 75%;
+    }
+    @include media-query($on-palm) {
+      &.table2{
+        width: 100%;
+      }
+    }
+>>>>>>> devel
 
     td:nth-child(1) {
       width: 60%;
@@ -594,6 +645,9 @@ header.white {
         td {
           background: rgb(204, 203, 200);
           padding: 0 0.5rem;
+          @media (min-width:$medium-screen) {
+            padding: 0.5rem;
+          }
         }
         td:nth-child(1) {
           text-align: left;
@@ -603,8 +657,13 @@ header.white {
 
       td {
         text-align: center;
+<<<<<<< HEAD
 
         &:nth-child(1) {
+=======
+
+        &:nth-child(1), &:nth-child(2){
+>>>>>>> devel
           border-right: solid 0.5rem $default-background-color;
         }
 
@@ -632,6 +691,11 @@ header.white {
           font-weight: 900;
           padding-left: 0.5rem;
         }
+        td {
+          @media (min-width:$medium-screen) {
+            padding-top: 0.5em;
+          }
+        }
       }
 
       .total {
@@ -652,6 +716,7 @@ header.white {
       .top {
         border-top: solid 1px rgb(156, 156, 156);
       }
+
     }
   }
 }
