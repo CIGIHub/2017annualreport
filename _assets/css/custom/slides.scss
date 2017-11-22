@@ -15,7 +15,7 @@
     position: absolute;
     z-index: 1;
   }
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: none;
   }
 }
@@ -24,7 +24,7 @@
   &::before {
     background: rgba(215, 3, 24, 0.68);
   }
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: block;
   }
 }
@@ -35,7 +35,7 @@
 
 .mobile-img{
   display: none;
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: block;
   }
 }
