@@ -39,8 +39,9 @@
     display: block;
   }
 }
-    
-.slide-content{
+
+.slide-content {
+  width: 100%;
   z-index: 5;
 }
 
@@ -61,7 +62,7 @@
 .tabs {
   color: $accent-color;
   overflow: auto;
-  
+
   .tab,
   .download a {
     border: solid 1px $accent-color;
@@ -70,7 +71,7 @@
     float: left;
     font-size: 0.875rem;
     padding: 0 0.5rem;
-    
+
     &:first-child {
       border-left: solid 1px $accent-color;
     }
@@ -94,13 +95,13 @@
       color: white;
       display: block;
       margin-left: 0.625rem;
-      
+
       @include media-query($on-laptop) {
         margin-left: 0;
       }
     }
-  } 
-  
+  }
+
   .tab.selected {
     border: solid 1px $text-color;
     border-left: 0;
@@ -108,16 +109,16 @@
     color: $text-color;
     cursor: default;
   }
-  
+
   .tab:last-child.selected,
   .tab[data-id='tab-3'].selected {
     border-right: solid 1px $text-color;
   }
-  
+
   .tab:first-child.selected {
     border-left: solid 1px $text-color;
   }
-  
+
   @include media-query($small-phone){
     display: none;
   }
@@ -139,7 +140,7 @@ header .tabs {
 .tab-content {
   .tab {
     display: none;
-    
+
     &.selected {
       display: block;
     }
@@ -169,7 +170,7 @@ header .tabs {
   order: 1;
   padding: 0.5em;
   transition: color 0.5s ease-in, background-color 0.5s ease-in;
-  
+
   &::before {
     border: 1px solid;
     border-radius: 50%;
@@ -181,13 +182,13 @@ header .tabs {
     padding: 0.3em;
     transition: color 0.5s ease-in;
   }
-  
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 9999px;
     color: $grey-color;
     transition: color 0.5s ease-out, background-color 0.5s ease-out;
-    
+
     p::before {
       color: $grey-color;
       transition: color 0.5s ease-out;
@@ -215,41 +216,41 @@ p {
 }
 
 .standard-slide {
-  
+
   h1 {
     font-weight: 400;
     padding: 0.5rem 0;
   }
-  
+
   h3 {
     font-size: 1rem;
     text-transform: uppercase;
   }
-  
+
   a {
     color: $accent-color;
     text-decoration: none;
-    
+
     &:hover {
       color: $accent-color-50;
     }
   }
-  
+
   .lightbox-link {
     color: $accent-color;
   }
-  
+
   .fa {
     margin-right: 0.5rem;
   }
-  
+
   .fa-play {
     border: solid 1px $accent-color;
     font-size: 0.55rem;
     padding: 0.125rem;
     padding-left: 0.2rem;
   }
-  
+
   .book-cover {
     float: left;
     margin-right: 2rem;
@@ -283,21 +284,21 @@ p {
   .wrapper{
     padding-top: 6rem;
   }
-  
+
   h3 {
     display: none;
   }
-  
+
   .tabs {
     .tab.selected {
       background: $grey-color;
       color: white;
     }
   }
-  @include media-query($small-screen) {		
-    h1 {		
-      display: none;		
-    }		
+  @include media-query($small-screen) {
+    h1 {
+      display: none;
+    }
   }
   @include media-query($small-phone) {
     .wrapper{
@@ -328,7 +329,7 @@ header.white {
   .fa {
     color: white;
   }
-  
+
   .tab, .tab.selected{
     border: solid 1px white;
     color: white;
@@ -344,7 +345,7 @@ header.white {
     cursor: pointer;
     color: white;
   }
-  
+
   img {
     filter: invert(100%) brightness(20);
   }
@@ -358,93 +359,93 @@ header.white {
       font-size: 16px;
     }
   }
-  
+
   .wrapper {
     position: relative;
     z-index: 5;
   }
   color: white;
-  
+
   .content-wrapper {
     box-sizing: content-box;
     width: 80%;
   }
-  
+
   h1 {display: none;}
-  
+
   .title,
   .content-text {
     display: table-cell;
     vertical-align: bottom;
   }
-  
+
   .title {
     width: 40%;
   }
-  
+
   .content-text {
     padding-bottom: 0.5rem;
     padding-left: 4rem;
   }
-  
+
   .intro {
     p {
       margin-left: -2rem;
       width: 95%;
     }
   }
-  
+
   .nav {
     > div {
       float: left;
     }
-    
+
     .link {
       border-top: solid 1px white;
       float: left;
       font-weight: 500;
       padding-top: 0.3rem;
       text-transform: uppercase;
-      
+
       &:hover {
         color: $grey-color;
       }
     }
-    
+
     .explore,
     .view-ar {
       position: relative;
     }
-    
+
     .explore .link {
       border-right: solid 1px white;
     }
-    
+
     .up,
     .down {
       position: absolute;
     }
-    
+
     .up {
       left: -2rem;
     }
-    
+
     .down {
       right: -1rem;
     }
-    
+
     .fa {
       display: block;
       font-size: 1.75rem;
       line-height: 1rem;
       margin-top: 5px;
     }
-    
+
     .arrows {
       height: 25px;
       position: relative;
     }
-    
+
     .arrow {
       color: white;
       opacity: 1;
@@ -452,40 +453,40 @@ header.white {
       top: 0;
       transform-origin: 0%;
     }
-    
+
     .down {
       .arrow-1 {
         animation: arrow-down 2.5s ease-in-out infinite;
       }
-      
+
       .arrow-2 {
         animation: arrow-down 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
+
     .up {
       .arrow-1 {
         animation: arrow-up 2.5s ease-in-out infinite;
       }
-      
+
       .arrow-2 {
         animation: arrow-up 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
+
     @keyframes arrow-up {
       0% {
         opacity: 0;
       }
-      
+
       30% {
         opacity: 1;
       }
-      
+
       50% {
         top: -45%;
       }
-      
+
       100% {
         opacity: 0;
       }
@@ -494,37 +495,37 @@ header.white {
       0% {
         opacity: 0;
       }
-      
+
       30% {
         opacity: 1;
       }
-      
+
       50% {
         top: 45%;
       }
-      
+
       100% {
         opacity: 0;
       }
     }
   }
-  
+
   @include media-query($on-laptop) {
-    
+
     .content {
       margin: 0 2rem;
     }
-    
+
     .intro,
     .title {
       float: none;
     }
-    
+
     .nav {
       left: auto;
       position: relative;
     }
-    
+
     .content-wrapper {
       padding-top: 3rem;
       width: 100%;
@@ -535,21 +536,21 @@ header.white {
     .landing-content {
       display: block;
     }
-    
+
     .title {
       display: block;
       margin: auto;
       width: 75%;
     }
-    
+
     img {
       width: 100%;
     }
-    
+
     .content {
       margin: 4rem 0 0;
     }
-    
+
     .content-text {
       padding-left: 5rem;
     }
@@ -564,12 +565,12 @@ header.white {
       margin-bottom: 0;
     }
   }
-  
+
   .small {
     font-size: 0.75rem;
     text-align: right;
   }
-  
+
   table {
     font-size: 0.875rem;
     font-family: "Lucida Console";
@@ -586,7 +587,7 @@ header.white {
       width: 100%;
       padding-top: 1rem;
     }
-    
+
     &.table1{
       width: 100%;
     }
@@ -602,11 +603,11 @@ header.white {
     td:nth-child(1) {
       width: 60%;
     }
-    
+
     td:nth-child(2), td:nth-child(3) {
       width: 20%;
     }
-    
+
     thead {
       .title {
         td {
@@ -621,31 +622,31 @@ header.white {
         }
         font-weight: 900;
       }
-      
+
       td {
         text-align: center;
-        
+
         &:nth-child(1), &:nth-child(2){
           border-right: solid 0.5rem $default-background-color;
         }
-        
+
       }
     }
-    
+
     tbody {
       border-top: solid 1rem transparent;
       line-height: 100%;
-      
+
       td {
         &:nth-child(1) {
           padding-left: 1.5rem;
           text-align: left;
         }
-        
+
         &:nth-child(2), &:nth-child(3) {
           padding-right: 1rem;
           text-align: right;
-          
+
         }
       }
       .section {
@@ -659,26 +660,26 @@ header.white {
           }
         }
       }
-      
+
       .total {
         td:nth-child(2), td:nth-child(3) {
           font-weight: 900;
         }
       }
-      
+
       .double {
         border-bottom: double rgb(156, 156, 156);
       }
-      
+
       .single {
         border-bottom: solid 1px rgb(156, 156, 156);
         border-top: solid 1px rgb(156, 156, 156);
       }
-      
+
       .top {
         border-top: solid 1px rgb(156, 156, 156);
       }
-      
+
     }
   }
 }

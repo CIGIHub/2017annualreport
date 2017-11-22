@@ -37,7 +37,7 @@ import {
 
 // DOM elements
 const timelineRoot = document.getElementById('timeline-root');
-const timelineFlexWrapper = timelineRoot.parentElement;
+const timelineFlexWrapper = timelineRoot.parentNode;
 const timelineSection = document.getElementsByTagName('section')[0];
 
 
@@ -82,11 +82,11 @@ export function changeExpandedViewArticle(newItem, direction) {
   if (!mountedExpandedViewContainer) {
     mountedExpandedViewContainer = generateExpandedViewContainer();
   }
-  if (mountedExpandedViewContainer.parentElement === null) {
+  if (mountedExpandedViewContainer.parentNode === null) {
     mountExpandedViewContainer(mountedExpandedViewContainer);
   }
   clearMountedPoint();
-  itemIdToDataPointCircles[newItem.id][0].parentElement.parentElement.classList.add('data-point-enabled');
+  itemIdToDataPointCircles[newItem.id][0].parentNode.parentNode.classList.add('data-point-enabled');
   changeArticleIdInUrl(newItem.id);
   const articleGroup = cachedArticleGroupByArticleI[newItem.i] || createArticleGroup(newItem);
   toggleFadeToWhiteLayer(newItem);
@@ -144,7 +144,7 @@ function resetDataPoints() {
     let _i = dataPointCircles.length;
     while (_i-- > 0) {
       const dataPointCircle = dataPointCircles[_i];
-      dataPointCircle.parentElement.style.display = null;
+      dataPointCircle.parentNode.style.display = null;
       dataPointCircle.style.fill = null;
       dataPointCircle.style.pointerEvents = null;
     }
@@ -215,7 +215,7 @@ function clearContentTypeFilter() {
       let j = dataPointCircles.length;
       while (j-- > 0) {
         const dataPointCircle = dataPointCircles[j];
-        dataPointCircle.parentElement.style.visibility = null;
+        dataPointCircle.parentNode.style.visibility = null;
       }
     }
   }
@@ -238,8 +238,8 @@ export function searchTimeline(string) {
         let j = dataPointCircles.length;
         while (j-- > 0) {
           const dataPointCircle = dataPointCircles[j];
-          const dataSvg = dataPointCircle.parentElement;
-          const pointContainer = dataSvg.parentElement;
+          const dataSvg = dataPointCircle.parentNode;
+          const pointContainer = dataSvg.parentNode;
           dataSvg.style.pointerEvents = 'none';
           pointContainer.style.zIndex = '2';
           dataPointCircle.classList.add('important-grey');
@@ -251,8 +251,8 @@ export function searchTimeline(string) {
       let j = dataPointCircles.length;
       while (j-- > 0) {
         const dataPointCircle = dataPointCircles[j];
-        const dataSvg = dataPointCircle.parentElement;
-        const pointContainer = dataSvg.parentElement;
+        const dataSvg = dataPointCircle.parentNode;
+        const pointContainer = dataSvg.parentNode;
         dataSvg.style.pointerEvents = null;
         pointContainer.style.zIndex = null;
         dataPointCircle.classList.remove('important-grey');
@@ -275,8 +275,8 @@ function resetSearch() {
       let j = dataPointCircles.length;
       while (j-- > 0) {
         const dataPointCircle = dataPointCircles[j];
-        const dataSvg = dataPointCircle.parentElement;
-        const pointContainer = dataSvg.parentElement;
+        const dataSvg = dataPointCircle.parentNode;
+        const pointContainer = dataSvg.parentNode;
         dataSvg.style.pointerEvents = null;
         pointContainer.style.zIndex = null;
         dataPointCircle.classList.remove('important-grey');
@@ -309,7 +309,7 @@ export function filterByContentType(radioBox, type) {
         let j = dataPointCircles.length;
         while (j-- > 0) {
           const dataPointCircle = dataPointCircles[j];
-          dataPointCircle.parentElement.style.visibility = null;
+          dataPointCircle.parentNode.style.visibility = null;
         }
       } else if (!item.contentTypeDeselected && item.subtype[0] !== type) {
         item.contentTypeDeselected = true;
@@ -318,7 +318,7 @@ export function filterByContentType(radioBox, type) {
         let j = dataPointCircles.length;
         while (j-- > 0) {
           const dataPointCircle = dataPointCircles[j];
-          dataPointCircle.parentElement.style.visibility = 'hidden';
+          dataPointCircle.parentNode.style.visibility = 'hidden';
         }
       }
     }
@@ -407,7 +407,7 @@ function combineProgramView(callback) {
       const timeline = programViewTimelines[i];
       timeline.style.transition = programViewTransition;
       timeline.style.opacity = '0';
-      timeline.style.transform = null;
+      timeline.style.transform = 'translateY(0)';
     }
     requestAnimationFrame(() => {
       mainTimeline.style.opacity = null;
@@ -420,6 +420,11 @@ function combineProgramView(callback) {
     });
 
     setTimeout(() => {
+      i = programTypesLength;
+      while (i-- > 0) {
+        const timeline = programViewTimelines[i];
+        timeline.style.transform = null;
+      }
       timelineSqueezeStart();
       i = programTypesLength;
       while (i-- > 0) {
@@ -477,7 +482,7 @@ export const toggleSelectOptions = (filterId) => () => {
               _j = dataPointCirclesLength;
               while (_j-- > 0) {
                 const dataPointCircle = dataPointCircles[_j];
-                dataPointCircle.parentElement.style.display = null;
+                dataPointCircle.parentNode.style.display = null;
                 dataPointCircle.style.fill = mostRecentFilter.color;
               }
               fail = false;
@@ -490,7 +495,7 @@ export const toggleSelectOptions = (filterId) => () => {
             _j = dataPointCirclesLength;
             while (_j-- > 0) {
               const dataPointCircle = dataPointCircles[_j];
-              dataPointCircle.parentElement.style.display = 'none';
+              dataPointCircle.parentNode.style.display = 'none';
               dataPointCircle.style.fill = null;
             }
           }
@@ -511,13 +516,13 @@ export const toggleSelectOptions = (filterId) => () => {
           while (_j-- > 0) {
             const dataPointCircle = dataPointCircles[_j];
             dataPointCircle.style.fill = filter.color;
-            dataPointCircle.parentElement.style.display = null;
+            dataPointCircle.parentNode.style.display = null;
           }
         } else {
           item.researchAreaDeselected = true;
           while (_j-- > 0) {
             const dataPointCircle = dataPointCircles[_j];
-            dataPointCircle.parentElement.style.display = 'none';
+            dataPointCircle.parentNode.style.display = 'none';
             dataPointCircle.style.fill = null;
           }
         }
@@ -531,7 +536,7 @@ export const toggleSelectOptions = (filterId) => () => {
           let _j = dataPointCircles.length;
           while (_j-- > 0) {
             const dataPointCircle = dataPointCircles[_j];
-            dataPointCircle.parentElement.style.display = null;
+            dataPointCircle.parentNode.style.display = null;
             dataPointCircle.style.fill = filter.color;
           }
         }
@@ -869,7 +874,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         const dataPointCircle = createSvgEl('circle');
         dataPointCircle.setAttribute('cx', diameter / 2);
         dataPointCircle.setAttribute('cy', diameter / 2);
-        dataPointCircle.setAttribute('r', diameter / 2 - 1);
+        dataPointCircle.setAttribute('r', diameter / 2 - 2);
         dataPointCircle.setAttribute('class', 'data-point-circle');
         dataPoint.appendChild(dataPointCircle);
 
@@ -877,7 +882,10 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
           itemIdToDataPointCircles[item.id] = [];
         }
         itemIdToDataPointCircles[item.id].push(dataPointCircle);
-        dataPointCircle.onmouseenter = () => {
+        dataPoint.onmouseover = () => {
+          if (lastPointContainer === pointContainer) {
+            return;
+          }
           clearLastPreview();
           pointContainer.classList.add('preview-enabled');
           lastPointContainer = pointContainer;
@@ -981,7 +989,10 @@ function mountExpandedViewContainer(expandedViewContainer) {
       timelineSqueezeStart();
     }
     timelineRoot.classList.add('timeline-top');
-    timelineRoot.style.transform = null;
+    timelineRoot.style.transform = 'translateY(0)';
+    nextTick(() => {
+      timelineRoot.style.transform = null;
+    });
     mountedTimeoutFadeLayer.appendChild(backToTimeline);
     mountedTimeoutFadeLayer.appendChild(filterWrapper);
     // add the timeline container to the wrapper
@@ -1039,12 +1050,13 @@ function mountExpandedViewContainer(expandedViewContainer) {
       if (timelineZoomed) {
         readjustTimeline(initialPositionX + changeX);
       }
-      timelineRoot.style.transform = null;
+      timelineRoot.style.transform = 'translateY(0)';
       unmountExpandedViewContainer(expandedViewContainer);
     });
 
     timelineSection.appendChild(filterWrapper);
     setTimeout(() => {
+      timelineRoot.style.transform = null;
       if (timelineZoomed) {
         mainTimeline.style.transition = null;
       } else {
@@ -1068,7 +1080,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
 let inTransition = false;
 
 function clearMountedPoint() {
-  mountedItem && itemIdToDataPointCircles[mountedItem.id][0].parentElement.parentElement.classList.remove('data-point-enabled');
+  mountedItem && itemIdToDataPointCircles[mountedItem.id][0].parentNode.parentNode.classList.remove('data-point-enabled');
   mountedItem = null;
 }
 function toggleFadeToWhiteLayer(newItem) {
@@ -1321,11 +1333,12 @@ const timelineDoubleClickEventHandler = e => {
     unmountElementsInArray(monthlyViewTimelineVerticalLines);
     requestAnimationFrame(() => {
       mainTimeline.style.width = null;
-      mainTimeline.style.transform = null;
+      mainTimeline.style.transform = 'translate(0, 0)';
     });
     const whenTimelineHasZoomedOut = () => {
       timelineZoomed = false;
       zooming = false;
+      mainTimeline.style.transform = null;
       reenableProgramSelectContainer();
       timelineSqueezeStart();
       mountElementsInArrayIntoParent(mainTimeline, defaultTimelineVerticalLines);
