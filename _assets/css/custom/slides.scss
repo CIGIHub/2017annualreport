@@ -15,7 +15,7 @@
     position: absolute;
     z-index: 1;
   }
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: none;
   }
 }
@@ -24,7 +24,7 @@
   &::before {
     background: rgba(215, 3, 24, 0.68);
   }
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: block;
   }
 }
@@ -35,7 +35,7 @@
 
 .mobile-img{
   display: none;
-  @media (max-width: $small-phone) {
+  @include media-query($small-phone){
     display: block;
   }
 }
@@ -217,11 +217,6 @@ p {
 
 .standard-slide {
 
-  h1 {
-    font-weight: 400;
-    padding: 0.5rem 0;
-  }
-
   h3 {
     font-size: 1rem;
     text-transform: uppercase;
@@ -269,6 +264,12 @@ p {
   }
 }
 
+.pb6-ns{
+  @include media-query($on-laptop){
+    padding-bottom: 5rem;
+  }
+}
+
 .joint-message{
   @include media-query($small-screen) {
     font-size: 13px;
@@ -281,9 +282,6 @@ p {
 .joint-message,
 .financials,
 .gallery-slide{
-  .wrapper{
-    padding-top: 6rem;
-  }
 
   h3 {
     display: none;
@@ -301,9 +299,6 @@ p {
     }
   }
   @include media-query($small-phone) {
-    .wrapper{
-      padding-top: 0;
-    }
     h1 {
       display: block;
     }

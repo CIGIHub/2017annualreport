@@ -18,7 +18,7 @@ header{
 $sidebar-button-radius: 1rem;
 .sidebar-button {
   @extend %navigation-transition;
-
+  
   background-clip: content-box;
   border: 1px solid $accent-color;
   border-radius: 100%;
@@ -28,16 +28,16 @@ $sidebar-button-radius: 1rem;
   padding: 0.1rem;
   position: relative;
   width: $sidebar-button-radius;
-
+  
   &.active {
     background-color: $accent-color;
     cursor: default;
     pointer-events: none;
   }
-
+  
   &:hover {
     background-color: $accent-color-50;
-
+    
     .sidebar-tooltip {
       opacity: 1;
       transform: scale(1) translateY(-50%);
@@ -47,7 +47,7 @@ $sidebar-button-radius: 1rem;
 
 .sidebar-home {
   @extend %navigation-transition;
-
+  
   color: $accent-color;
   cursor: pointer;
   height: $sidebar-button-radius;
@@ -61,16 +61,16 @@ $sidebar-button-radius: 1rem;
       font-family: $base-font-family;
     }
   }
-
+  
   &.active {
     color: $accent-color;
     cursor: default;
     pointer-events: none;
   }
-
+  
   &:hover {
     color: $accent-color-50;
-
+    
     .sidebar-tooltip {
       opacity: 1;
       transform: scale(1) translateY(-50%);
@@ -105,7 +105,7 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
   transform-origin: top right;
   transition: all 200ms ease;
   white-space: nowrap;
-
+  
   &::after {
     border: solid transparent;
     border-left-color: $tooltip-background;
@@ -123,9 +123,8 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
 
 %navigation-button {
   @extend %navigation-transition;
-
   @extend %reverse-dim;
-
+  
   align-items: center;
   background: #fff;
   border-radius: 100%;
@@ -144,13 +143,13 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
 
 .navigation-top-button {
   @extend %navigation-button;
-
+  
   top: $spacing-unit;
 }
 
 .navigation-bottom-button {
   @extend %navigation-button;
-
+  
   bottom: $spacing-unit;
 }
 
@@ -170,9 +169,48 @@ $tooltip-background: rgba(60, 60, 60, 0.9);
     width: 12rem;
   }
 }
-.toc-flex-item {
-  flex: 1 1 auto;
+
+// For Table of Contents flexbox ***
+
+.flex{
+  .toc-flex-item {
+    flex: 1 1 auto;
+  }
+  
+  .ph3.toc-flex-item{
+    @include media-query($on-laptop){
+      padding-left: 0;
+    }
+  }
+  
+  .order-0, .order-1 {
+    @include media-query($on-laptop){
+      flex-basis: 20vw;
+    }
+  }
+  
+  .order-2 {
+    @include media-query($on-laptop){
+      flex-basis: 45vw;
+    }
+  }
+  
+  .order-3 {
+    @include media-query($on-laptop){
+      flex-basis: 40vw;
+      padding-right: 0;
+    }
+  }
+  
+  .order-4 {
+    flex-grow: 5;
+    @include media-query($on-laptop){
+      flex-basis: 45vw;
+      flex-grow: 1;
+    }
+  }
 }
+// **********************************
 
 .bg-black-90 {
   @media (min-width:$medium-screen) {
