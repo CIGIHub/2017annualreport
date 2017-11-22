@@ -416,7 +416,7 @@ $article-slide-timing-function: ease-in-out;
 
 %controller-button {
   background: rgba(0, 0, 0, 0.75);
-  border: 1px solid #fff;
+  box-shadow: 0 0 0.5rem $grey-25;
   border-radius: 100%;
   color: #fff;
   height: 2.25rem;
