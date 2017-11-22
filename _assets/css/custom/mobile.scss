@@ -55,10 +55,6 @@
   }
   // ***************************************  
   
-  #main-tabs {
-    display: none;
-  }
-  
   .mobile-timeline{
     padding-top: 6em;
     p {
@@ -132,12 +128,6 @@
     min-height: 100vh;
   }
   
-  .timeline-slide,
-  .financials,
-  .standard-slide {
-    padding-top: 2rem;
-  }
-  
   .mobile-button {
     background: $accent-color;
     border-radius: 50%;
@@ -205,3 +195,11 @@
     display: none;
   }
 }
+
+
+@media (max-width: $on-palm){
+  #main-tabs {
+    display: none;
+  }
+}
+
