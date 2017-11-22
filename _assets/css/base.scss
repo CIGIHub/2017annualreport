@@ -144,10 +144,10 @@ hr {
   @include media-query($on-laptop) {
     max-width: calc(#{$content-width} - (#{$spacing-unit}));
     padding: 0;
+    padding-top: 2rem;
   }
   @include media-query($on-palm) {
     padding-bottom: 1rem;
-    
   }
 }
 
