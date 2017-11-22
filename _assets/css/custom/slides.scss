@@ -216,12 +216,16 @@ p {
 }
 
 .standard-slide {
+<<<<<<< HEAD
 
   h1 {
     font-weight: 400;
     padding: 0.5rem 0;
   }
 
+=======
+  
+>>>>>>> devel
   h3 {
     font-size: 1rem;
     text-transform: uppercase;
@@ -269,6 +273,12 @@ p {
   }
 }
 
+.pb6-ns{
+  @include media-query($on-laptop){
+    padding-bottom: 5rem;
+  }
+}
+
 .joint-message{
   @include media-query($small-screen) {
     font-size: 13px;
@@ -281,10 +291,14 @@ p {
 .joint-message,
 .financials,
 .gallery-slide{
+<<<<<<< HEAD
   .wrapper{
     padding-top: 6rem;
   }
 
+=======
+  
+>>>>>>> devel
   h3 {
     display: none;
   }
@@ -301,9 +315,6 @@ p {
     }
   }
   @include media-query($small-phone) {
-    .wrapper{
-      padding-top: 0;
-    }
     h1 {
       display: block;
     }
