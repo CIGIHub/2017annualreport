@@ -4,9 +4,9 @@ const FriendlyErrors = require('friendly-errors-webpack-plugin');
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     './js/polyfills/custom-polyfills.js',
     './js/polyfills/fetch.min.js',
-    './js/polyfills/promise.min.js',
     './js/index.js',
   ],
   output: {
