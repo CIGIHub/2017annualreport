@@ -49,6 +49,7 @@ export default function galleryMagic() {
     const photoContainer = createDiv('media-container');
     const photoWrapper = createDiv('relative');
     const caption = imageContainer.lastElementChild.cloneNode(true);
+    caption.classList.add('absolute');
     const photo = createEl('img', 'photo');
     photo.src = image.src;
     photoWrapper.appendChild(photo);
@@ -105,7 +106,7 @@ export default function galleryMagic() {
   imageContainers.forEach((imageContainer, i) => {
     const image = imageContainer;
     image.onclick = () => {
-      
+
       if (closing) {
         return;
       }

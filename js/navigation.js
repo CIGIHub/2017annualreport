@@ -196,7 +196,7 @@ function scrollViewToSlideIndex(newIndex, transition = true) {
   if (transition) smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
   requestAnimationFrame(() => {
     if (newIndex === 0) {
-      smoothSlideContainer.style.transform = null;
+      smoothSlideContainer.style.transform = 'translateY(0)';
     } else {
       smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
     }
