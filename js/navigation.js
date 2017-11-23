@@ -195,14 +195,13 @@ function scrollViewToSlideIndex(newIndex, transition = true) {
   }
   if (transition) smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
   requestAnimationFrame(() => {
-    if (newIndex === 0) {
-      smoothSlideContainer.style.transform = 'translateY(0)';
-    } else {
-      smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
-    }
+    smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
   });
   setTimeout(() => {
     smoothSlideContainer.style.transition = null;
+    if (newIndex === 0) {
+      smoothSlideContainer.style.transform = 'none';
+    }
   }, slideTransitionMs);
 }
 
