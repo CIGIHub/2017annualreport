@@ -221,7 +221,7 @@ p {
     text-transform: uppercase;
   }
   
-  a {
+  a, .lightbox-link {
     color: $accent-color;
     text-decoration: none;
     
@@ -230,10 +230,12 @@ p {
     }
   }
   
-  .lightbox-link {
-    color: $accent-color;
+.lightbox-link {
+  &:hover {
+    text-decoration: underline;
   }
-  
+}
+
   .fa {
     margin-right: 0.5rem;
   }
