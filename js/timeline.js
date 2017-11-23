@@ -67,11 +67,11 @@ import {
 
 const programTypesLength = programTypes.length;
 
-const dataPointDiameter = 7;
+const dataPointDiameter = 6;
 const timelineMaskMilliseconds = 2000;
-const amplitude = 90;
+const amplitude = 250;
 const delay = 500;
-const spacingFactor = 1.5;
+const spacingFactor = 1.75;
 let mainTimeline;
 
 export function changeExpandedViewArticle(newItem, direction) {
@@ -126,7 +126,7 @@ export function changeExpandedViewArticle(newItem, direction) {
 }
 
 const width = timelineRoot.clientWidth;
-let waveNumber = 4 * Math.PI / width;
+let waveNumber = 2 * Math.PI / width;
 let height = 2 * amplitude;
 const sinFunc = sinFuncWithAmplitudeWaveNumberAndYOffset(amplitude, waveNumber, amplitude);
 
@@ -766,7 +766,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
   svg.setAttribute('preserveAspectRatio', 'none');
   svg.setAttribute('class', 'timeline-svg');
   timeline.appendChild(svg);
-  const numClusters = 100;
+  const numClusters = 350;
   const clusters = new Array(numClusters);
   let i_ = numClusters;
   while (i_-- > 0) {
