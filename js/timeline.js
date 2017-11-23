@@ -1160,26 +1160,24 @@ function unmountExpandedViewContainer(expandedViewContainer) {
 const cachedArticleGroupByArticleI = {};
 
 function createArticleGroup(item) {
-  const articlePicture = createEl('img', 'article-picture');
-  const articlePictureBlurred = createEl('img', 'article-picture blurred');
+  const articlePicture = createDiv('article-picture');
+  const articlePictureBlurred = createDiv('article-picture blurred');
   if (item.image) {
     const smallImageUrl = `${baseUrl}data/prev/${item.id}.jpg`;
     const largeImageUrl = `${baseUrl}data/min/${item.id}.jpg`;
-    articlePictureBlurred.src = smallImageUrl;
+    articlePictureBlurred.style.backgroundImage = `url('${smallImageUrl}')`;
 
     fetch(largeImageUrl).then(r => r.blob()).then(blob => {
       const reader = new FileReader();
       reader.readAsDataURL(blob);
       reader.addEventListener('load', () => {
-        articlePicture.src = reader.result;
+        articlePicture.style.backgroundImage = `url('${reader.result}')`;
         // wait for two frames to circumvent firefox bug
-        articlePicture.onload = () => {
+        setTimeout(() => {
           requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              articlePictureBlurred.style.opacity = '0';
-            });
+            articlePictureBlurred.style.opacity = '0';
           });
-        };
+        }, 100);
       }, false);
     });
   }
