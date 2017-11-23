@@ -1,49 +1,71 @@
-$gallery-columns: 5;
-$gallery-rows: 4;
-$gallery-grid-gap: 0.375rem;
-$gallery-height: 50vh;
-$gallery-image-aspect-ratio: 3/2;
+.gallery-slide .overlay{
+  max-width: 67rem;
+}
 
 .gallery {
-  display: grid;
-
-  @include media-query($small-phone) {
-    display: block;
-  }
-
-  grid-gap: $gallery-grid-gap;
-  grid-template-columns: repeat($gallery-columns, 1fr);
-  grid-template-rows: repeat($gallery-rows, 1fr);
-  height: $gallery-height;
-  max-width: 100%;
-  user-select: none;
-  width: calc((#{$gallery-height} - #{$gallery-rows - 1} * #{$gallery-grid-gap}) * #{$gallery-columns} / #{$gallery-rows} * #{$gallery-image-aspect-ratio} + #{$gallery-columns - 1} * #{$gallery-grid-gap});
-
-  img {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+   
+  .image-container {
+    position: relative;
     cursor: pointer;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    transform: scale(1, 1);
-    transition: transform 200ms;
-    width: 100%;
-  }
-
-  img:hover {
-    transform: scale(1.1, 1.1);
-  }
-
-  > div {
-    line-height: 0;
+    flex-basis: 20%;
+    width: 210px;
+    height: 140px;
     overflow: hidden;
+    border: solid 0.1rem transparent;
+   
+    @include media-query($on-laptop){
+      height: 100px;
+    }
     @include media-query($small-phone) {
-      margin-bottom: 0.5rem;
+      flex-basis: 33%;
+    }
+    @media(max-height: $on-laptop) {
+      height: 100px;
+    }
+
+    .caption {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      background: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      padding: 0.3rem;
+      line-height: 1rem;
+    }
+    .image-wrapper {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transform: scale(1, 1);
+      transition: transform 200ms;
+    }
+
+    .view{
+      display: none;
+    }
+
+    &:hover{
+      .caption{
+        display: block;
+        @include media-query($small-phone) {
+          display: none;
+        }
+      }
+      .image-wrapper{
+        transform: scale(1.1, 1.1);
+      }
     }
   }
+
 }
 
 .lightbox {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.85);
   height: 100vh;
   left: 0;
   opacity: 0;
@@ -52,33 +74,54 @@ $gallery-image-aspect-ratio: 3/2;
   top: 0;
   transition: opacity 500ms ease-in;
   width: 100vw;
-  z-index: 7;
+  z-index: 101;
 
   &.enabled {
     opacity: 1;
     pointer-events: unset;
   }
+
+  .caption{
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.2rem 0.7rem;
+    border-top: solid 1px rgba(255, 255, 255, 0.85);
+  }
+  .photo{
+    display: block;
+  }
 }
 
 .media-container {
-  left: 50%;
-  max-width: calc(100% - 2rem);
   position: absolute;
+  left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   transition: transform 1s ease;
+  width: calc(60% - 2rem);
+  @media (max-width: $on-laptop){
+    width: calc(80% - 2rem);
+  }
+  .responsive-media{
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    iframe{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
 }
 
-.photo {
-  max-height: 75vh;
-  max-width: 75vw;
-  object-fit: contain;
-}
 
 .close-button {
   align-items: center;
-  background: #000;
-  border: 1px solid #fff;
+  background: black;
+  box-shadow: 0 0 0.5rem rgba(255,255,255,0.9);
   border-radius: 50%;
   color: #fff;
   display: flex;
@@ -92,43 +135,37 @@ $gallery-image-aspect-ratio: 3/2;
 }
 
 %gallery-button {
-  background: #000;
-  border: 1px solid #fff;
+  background: black;
+  box-shadow: 0 0 0.5rem rgba(255,255,255,0.9);
   border-radius: 50%;
   color: #fff;
   height: 2.25rem;
   position: absolute;
-  top: 50%;
+  top: 45%;
   width: 2.25rem;
+  @media(max-width: $small-phone){
+    top: 45%;
+  }
 }
 
 .gallery-left {
   @extend %gallery-button;
-
   left: 0;
   transform: translate(-50%, -50%);
-
-  .fa {
-    padding-bottom: 2px;
-    padding-right: 3px;
+  .fa{
+    padding-left: 35%;
   }
+
 }
 
 .gallery-right {
   @extend %gallery-button;
-
   right: 0;
   transform: translate(50%, -50%);
-
-  .fa {
-    padding-bottom: 2px;
-    padding-left: 3px;
+  .fa{
+    padding-left: 45%;
   }
-}
 
-.loading {
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
 }
 
 .spinner {

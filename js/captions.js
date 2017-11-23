@@ -13,7 +13,7 @@ export default function photoCaptionMagic() {
         const children = element.childNodes;
         Array.from(children).forEach(child => {
             if (child.tagName && child.className.indexOf('photo-caption') === -1
-            && child.className.indexOf('img-container') === -1) {
+            && child.className.indexOf('background-img') === -1) {
                 child.classList.toggle('hide-text');
                 if (child.childNodes) toggleText(child);
             }
@@ -25,9 +25,12 @@ export default function photoCaptionMagic() {
             return;
         }
         var standardSlideElement = findParentElement(this, 'standard-slide');
+        let standardSlideBG = standardSlideElement.getElementsByClassName('background-img')[0];
         var headerElement = document.getElementById('site-header');
+        let messagesTabs = document.getElementById('messages-tabs');
         headerElement.classList.toggle('hide-text');
-        standardSlideElement.classList.toggle('hide');
+        standardSlideBG.classList.toggle('hide');
+        messagesTabs.classList.toggle('hide-text');
         toggleText(this.parentElement);
     }
 

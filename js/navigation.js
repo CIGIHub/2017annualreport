@@ -17,10 +17,9 @@ const tableOfContentsButton = document.getElementById('table-of-contents-button'
 const exploreCIGILink = document.getElementById('explore-cigi-link');
 const mobileHomeButton = document.getElementsByClassName('mobile-button')[0];
 const viewARLink = document.getElementById('view-ar-link');
-const mainTabs = document.getElementById('main-tabs');
 const header = document.getElementById('site-header');
-const upArrow = document.getElementsByClassName('explore')[0];
-const downArrow = document.getElementsByClassName('view-ar')[0];
+const landingUpArrow = document.getElementsByClassName('explore')[0];
+const landingDownArrow = document.getElementsByClassName('view-ar')[0];
 const presidentsMessageLink = document.querySelector("[data-id='tab-1']");
 const chairsMessageLink = document.querySelector("[data-id='tab-2']");
 const chairSlide = 2;
@@ -73,8 +72,8 @@ export function enableOverlay() {
 
 let lastWheel = 0;
 
-function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
-  if (isDesktopScrolling) {
+function updateNavigation(newIndex, oldIndex, { slide =  true, transition =  true, e = null } = {}) {
+  if (overlayEnabled || isDesktopScrolling) {
     return;
   }
   const newButton = buttons[newIndex];
@@ -97,7 +96,6 @@ function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
     isDesktopScrolling = true;
     setTimeout(() => {
       isDesktopScrolling = false;
-      // lastWheel = 0;
     }, slideTransitionMs);
   }
   oldButton.classList.remove('active');
@@ -106,19 +104,22 @@ function updateNavigation(newIndex, oldIndex, slide = true, transition = true) {
   if (slide) scrollViewToSlideIndex(newIndex, transition);
   currentSlide = newIndex;
   updateGlobalShareLinks();
-  handleNavigationButtonsFade();
+  handleNavigationFade();
+  setNavigationFadeTimemout(e);
 }
 
-function setMousemoveFadeTimemout(e) {
+function setNavigationFadeTimemout(e) {
   if (fadeTimeoutSet) {
     clearTimeout(fadeTimeout);
   }
   fadeTimeout = setTimeout(() => {
-    const cursorOnNavigation = Array.prototype.some.call([topButton, bottomButton, sidebar], child => child.contains(e.target));
-    if (cursorOnNavigation) {
-      return;
+    if (e) {
+      const cursorOnNavigation = Array.prototype.some.call([sidebar], child => child.contains(e.target));
+      if (cursorOnNavigation) {
+        return;
+      }
     }
-    fadeOutAllNavigationComponents();
+    fadeOutNavigationComponent(sidebar);
     fadeTimeoutSet = false;
   }, inactivityMilliseconds);
   fadeTimeoutSet = true;
@@ -134,7 +135,7 @@ mobileHomeButton.onclick = (e) => {
   updateNavigation(1, currentSlide);
 };
 
-upArrow.onclick = (e) => {
+landingUpArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(0, currentSlide);
 };
@@ -144,21 +145,10 @@ viewARLink.onclick = (e) => {
   updateNavigation(2, currentSlide);
 };
 
-downArrow.onclick = (e) => {
+landingDownArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(2, currentSlide);
 };
-
-function setKeydownAndWheelFadeTimeout() {
-  if (fadeTimeoutSet) {
-    clearTimeout(fadeTimeout);
-  }
-  fadeTimeout = setTimeout(() => {
-    fadeOutAllNavigationComponents();
-    fadeTimeoutSet = false;
-  }, inactivityMilliseconds);
-  fadeTimeoutSet = true;
-}
 
 function fadeOutAllNavigationComponents() {
   fadeOutNavigationComponent(sidebar);
@@ -166,7 +156,8 @@ function fadeOutAllNavigationComponents() {
   fadeOutNavigationComponent(bottomButton);
 }
 
-function handleNavigationButtonsFade() {
+function handleNavigationFade() {
+  fadeInNavigationComponent(sidebar);
   if (currentSlide === 0) {
     fadeOutNavigationComponent(topButton);
     exploreCIGILink.classList.add('selected');
@@ -184,16 +175,15 @@ function handleNavigationButtonsFade() {
   }
 
   if (currentSlide === 1) {
-    fadeOutAllNavigationComponents();
-    fadeOutNavigationComponent(mainTabs);
     if (!mobile) {
       header.classList.add('white');
+      sidebar.classList.add('white');
     }
   }
   else {
-    fadeInNavigationComponent(mainTabs);
     if (!mobile) {
       header.classList.remove('white');
+      sidebar.classList.remove('white');
     }
   }
 }
@@ -241,9 +231,9 @@ function injectLinksAndAddSideBar() {
     // now create a corresponding button on the sidebar
     const button = createDiv(i === 1 ? 'sidebar-home fa-home' : 'sidebar-button');
     const currentIndex = i;
-    button.onclick = () => {
+    button.onclick = e => {
       if (currentSlide !== currentIndex) {
-        updateNavigation(currentIndex, currentSlide);
+        updateNavigation(currentIndex, currentSlide, { e });
       }
     };
     const tooltip = createDiv('sidebar-tooltip mr2 ph2 pv1 br2');
@@ -263,17 +253,19 @@ function injectLinksAndAddSideBar() {
     window.onscroll = null;
     smoothSlideContainer.style.transform = null;
     document.body.style.overflow = null;
+    document.body.style.touchAction = null;
   }
 
   function desktopScroll() {
     window.onscroll = () => window.scrollTo(0, 0);
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
   }
   desktopScroll();
 
   const handleWidth = () => {
-    if (window.innerWidth < 480) {
+    if (window.innerWidth < 480 || window.innerHeight < 480) {
       if (!mobile) {
         toggleTocEl();
         mobileScroll();
@@ -346,12 +338,14 @@ function injectLinksAndAddSideBar() {
 
   function tocDesktop() {
     const container = createDiv('tr h-100 overflow-auto wrapper');
-    const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb4-ns db-ns dn');
+    const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb3-ns db-ns dn');
+    let tocItemCounter = 0;
     h1.innerText = 'Table of Contents';
     container.appendChild(h1);
-    const div = createDiv('col');
+    const div = createDiv('flex flex-row justify-end flex-wrap');
     for (const [subsection, content] of subsections) {
-      const wrapper = createEl('li', 'column-no-wrap list');
+      const wrapper = createEl('li', 'list ph3 toc-flex-item order-' + tocItemCounter);
+      tocItemCounter++;
       const h2 = createEl('h2', 'accent-color partial-underline-right f4 fw3 mt3 smooth');
       h2.innerText = subsection;
       wrapper.appendChild(h2);
@@ -374,9 +368,9 @@ function injectLinksAndAddSideBar() {
           chairLi.innerText = "Chair's Message";
           chairLi.onclick = () => {
             toggleTocOpen();
-            if (slide.slideNum !== currentSlide) {
-              updateNavigation(slide.slideNum, currentSlide);
-            }
+              if (slide.slideNum !== currentSlide) {
+                updateNavigation(slide.slideNum, currentSlide);
+              }
             chairsMessageLink.click();
           };
           acc.appendChild(chairLi);
@@ -412,6 +406,7 @@ function injectLinksAndAddSideBar() {
         presidentLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
+          window.scrollBy(0,-46); // clear the top nav
           presidentsMessageLink.click();
         };
         ul.appendChild(presidentLi);
@@ -421,6 +416,8 @@ function injectLinksAndAddSideBar() {
         chairLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
+          document.getElementById("chairs-message").scrollIntoView();
+          window.scrollBy(0,-46); // clear the top nav
           chairsMessageLink.click();
         };
         ul.appendChild(chairLi);
@@ -430,6 +427,7 @@ function injectLinksAndAddSideBar() {
         li.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
+          window.scrollBy(0,-46); // clear the top nav
         };
         ul.appendChild(li);
       }
@@ -452,11 +450,11 @@ function injectTopAndBottomButtons() {
   if (currentSlide === numberOfSections - 1) {
     fadeOutNavigationComponent(bottomButton);
   }
-  topButton.onclick = () => {
-    updateNavigation(currentSlide - 1, currentSlide);
+  topButton.onclick = e => {
+    updateNavigation(currentSlide - 1, currentSlide, { e });
   };
-  bottomButton.onclick = () => {
-    updateNavigation(currentSlide + 1, currentSlide);
+  bottomButton.onclick = e => {
+    updateNavigation(currentSlide + 1, currentSlide, { e });
   };
 }
 
@@ -466,16 +464,11 @@ const navigationInactivityFadeHandler = e => {
   }
   clearTimeout(fadeTimeout);
   fadeInNavigationComponent(sidebar);
-  handleNavigationButtonsFade();
-  setMousemoveFadeTimemout(e);
+  handleNavigationFade();
+  setNavigationFadeTimemout(e);
 };
 
 const navigationKeydownHandler = e => {
-  if (overlayEnabled || mobile) {
-    return;
-  }
-  fadeInNavigationComponent(sidebar);
-  handleNavigationButtonsFade();
   switch (e.key) {
     case 'ArrowUp':
     case 'PageUp': {
@@ -491,7 +484,6 @@ const navigationKeydownHandler = e => {
       break;
     }
   }
-  setKeydownAndWheelFadeTimeout();
 };
 
 const mobileScrollHandler = () => {
@@ -502,14 +494,14 @@ const mobileScrollHandler = () => {
   const { top, bottom } = rect;
   const windowHeight = window.innerHeight;
   if (bottom < windowHeight / 3) {
-    updateNavigation(currentSlide + 1, currentSlide, false);
+    updateNavigation(currentSlide + 1, currentSlide, { slide: false });
   } else if (top > windowHeight / 3) {
-    updateNavigation(currentSlide - 1, currentSlide, false);
+    updateNavigation(currentSlide - 1, currentSlide, { slide: false });
   }
 };
 
 const navigationWheelHandler = e => {
-  if (overlayEnabled || mobile) {
+  if (mobile) {
     return;
   }
   const currentTime = e.timeStamp;
@@ -518,27 +510,72 @@ const navigationWheelHandler = e => {
   if (diff < 55) {
     return;
   }
-  fadeInNavigationComponent(sidebar);
-  handleNavigationButtonsFade();
   if (e.deltaY > 0) {
     updateNavigation(currentSlide + 1, currentSlide);
   } else {
     updateNavigation(currentSlide - 1, currentSlide);
   }
-  setKeydownAndWheelFadeTimeout();
 };
 
 export function loadInitialSlide(initialSlide) {
-  updateNavigation(initialSlide, currentSlide, true, false);
+  updateNavigation(initialSlide, currentSlide, { transition: false });
 }
+
+let touchXStart;
+let touchOffset = 0;
+let touchCancel = false;
+const touchThreshold = 75;
+const navigationTouchStart = e => {
+  if (mobile) return;
+  navigationInactivityFadeHandler(e);
+  if (e.touches.length > 1) {
+    touchCancel = true;
+    return;
+  }
+  touchCancel = false;
+  touchXStart = e.touches[0].clientY;
+};
+
+const navigationTouchMove = e => {
+  if (mobile || touchCancel) return;
+  touchOffset = e.touches[0].clientY - touchXStart;
+  if (touchOffset > touchThreshold) {
+    touchOffset = 0;
+    touchCancel = true;
+    updateNavigation(currentSlide - 1, currentSlide);
+  } else if (touchOffset < -touchThreshold) {
+    touchOffset = 0;
+    touchCancel = true;
+    updateNavigation(currentSlide + 1, currentSlide);
+  }
+};
+
+const navigationTouchEnd = () => {
+  if (mobile || touchCancel) return;
+  if (touchCancel) {
+    touchCancel = false;
+    return;
+  }
+  if (touchOffset > touchThreshold) {
+    touchOffset = 0;
+    updateNavigation(currentSlide - 1, currentSlide);
+  } else if (touchOffset < -touchThreshold) {
+    touchOffset = 0;
+    updateNavigation(currentSlide + 1, currentSlide);
+  }
+};
 
 export default function navigationMagic() {
   updateGlobalShareLinks();
   injectLinksAndAddSideBar();
   injectTopAndBottomButtons();
   parseAndLoadSlide();
+  setNavigationFadeTimemout();
   document.addEventListener('mousemove', navigationInactivityFadeHandler, false);
   document.addEventListener('keydown', navigationKeydownHandler, false);
   document.addEventListener('wheel', navigationWheelHandler, false);
+  document.addEventListener('touchstart', navigationTouchStart, false);
+  document.addEventListener('touchmove', navigationTouchMove, false);
+  document.addEventListener('touchend', navigationTouchEnd, false);
   window.addEventListener('scroll', mobileScrollHandler, false);
 }

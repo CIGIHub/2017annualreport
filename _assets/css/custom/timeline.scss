@@ -1,6 +1,6 @@
 //Timeline variables
-$timeline-foreground-color: rgba(0, 0, 0, 0.25);
-$timeline-foreground-color-transparent: rgba(0, 0, 0, 0);
+$timeline-foreground-color: #3d3d3d;
+$timeline-foreground-color-transparent: rgba(61, 61, 61, 0);
 $timeline-vertical-line-length: 8rem;
 $timeline-vertical-line-duration: 500ms;
 
@@ -416,7 +416,7 @@ $article-slide-timing-function: ease-in-out;
 
 %controller-button {
   background: rgba(0, 0, 0, 0.75);
-  border: 1px solid #fff;
+  box-shadow: 0 0 0.5rem $grey-25;
   border-radius: 100%;
   color: #fff;
   height: 2.25rem;
@@ -537,6 +537,16 @@ $article-slide-timing-function: ease-in-out;
 
 .select-container:hover {
   background-color: $default-background-color;
+}
+
+.select-container input::placeholder{
+    color: $grey-color;
+}
+
+@media (max-width: $on-laptop) {
+  .f6{
+    font-size: 0.75rem;
+  }
 }
 
 .grey {

@@ -1012,7 +1012,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   document.addEventListener('keydown', leftAndRightNavigation);
   document.addEventListener('mousemove', timeoutFadeLayerMousemoveEventHandler, false);
   // Hook up "Back to Timeline" button
-  const backToTimeline = createDiv('right-2 top-2 fade-in-500ms-linear absolute white pointer inline-flex items-center reverse-dim no-underline br-pill bg-black-50 pv2 ph3');
+  const backToTimeline = createDiv('right-2 top-2 fade-in-500ms-linear absolute white pointer inline-flex items-center br-pill bg-black pv2 ph3');
   backToTimeline.innerHTML = '<i class="fa fa-calendar-check-o"></i><span class="pl2">Back to Timeline</span>';
   backToTimeline.onclick = e => {
     e.stopPropagation();
@@ -1287,8 +1287,10 @@ let zooming = false;
 const monthlyViewTimelineVerticalLines = generateTimelineVerticalLines(calculateLinePositions(monthlyViewLineTemplates));
 
 let lastWidth = 0;
+let lastHeight = 0;
 const timelineResizeHandler = () => {
   const currentWidth = window.innerWidth;
+  const currentHeight = window.innerHeight;
   changeX += (lastWidth - currentWidth) * 6;
   lastWidth = currentWidth;
   calculateInitialCondition();
@@ -1334,8 +1336,10 @@ const timelineDoubleClickEventHandler = e => {
     document.removeEventListener('mouseup', timelineMouseUpEventHandler, false);
     window.removeEventListener('resize', timelineResizeHandler, false);
     lastWidth = window.innerWidth;
+    lastHeight= window.innerHeight;
   } else {
     lastWidth = window.innerWidth;
+    lastHeight = window.innerHeight;
     userHint1.style.display = 'none';
     userHint2.style.display = 'block';
     userHintHover.classList.remove('fade-in-1');

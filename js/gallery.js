@@ -8,19 +8,20 @@ import {
 import {
   disableOverlay,
   enableOverlay,
+  mobile,
 } from 'navigation';
 
 export default function galleryMagic() {
   const gallery = document.getElementById('gallery');
   const galleryParent = gallery.parentElement;
   const loadingOverlay = createLoadOverlay();
-  galleryParent.insertBefore(loadingOverlay, galleryParent.firstChild);
-  const images = Array.from(gallery.getElementsByTagName('img'));
+  galleryParent.insertBefore(loadingOverlay, galleryParent.firstElementChild);
+  const imageContainers = Array.from(gallery.getElementsByClassName('image-container'));
   let closing = false;
 
-  Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
+  //Array.prototype.forEach.call(gallery.children, child => { child.ondragstart = () => false; });
 
-  const imageIndexToPhotoContainer = new Array(images.length);
+  const imageIndexToPhotoContainer = new Array(imageContainers.length);
 
   const lightbox = createDiv('lightbox overflow-hidden bg-black');
   let currentPhotocontainer = null;
@@ -33,7 +34,7 @@ export default function galleryMagic() {
       disableOverlay();
       currentPhotocontainer.remove();
       lightbox.remove();
-    }, 1000);
+    }, 500);
   }
 
   lightbox.onclick = e => {
@@ -43,11 +44,11 @@ export default function galleryMagic() {
   };
 
   function generatePhotoContainer(i) {
-    const image = images[i];
+    const imageContainer = imageContainers[i];
+    const image = imageContainer.firstElementChild.firstElementChild;
     const photoContainer = createDiv('media-container');
     const photoWrapper = createDiv('relative');
-    const caption = createDiv('w-100 fw5 mt2');
-    caption.innerText = image.alt;
+    const caption = imageContainer.lastElementChild.cloneNode(true);
     const photo = createEl('img', 'photo');
     photo.src = image.src;
     photoWrapper.appendChild(photo);
@@ -59,9 +60,9 @@ export default function galleryMagic() {
     const leftSide = 'translateX(-100vw) translate(-50%, -50%)';
     const rightSide = 'translateX(100vw) translate(-50%, -50%)';
 
-    if (i < images.length - 1) {
+    if (i < imageContainers.length - 1) {
       const rightButton = createDiv('gallery-right f3 flex pointer dim');
-      rightButton.appendChild(createEl('i', 'fa fa-angle-right fa-fw self-center'));
+      rightButton.appendChild(createEl('i', 'fa fa-angle-right self-center'));
       photoWrapper.appendChild(rightButton);
       rightButton.onclick = () => {
         photoContainer.style.transform = leftSide;
@@ -79,7 +80,7 @@ export default function galleryMagic() {
     }
     if (i > 0) {
       const leftButton = createDiv('gallery-left f3 flex pointer dim');
-      leftButton.appendChild(createEl('i', 'fa fa-angle-left fa-fw self-center'));
+      leftButton.appendChild(createEl('i', 'fa fa-angle-left self-center'));
       photoWrapper.appendChild(leftButton);
       leftButton.onclick = () => {
         photoContainer.style.transform = rightSide;
@@ -96,13 +97,15 @@ export default function galleryMagic() {
       };
     }
     photoContainer.appendChild(photoWrapper);
-    photoContainer.appendChild(caption);
+    photoWrapper.appendChild(caption);
     imageIndexToPhotoContainer[i] = photoContainer;
     return photoContainer;
   }
 
-  images.forEach((image, i) => {
+  imageContainers.forEach((imageContainer, i) => {
+    const image = imageContainer;
     image.onclick = () => {
+      
       if (closing) {
         return;
       }
@@ -116,7 +119,8 @@ export default function galleryMagic() {
     };
   });
 
-  Promise.all(images.map(image => new Promise(resolve => {
+  Promise.all(imageContainers.map(imageContainer => new Promise(resolve => {
+    const image = imageContainer.firstElementChild.firstElementChild;
     if (image.complete) {
       resolve();
     } else {
