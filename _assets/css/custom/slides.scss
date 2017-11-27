@@ -269,6 +269,9 @@ p {
   @include media-query($on-laptop){
     padding-bottom: 5rem;
   }
+  @include media-query($small-phone){
+    padding-bottom: 1rem;
+  }
 }
 
 .joint-message{
