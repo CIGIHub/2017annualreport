@@ -762,7 +762,7 @@ function timelineSqueezeStop() {
 }
 
 function generateAndMountTimeline(dataByTime, program = false, label = '') {
-  const timeline = createDiv('timeline absolute w-100');
+  const timeline = createDiv('timeline w-100');
   if (program) {
     timeline.classList.add('program');
   }
@@ -977,7 +977,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
 
   const wrapper = createDiv('absolute w-80');
   wrapper.style.left = '50%';
-  wrapper.style.transform = 'translateX(-50%)';
+  wrapper.style.transform = 'translate(-50%, -50%)';
   wrapper.style.top = amplitude + 'px';
   // when the timeline has translated to the top
   filterWrapper.style.zIndex = 8;
@@ -1248,7 +1248,7 @@ const timelineMouseDownEventHandler = e => {
 };
 
 const readjustTimeline = x => {
-  mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
+  mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12))}px)`;
 };
 
 const calculateInitialCondition = () => {
@@ -1328,8 +1328,8 @@ const timelineDoubleClickEventHandler = e => {
     mainTimeline.classList.remove('cursor-grab');
     unmountElementsInArray(monthlyViewTimelineVerticalLines);
     requestAnimationFrame(() => {
-      mainTimeline.style.width = null;
-      mainTimeline.style.transform = null;
+      mainTimeline.style.width = '';
+      mainTimeline.style.transform = '';
     });
     const whenTimelineHasZoomedOut = () => {
       timelineZoomed = false;

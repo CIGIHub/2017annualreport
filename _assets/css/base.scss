@@ -91,9 +91,13 @@ body {
   }
 }
 
+.font {
+  font: $base-font-weight $base-font-size/#{$base-line-height} $base-font-family;
+}
+
 %click-through-to-children {
   pointer-events: none;
-  
+
   * {
     pointer-events: auto;
   }
@@ -107,7 +111,7 @@ h1 {
   font-size: 1.75rem;
   font-weight: 400;
   padding: 0.5rem 0;
-  
+
   @include media-query($on-palm) {
     font-size: 1.25rem;
   }
@@ -143,7 +147,7 @@ hr {
   max-width: 70rem;
   padding-left: $spacing-unit;
   padding-right: $spacing-unit;
-  
+
   @include media-query($on-laptop) {
     max-width: calc(#{$content-width} - (#{$spacing-unit}));
     padding: 0;
@@ -163,7 +167,7 @@ header.wrapper{
   position: fixed;
   transform: translateX(-50%);
   transition: transform 1s ease;
-  
+
   &.top {
     transform: translate(-50%, -100%);
   }
@@ -210,11 +214,11 @@ header.wrapper{
 %reverse-dim {
   opacity: 0.5;
   transition: opacity 0.15s ease-in;
-  
+
   &:hover {
     opacity: 1;
   }
-  
+
   &:active {
     opacity: 0.8;
     transition: opacity 0.15s ease-out;
@@ -242,18 +246,18 @@ header.wrapper{
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
-  
+
   -webkit-column-width: 50%;
   -moz-column-width: 50%;
-  
+
   break-inside: avoid;
   page-break-inside: avoid;
-  
+
   @include media-query($small-phone){
     -webkit-column-width: 100%;
     -moz-column-width: 100%;
     column-width: 100%;
-    
+
     -webkit-column-count: 1;
     -moz-column-count: 2;
     column-count: 1;
