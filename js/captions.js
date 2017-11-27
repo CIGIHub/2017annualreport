@@ -12,7 +12,6 @@ export default function photoCaptionMagic() {
     function toggleText(element) {
         const children = element.childNodes;
         Array.from(children).forEach(child => {
-            console.log(child.className);
             if (child.tagName && child.className.indexOf('photo-caption') === -1
             && child.className.indexOf('background-img') === -1) {
                 child.classList.toggle('hide-text');

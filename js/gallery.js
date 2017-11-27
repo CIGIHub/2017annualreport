@@ -49,7 +49,7 @@ export default function galleryMagic() {
     const photoContainer = createDiv('media-container');
     const photoWrapper = createDiv('relative');
     const caption = imageContainer.lastElementChild.cloneNode(true);
-    caption.className = 'w-100 fw5 mt2';
+    caption.classList.add('absolute');
     const photo = createEl('img', 'photo');
     photo.src = image.src;
     photoWrapper.appendChild(photo);
@@ -63,7 +63,7 @@ export default function galleryMagic() {
 
     if (i < imageContainers.length - 1) {
       const rightButton = createDiv('gallery-right f3 flex pointer dim');
-      rightButton.appendChild(createEl('i', 'fa fa-angle-right fa-fw self-center'));
+      rightButton.appendChild(createEl('i', 'fa fa-angle-right self-center'));
       photoWrapper.appendChild(rightButton);
       rightButton.onclick = () => {
         photoContainer.style.transform = leftSide;
@@ -81,7 +81,7 @@ export default function galleryMagic() {
     }
     if (i > 0) {
       const leftButton = createDiv('gallery-left f3 flex pointer dim');
-      leftButton.appendChild(createEl('i', 'fa fa-angle-left fa-fw self-center'));
+      leftButton.appendChild(createEl('i', 'fa fa-angle-left self-center'));
       photoWrapper.appendChild(leftButton);
       leftButton.onclick = () => {
         photoContainer.style.transform = rightSide;
@@ -106,7 +106,7 @@ export default function galleryMagic() {
   imageContainers.forEach((imageContainer, i) => {
     const image = imageContainer;
     image.onclick = () => {
-      
+
       if (closing) {
         return;
       }

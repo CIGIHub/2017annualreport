@@ -195,14 +195,13 @@ function scrollViewToSlideIndex(newIndex, transition = true) {
   }
   if (transition) smoothSlideContainer.style.transition = `all ${slideTransitionMs}ms ease`;
   requestAnimationFrame(() => {
-    if (newIndex === 0) {
-      smoothSlideContainer.style.transform = null;
-    } else {
-      smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
-    }
+    smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
   });
   setTimeout(() => {
     smoothSlideContainer.style.transition = null;
+    if (newIndex === 0) {
+      smoothSlideContainer.style.transform = 'none';
+    }
   }, slideTransitionMs);
 }
 
@@ -338,7 +337,7 @@ function injectLinksAndAddSideBar() {
 
   function tocDesktop() {
     const container = createDiv('tr h-100 overflow-auto wrapper');
-    const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb4-ns db-ns dn');
+    const h1 = createEl('h1', 'ttu accent-color fw5 f4 tracked lh-title mb2 mb3-ns db-ns dn');
     let tocItemCounter = 0;
     h1.innerText = 'Table of Contents';
     container.appendChild(h1);
