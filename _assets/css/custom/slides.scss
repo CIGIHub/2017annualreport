@@ -37,6 +37,7 @@
   display: none;
   @include media-query($small-phone){
     display: block;
+    padding-bottom: 1rem;
   }
 }
 
