@@ -290,6 +290,9 @@ p {
   h3 {
     display: none;
   }
+  .pr6-ns {
+    padding-right: 0;
+  }
   
   .tabs {
     .tab.selected {
@@ -300,6 +303,9 @@ p {
   @include media-query($small-screen) {
     h1 {
       display: none;
+    }
+    .pr6-ns {
+      padding-right: 4em;
     }
   }
   @include media-query($small-phone) {
