@@ -41,6 +41,7 @@
   .site-header{
     padding: 0.5em;
   }
+<<<<<<< HEAD
   
   .mobile-timeline{
     p {
@@ -50,16 +51,20 @@
     }
   }
   
+=======
+
+>>>>>>> devel
   .cigi-logo-mobile{
     left:0px;
+    padding-top: 0.5rem;
   }
   // ***************************************  
   
   .mobile-timeline{
+    display: block;
+    margin: auto;
     padding-top: 6em;
-    p {
-      padding-bottom: 2em;
-    }
+    width: 70%;
     hr {
       margin-bottom: 2em;
     }
