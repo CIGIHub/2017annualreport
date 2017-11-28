@@ -154,9 +154,9 @@
   }
   
   .photo-caption {
-    margin: 0;
+    margin: -0.75rem 0 0 0;
     order: 0;
-    padding-bottom: 0.5rem;
+    padding: 0 0 1rem 0;
     
     &:before {
       content: '\f030';
