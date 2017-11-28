@@ -289,6 +289,27 @@
   .no-mobile {
     display: none;
   }
+  
+  // Landing page
+  .content-wrapper {
+    padding: 0 0 0 2rem !important;
+    .landing-content{
+      width: 90%;
+      .title {
+        margin: 0;
+        width: auto;
+        img {
+          margin-left: -0.5rem;
+        }
+      }
+      .content-text {
+        padding-left: 0;
+        p {
+          margin-left: 0;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: $small-phone) and (min-height: $small-phone) {
