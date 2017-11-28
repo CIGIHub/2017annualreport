@@ -48,8 +48,6 @@
   }
   // ***************************************  
   
-  
-  
   .mobile-timeline{
     display: block;
     margin: auto;
@@ -63,115 +61,49 @@
       color: $accent-color;
       text-decoration: none;
     }
-    .text {
-      width: 90%;
+    .text{
+      width: 80%;
       margin: auto;
     }
     
     // Middle ribbbon
     .nav {
       padding: 1.5rem 0;
+      margin: 0.5rem 0 1.5rem 0;
       color: $accent-color;
       font-size: 16px;
       width: 100vw;
-      background-color: #dfdfdf;
+      background-color: #e2e1dc;
       
       .view-ar{
         width: 60%;
         margin: auto;
         position: relative;
-        
-        .up,
-        .down {
-          position: absolute;
-        }
-        
-        .up {
-          left: -2rem;
-        }
-        
-        .down {
-          right: -1rem;
-        }
-        
-        .fa {
-          display: block;
-          font-size: 1.75rem;
-          line-height: 1rem;
-          margin-top: 5px;
-        }
-        
-        .arrows {
-          height: 25px;
-          position: relative;
-        }
-       
-
-        .arrow {
-          color: $accent-color;
-          opacity: 1;
-          top: 0;
-          transform-origin: 0%;
-        }
-
-        .down {
-          .arrow-1 {
-            animation: arrow-down 2.5s ease-in-out infinite;
-          }
-          
-          .arrow-2 {
-            animation: arrow-down 2.5s 1.25s ease-in-out infinite;
-          }
-        }
-        
-        .up {
-          .arrow-1 {
-            animation: arrow-up 2.5s ease-in-out infinite;
-          }
-          
-          .arrow-2 {
-            animation: arrow-up 2.5s 1.25s ease-in-out infinite;
-          }
-        }
-        
-        @keyframes arrow-up {
-          0% {
-            opacity: 0;
-          }
-          
-          30% {
-            opacity: 1;
-          }
-          
-          50% {
-            top: -45%;
-          }
-          
-          100% {
-            opacity: 0;
-          }
-        }
-        @keyframes arrow-down {
-          0% {
-            opacity: 0;
-          }
-          
-          30% {
-            opacity: 1;
-          }
-          
-          50% {
-            top: 45%;
-          }
-          
-          100% {
-            opacity: 0;
-          }
-        }
+        text-align: center;
       }
     }
+    
     .link {
       border-top: none !important;
+    }
+    
+    // Form
+    input, button{
+      width: 100%;
+      line-height: 28px;
+      font-family: $base-font-family;
+    }
+    button {
+      background-color: $accent-color;
+      color: $grey-color-light;
+      margin-top: 0.5rem;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    input {
+      text-align: center;
     }
   }
   
