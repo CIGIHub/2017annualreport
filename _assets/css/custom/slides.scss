@@ -37,6 +37,7 @@
   display: none;
   @include media-query($small-phone){
     display: block;
+    padding-bottom: 1rem;
   }
 }
 
@@ -293,6 +294,9 @@ p {
   h3 {
     display: none;
   }
+  .pr6-ns {
+    padding-right: 0;
+  }
   
   .tabs {
     .tab.selected {
@@ -304,10 +308,16 @@ p {
     h1 {
       display: none;
     }
+    .pr6-ns {
+      padding-right: 4em;
+    }
   }
   @include media-query($small-phone) {
     h1 {
       display: block;
+    }
+    .pr6-ns {
+      padding-right: 0;
     }
   }
 }
@@ -582,7 +592,6 @@ header.white {
     @include media-query($small-phone) {
       float: none;
       width: 100%;
-      padding-top: 2rem;
     }
     @media (min-width:$medium-screen) {
       font-size: 1em;
