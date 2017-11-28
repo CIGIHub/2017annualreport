@@ -16,37 +16,39 @@
   
   // special mobile landscape overwrites ******
   a.db-ns{
-      display:none;
-    }
+    display:none;
+  }
   
   .mv4-ns{
     margin: 0;
   }
-
+  
   .dn-ns{
     display: initial;
   }
-
+  
   a.dn-ns{
     display: block;
   }
-
+  
   .vh-100-ns{
     height: auto;
   }
   .site-header.wrapper{
     max-width: 100%;
   }
-
+  
   .site-header{
     padding: 0.5em;
   }
-
+  
   .cigi-logo-mobile{
     left:0px;
     padding-top: 0.5rem;
   }
   // ***************************************  
+  
+  
   
   .mobile-timeline{
     display: block;
@@ -61,21 +63,111 @@
       color: $accent-color;
       text-decoration: none;
     }
-    p, form {
-      float: left;
-    }
     .text {
       width: 90%;
       margin: auto;
     }
+    
+    // Middle ribbbon
     .nav {
-      height: 100%;
-      margin: 1rem 3rem;
+      padding: 1.5rem 0;
       color: $accent-color;
       font-size: 16px;
       width: 100vw;
-      .arrow {
-        color: $accent-color;
+      background-color: #dfdfdf;
+      
+      .view-ar{
+        width: 60%;
+        margin: auto;
+        position: relative;
+        
+        .up,
+        .down {
+          position: absolute;
+        }
+        
+        .up {
+          left: -2rem;
+        }
+        
+        .down {
+          right: -1rem;
+        }
+        
+        .fa {
+          display: block;
+          font-size: 1.75rem;
+          line-height: 1rem;
+          margin-top: 5px;
+        }
+        
+        .arrows {
+          height: 25px;
+          position: relative;
+        }
+       
+
+        .arrow {
+          color: $accent-color;
+          opacity: 1;
+          top: 0;
+          transform-origin: 0%;
+        }
+
+        .down {
+          .arrow-1 {
+            animation: arrow-down 2.5s ease-in-out infinite;
+          }
+          
+          .arrow-2 {
+            animation: arrow-down 2.5s 1.25s ease-in-out infinite;
+          }
+        }
+        
+        .up {
+          .arrow-1 {
+            animation: arrow-up 2.5s ease-in-out infinite;
+          }
+          
+          .arrow-2 {
+            animation: arrow-up 2.5s 1.25s ease-in-out infinite;
+          }
+        }
+        
+        @keyframes arrow-up {
+          0% {
+            opacity: 0;
+          }
+          
+          30% {
+            opacity: 1;
+          }
+          
+          50% {
+            top: -45%;
+          }
+          
+          100% {
+            opacity: 0;
+          }
+        }
+        @keyframes arrow-down {
+          0% {
+            opacity: 0;
+          }
+          
+          30% {
+            opacity: 1;
+          }
+          
+          50% {
+            top: 45%;
+          }
+          
+          100% {
+            opacity: 0;
+          }
+        }
       }
     }
     .link {
@@ -182,18 +274,18 @@
       color: inherit;
     }
   }
-
+  
   .mobile-subheading {
     font-weight: 300;
     font-size: 1.75em;
     padding-top: 1em;
     padding-bottom: 0.5em;
   }
-
+  
   #chairs-message{
     padding-top: 2rem;
   }
-
+  
   .no-mobile {
     display: none;
   }
