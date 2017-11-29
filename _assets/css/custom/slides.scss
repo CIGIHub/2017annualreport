@@ -481,41 +481,6 @@ header.white {
         animation: arrow-up 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
-    @keyframes arrow-up {
-      0% {
-        opacity: 0;
-      }
-      
-      30% {
-        opacity: 1;
-      }
-      
-      50% {
-        top: -45%;
-      }
-      
-      100% {
-        opacity: 0;
-      }
-    }
-    @keyframes arrow-down {
-      0% {
-        opacity: 0;
-      }
-      
-      30% {
-        opacity: 1;
-      }
-      
-      50% {
-        top: 45%;
-      }
-      
-      100% {
-        opacity: 0;
-      }
-    }
   }
   
   @include media-query($on-laptop) {

@@ -81,6 +81,56 @@
         position: relative;
         text-align: center;
       }
+
+      .fa {
+        display: block;
+        font-size: 1.75rem;
+        line-height: 1rem;
+        margin-top: 5px;
+      }
+
+      .arrow-container {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+      .arrows {
+        height: 25px;
+        position: absolute;
+      }
+      
+      .arrow {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        transform-origin: 0%;
+      }
+
+      .up,
+      .down {
+        position: absolute;
+      }
+
+      .down {
+        .arrow-1 {
+          animation: arrow-down 2.5s ease-in-out infinite;
+        }
+        
+        .arrow-2 {
+          animation: arrow-down 2.5s 1.25s ease-in-out infinite;
+        }
+      }
+      
+      .up {
+        .arrow-1 {
+          animation: arrow-up 2.5s ease-in-out infinite;
+        }
+        
+        .arrow-2 {
+          animation: arrow-up 2.5s 1.25s ease-in-out infinite;
+        }
+      }
     }
     
     .link {
