@@ -1248,7 +1248,7 @@ const timelineMouseDownEventHandler = e => {
 };
 
 const readjustTimeline = x => {
-  mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12))}px)`;
+  mainTimeline.style.transform = `translate(${x}px, ${(-height / 2) * (Math.sin(x * waveNumber / 12) + 1)}px)`;
 };
 
 const calculateInitialCondition = () => {
