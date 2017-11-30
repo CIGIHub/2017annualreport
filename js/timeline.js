@@ -762,7 +762,7 @@ function timelineSqueezeStop() {
 }
 
 function generateAndMountTimeline(dataByTime, program = false, label = '') {
-  const timeline = createDiv('timeline w-100');
+  const timeline = createDiv('timeline absolute w-100');
   if (program) {
     timeline.classList.add('program');
   }
