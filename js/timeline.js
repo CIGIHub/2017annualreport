@@ -222,6 +222,7 @@ function clearContentTypeFilter() {
 }
 
 export function searchTimeline(string) {
+  clearButton.style.display = null;
   const searchString = string.toLowerCase();
   setSearchInUrl(searchString);
   let i = dataByTimeAll.length;

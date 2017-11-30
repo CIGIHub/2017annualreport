@@ -16,32 +16,32 @@
   
   // special mobile landscape overwrites ******
   a.db-ns{
-      display:none;
-    }
+    display:none;
+  }
   
   .mv4-ns{
     margin: 0;
   }
-
+  
   .dn-ns{
     display: initial;
   }
-
+  
   a.dn-ns{
     display: block;
   }
-
+  
   .vh-100-ns{
     height: auto;
   }
   .site-header.wrapper{
     max-width: 100%;
   }
-
+  
   .site-header{
     padding: 0.5em;
   }
-
+  
   .mobile-timeline{
     p {
       width: 70%;
@@ -49,17 +49,18 @@
       padding-top: 2em;
     }
   }
-
+  
   .cigi-logo-mobile{
     left:0px;
+    padding-top: 0.5rem;
   }
   // ***************************************  
   
   .mobile-timeline{
+    display: block;
+    margin: auto;
     padding-top: 6em;
-    p {
-      padding-bottom: 2em;
-    }
+    width: 70%;
     hr {
       margin-bottom: 2em;
     }
@@ -153,9 +154,9 @@
   }
   
   .photo-caption {
-    margin: 0;
+    margin: -0.75rem 0 0 0;
     order: 0;
-    padding-bottom: 0.5rem;
+    padding: 0 0 1rem 0;
     
     &:before {
       content: '\f030';
@@ -168,20 +169,41 @@
       color: inherit;
     }
   }
-
+  
   .mobile-subheading {
     font-weight: 300;
     font-size: 1.75em;
     padding-top: 1em;
     padding-bottom: 0.5em;
   }
-
+  
   #chairs-message{
     padding-top: 2rem;
   }
-
+  
   .no-mobile {
     display: none;
+  }
+  
+  // Landing page
+  .content-wrapper {
+    padding: 0 0 0 2rem !important;
+    .landing-content{
+      width: 90%;
+      .title {
+        margin: 0;
+        width: auto;
+        img {
+          margin-left: -0.5rem;
+        }
+      }
+      .content-text {
+        padding-left: 0;
+        p {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
 

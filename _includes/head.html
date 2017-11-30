@@ -10,15 +10,29 @@
   <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
   <meta http-equiv="pragma" content="no-cache" />
 
+  <meta property="og:title" content="CIGI Annual Report 2017" />
+  <meta property="og:site_name" content="CIGI Annual Report 2017"/>
+  <meta property="og:url" content="https://staging.cigionline.org/interactives/2017annualreport" />
+  <meta property="og:locale" content="en_CA" />
+  <meta property="fb:app_id" content="995454813805233" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@CIGIOnline" />
+  <meta property="og:image" content="{{ '/assets/AR-landing-withlogo.jpg' | absolute_url}}"/>
+  <meta property="og:image:secure_url" content="{{ '/assets/AR-landing-withlogo.jpg'| absolute_url }}"/>
+  <meta property="og:image:width" content="550" />
+  <meta property="og:image:height" content="330" />
+
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
   {% css main %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" href="{{ "/assets/favicon.ico" | relative_url }}">
+  <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
-
+  
   {% comment %}
   <script src="https://use.typekit.net/cab1mhe.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
