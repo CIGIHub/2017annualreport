@@ -149,9 +149,6 @@ hr {
     padding: 0;
     padding-top: 2rem;
   }
-  @include media-query($on-palm) {
-    padding-bottom: 1rem;
-  }
 }
 
 header.wrapper{
