@@ -309,7 +309,7 @@ p {
       display: none;
     }
     .pr6-ns {
-      padding-right: 4em;
+      padding-right: 2rem;
     }
   }
   @include media-query($small-phone) {
@@ -320,7 +320,7 @@ p {
       padding-top: 2rem;
     }
     .pr6-ns {
-      padding-right: 0;
+      padding-right: 0rem;
     }
   }
 }
