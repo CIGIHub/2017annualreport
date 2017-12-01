@@ -41,7 +41,7 @@
   .site-header{
     padding: 0.5em;
   }
-  
+
   .cigi-logo-mobile{
     left:0px;
     padding-top: 0.5rem;
@@ -62,11 +62,6 @@
       text-decoration: none;
     }
 
-    p {
-      width: 70%;
-      margin:auto;
-      padding-top: 2em;
-    }
     .text{
       width: 80%;
       margin: auto;
@@ -82,20 +77,18 @@
       background-color: #e2e1dc;
       
       .view-ar{
-        width: 60%;
-        margin: auto;
         position: relative;
         text-align: center;
       }
 
       .fa {
-        display: block;
+        display: inline-block;
         font-size: 1.75rem;
         line-height: 1rem;
         margin-top: 5px;
       }
 
-      .arrow-container {
+      .down.pointer {
         position: relative;
         top: 0;
         left: 0;
@@ -103,7 +96,7 @@
 
       .arrows {
         height: 25px;
-        position: absolute;
+        position: relative;
       }
       
       .arrow {
