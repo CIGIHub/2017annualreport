@@ -144,9 +144,9 @@ function resetDataPoints() {
     let _i = dataPointCircles.length;
     while (_i-- > 0) {
       const dataPointCircle = dataPointCircles[_i];
-      dataPointCircle.parentNode.style.display = null;
-      dataPointCircle.style.fill = null;
-      dataPointCircle.style.pointerEvents = null;
+      dataPointCircle.parentNode.style.display = '';
+      dataPointCircle.style.fill = '';
+      dataPointCircle.style.pointerEvents = '';
     }
   }
 }
@@ -167,10 +167,10 @@ function clearFilters() {
 
 function clearSelectOption(selectOption, checkbox, x) {
   isSelectOptionSelected.delete(selectOption);
-  checkbox.style.border = null;
-  checkbox.style.background = null;
+  checkbox.style.border = '';
+  checkbox.style.background = '';
   checkbox.removeChild(x);
-  selectOption.style.color = null;
+  selectOption.style.color = '';
 }
 
 function setSelectOptionColor(selectOption, checkbox, x, color) {
@@ -188,7 +188,7 @@ function disableProgramSelectContainer() {
 }
 
 function reenableProgramSelectContainer() {
-  programSelectContainer.style.visibility = null;
+  programSelectContainer.style.visibility = '';
 }
 
 let programViewCombined = true;
@@ -215,13 +215,14 @@ function clearContentTypeFilter() {
       let j = dataPointCircles.length;
       while (j-- > 0) {
         const dataPointCircle = dataPointCircles[j];
-        dataPointCircle.parentNode.style.visibility = null;
+        dataPointCircle.parentNode.style.visibility = '';
       }
     }
   }
 }
 
 export function searchTimeline(string) {
+  clearButton.style.display = null;
   const searchString = string.toLowerCase();
   setSearchInUrl(searchString);
   let i = dataByTimeAll.length;
@@ -242,7 +243,7 @@ export function searchTimeline(string) {
           const pointContainer = dataSvg.parentNode;
           dataSvg.style.pointerEvents = 'none';
           pointContainer.style.zIndex = '2';
-          dataPointCircle.classList.add('important-grey');
+          dataPointCircle.setAttribute('class', 'important-grey');
         }
       }
     } else if (item.searchGrayed === true) {
@@ -253,9 +254,9 @@ export function searchTimeline(string) {
         const dataPointCircle = dataPointCircles[j];
         const dataSvg = dataPointCircle.parentNode;
         const pointContainer = dataSvg.parentNode;
-        dataSvg.style.pointerEvents = null;
-        pointContainer.style.zIndex = null;
-        dataPointCircle.classList.remove('important-grey');
+        dataSvg.style.pointerEvents = '';
+        pointContainer.style.zIndex = '';
+        dataPointCircle.removeAttribute('class');
       }
     }
   }
@@ -277,9 +278,9 @@ function resetSearch() {
         const dataPointCircle = dataPointCircles[j];
         const dataSvg = dataPointCircle.parentNode;
         const pointContainer = dataSvg.parentNode;
-        dataSvg.style.pointerEvents = null;
-        pointContainer.style.zIndex = null;
-        dataPointCircle.classList.remove('important-grey');
+        dataSvg.style.pointerEvents = '';
+        pointContainer.style.zIndex = '';
+        dataPointCircle.removeAttribute('class');
       }
     }
   }
@@ -292,7 +293,7 @@ export function filterByContentType(radioBox, type) {
       clearButton.style.display = 'none';
     }
   } else {
-    clearButton.style.display = null;
+    clearButton.style.display = '';
     radioBox.classList.add('active');
     if (selectedContentTypeRadioBox) selectedContentTypeRadioBox.classList.remove('active');
     selectedContentType = type;
@@ -309,7 +310,7 @@ export function filterByContentType(radioBox, type) {
         let j = dataPointCircles.length;
         while (j-- > 0) {
           const dataPointCircle = dataPointCircles[j];
-          dataPointCircle.parentNode.style.visibility = null;
+          dataPointCircle.parentNode.style.visibility = '';
         }
       } else if (!item.contentTypeDeselected && item.subtype[0] !== type) {
         item.contentTypeDeselected = true;
@@ -335,7 +336,7 @@ export function showProgramView(callback) {
     programViewRadioBoxes[0].classList.remove('active');
     programViewRadioBoxes[1].classList.add('active');
 
-    userHint1.style.display = null;
+    userHint1.style.display = '';
     userHint2.style.display = 'none';
     userHintHover.classList.add('fade-in-1');
     userHintClick.style.display = 'block';
@@ -347,7 +348,7 @@ export function showProgramView(callback) {
     userHintGrab.classList.remove('fade-in-2');
 
     mainTimeline.style.transition = programViewTransition;
-    mainTimeline.style.zIndex = null;
+    mainTimeline.style.zIndex = '';
     let i = programTypesLength;
     while (i-- > 0) {
       const timeline = programViewTimelines[i];
@@ -362,7 +363,7 @@ export function showProgramView(callback) {
       const containerHeight = timelineFlexWrapper.clientHeight;
       while (i-- > 0) {
         const timeline = programViewTimelines[i];
-        timeline.style.opacity = null;
+        timeline.style.opacity = '';
         timeline.style.transform = `translateY(${containerHeight / (programTypesLength + 1.25) * (i + 1) - containerHeight / 2}px)`;
         timeline.style.height = '70px';
       }
@@ -389,19 +390,19 @@ function combineProgramView(callback) {
     programViewRadioBoxes[0].classList.add('active');
     programViewRadioBoxes[1].classList.remove('active');
 
-    userHint1.style.display = null;
+    userHint1.style.display = '';
     userHint2.style.display = 'none';
-    userHintClick.style.display = null;
+    userHintClick.style.display = '';
     userHintClick.classList.remove('fade-in-1');
     userHintHover.classList.add('fade-in-1');
-    userHintZoomIn.style.display = null;
+    userHintZoomIn.style.display = '';
     userHintZoomIn.classList.add('fade-in-1');
     userHintZoomOut.classList.remove('fade-in-1');
     userHintGrab.classList.remove('fade-in-2');
 
     mainTimeline.style.zIndex = '2';
     mainTimeline.style.transition = programViewTransition;
-    mainTimeline.style.display = null;
+    mainTimeline.style.display = '';
     let i = programTypesLength;
     while (i-- > 0) {
       const timeline = programViewTimelines[i];
@@ -410,7 +411,7 @@ function combineProgramView(callback) {
       timeline.style.transform = 'translateY(0)';
     }
     requestAnimationFrame(() => {
-      mainTimeline.style.opacity = null;
+      mainTimeline.style.opacity = '';
       mainTimeline.style.height = 2 * amplitude + 'px';
       i = programTypesLength;
       while (i-- > 0) {
@@ -423,13 +424,13 @@ function combineProgramView(callback) {
       i = programTypesLength;
       while (i-- > 0) {
         const timeline = programViewTimelines[i];
-        timeline.style.transform = null;
+        timeline.style.transform = '';
       }
       timelineSqueezeStart();
       i = programTypesLength;
       while (i-- > 0) {
         const timeline = programViewTimelines[i];
-        timeline.style.pointerEvents = null;
+        timeline.style.pointerEvents = '';
       }
       programViewIdle = true;
       if (typeof (callback) === 'function') {
@@ -482,7 +483,7 @@ export const toggleSelectOptions = (filterId) => () => {
               _j = dataPointCirclesLength;
               while (_j-- > 0) {
                 const dataPointCircle = dataPointCircles[_j];
-                dataPointCircle.parentNode.style.display = null;
+                dataPointCircle.parentNode.style.display = '';
                 dataPointCircle.style.fill = mostRecentFilter.color;
               }
               fail = false;
@@ -496,7 +497,7 @@ export const toggleSelectOptions = (filterId) => () => {
             while (_j-- > 0) {
               const dataPointCircle = dataPointCircles[_j];
               dataPointCircle.parentNode.style.display = 'none';
-              dataPointCircle.style.fill = null;
+              dataPointCircle.style.fill = '';
             }
           }
         }
@@ -507,7 +508,7 @@ export const toggleSelectOptions = (filterId) => () => {
     setSelectOptionColor(selectOption, checkbox, x, filter.color);
     let _i = dataByTimeAll.length;
     if (setReseachAreaFilters.length === 0) {
-      clearButton.style.display = null;
+      clearButton.style.display = '';
       while (_i-- > 0) {
         const item = dataByTimeAll[_i];
         const dataPointCircles = itemIdToDataPointCircles[item.id];
@@ -516,14 +517,14 @@ export const toggleSelectOptions = (filterId) => () => {
           while (_j-- > 0) {
             const dataPointCircle = dataPointCircles[_j];
             dataPointCircle.style.fill = filter.color;
-            dataPointCircle.parentNode.style.display = null;
+            dataPointCircle.parentNode.style.display = '';
           }
         } else {
           item.researchAreaDeselected = true;
           while (_j-- > 0) {
             const dataPointCircle = dataPointCircles[_j];
             dataPointCircle.parentNode.style.display = 'none';
-            dataPointCircle.style.fill = null;
+            dataPointCircle.style.fill = '';
           }
         }
       }
@@ -536,7 +537,7 @@ export const toggleSelectOptions = (filterId) => () => {
           let _j = dataPointCircles.length;
           while (_j-- > 0) {
             const dataPointCircle = dataPointCircles[_j];
-            dataPointCircle.parentNode.style.display = null;
+            dataPointCircle.parentNode.style.display = '';
             dataPointCircle.style.fill = filter.color;
           }
         }
@@ -634,7 +635,7 @@ function generateFilters() {
       }
       resetSearch();
     } else {
-      clearButton.style.display = null;
+      clearButton.style.display = '';
       searchTimeline(searchBox.value);
     }
   };
@@ -875,7 +876,6 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         dataPointCircle.setAttribute('cx', diameter / 2);
         dataPointCircle.setAttribute('cy', diameter / 2);
         dataPointCircle.setAttribute('r', diameter / 2 - 2);
-        dataPointCircle.setAttribute('class', 'data-point-circle');
         dataPoint.appendChild(dataPointCircle);
 
         if (!itemIdToDataPointCircles[item.id]) {
@@ -982,16 +982,16 @@ function mountExpandedViewContainer(expandedViewContainer) {
   // when the timeline has translated to the top
   filterWrapper.style.zIndex = 8;
   setTimeout(() => {
-    mainTimeline.style.pointerEvents = null;
+    mainTimeline.style.pointerEvents = '';
     if (timelineZoomed) {
-      mainTimeline.style.transition = null;
+      mainTimeline.style.transition = '';
     } else {
       timelineSqueezeStart();
     }
     timelineRoot.classList.add('timeline-top');
     timelineRoot.style.transform = 'translateY(0)';
     nextTick(() => {
-      timelineRoot.style.transform = null;
+      timelineRoot.style.transform = '';
     });
     mountedTimeoutFadeLayer.appendChild(backToTimeline);
     mountedTimeoutFadeLayer.appendChild(filterWrapper);
@@ -1056,16 +1056,16 @@ function mountExpandedViewContainer(expandedViewContainer) {
 
     timelineSection.appendChild(filterWrapper);
     setTimeout(() => {
-      timelineRoot.style.transform = null;
+      timelineRoot.style.transform = '';
       if (timelineZoomed) {
-        mainTimeline.style.transition = null;
+        mainTimeline.style.transition = '';
       } else {
         timelineSqueezeStart();
       }
       reenableProgramSelectContainer();
-      filterWrapper.style.zIndex = null;
-      timelineRoot.style.transition = null;
-      timelineRoot.style.zIndex = null;
+      filterWrapper.style.zIndex = '';
+      timelineRoot.style.transition = '';
+      timelineRoot.style.zIndex = '';
       disableOverlay();
     }, 1000);
   };
@@ -1085,7 +1085,7 @@ function clearMountedPoint() {
 }
 function toggleFadeToWhiteLayer(newItem) {
   if (newItem.image) {
-    mountedFadeToWhite.style.display = null;
+    mountedFadeToWhite.style.display = '';
   } else {
     mountedFadeToWhite.style.display = 'none';
   }
@@ -1145,7 +1145,7 @@ function generateExpandedViewContainer() {
 }
 
 function unmountExpandedViewContainer(expandedViewContainer) {
-  expandedViewContainer.style.opacity = null;
+  expandedViewContainer.style.opacity = '';
   const transitionEndHandler = e => {
     if (e.target === expandedViewContainer) {
       disableOverlay;
@@ -1313,8 +1313,8 @@ const timelineDoubleClickEventHandler = e => {
   zooming = true;
   mainTimeline.style.transition = `all ${timelineZoomMs}ms ease`;
   if (timelineZoomed) {
-    userHint1.style.display = null;
-    userHint2.style.display = null;
+    userHint1.style.display = '';
+    userHint2.style.display = '';
     userHintHover.classList.add('fade-in-1');
     userHintZoomIn.classList.add('fade-in-2');
     userHintGrab.classList.remove('fade-in-1');
@@ -1371,7 +1371,7 @@ const timelineDoubleClickEventHandler = e => {
       mountElementsInArrayIntoParent(mainTimeline, monthlyViewTimelineVerticalLines);
       timelineFlexWrapper.classList.add('cursor-grab');
       mainTimeline.classList.add('cursor-grab');
-      mainTimeline.style.transition = null;
+      mainTimeline.style.transition = '';
       timelineFlexWrapper.addEventListener('mousedown', timelineMouseDownEventHandler, false);
       mainTimeline.addEventListener('mousedown', timelineMouseDownEventHandler, false);
       document.addEventListener('mouseup', timelineMouseUpEventHandler, false);

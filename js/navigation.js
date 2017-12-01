@@ -43,8 +43,8 @@ function fadeOutNavigationComponent(component) {
 }
 
 function fadeInNavigationComponent(component) {
-  component.style.opacity = null;
-  component.style.pointerEvents = null;
+  component.style.opacity = '';
+  component.style.pointerEvents = '';
 }
 const inactivityMilliseconds = 1500;
 
@@ -198,7 +198,7 @@ function scrollViewToSlideIndex(newIndex, transition = true) {
     smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
   });
   setTimeout(() => {
-    smoothSlideContainer.style.transition = null;
+    smoothSlideContainer.style.transition = '';
     if (newIndex === 0) {
       smoothSlideContainer.style.transform = 'none';
     }
@@ -250,9 +250,9 @@ function injectLinksAndAddSideBar() {
 
   function mobileScroll() {
     window.onscroll = null;
-    smoothSlideContainer.style.transform = null;
-    document.body.style.overflow = null;
-    document.body.style.touchAction = null;
+    smoothSlideContainer.style.transform = '';
+    document.body.style.overflow = '';
+    document.body.style.touchAction = '';
   }
 
   function desktopScroll() {
@@ -272,7 +272,7 @@ function injectLinksAndAddSideBar() {
         if (tocOpen) {
           header.style.background = 'black';
         }
-        if (currentSlide === 1) {
+        if (currentSlide === 1 && !tocOpen) {
           header.classList.remove('white');
         }
       }
@@ -282,6 +282,9 @@ function injectLinksAndAddSideBar() {
         toggleTocEl();
         desktopScroll();
         scrollViewToSlideIndex(currentSlide, false);
+        if (tocOpen) {
+          header.style.background = '';
+        }
         if (currentSlide === 1) {
           header.classList.add('white');
         }
@@ -326,7 +329,7 @@ function injectLinksAndAddSideBar() {
       tableOfContentsWrapper.remove();
       header.classList.remove('white');
       if (mobile) {
-        header.style.background = null;
+        header.style.background = '';
       }
       disableOverlay();
     }
@@ -405,7 +408,7 @@ function injectLinksAndAddSideBar() {
         presidentLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
-          window.scrollBy(0,-46); // clear the top nav
+          window.scrollBy(0,-40); // clear the top nav
           presidentsMessageLink.click();
         };
         ul.appendChild(presidentLi);
@@ -416,7 +419,7 @@ function injectLinksAndAddSideBar() {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
           document.getElementById("chairs-message").scrollIntoView();
-          window.scrollBy(0,-46); // clear the top nav
+          window.scrollBy(0,-40); // clear the top nav
           chairsMessageLink.click();
         };
         ul.appendChild(chairLi);
@@ -426,7 +429,7 @@ function injectLinksAndAddSideBar() {
         li.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
-          window.scrollBy(0,-46); // clear the top nav
+          window.scrollBy(0,-40); // clear the top nav
         };
         ul.appendChild(li);
       }
