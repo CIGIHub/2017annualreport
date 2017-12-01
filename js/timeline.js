@@ -240,7 +240,6 @@ export function searchTimeline(string) {
           const dataPointCircle = dataPointCircles[j];
           const dataSvg = dataPointCircle.parentNode;
           const pointContainer = dataSvg.parentNode;
-          dataSvg.style.pointerEvents = 'none';
           pointContainer.style.zIndex = '2';
           dataPointCircle.classList.add('important-grey');
         }
@@ -253,7 +252,6 @@ export function searchTimeline(string) {
         const dataPointCircle = dataPointCircles[j];
         const dataSvg = dataPointCircle.parentNode;
         const pointContainer = dataSvg.parentNode;
-        dataSvg.style.pointerEvents = null;
         pointContainer.style.zIndex = null;
         dataPointCircle.classList.remove('important-grey');
       }
@@ -277,7 +275,6 @@ function resetSearch() {
         const dataPointCircle = dataPointCircles[j];
         const dataSvg = dataPointCircle.parentNode;
         const pointContainer = dataSvg.parentNode;
-        dataSvg.style.pointerEvents = null;
         pointContainer.style.zIndex = null;
         dataPointCircle.classList.remove('important-grey');
       }
