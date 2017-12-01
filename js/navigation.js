@@ -43,8 +43,8 @@ function fadeOutNavigationComponent(component) {
 }
 
 function fadeInNavigationComponent(component) {
-  component.style.opacity = null;
-  component.style.pointerEvents = null;
+  component.style.opacity = '';
+  component.style.pointerEvents = '';
 }
 const inactivityMilliseconds = 1500;
 
@@ -198,7 +198,7 @@ function scrollViewToSlideIndex(newIndex, transition = true) {
     smoothSlideContainer.style.transform = 'translateY(-' + 100 * newIndex + 'vh)';
   });
   setTimeout(() => {
-    smoothSlideContainer.style.transition = null;
+    smoothSlideContainer.style.transition = '';
     if (newIndex === 0) {
       smoothSlideContainer.style.transform = 'none';
     }
@@ -250,9 +250,9 @@ function injectLinksAndAddSideBar() {
 
   function mobileScroll() {
     window.onscroll = null;
-    smoothSlideContainer.style.transform = null;
-    document.body.style.overflow = null;
-    document.body.style.touchAction = null;
+    smoothSlideContainer.style.transform = '';
+    document.body.style.overflow = '';
+    document.body.style.touchAction = '';
   }
 
   function desktopScroll() {
@@ -329,7 +329,7 @@ function injectLinksAndAddSideBar() {
       tableOfContentsWrapper.remove();
       header.classList.remove('white');
       if (mobile) {
-        header.style.background = null;
+        header.style.background = '';
       }
       disableOverlay();
     }

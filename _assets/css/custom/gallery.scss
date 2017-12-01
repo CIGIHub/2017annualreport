@@ -6,7 +6,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-   
+
   .image-container {
     position: relative;
     cursor: pointer;
@@ -15,7 +15,7 @@
     height: 140px;
     overflow: hidden;
     border: solid 0.1rem transparent;
-   
+
     @include media-query($on-laptop){
       height: 100px;
     }
@@ -69,7 +69,6 @@
   height: 100vh;
   left: 0;
   opacity: 0;
-  pointer-events: none;
   position: fixed;
   top: 0;
   transition: opacity 500ms ease-in;
@@ -78,7 +77,10 @@
 
   &.enabled {
     opacity: 1;
-    pointer-events: unset;
+  }
+
+  &:not(.enabled) {
+    pointer-events: none;
   }
 
   .caption{

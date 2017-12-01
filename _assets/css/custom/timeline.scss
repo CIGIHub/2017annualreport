@@ -62,23 +62,23 @@ $article-slide-timing-function: ease-in-out;
       transform: scale(2.7, 2.7);
     }
   }
-}
 
-.data-point-circle {
-  fill: $accent-color;
-  stroke: $default-background-color;
-  stroke-width: 1;
-  transition: fill $data-point-activate-duration ease-out;
+  circle {
+    fill: $accent-color;
+    stroke: $default-background-color;
+    stroke-width: 1;
+    transition: fill $data-point-activate-duration ease-out;
 
-  .preview-enabled &,
-  .data-point-enabled & {
-    cursor: pointer;
-    fill: $default-background-color;
-    stroke: $accent-color;
-  }
+    .preview-enabled &,
+    .data-point-enabled & {
+      cursor: pointer;
+      fill: $default-background-color;
+      stroke: $accent-color;
+    }
 
-  .data-point-enabled & {
-    pointer-events: none;
+    .data-point-enabled & {
+      pointer-events: none;
+    }
   }
 }
 
