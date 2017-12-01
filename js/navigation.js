@@ -272,7 +272,7 @@ function injectLinksAndAddSideBar() {
         if (tocOpen) {
           header.style.background = 'black';
         }
-        if (currentSlide === 1) {
+        if (currentSlide === 1 && !tocOpen) {
           header.classList.remove('white');
         }
       }
@@ -282,6 +282,9 @@ function injectLinksAndAddSideBar() {
         toggleTocEl();
         desktopScroll();
         scrollViewToSlideIndex(currentSlide, false);
+        if (tocOpen) {
+          header.style.background = '';
+        }
         if (currentSlide === 1) {
           header.classList.add('white');
         }
