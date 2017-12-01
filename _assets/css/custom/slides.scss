@@ -589,29 +589,19 @@ header.white {
   table {
     font-size: 0.875rem;
     font-family: "Lucida Console";
+    width: 75%;
     @include media-query($small-screen) {
       font-size: 0.6rem;
     }
     @include media-query($small-phone) {
       float: none;
+    }
+    @include media-query($on-laptop) {
       width: 100%;
     }
     @media (min-width:$medium-screen) {
       font-size: 1em;
-      width: 100%;
       padding-top: 1rem;
-    }
-    
-    &.table1{
-      width: 100%;
-    }
-    &.table2{
-      width: 75%;
-    }
-    @include media-query($on-palm) {
-      &.table2{
-        width: 100%;
-      }
     }
     
     td:nth-child(1) {
