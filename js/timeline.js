@@ -253,14 +253,9 @@ export function searchTimeline(string) {
         const dataPointCircle = dataPointCircles[j];
         const dataSvg = dataPointCircle.parentNode;
         const pointContainer = dataSvg.parentNode;
-<<<<<<< HEAD
-        pointContainer.style.zIndex = null;
-        dataPointCircle.classList.remove('important-grey');
-=======
         dataSvg.style.pointerEvents = '';
         pointContainer.style.zIndex = '';
         dataPointCircle.removeAttribute('class');
->>>>>>> devel
       }
     }
   }
@@ -282,14 +277,9 @@ function resetSearch() {
         const dataPointCircle = dataPointCircles[j];
         const dataSvg = dataPointCircle.parentNode;
         const pointContainer = dataSvg.parentNode;
-<<<<<<< HEAD
-        pointContainer.style.zIndex = null;
-        dataPointCircle.classList.remove('important-grey');
-=======
         dataSvg.style.pointerEvents = '';
         pointContainer.style.zIndex = '';
         dataPointCircle.removeAttribute('class');
->>>>>>> devel
       }
     }
   }
