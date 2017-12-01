@@ -589,6 +589,7 @@ header.white {
   table {
     font-size: 0.875rem;
     font-family: "Lucida Console";
+    width: 75%;
     @include media-query($small-screen) {
       font-size: 0.6rem;
     }
@@ -601,17 +602,9 @@ header.white {
       width: 100%;
       padding-top: 1rem;
     }
-    
-    &.table1{
-      width: 100%;
-    }
-    &.table2{
-      width: 75%;
-    }
+
     @include media-query($on-palm) {
-      &.table2{
         width: 100%;
-      }
     }
     
     td:nth-child(1) {
