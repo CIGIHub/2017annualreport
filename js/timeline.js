@@ -1098,7 +1098,7 @@ const goLeft = e => {
     let i = mountedItem.i;
     while (i-- > 0) {
       const item = dataByTimeAll[i];
-      if (!item.researchAreaDeselected && !item.contentTypeDeselected) {
+      if (!item.researchAreaDeselected && !item.contentTypeDeselected && !item.searchGrayed) {
         changeExpandedViewArticle(item, 'left');
         break;
       }
@@ -1113,7 +1113,7 @@ const goRight = e => {
     const dataByTimeLength = dataByTimeAll.length;
     while (++i < dataByTimeLength) {
       const item = dataByTimeAll[i];
-      if (!item.researchAreaDeselected && !item.contentTypeDeselected) {
+      if (!item.researchAreaDeselected && !item.contentTypeDeselected && !item.searchGrayed) {
         changeExpandedViewArticle(item, 'right');
         break;
       }
