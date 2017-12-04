@@ -261,3 +261,39 @@ hr {
   break-inside: avoid;
   page-break-inside: avoid;
 }
+
+// Animations
+@keyframes arrow-up {
+  0% {
+    opacity: 0;
+  }
+  
+  30% {
+    opacity: 1;
+  }
+  
+  50% {
+    top: -45%;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes arrow-down {
+  0% {
+    opacity: 0;
+  }
+  
+  30% {
+    opacity: 1;
+  }
+  
+  50% {
+    top: 45%;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}
