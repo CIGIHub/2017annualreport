@@ -963,8 +963,8 @@ function mountExpandedViewContainer(expandedViewContainer) {
   disableProgramSelectContainer();
   mainTimeline.style.transition = transition;
   mainTimeline.style.pointerEvents = 'none';
-  const timelineBoundingClientRect = mainTimeline.getBoundingClientRect();
-  const translateY = 'translateY(' + -1 * ((timelineBoundingClientRect.top + timelineBoundingClientRect.bottom) / 2 - amplitude) + 'px)';
+  const timelineBoundingClientRect = timelineRoot.getBoundingClientRect();
+  const translateY = 'translateY(' + -1 * (timelineBoundingClientRect.top - amplitude) + 'px)';
   siteHeader.classList.add('top');
   nextTick(() => {
     height /= 2;
@@ -977,7 +977,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
 
   const wrapper = createDiv('absolute w-80');
   wrapper.style.left = '50%';
-  wrapper.style.transform = 'translate(-50%, -50%)';
+  wrapper.style.transform = 'translateX(-50%)';
   wrapper.style.top = amplitude + 'px';
   // when the timeline has translated to the top
   filterWrapper.style.zIndex = 8;
