@@ -67,6 +67,15 @@ export const nextTick = func => setTimeout(func, 0);
 export const generateFacebookShareLink = (encodedURL, encodedTitle = '') => `http://www.facebook.com/sharer/sharer.php?u=${encodedURL}&title=${encodedTitle}`;
 export const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`;
 
+// Needed for the timeline article share links, custom parameters in sharer.php is deprecated
+export function generateFacebookSDKShareLink(encodedURL, encodedTitle){
+  console.log("in the function");
+  FB.ui({
+    method: 'share',
+    href: encodedURL
+  }, function(response){});
+}
+
 // svg elements
 
 export const closeSvg = `<svg width="12" height="12" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

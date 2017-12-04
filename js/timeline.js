@@ -11,6 +11,7 @@ import {
   createEl,
   generateFacebookShareLink,
   generateTwitterShareLink,
+  generateFacebookSDKShareLink,
 } from './helpers';
 
 import {
@@ -1210,7 +1211,7 @@ function createArticleGroup(item) {
   const encodedURL = encodeURIComponent(location.href);
   const encodedTitle = encodeURIComponent(item.title);
   share.innerHTML = `
-<a class="no-underline black" href="${generateFacebookShareLink(encodedURL, encodedTitle)}" target="_blank">
+<a class="no-underline black" onclick=` + generateFacebookSDKShareLink(encodedURL, encodedTitle) + `target="_blank">
   <i class='fa fa-fw fa-facebook pr2 dim'></i>
 </a>
 <a class="no-underline black" href="${generateTwitterShareLink(encodedURL, encodedTitle)}" target="_blank">

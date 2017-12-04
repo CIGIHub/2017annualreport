@@ -38,8 +38,10 @@
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   {% endcomment %}
 
+  {% include facebook-sdk.html %}
 
   {% if jekyll.environment == 'production' and site.google_analytics %}
   {% include google-analytics.html %}
+  {% include facebook-sdk.html %}
   {% endif %}
 </head>
