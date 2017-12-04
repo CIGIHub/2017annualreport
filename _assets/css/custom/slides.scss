@@ -515,24 +515,33 @@ header.white {
   @include media-query(630px) {
     .landing-content {
       display: block;
+      width: 75%;
+      margin: auto;
     }
     
     .title {
       display: block;
-      margin: auto;
-      width: 75%;
-    }
-    
-    img {
       width: 100%;
+      img {
+        margin-left: -0.5rem;
+      }
     }
     
-    .content {
-      margin: 4rem 0 0;
+    .content-wrapper{
+      padding: 0;
     }
-    
-    .content-text {
-      padding-left: 5rem;
+
+    .content-text{
+      padding: 0;
+    }
+    .intro{
+      p {
+        margin: 0;
+        width: 100%;
+      }
+    }
+    .nav {
+      margin-left: 2rem;
     }
   }
 }
