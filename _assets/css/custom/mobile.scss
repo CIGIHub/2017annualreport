@@ -187,18 +187,22 @@
 
   // Landing page
   .content-wrapper {
-    padding: 0 0 0 2rem !important;
+    padding: 2rem 0 0 0 !important;
     .landing-content{
-      width: 90%;
+      width: 100%;
       .title {
         margin: 0;
         width: auto;
         img {
           margin-left: -0.5rem;
+          width: 100%;
         }
       }
       .content-text {
         padding-left: 0;
+        .nav {
+          margin: 0;
+        }
         p {
           margin-left: 0;
         }
