@@ -93,8 +93,7 @@ body {
 
 %click-through-to-children {
   pointer-events: none;
-
-  * {
+  >* {
     pointer-events: auto;
   }
 }
