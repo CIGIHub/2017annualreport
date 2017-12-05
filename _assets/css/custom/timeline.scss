@@ -523,8 +523,14 @@ $article-slide-timing-function: ease-in-out;
 
 .select-clear {
   align-items: center;
-  color: $grey-color;
+  color: white;
+  background: $grey-25;
+  border: 1px solid transparent;
   display: flex;
+  svg{
+    width: 10px;
+    height: 10px;
+  }
 }
 
 .select-content {
