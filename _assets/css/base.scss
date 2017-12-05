@@ -93,8 +93,7 @@ body {
 
 %click-through-to-children {
   pointer-events: none;
-
-  * {
+  >* {
     pointer-events: auto;
   }
 }
@@ -105,9 +104,10 @@ header {
 
 h1 {
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 500;
   padding: 0.5rem 0;
-
+  color: black;
+  
   @include media-query($on-palm) {
     font-size: 1.25rem;
   }
@@ -148,9 +148,6 @@ hr {
     max-width: calc(#{$content-width} - (#{$spacing-unit}));
     padding: 0;
     padding-top: 2rem;
-  }
-  @include media-query($on-palm) {
-    padding-bottom: 1rem;
   }
 }
 
@@ -260,4 +257,40 @@ hr {
 .column-no-wrap {
   break-inside: avoid;
   page-break-inside: avoid;
+}
+
+// Animations
+@keyframes arrow-up {
+  0% {
+    opacity: 0;
+  }
+  
+  30% {
+    opacity: 1;
+  }
+  
+  50% {
+    top: -45%;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes arrow-down {
+  0% {
+    opacity: 0;
+  }
+  
+  30% {
+    opacity: 1;
+  }
+  
+  50% {
+    top: 45%;
+  }
+  
+  100% {
+    opacity: 0;
+  }
 }

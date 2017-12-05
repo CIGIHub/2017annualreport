@@ -309,7 +309,7 @@ p {
       display: none;
     }
     .pr6-ns {
-      padding-right: 4em;
+      padding-right: 2rem;
     }
   }
   @include media-query($small-phone) {
@@ -320,7 +320,7 @@ p {
       padding-top: 2rem;
     }
     .pr6-ns {
-      padding-right: 0;
+      padding-right: 0rem;
     }
   }
 }
@@ -366,7 +366,7 @@ header.white {
   }
 }
 
-.landing {
+.landing{
   .landing-content {
     display: table;
     font-size: 18px;
@@ -488,41 +488,6 @@ header.white {
         animation: arrow-up 2.5s 1.25s ease-in-out infinite;
       }
     }
-    
-    @keyframes arrow-up {
-      0% {
-        opacity: 0;
-      }
-      
-      30% {
-        opacity: 1;
-      }
-      
-      50% {
-        top: -45%;
-      }
-      
-      100% {
-        opacity: 0;
-      }
-    }
-    @keyframes arrow-down {
-      0% {
-        opacity: 0;
-      }
-      
-      30% {
-        opacity: 1;
-      }
-      
-      50% {
-        top: 45%;
-      }
-      
-      100% {
-        opacity: 0;
-      }
-    }
   }
   
   @include media-query($on-laptop) {
@@ -550,24 +515,33 @@ header.white {
   @include media-query(630px) {
     .landing-content {
       display: block;
+      width: 75%;
+      margin: auto;
     }
     
     .title {
       display: block;
-      margin: auto;
-      width: 75%;
-    }
-    
-    img {
       width: 100%;
+      img {
+        margin-left: -0.5rem;
+      }
     }
     
-    .content {
-      margin: 4rem 0 0;
+    .content-wrapper{
+      padding: 0;
     }
-    
-    .content-text {
-      padding-left: 5rem;
+
+    .content-text{
+      padding: 0;
+    }
+    .intro{
+      p {
+        margin: 0;
+        width: 100%;
+      }
+    }
+    .nav {
+      margin-left: 2rem;
     }
   }
 }
@@ -589,29 +563,19 @@ header.white {
   table {
     font-size: 0.875rem;
     font-family: "Lucida Console";
+    width: 75%;
     @include media-query($small-screen) {
       font-size: 0.6rem;
     }
     @include media-query($small-phone) {
       float: none;
+    }
+    @include media-query($on-laptop) {
       width: 100%;
     }
     @media (min-width:$medium-screen) {
       font-size: 1em;
-      width: 100%;
       padding-top: 1rem;
-    }
-    
-    &.table1{
-      width: 100%;
-    }
-    &.table2{
-      width: 75%;
-    }
-    @include media-query($on-palm) {
-      &.table2{
-        width: 100%;
-      }
     }
     
     td:nth-child(1) {

@@ -64,7 +64,13 @@ export function unmountElementsInArray(arr) {
 // Useful for triggering transitions
 export const nextTick = func => setTimeout(func, 0);
 
-export const generateFacebookShareLink = (encodedURL, encodedTitle = '') => `http://www.facebook.com/sharer/sharer.php?u=${encodedURL}&title=${encodedTitle}`;
+export const generateFacebookShareLink = (encodedURL, encodedTitle = '') =>
+`https://www.facebook.com/dialog/feed?
+app_id=995454813805233
+&display=popup&amp;caption=` + encodedTitle +  
+`&link=` + encodedURL +
+`&redirect_uri=` + encodedURL;
+
 export const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`;
 
 // svg elements

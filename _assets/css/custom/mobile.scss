@@ -42,14 +42,6 @@
     padding: 0.5em;
   }
 
-  .mobile-timeline{
-    p {
-      width: 70%;
-      margin:auto;
-      padding-top: 2em;
-    }
-  }
-
   .cigi-logo-mobile{
     left:0px;
     padding-top: 0.5rem;
@@ -60,13 +52,107 @@
     display: block;
     margin: auto;
     padding-top: 6em;
-    width: 70%;
+    width: 100%;
+    color: $text-color;
     hr {
       margin-bottom: 2em;
     }
     a {
       color: $accent-color;
       text-decoration: none;
+    }
+
+    .text{
+      width: 80%;
+      margin: auto;
+    }
+    
+    // Middle ribbbon
+    .nav {
+      padding: 1.5rem 0;
+      margin: 0.5rem 0 1.5rem 0;
+      color: $accent-color;
+      font-size: 16px;
+      width: 100vw;
+      background-color: #e2e1dc;
+      
+      .view-ar{
+        position: relative;
+        text-align: center;
+      }
+
+      .fa {
+        display: inline-block;
+        font-size: 1.75rem;
+        line-height: 1rem;
+        margin-top: 5px;
+      }
+
+      .down.pointer {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+      .arrows {
+        height: 25px;
+        position: relative;
+      }
+      
+      .arrow {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        transform-origin: 0%;
+      }
+
+      .up,
+      .down {
+        position: absolute;
+      }
+
+      .down {
+        .arrow-1 {
+          animation: arrow-down 2.5s ease-in-out infinite;
+        }
+        
+        .arrow-2 {
+          animation: arrow-down 2.5s 1.25s ease-in-out infinite;
+        }
+      }
+      
+      .up {
+        .arrow-1 {
+          animation: arrow-up 2.5s ease-in-out infinite;
+        }
+        
+        .arrow-2 {
+          animation: arrow-up 2.5s 1.25s ease-in-out infinite;
+        }
+      }
+    }
+    
+    .link {
+      border-top: none !important;
+    }
+    
+    // Form
+    input, button{
+      width: 100%;
+      line-height: 28px;
+      font-family: $base-font-family;
+    }
+    button {
+      background-color: $accent-color;
+      color: $grey-color-light;
+      margin-top: 0.5rem;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    input {
+      text-align: center;
     }
   }
 
@@ -187,18 +273,22 @@
 
   // Landing page
   .content-wrapper {
-    padding: 0 0 0 2rem !important;
+    padding: 2rem 0 0 0 !important;
     .landing-content{
-      width: 90%;
+      width: 100%;
       .title {
         margin: 0;
         width: auto;
         img {
           margin-left: -0.5rem;
+          width: 100%;
         }
       }
       .content-text {
         padding-left: 0;
+        .nav {
+          margin: 0;
+        }
         p {
           margin-left: 0;
         }
