@@ -7,9 +7,9 @@ export default function progressiveBlur() {
       image.style.filter = 'blur(10px)';
       image.style.transition = `filter ${blurDuration}ms ease`;
       image.onload = () => {
-        image.style.filter = null;
+        image.style.filter = '';
         setTimeout(() => {
-          image.style.transition = null;
+          image.style.transition = '';
         }, blurDuration);
       };
     }

@@ -8,17 +8,17 @@
 }
 
 @media (max-width: $small-phone - 0.01em), (max-height: $small-phone - 0.01em) {
-  
+
   section {
     background: $background-color;
     padding-bottom: 1em;
   }
-  
+
   // special mobile landscape overwrites ******
   a.db-ns{
-      display:none;
-    }
-  
+    display:none;
+  }
+
   .mv4-ns{
     margin: 0;
   }
@@ -34,7 +34,7 @@
   .vh-100-ns{
     height: auto;
   }
-  .site-header.wrapper{
+  .site-header {
     max-width: 100%;
   }
 
@@ -42,24 +42,18 @@
     padding: 0.5em;
   }
 
-  .mobile-timeline{
-    p {
-      width: 70%;
-      margin:auto;
-      padding-top: 2em;
-    }
-  }
-
   .cigi-logo-mobile{
     left:0px;
+    padding-top: 0.5rem;
   }
-  // ***************************************  
-  
+  // ***************************************
+
   .mobile-timeline{
+    display: block;
+    margin: auto;
     padding-top: 6em;
-    p {
-      padding-bottom: 2em;
-    }
+    width: 100%;
+    color: $text-color;
     hr {
       margin-bottom: 2em;
     }
@@ -67,25 +61,118 @@
       color: $accent-color;
       text-decoration: none;
     }
+
+    .text{
+      width: 80%;
+      margin: auto;
+    }
+    
+    // Middle ribbbon
+    .nav {
+      padding: 1.5rem 0;
+      margin: 0.5rem 0 1.5rem 0;
+      color: $accent-color;
+      font-size: 16px;
+      width: 100vw;
+      background-color: #e2e1dc;
+      
+      .view-ar{
+        position: relative;
+        text-align: center;
+      }
+
+      .fa {
+        display: inline-block;
+        font-size: 1.75rem;
+        line-height: 1rem;
+        margin-top: 5px;
+      }
+
+      .down.pointer {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+      .arrows {
+        height: 25px;
+        position: relative;
+      }
+      
+      .arrow {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        transform-origin: 0%;
+      }
+
+      .up,
+      .down {
+        position: absolute;
+      }
+
+      .down {
+        .arrow-1 {
+          animation: arrow-down 2.5s ease-in-out infinite;
+        }
+        
+        .arrow-2 {
+          animation: arrow-down 2.5s 1.25s ease-in-out infinite;
+        }
+      }
+      
+      .up {
+        .arrow-1 {
+          animation: arrow-up 2.5s ease-in-out infinite;
+        }
+        
+        .arrow-2 {
+          animation: arrow-up 2.5s 1.25s ease-in-out infinite;
+        }
+      }
+    }
+    
+    .link {
+      border-top: none !important;
+    }
+    
+    // Form
+    input, button{
+      width: 100%;
+      line-height: 28px;
+      font-family: $base-font-family;
+    }
+    button {
+      background-color: $accent-color;
+      color: $grey-color-light;
+      margin-top: 0.5rem;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    input {
+      text-align: center;
+    }
   }
-  
+
   .site-header {
     background: $background-color;
     box-shadow: 0 0 1rem 1px $grey-25;
   }
-  
+
   .sidebar,
   .navigation-top-button,
   .navigation-bottom-button {
     display: none;
   }
-  
+
   .download {
     a {
       margin-top: 0;
     }
   }
-  
+
   .toc-mobile-wrapper {
     background: black;
     color: white;
@@ -95,39 +182,39 @@
     position: fixed;
     top: 0;
     width: 100vw;
-    
+
     a {
       color: white;
       text-decoration: none;
     }
-    
+
     ul {
       font-size: 1em;
       list-style: none;
       padding: 4em 1em 0;
-      
+
       li:first-child {
         display: none;
       }
-      
+
     }
   }
-  
+
   #timeline-slide-content,
   #timeline-filters {
     display: none;
   }
-  
+
   h1 {
     font-size: 2em !important;
     line-height: 1.25em !important;
   }
-  
+
   .landing,
   .timeline-slide {
     min-height: 100vh;
   }
-  
+
   .mobile-button {
     background: $accent-color;
     border-radius: 50%;
@@ -140,23 +227,23 @@
     right: 20px;
     z-index: 100;
   }
-  
+
   .explore,
   .fullscreen-bg-video {
     display: none;
   }
-  
+
   .img-container {
     img {
       padding-bottom: 0.5rem;
     }
   }
-  
+
   .photo-caption {
-    margin: 0;
+    margin: -0.75rem 0 0 0;
     order: 0;
-    padding-bottom: 0.5rem;
-    
+    padding: 0 0 1rem 0;
+
     &:before {
       content: '\f030';
       font-family: FontAwesome;
@@ -182,6 +269,31 @@
 
   .no-mobile {
     display: none;
+  }
+
+  // Landing page
+  .content-wrapper {
+    padding: 2rem 0 0 0 !important;
+    .landing-content{
+      width: 100%;
+      .title {
+        margin: 0;
+        width: auto;
+        img {
+          margin-left: -0.5rem;
+          width: 100%;
+        }
+      }
+      .content-text {
+        padding-left: 0;
+        .nav {
+          margin: 0;
+        }
+        p {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
 

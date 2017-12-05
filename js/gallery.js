@@ -69,14 +69,14 @@ export default function galleryMagic() {
         photoContainer.style.transform = leftSide;
         setTimeout(() => {
           photoContainer.remove();
-          photoContainer.style.transform = null;
+          photoContainer.style.transform = '';
         }, 1000);
         const nextPhotoContainer = imageIndexToPhotoContainer[i + 1] || generatePhotoContainer(i + 1);
         nextPhotoContainer.style.transform = rightSide;
         lightbox.appendChild(nextPhotoContainer);
         currentPhotocontainer = nextPhotoContainer;
         nextPhotoContainer.clientHeight;
-        nextPhotoContainer.style.transform = null;
+        nextPhotoContainer.style.transform = '';
       };
     }
     if (i > 0) {
@@ -87,14 +87,14 @@ export default function galleryMagic() {
         photoContainer.style.transform = rightSide;
         setTimeout(() => {
           photoContainer.remove();
-          photoContainer.style.transform = null;
+          photoContainer.style.transform = '';
         }, 1000);
         const nextPhotoContainer = imageIndexToPhotoContainer[i - 1] || generatePhotoContainer(i - 1);
         nextPhotoContainer.style.transform = leftSide;
         lightbox.appendChild(nextPhotoContainer);
         currentPhotocontainer = nextPhotoContainer;
         nextPhotoContainer.clientHeight;
-        nextPhotoContainer.style.transform = null;
+        nextPhotoContainer.style.transform = '';
       };
     }
     photoContainer.appendChild(photoWrapper);
