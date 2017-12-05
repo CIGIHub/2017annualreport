@@ -589,11 +589,7 @@ function generateFilters() {
   generatedFilters[0] = researchSelectContainer;
   // content types
   const contentTypeSelectContent = createDiv('select-content w-100');
-  
-  const contentTypeFilters = dataByTimeAll.reduce((set, item) => {
-    set.add(item.subtype[0]);
-    return set;
-  }, new Set());
+  const contentTypeFilters = new Set(['Books', 'CIGI Papers', 'Policy Briefs', 'Special Reports', 'Conference Reports', 'Opinion']);
   
   for (const contentType of contentTypeFilters) {
     const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
