@@ -1215,9 +1215,6 @@ function createArticleGroup(item) {
 <a class="no-underline black" href="${generateTwitterShareLink(encodedURL, encodedTitle)}" target="_blank">
   <i class='fa fa-fw fa-twitter pr2 dim'></i>
 </a>
-<a class="no-underline black" href="mailto:?subject=${item.title}&amp;body=${location.href}">
-  <i class='fa fa-fw fa-envelope dim'></i>
-</a>
 `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
   viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
