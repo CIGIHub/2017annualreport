@@ -64,17 +64,14 @@ export function unmountElementsInArray(arr) {
 // Useful for triggering transitions
 export const nextTick = func => setTimeout(func, 0);
 
-export const generateFacebookShareLink = (encodedURL, encodedTitle = '') => `http://www.facebook.com/sharer/sharer.php?u=${encodedURL}&title=${encodedTitle}`;
-export const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`;
+export const generateFacebookShareLink = (encodedURL, encodedTitle = '') =>
+`https://www.facebook.com/dialog/feed?
+app_id=995454813805233
+&display=popup&amp;caption=` + encodedTitle +  
+`&link=` + encodedURL +
+`&redirect_uri=` + encodedURL;
 
-// Needed for the timeline article share links, custom parameters in sharer.php is deprecated
-export function generateFacebookSDKShareLink(encodedURL, encodedTitle){
-  console.log("in the function");
-  FB.ui({
-    method: 'share',
-    href: encodedURL
-  }, function(response){});
-}
+export const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`;
 
 // svg elements
 
