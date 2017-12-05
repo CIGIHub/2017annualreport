@@ -91,7 +91,7 @@ export function changeExpandedViewArticle(newItem, direction) {
   const articleGroup = cachedArticleGroupByArticleI[newItem.i] || createArticleGroup(newItem);
   toggleFadeToWhiteLayer(newItem);
   mountElementsInArrayIntoParent(mountedExpandedViewContainer, articleGroup);
-
+  
   if (!direction) {
     mountedArticleGroup = articleGroup;
     inTransition = false;
@@ -205,7 +205,7 @@ function clearContentTypeFilter() {
     selectedContentType = null;
     selectedContentTypeRadioBox = null;
   }
-
+  
   let i = dataByTimeAll.length;
   while (i-- > 0) {
     const item = dataByTimeAll[i];
@@ -298,13 +298,13 @@ export function filterByContentType(radioBox, type) {
     selectedContentType = type;
     setContentTypeInUrl();
     selectedContentTypeRadioBox = radioBox;
-
+    
     let i = dataByTimeAll.length;
     while (i-- > 0) {
       const item = dataByTimeAll[i];
       if (item.contentTypeDeselected && item.subtype[0] === type) {
         item.contentTypeDeselected = false;
-
+        
         const dataPointCircles = itemIdToDataPointCircles[item.id];
         let j = dataPointCircles.length;
         while (j-- > 0) {
@@ -313,7 +313,7 @@ export function filterByContentType(radioBox, type) {
         }
       } else if (!item.contentTypeDeselected && item.subtype[0] !== type) {
         item.contentTypeDeselected = true;
-
+        
         const dataPointCircles = itemIdToDataPointCircles[item.id];
         let j = dataPointCircles.length;
         while (j-- > 0) {
@@ -331,10 +331,10 @@ export function showProgramView(callback) {
     programViewIdle = false;
     programViewCombined = false;
     timelineSqueezeStop();
-
+    
     programViewRadioBoxes[0].classList.remove('active');
     programViewRadioBoxes[1].classList.add('active');
-
+    
     userHint1.style.display = '';
     userHint2.style.display = 'none';
     userHintHover.classList.add('fade-in-1');
@@ -345,7 +345,7 @@ export function showProgramView(callback) {
     userHintZoomIn.style.display = 'none';
     userHintZoomOut.classList.remove('fade-in-1');
     userHintGrab.classList.remove('fade-in-2');
-
+    
     mainTimeline.style.transition = programViewTransition;
     mainTimeline.style.zIndex = '';
     let i = programTypesLength;
@@ -367,7 +367,7 @@ export function showProgramView(callback) {
         timeline.style.height = '70px';
       }
     });
-
+    
     setTimeout(() => {
       mainTimeline.style.display = 'none';
       programViewIdle = true;
@@ -375,7 +375,7 @@ export function showProgramView(callback) {
         callback();
       }
     }, programViewTransitionMs);
-
+    
     timelineFlexWrapper.removeEventListener('dblclick', timelineDoubleClickEventHandler, false);
   }
 }
@@ -385,10 +385,10 @@ function combineProgramView(callback) {
     resetProgramViewInUrl();
     programViewIdle = false;
     programViewCombined = true;
-
+    
     programViewRadioBoxes[0].classList.add('active');
     programViewRadioBoxes[1].classList.remove('active');
-
+    
     userHint1.style.display = '';
     userHint2.style.display = 'none';
     userHintClick.style.display = '';
@@ -398,7 +398,7 @@ function combineProgramView(callback) {
     userHintZoomIn.classList.add('fade-in-1');
     userHintZoomOut.classList.remove('fade-in-1');
     userHintGrab.classList.remove('fade-in-2');
-
+    
     mainTimeline.style.zIndex = '2';
     mainTimeline.style.transition = programViewTransition;
     mainTimeline.style.display = '';
@@ -418,7 +418,7 @@ function combineProgramView(callback) {
         timeline.style.height = 2 * amplitude + 'px';
       }
     });
-
+    
     setTimeout(() => {
       i = programTypesLength;
       while (i-- > 0) {
@@ -477,7 +477,7 @@ export const toggleSelectOptions = (filterId) => () => {
           let _j;
           while (_i-- > 0) {
             const mostRecentFilter = researchTypeFilters.types[setReseachAreaFilters[_i]];
-
+            
             if (item.research_areas.includes(mostRecentFilter.name)) {
               _j = dataPointCirclesLength;
               while (_j-- > 0) {
@@ -565,7 +565,7 @@ function generateFilters() {
     x.style.left = '50%';
     x.style.transform = 'translate(-50%, -50%)';
     selectOptionToCheckboxAndX.set(selectOption, [checkbox, x]);
-
+    
     selectOption.onclick = toggleSelectOptions(i);
     selectOption.appendChild(checkbox);
     selectOption.appendChild(document.createTextNode(filter.name));
@@ -589,12 +589,12 @@ function generateFilters() {
   generatedFilters[0] = researchSelectContainer;
   // content types
   const contentTypeSelectContent = createDiv('select-content w-100');
-
+  
   const contentTypeFilters = dataByTimeAll.reduce((set, item) => {
     set.add(item.subtype[0]);
     return set;
   }, new Set());
-
+  
   for (const contentType of contentTypeFilters) {
     const selectOption = createDiv('select-option flex items-center pv125 hover-bg-black-10');
     const radioBox = createDiv('select-radio ml1 mr2 relative');
@@ -618,7 +618,7 @@ function generateFilters() {
   contentSelectContainer.appendChild(contentTypeSelectContent);
   contentSelectContainer.appendChild(contentSelectToggler);
   generatedFilters[1] = contentSelectContainer;
-
+  
   // search bar
   const searchBar = createDiv('flex items-center select-container w12rem mv1 ml1 f6');
   searchBox = createEl('input', 'input-reset outline-0 bn bg-transparent h-100 w-100 grey font ttu fw5');
@@ -639,10 +639,10 @@ function generateFilters() {
     }
   };
   generatedFilters[2] = searchBar;
-
+  
   // program views
   const programSelectContent = createDiv('select-content w-100');
-
+  
   const programViewFilters = programViews.filters;
   const programViewFiltersLength = programViewFilters.length;
   for (let j = 0; j < programViewFiltersLength; j++) {
@@ -716,7 +716,7 @@ const generateTimelineVerticalLines = (lineTemplates, program = false, label = '
     }
     lineContainer.style.left = lineTemplate.position * 100 + '%';
     lineContainer.style.bottom = (1 - sinFunc(lineTemplate.position * width) / amplitude / 2) * 100 + '%';
-
+    
     lineContainer.appendChild(verticalLine);
     generatedLineContainers[i] = lineContainer;
   }
@@ -790,13 +790,13 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
     let previous = amplitude;
     for (let i = 1; i < width; i++) {
       const line = createSvgEl('line');
-
+      
       line.setAttribute('x1', (i - 1));
       line.setAttribute('y1', previous);
-
+      
       line.setAttribute('x2', i);
       const current = sinFunc(i);
-
+      
       line.setAttribute('y2', current);
       previous = current;
       svg.appendChild(line);
@@ -821,7 +821,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
   svg.setAttribute('viewBox', '0 ' + -yPadding + ' ' + width + ' ' + paddedHeight);
   svg.setAttribute('height', paddedHeight);
   timeline.style.height = height + 'px';
-
+  
   document.addEventListener('click', () => {
     clearLastPreview();
   });
@@ -847,15 +847,15 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         const diameter = diameters[i];
         const yOffset = rmsDiameter * (i - (clusterLength - 1) / 2) * spacingFactor;
         const pointX = mapTimestampToZeroToOne(new Date(item.published_date).valueOf()) * width;
-
+        
         const y = sinFunc(pointX) + yOffset;
         const pointContainer = createDiv('point-container');
         const previewLine = createDiv('preview-line');
         const previewContainer = createDiv('preview-container');
         const preview = createDiv('preview ' + (j < eightyPercentLength ? 'preview-right' : 'preview-left'));
-
+        
         preview.innerHTML = (item.subtype[0] ? '<h4 class="ttu accent-color f7 pb1">' + item.subtype[0] + '</h4>' : '') +
-          '<p class="black letter-spacing-half-pixel f5">' + item.title + '</p>';
+        '<p class="black letter-spacing-half-pixel f5">' + item.title + '</p>';
         if (item.image) {
           const previewPicture = createDiv('preview-picture br-100 pa2');
           const previewPictureInner = createDiv('preview-picture-inner br-100');
@@ -865,7 +865,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         } else {
           previewContainer.classList.add('preview-noimage');
         }
-
+        
         const dataPoint = createSvgEl('svg');
         dataPoint.setAttribute('class', 'data-point absolute');
         dataPoint.style.marginLeft = dataPoint.style.marginTop = `-${diameter / 2}px`;
@@ -876,7 +876,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
         dataPointCircle.setAttribute('cy', diameter / 2);
         dataPointCircle.setAttribute('r', diameter / 2 - 2);
         dataPoint.appendChild(dataPointCircle);
-
+        
         if (!itemIdToDataPointCircles[item.id]) {
           itemIdToDataPointCircles[item.id] = [];
         }
@@ -889,7 +889,7 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
           pointContainer.classList.add('preview-enabled');
           lastPointContainer = pointContainer;
         };
-
+        
         if (!program) {
           const openExpandedView = () => {
             if (mountedItem && item.i === mountedItem.i) {
@@ -907,13 +907,13 @@ function generateAndMountTimeline(dataByTime, program = false, label = '') {
           dataPointCircle.addEventListener('click', openExpandedView, false);
           previewContainer.addEventListener('click', openExpandedView, false);
         }
-
+        
         previewContainer.appendChild(preview);
         pointContainer.appendChild(dataPoint);
         pointContainer.appendChild(previewContainer);
         pointContainer.appendChild(previewLine);
         timeline.appendChild(pointContainer);
-
+        
         pointContainer.style.top = '50%';
         pointContainer.style.left = pointX / width * 100 + '%';
         nextTick(() => { pointContainer.style.top = y / height * 100 + '%'; });
@@ -933,16 +933,16 @@ export default function timelineMagic() {
   fetch(baseUrl + 'data/ar-oct18.json').then(response => response.json()).then(data => {
     dataByTimeAll = data.posts;
     mainTimeline = generateAndMountTimeline(dataByTimeAll);
-
+    
     timelineSqueezeStart();
-
+    
     programViewTimelines = programTypes.map(programType => generateAndMountTimeline(dataByTimeAll.filter(p => p.program.includes(programType)), true, programType));
-
+    
     // stuff to be done "after" generating the main timeline
     mountFilters();
     timelineFlexWrapper.addEventListener('dblclick', timelineDoubleClickEventHandler, false);
     mainTimeline.addEventListener('dblclick', timelineDoubleClickEventHandler, false);
-
+    
     handlePermalink(dataByTimeAll, delay + 1);
   });
 }
@@ -955,7 +955,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   // Mount the timeline into the expanded view
   enableOverlay();
   timelineRoot.style.zIndex = 10;
-
+  
   const transition = 'all 1s ease-in-out';
   timelineRoot.style.transition = transition;
   timelineSqueezeStop();
@@ -973,7 +973,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
       readjustTimeline(initialPositionX + changeX);
     }
   });
-
+  
   const wrapper = createDiv('absolute w-80');
   wrapper.style.left = '50%';
   wrapper.style.transform = 'translateX(-50%)';
@@ -997,13 +997,13 @@ function mountExpandedViewContainer(expandedViewContainer) {
     // add the timeline container to the wrapper
     wrapper.appendChild(timelineRoot);
   }, 1000);
-
+  
   // Set fade on inactivity timeout
   let fadeTimeout;
   const timeoutFadeLayerMousemoveEventHandler = e => {
     clearTimeout(fadeTimeout);
     mountedTimeoutFadeLayer.style.opacity = '1';
-
+    
     fadeTimeout = setTimeout(() => {
       const cursorOnFadeLayer = Array.prototype.some.call(mountedTimeoutFadeLayer.childNodes, child => child.contains(e.target));
       if (cursorOnFadeLayer) {
@@ -1042,7 +1042,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
     mainTimeline.style.transition = transition;
     timelineFlexWrapper.appendChild(timelineRoot);
     timelineRoot.style.transform = translateY;
-
+    
     nextTick(() => {
       clearMountedPoint();
       mainTimeline.style.height = height + 'px';
@@ -1052,7 +1052,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
       timelineRoot.style.transform = 'translateY(0)';
       unmountExpandedViewContainer(expandedViewContainer);
     });
-
+    
     timelineSection.appendChild(filterWrapper);
     setTimeout(() => {
       timelineRoot.style.transform = '';
@@ -1070,7 +1070,7 @@ function mountExpandedViewContainer(expandedViewContainer) {
   };
   // add the timeline wrapper to the timeout fade layer
   mountedTimeoutFadeLayer.appendChild(wrapper);
-
+  
   // Finally mount the expanded view container
   expandedRoot.appendChild(expandedViewContainer);
   nextTick(() => expandedViewContainer.style.opacity = '1');
@@ -1124,18 +1124,18 @@ const goRight = e => {
 };
 function generateExpandedViewContainer() {
   const expandedViewContainer = createDiv('expanded-view-container');
-
+  
   mountedTimeoutFadeLayer = createDiv('timeout-fade-layer relative h-100');
   expandedViewContainer.appendChild(mountedTimeoutFadeLayer);
   mountedFadeToWhite = createDiv('fade-to-white w-100 h-100 fixed');
-
+  
   expandedViewContainer.appendChild(mountedFadeToWhite);
-
+  
   const leftButton = createDiv('left-button f3 flex pointer reverse-dim');
   leftButton.appendChild(createEl('i', 'fa fa-angle-left fa-fw self-center'));
   leftButton.onclick = goLeft;
   mountedTimeoutFadeLayer.appendChild(leftButton);
-
+  
   const rightButton = createDiv('right-button f3 flex pointer reverse-dim');
   rightButton.appendChild(createEl('i', 'fa fa-angle-right fa-fw self-center'));
   rightButton.onclick = goRight;
@@ -1165,7 +1165,7 @@ function createArticleGroup(item) {
     const smallImageUrl = `${baseUrl}data/prev/${item.id}.jpg`;
     const largeImageUrl = `${baseUrl}data/min/${item.id}.jpg`;
     articlePictureBlurred.style.backgroundImage = `url('${smallImageUrl}')`;
-
+    
     fetch(largeImageUrl).then(r => r.blob()).then(blob => {
       const reader = new FileReader();
       reader.readAsDataURL(blob);
@@ -1180,42 +1180,42 @@ function createArticleGroup(item) {
       }, false);
     });
   }
-
+  
   const article = createDiv('article absolute black pa4 pl5-m pl6-l pb6-ns w-70-l');
-
+  
   const splitDate = item.published_date.split('-');
   const year = splitDate[0];
   const month = splitDate[1];
   const date = splitDate[2].split('T')[0];
   const monthName = monthNames[parseInt(month, 10) - 1];
-
+  
   article.innerHTML = '<div class="ttu f6 fw5 pb1">' +
-    monthName + ' ' + date + ', ' + year +
-    '</div>' +
-    '<h1 class="fw5 f2 lh-title pb2">' +
-    item.title +
-    '</h1>' +
-    '<hr>' +
-    '<p class="lh-copy pt3">' +
-    item.summary +
-    '</p>' +
-    '<div class="ttu f7 fw5 pt3">' +
-    'Author: ' +
-    item.authors.join(', ') +
-    '</div>'
-    ;
-
+  monthName + ' ' + date + ', ' + year +
+  '</div>' +
+  '<h1 class="fw5 f2 lh-title pb2">' +
+  item.title +
+  '</h1>' +
+  '<hr>' +
+  '<p class="lh-copy pt3">' +
+  item.summary +
+  '</p>' +
+  '<div class="ttu f7 fw5 pt3">' +
+  'Author: ' +
+  item.authors.join(', ') +
+  '</div>'
+  ;
+  
   const share = createDiv('f3 pt4');
   const encodedURL = encodeURIComponent(location.href);
   const encodedTitle = encodeURIComponent(item.title);
   share.innerHTML = `
-<a class="no-underline black" href="${generateFacebookShareLink(encodedURL, encodedTitle)}" target="_blank">
+  <a class="no-underline black" href="${generateFacebookShareLink(encodedURL, encodedTitle)}" target="_blank">
   <i class='fa fa-fw fa-facebook pr2 dim'></i>
-</a>
-<a class="no-underline black" href="${generateTwitterShareLink(encodedURL, encodedTitle)}" target="_blank">
+  </a>
+  <a class="no-underline black" href="${generateTwitterShareLink(encodedURL, encodedTitle)}" target="_blank">
   <i class='fa fa-fw fa-twitter pr2 dim'></i>
-</a>
-`;
+  </a>
+  `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
   viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
   viewFullArticle.innerHTML = '<span>View Full Article</span>';
@@ -1239,7 +1239,7 @@ const timelineMouseDownEventHandler = e => {
   timelineFlexWrapper.classList.remove('cursor-grab');
   mainTimeline.classList.remove('cursor-grab');
   timelineSection.classList.add('cursor-grabbing');
-
+  
   document.addEventListener('mousemove', timelineMousemoveEventHandler, false);
 };
 
@@ -1315,7 +1315,7 @@ const timelineDoubleClickEventHandler = e => {
     userHintZoomIn.classList.add('fade-in-2');
     userHintGrab.classList.remove('fade-in-1');
     userHintZoomOut.classList.remove('fade-in-2');
-
+    
     mainTimeline.classList.remove('timeline-zoomed-in');
     height /= 1.8;
     initialPositionX = 0;
@@ -1348,7 +1348,7 @@ const timelineDoubleClickEventHandler = e => {
     userHintZoomIn.classList.remove('fade-in-2');
     userHintGrab.classList.add('fade-in-1');
     userHintZoomOut.classList.add('fade-in-2');
-
+    
     timelineZoomed = true;
     timelineSqueezeStop();
     disableProgramSelectContainer();
