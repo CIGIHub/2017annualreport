@@ -242,7 +242,6 @@ export function searchTimeline(string) {
           const dataPointCircle = dataPointCircles[j];
           const dataSvg = dataPointCircle.parentNode;
           const pointContainer = dataSvg.parentNode;
-          dataSvg.style.pointerEvents = 'none';
           pointContainer.style.zIndex = '2';
           dataPointCircle.setAttribute('class', 'important-grey');
         }
@@ -964,8 +963,8 @@ function mountExpandedViewContainer(expandedViewContainer) {
   disableProgramSelectContainer();
   mainTimeline.style.transition = transition;
   mainTimeline.style.pointerEvents = 'none';
-  const timelineBoundingClientRect = mainTimeline.getBoundingClientRect();
-  const translateY = 'translateY(' + -1 * ((timelineBoundingClientRect.top + timelineBoundingClientRect.bottom) / 2 - amplitude) + 'px)';
+  const timelineBoundingClientRect = timelineRoot.getBoundingClientRect();
+  const translateY = 'translateY(' + -1 * (timelineBoundingClientRect.top - amplitude) + 'px)';
   siteHeader.classList.add('top');
   nextTick(() => {
     height /= 2;
@@ -1102,7 +1101,7 @@ const goLeft = e => {
     let i = mountedItem.i;
     while (i-- > 0) {
       const item = dataByTimeAll[i];
-      if (!item.researchAreaDeselected && !item.contentTypeDeselected) {
+      if (!item.researchAreaDeselected && !item.contentTypeDeselected && !item.searchGrayed) {
         changeExpandedViewArticle(item, 'left');
         break;
       }
@@ -1117,7 +1116,7 @@ const goRight = e => {
     const dataByTimeLength = dataByTimeAll.length;
     while (++i < dataByTimeLength) {
       const item = dataByTimeAll[i];
-      if (!item.researchAreaDeselected && !item.contentTypeDeselected) {
+      if (!item.researchAreaDeselected && !item.contentTypeDeselected && !item.searchGrayed) {
         changeExpandedViewArticle(item, 'right');
         break;
       }
@@ -1216,9 +1215,6 @@ function createArticleGroup(item) {
 </a>
 <a class="no-underline black" href="${generateTwitterShareLink(encodedURL, encodedTitle)}" target="_blank">
   <i class='fa fa-fw fa-twitter pr2 dim'></i>
-</a>
-<a class="no-underline black" href="mailto:?subject=${item.title}&amp;body=${location.href}">
-  <i class='fa fa-fw fa-envelope dim'></i>
 </a>
 `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
@@ -1329,8 +1325,8 @@ const timelineDoubleClickEventHandler = e => {
     mainTimeline.classList.remove('cursor-grab');
     unmountElementsInArray(monthlyViewTimelineVerticalLines);
     requestAnimationFrame(() => {
-      mainTimeline.style.width = null;
-      mainTimeline.style.transform = null;
+      mainTimeline.style.width = '';
+      mainTimeline.style.transform = '';
     });
     const whenTimelineHasZoomedOut = () => {
       timelineZoomed = false;
