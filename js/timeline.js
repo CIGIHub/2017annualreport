@@ -11,7 +11,6 @@ import {
   createEl,
   generateFacebookShareLink,
   generateTwitterShareLink,
-  generateFacebookSDKShareLink,
 } from './helpers';
 
 import {
@@ -675,13 +674,8 @@ function generateFilters() {
   programSelectContainer.appendChild(programSelectContent);
   programSelectContainer.appendChild(programSelectToggler);
   generatedFilters[3] = programSelectContainer;
-<<<<<<< HEAD
-  
-  clearButton = createDiv('select-clear pointer w4 mv1 ml1 fw5 f6 grey ttu hover-bg-black-10');
-=======
 
   clearButton = createDiv('select-clear pointer w4 mv1 ml1 f6 ttu hover-bg-black-50');
->>>>>>> master
   clearButton.style.display = 'none';
   clearButton.innerHTML = `<div class="pl2 pr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
