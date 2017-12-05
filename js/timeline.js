@@ -576,8 +576,8 @@ function generateFilters() {
   researchSelectContainer.style.maxWidth = '280px';
   const researchSelectToggler = createDiv('grey');
   researchSelectToggler.innerText = researchTypeFilters.label;
-  const chevronDown = '<span class="f5 pl1 pr2"><i class="fa fa-angle-down"></i></span>';
-  const chevronUp = '<span class="f5 pl1 pr2"><i class="fa fa-angle-up"></i></span>';
+  const chevronDown = '<span class="f5 pl2 pr2"><i class="fa fa-angle-down"></i></span>';
+  const chevronUp = '<span class="f5 pl2 pr2"><i class="fa fa-angle-up"></i></span>';
   researchSelectToggler.innerHTML = chevronUp + researchTypeFilters.label;
   researchSelectContainer.onmouseenter = () => {
     researchSelectToggler.innerHTML = chevronDown + researchTypeFilters.label;
@@ -624,7 +624,7 @@ function generateFilters() {
   const searchBar = createDiv('flex items-center select-container w12rem mv1 ml1 f6');
   searchBox = createEl('input', 'input-reset outline-0 bn bg-transparent h-100 w-100 grey font ttu fw5');
   searchBox.placeholder = 'Search';
-  searchBar.appendChild(createDiv('f5 pl1 pr2 grey fa fa-search'));
+  searchBar.appendChild(createDiv('f5 pl2 pr2 grey fa fa-search'));
   searchBar.appendChild(searchBox);
   searchBox.oninput = e => {
     e.stopPropagation();
@@ -675,10 +675,15 @@ function generateFilters() {
   programSelectContainer.appendChild(programSelectContent);
   programSelectContainer.appendChild(programSelectToggler);
   generatedFilters[3] = programSelectContainer;
+<<<<<<< HEAD
   
   clearButton = createDiv('select-clear pointer w4 mv1 ml1 fw5 f6 grey ttu hover-bg-black-10');
+=======
+
+  clearButton = createDiv('select-clear pointer w4 mv1 ml1 f6 ttu hover-bg-black-50');
+>>>>>>> master
   clearButton.style.display = 'none';
-  clearButton.innerHTML = `<div class="ml1 mr2">${closeSvg}</div>Clear All`;
+  clearButton.innerHTML = `<div class="pl2 pr2">${closeSvg}</div>Clear All`;
   clearButton.onclick = clearFilters;
   generatedFilters[4] = clearButton;
   return generatedFilters;
