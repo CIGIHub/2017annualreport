@@ -135,4 +135,5 @@ export const changeSlideInUrl = id => {
   } else {
     setHash(location.hash.replace(slideRegex, '?slide=' + id));
   }
+  if (window.ga){ window.ga('send', 'pageview', location.pathname + location.search  + location.hash);}
 };
