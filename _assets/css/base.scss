@@ -91,10 +91,13 @@ body {
   }
 }
 
+.font {
+  font: $base-font-weight $base-font-size/#{$base-line-height} $base-font-family;
+}
+
 %click-through-to-children {
   pointer-events: none;
-
-  * {
+  >* {
     pointer-events: auto;
   }
 }
