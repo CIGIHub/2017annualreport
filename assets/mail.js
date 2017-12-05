@@ -13,15 +13,20 @@ app.post('/mail', function (req, res) {
         path: '/usr/sbin/sendmail'
     });
 
-    transporter.sendMail({
-        from: 'websiteupdates@cigionline.com',
-        to: req.query.email,
-        subject: 'CIGI 2017 Annual Report',
-        text: '<p>You have been invited to view our Annual report "<a href="https://cigionline.org/interactives/2017annualreport">.<p>'
-    }, (err, info) => {
-        console.log(info.envelope);
-        console.log(info.messageId);
-    });
-});
-    
+    var mailOptions = {
+        from: 'websiteupdates@cigionline.org',
+        to: 'namscott@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+    };
 
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+});
+   
