@@ -30,6 +30,6 @@ assets:
     js: true
   autowrite: true
   cache_type: memory
-  prefix: "/assets"
+  prefix: "/interactives/2017annualreport/assets"
   autoprefixer:
     flexbox: no-2009

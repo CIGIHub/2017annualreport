@@ -926,7 +926,10 @@ let programViewTimelines;
 const itemIdToDataPointCircles = {};
 
 export default function timelineMagic() {
-  fetch(baseUrl + 'data/ar-oct18.json').then(response => response.json()).then(data => {
+
+  headers.append('Authorization', 'Basic' + base64.encode('cigionline' + ":" + 'admin'));
+  
+  fetch(baseUrl + 'data/ar-oct18.json', {headers: headers}).then(response => response.json()).then(data => {
     dataByTimeAll = data.posts;
     mainTimeline = generateAndMountTimeline(dataByTimeAll);
     
