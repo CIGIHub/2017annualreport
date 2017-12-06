@@ -1201,22 +1201,10 @@ function createArticleGroup(item) {
   '</div>'
   ;
   
-  const share = createDiv('f3 pt4');
-  const encodedURL = encodeURIComponent(location.href);
-  const encodedTitle = encodeURIComponent(item.title);
-  share.innerHTML = `
-  <a class="no-underline black" href="${generateFacebookShareLink(encodedURL, encodedTitle)}" target="_blank">
-  <i class='fa fa-fw fa-facebook pr2 dim'></i>
-  </a>
-  <a class="no-underline black" href="${generateTwitterShareLink(encodedURL, encodedTitle)}" target="_blank">
-  <i class='fa fa-fw fa-twitter pr2 dim'></i>
-  </a>
-  `;
   const viewFullArticle = createEl('a', 'no-underline inline-flex items-center br-pill bg-accent-color pv2 ph3 mt4 white dib pointer underline-hover');
   viewFullArticle.setAttribute('href', item.url_landing_page + '?source=ar');
   viewFullArticle.innerHTML = '<span>View Full Article</span>';
   article.appendChild(viewFullArticle);
-  article.appendChild(share);
   const articleGroup = [article, articlePicture, articlePictureBlurred];
   cachedArticleGroupByArticleI[item.i] = articleGroup;
   return articleGroup;
