@@ -3,7 +3,7 @@ title: CIGI 2017 Annual Report
 email: websiteupdates@cigionline.org
 description: CIGI Annual Report
 baseurl: "/interactives/2017annualreport"
-url: "https://www.cigionline.org"
+url: "https://staging.cigionline.org"
 
 # Build settings
 markdown: kramdown
@@ -30,6 +30,6 @@ assets:
     js: true
   autowrite: true
   cache_type: memory
-  prefix: "/assets"
+  prefix: "/interactives/2017annualreport/assets"
   autoprefixer:
     flexbox: no-2009

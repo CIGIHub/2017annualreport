@@ -26,6 +26,7 @@
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "base-64": "^0.1.0",
     "concurrently": "^3.5.0",
     "eslint": "^4.2.0",
     "eslint-import-resolver-webpack": "^0.8.3",

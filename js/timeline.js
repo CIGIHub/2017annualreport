@@ -926,9 +926,12 @@ let programViewTimelines;
 const itemIdToDataPointCircles = {};
 
 export default function timelineMagic() {
+  let base64 = require('base-64');
+  let headers = new Headers();
 
-  headers.append('Authorization', 'Basic' + base64.encode('cigionline' + ":" + 'admin'));
-  
+  // headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
+  headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
+
   fetch(baseUrl + 'data/ar-oct18.json', {headers: headers}).then(response => response.json()).then(data => {
     dataByTimeAll = data.posts;
     mainTimeline = generateAndMountTimeline(dataByTimeAll);
@@ -1164,8 +1167,12 @@ function createArticleGroup(item) {
     const smallImageUrl = `${baseUrl}data/prev/${item.id}.jpg`;
     const largeImageUrl = `${baseUrl}data/min/${item.id}.jpg`;
     articlePictureBlurred.style.backgroundImage = `url('${smallImageUrl}')`;
+    let headers = new Headers();
     
-    fetch(largeImageUrl).then(r => r.blob()).then(blob => {
+    // headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
+    headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
+    
+    fetch(largeImageUrl, {headers: headers}).then(r => r.blob()).then(blob => {
       const reader = new FileReader();
       reader.readAsDataURL(blob);
       reader.addEventListener('load', () => {
