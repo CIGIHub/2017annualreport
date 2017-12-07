@@ -11,6 +11,8 @@ import {
   parseAndLoadSlide,
 } from './permalink';
 
+
+
 const globalShareFacebook = document.getElementById('global-share-facebook');
 const globalShareTwitter = document.getElementById('global-share-twitter');
 const tableOfContentsButton = document.getElementById('table-of-contents-button');
@@ -20,6 +22,7 @@ const viewARLink = document.getElementById('view-ar-link');
 const header = document.getElementById('site-header');
 const landingUpArrow = document.getElementsByClassName('explore')[0];
 const landingDownArrow = document.getElementsByClassName('view-ar')[0];
+const mobileTimelineDownArrow = document.getElementsByClassName('view-ar-mobile')[0];
 const presidentsMessageLink = document.querySelector("[data-id='tab-1']");
 const chairsMessageLink = document.querySelector("[data-id='tab-2']");
 const chairSlide = 2;
@@ -146,6 +149,11 @@ viewARLink.onclick = (e) => {
 };
 
 landingDownArrow.onclick = (e) => {
+  e.stopPropagation();
+  updateNavigation(2, currentSlide);
+};
+
+mobileTimelineDownArrow.onclick = (e) => {
   e.stopPropagation();
   updateNavigation(2, currentSlide);
 };

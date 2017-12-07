@@ -1168,7 +1168,7 @@ function createArticleGroup(item) {
     const largeImageUrl = `${baseUrl}data/min/${item.id}.jpg`;
     articlePictureBlurred.style.backgroundImage = `url('${smallImageUrl}')`;
     let headers = new Headers();
-    
+    let base64 = require('base-64');
     // headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
     headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
     
