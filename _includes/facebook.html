@@ -1,0 +1,28 @@
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '995454813805233',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.11'
+      });
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
+    document.getElementById('global-share-facebook').onclick = function() {
+        FB.ui(
+            {
+            method: 'share',
+            display: 'popup',
+            href: 'https://www.cigionline.org/interactives/2017annualreport'
+            }, function(response){});
+    }
+  </script>
+      

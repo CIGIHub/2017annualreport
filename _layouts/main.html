@@ -48,7 +48,12 @@ layout: compress
 
       <script src="https://platform.twitter.com/widgets.js"></script>
       <script src="{{ site.assets_base_url }}/assets/bundle{{ site.env.HASH }}.js"></script>
+
     </div>
+
+    {% if jekyll.environment == 'production' %}
+      {% include facebook.html %}
+    {% endif %}
   </body>
 
 </html>
