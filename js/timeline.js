@@ -407,7 +407,7 @@ function combineProgramView(callback) {
       const timeline = programViewTimelines[i];
       timeline.style.transition = programViewTransition;
       timeline.style.opacity = '0';
-      timeline.style.transform = 'translateY(0)';
+      timeline.style.transform = '';
     }
     requestAnimationFrame(() => {
       mainTimeline.style.opacity = '';
