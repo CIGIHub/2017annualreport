@@ -11,6 +11,7 @@ import {
   parseAndLoadSlide,
 } from './permalink';
 
+
 const globalShareFacebook = document.getElementById('global-share-facebook');
 const globalShareTwitter = document.getElementById('global-share-twitter');
 const tableOfContentsButton = document.getElementById('table-of-contents-button');
