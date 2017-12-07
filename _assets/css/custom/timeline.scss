@@ -30,6 +30,10 @@ $timeout-fade-layer-z-index: 4;
 $article-slide-duration: 500ms;
 $article-slide-timing-function: ease-in-out;
 
+#timeline-slide-content .author{
+  display: none;
+}
+
 //Timeline Styles
 .point-container {
   position: absolute;

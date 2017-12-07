@@ -1205,7 +1205,7 @@ function createArticleGroup(item) {
   '<p class="lh-copy pt3">' +
   item.summary +
   '</p>' +
-  '<div class="ttu f7 fw5 pt3">' +
+  '<div class="author ttu f7 fw5 pt3">' +
   'Author: ' +
   item.authors.join(', ') +
   '</div>'
