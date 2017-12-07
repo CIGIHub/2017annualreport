@@ -70,7 +70,7 @@ export const resetSearchInUrl = () => {
 
 const contentTypeRegex = /\?content_type='(.+)'/;
 export const setContentTypeInUrl = () => {
-  const token = `?content_type='${selectedContentType}'`;
+  const token = `?content_type='${encodeURIComponent(selectedContentType)}'`;
   if (location.hash.match(contentTypeRegex)) {
     setHash(location.hash.replace(contentTypeRegex, token));
   } else {
@@ -108,7 +108,7 @@ export function handlePermalink(dataByTimeAll, delay) {
   }
   let contentType = contentTypeRegex.exec(hash);
   if (contentType !== null) {
-    contentType = contentType[1];
+    contentType = decodeURIComponent(contentType[1]);
     const radioBox = contentTypeToRadioBox[contentType];
     filterByContentType(radioBox, contentType);
   }
