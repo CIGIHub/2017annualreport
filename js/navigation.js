@@ -36,7 +36,7 @@ export let mobile = false;
 
 function updateGlobalShareLinks() {
   const encodedURL = encodeURIComponent(location.href);
-  globalShareFacebook.setAttribute('href', generateFacebookShareLink(encodedURL));
+  //globalShareFacebook.setAttribute('href', 'https://developers.facebook.com/docs/sharing/reference/share-dialog');
   globalShareTwitter.setAttribute('href', generateTwitterShareLink(encodedURL));
 }
 

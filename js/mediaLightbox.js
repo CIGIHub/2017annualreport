@@ -70,7 +70,7 @@ function createYoutubeContainer(youtubeId) {
   closeButton.innerHTML = closeSvg;
   closeButton.onclick = closeLightbox;
 
-  youtubeContainer.innerHTML = `<div class="responsive-media"><iframe type="text/html" width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}?fs=0&modestbranding=1&autoplay=1" frameborder="0"></iframe></div>`;
+  youtubeContainer.innerHTML = `<div class="responsive-media"><iframe type="text/html" width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}?rel=0&fs=0&modestbranding=1&autoplay=1" frameborder="0"></iframe></div>`;
   youtubeContainer.appendChild(closeButton);
   loadOverlay.remove();
 
