@@ -64,7 +64,7 @@ export function unmountElementsInArray(arr) {
 // Useful for triggering transitions
 export const nextTick = func => setTimeout(func, 0);
 
-export const generateTwitterShareLink = (encodedURL, encodedTitle = '') => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`;
+export const generateTwitterShareLink = (encodedURL, encodedTitle) => `http://twitter.com/intent/tweet?status=${encodedTitle}+${encodedURL}`;
 
 // svg elements
 
