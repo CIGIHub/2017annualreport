@@ -929,8 +929,8 @@ export default function timelineMagic() {
   let base64 = require('base-64');
   let headers = new Headers();
 
-  headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
-  //headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
+  // headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
+  headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
 
   fetch(baseUrl + 'data/ar-oct18.json', {headers: headers}).then(response => response.json()).then(data => {
     dataByTimeAll = data.posts;
@@ -1169,8 +1169,8 @@ function createArticleGroup(item) {
     articlePictureBlurred.style.backgroundImage = `url('${smallImageUrl}')`;
     let headers = new Headers();
     let base64 = require('base-64');
-    headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
-    // headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
+    // headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'admin'));
+    headers.append('Authorization', 'Basic ' + base64.encode('cigionline' + ":" + 'edit1234!'));
     
     fetch(largeImageUrl, {headers: headers}).then(r => r.blob()).then(blob => {
       const reader = new FileReader();
