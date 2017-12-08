@@ -36,8 +36,9 @@ export let mobile = false;
 
 function updateGlobalShareLinks() {
   const encodedURL = encodeURIComponent(location.href);
+  const encodedTitle = 'CIGI+Annual+Report+2017';
   //globalShareFacebook.setAttribute('href', 'https://developers.facebook.com/docs/sharing/reference/share-dialog');
-  globalShareTwitter.setAttribute('href', generateTwitterShareLink(encodedURL));
+  globalShareTwitter.setAttribute('href', generateTwitterShareLink(encodedURL, encodedTitle));
 }
 
 function fadeOutNavigationComponent(component) {
