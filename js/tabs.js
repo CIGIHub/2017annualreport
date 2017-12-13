@@ -49,10 +49,10 @@ function setMessagesBackground(tab) {
   const slide2 = document.getElementsByClassName('slide-2')[0];
   const slide2BG = slide2.getElementsByClassName('background-img')[0];
   if (tab == 'tab-1') {
-    slide2BG.style.backgroundImage = "url('assets/slides/RM-headshot-smaller.jpg')";
+    slide2BG.style.backgroundImage = "url('assets/slides/JB-headshot-smaller.jpg')";
   }
   else if (tab == 'tab-2') {
-    slide2BG.style.backgroundImage = "url('assets/slides/JB-headshot-smaller.jpg')";
+    slide2BG.style.backgroundImage = "url('assets/slides/RM-headshot-smaller.jpg')";
   }
 }
 
