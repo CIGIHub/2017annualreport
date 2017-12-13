@@ -364,7 +364,7 @@ function injectLinksAndAddSideBar() {
         const liClassName = 'dib pointer white f6 fw3 mt2 underline-hover list smooth';
         if (slide.slideNum === chairSlide) {
           const presidentLi = createEl('li', liClassName);
-          presidentLi.innerText = "President's Message";
+          presidentLi.innerText = "Chair's Message";
           presidentLi.onclick = () => {
             toggleTocOpen();
             if (slide.slideNum !== currentSlide) {
@@ -376,7 +376,7 @@ function injectLinksAndAddSideBar() {
           acc.appendChild(createEl('br'));
 
           const chairLi = createEl('li', liClassName);
-          chairLi.innerText = "Chair's Message";
+          chairLi.innerText = "President's Message";
           chairLi.onclick = () => {
             toggleTocOpen();
               if (slide.slideNum !== currentSlide) {
