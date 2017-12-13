@@ -413,7 +413,7 @@ function injectLinksAndAddSideBar() {
     slides.forEach((slideName, i) => {
       if (i === chairSlide) {
         const presidentLi = createEl('li', 'pointer');
-        presidentLi.innerText = "President's Message";
+        presidentLi.innerText = "Chair's Message";
         presidentLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
@@ -423,11 +423,11 @@ function injectLinksAndAddSideBar() {
         ul.appendChild(presidentLi);
 
         const chairLi = createEl('li', 'pointer');
-        chairLi.innerText = "Chair's Message";
+        chairLi.innerText = "President's Message";
         chairLi.onclick = () => {
           toggleTocOpen();
           updateNavigation(i, currentSlide);
-          document.getElementById("chairs-message").scrollIntoView();
+          document.getElementById("presidents-message").scrollIntoView();
           window.scrollBy(0,-40); // clear the top nav
           chairsMessageLink.click();
         };
