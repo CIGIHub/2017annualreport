@@ -939,10 +939,12 @@ let programViewTimelines;
 const itemIdToDataPointCircles = {};
 
 export default function timelineMagic() {
-    let base64 = require('base-64');
-    let headers = new Headers();
+    const base64 = require('base-64');
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
 
-    fetch(baseUrl + 'data/ar-oct18.json', {headers: headers}).then(response => response.json()).then(data => {
+    fetch(baseUrl + 'data/ar-oct18.json', { headers: headers }).then(response => response.json()).then(data => {
         dataByTimeAll = data.posts;
         mainTimeline = generateAndMountTimeline(dataByTimeAll);
 

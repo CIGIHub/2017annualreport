@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // place the file here
-const file = 'data/annual_report_dec5.json';
+const file = 'data/ar-oct18.json';
 
 fs.readFile(file, 'utf8', (_, data) => {
   const o = JSON.parse(data.replace(/staging\./g, 'www.').replace(/\.dev/g, '.org').replace(/\\r\\n/g, ' '));
