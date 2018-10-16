@@ -41,7 +41,7 @@ const timelineFlexWrapper = timelineRoot.parentNode;
 const timelineSection = document.getElementsByTagName('section')[0];
 
 
-const baseUrl = location.href.replace(/[^/]*$/, '').replace('/#/', '/');
+const baseUrl = location.href.replace(/[^/]*$/, '').replace('/#/', '/').replace('/index.html#/', '/');
 export let setReseachAreaFilters = [];
 // Timeline Helper Functions
 import {
